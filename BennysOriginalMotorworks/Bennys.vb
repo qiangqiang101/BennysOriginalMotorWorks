@@ -96,6 +96,9 @@ Public Class Bennys
             RefreshPerformanceMenuFor(mTransmission, iTransmission, VehicleMod.Transmission, "CMOD_GBX_")
             lastVehMemory = New VehicleDefaultParts() With {
                 .Aerials = veh.GetMod(VehicleMod.Aerials),
+                .FrontBumper = veh.GetMod(VehicleMod.FrontBumper),
+                .RearBumper = veh.GetMod(VehicleMod.RearBumper),
+                .SideSkirt = veh.GetMod(VehicleMod.SideSkirt),
                 .Armor = veh.GetMod(VehicleMod.Armor),
                 .Brakes = veh.GetMod(VehicleMod.Brakes),
                 .Engine = veh.GetMod(VehicleMod.Engine),

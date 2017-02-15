@@ -36,7 +36,7 @@ Public Class Helper
             Return Nothing
         End If
 
-        Return New Vehicle([Function].[Call](Of Integer)(Hash.CREATE_VEHICLE, model.Hash, position.X, position.Y, position.Z, heading,
+        Return New Vehicle(Native.Function.Call(Of Integer)(Hash.CREATE_VEHICLE, model.Hash, position.X, position.Y, position.Z, heading,
         False, False))
     End Function
 
@@ -274,4 +274,326 @@ Public Class Helper
     Public Shared Sub SetAccentColor(vehicle As Vehicle, color As VehicleColor)
         Native.Function.Call(&H6089CDF6A57F326C, vehicle, color)
     End Sub
+
+    Public Shared Function LocalizedModTypeName(toggleModType As VehicleToggleMod) As String
+        If Not Native.Function.Call(Of Boolean)(Hash.HAS_THIS_ADDITIONAL_TEXT_LOADED, "mod_mnu", 10) Then
+            Native.Function.Call(Hash.CLEAR_ADDITIONAL_TEXT, 10, True)
+            Native.Function.Call(Hash.REQUEST_ADDITIONAL_TEXT, "mod_mnu", 10)
+        End If
+        Dim cur As String = Native.Function.Call(Of String)(Hash.GET_MOD_SLOT_NAME, Bennys.veh.Handle, toggleModType)
+        If cur = "" Then
+            'would only happen if the text isnt loaded
+            cur = [Enum].GetName(GetType(VehicleToggleMod), toggleModType)
+        End If
+        Return cur
+    End Function
+
+    Public Shared Function LocalizedModTypeName(modType As VehicleMod) As String
+        If Not Native.Function.Call(Of Boolean)(Hash.HAS_THIS_ADDITIONAL_TEXT_LOADED, "mod_mnu", 10) Then
+            Native.Function.Call(Hash.CLEAR_ADDITIONAL_TEXT, 10, True)
+            Native.Function.Call(Hash.REQUEST_ADDITIONAL_TEXT, "mod_mnu", 10)
+        End If
+        Dim cur As String = Nothing
+        Select Case modType
+            Case VehicleMod.Armor
+                cur = Game.GetGXTEntry("CMOD_MOD_ARM")
+                Exit Select
+            Case VehicleMod.Brakes
+                cur = Game.GetGXTEntry("CMOD_MOD_BRA")
+                Exit Select
+            Case VehicleMod.Engine
+                cur = Game.GetGXTEntry("CMOD_MOD_ENG")
+                Exit Select
+            Case VehicleMod.Suspension
+                cur = Game.GetGXTEntry("CMOD_MOD_SUS")
+                Exit Select
+            Case VehicleMod.Transmission
+                cur = Game.GetGXTEntry("CMOD_MOD_TRN")
+                Exit Select
+            Case VehicleMod.Horns
+                cur = Game.GetGXTEntry("CMOD_MOD_HRN")
+                Exit Select
+            Case VehicleMod.FrontWheels
+                If Not Bennys.veh.Model.IsBike AndAlso Bennys.veh.Model.IsBicycle Then
+                    cur = Game.GetGXTEntry("CMOD_MOD_WHEM")
+                    If cur = "" Then
+                        Return "Wheels"
+                    End If
+                Else
+                    cur = Game.GetGXTEntry("CMOD_WHE0_0")
+                End If
+                Exit Select
+            Case VehicleMod.BackWheels
+                cur = Game.GetGXTEntry("CMOD_WHE0_1")
+                Exit Select
+
+            'Bennys
+            Case VehicleMod.PlateHolder
+                cur = Game.GetGXTEntry("CMM_MOD_S0")
+                Exit Select
+            Case VehicleMod.VanityPlates
+                cur = Game.GetGXTEntry("CMM_MOD_S1")
+                Exit Select
+            Case VehicleMod.TrimDesign
+                If Bennys.veh.Model = VehicleHash.SultanRS Then
+                    cur = Game.GetGXTEntry("CMM_MOD_S2b")
+                Else
+                    cur = Game.GetGXTEntry("CMM_MOD_S2")
+                End If
+                Exit Select
+            Case VehicleMod.Ornaments
+                cur = Game.GetGXTEntry("CMM_MOD_S3")
+                Exit Select
+            Case VehicleMod.Dashboard
+                cur = Game.GetGXTEntry("CMM_MOD_S4")
+                Exit Select
+            Case VehicleMod.DialDesign
+                cur = Game.GetGXTEntry("CMM_MOD_S5")
+                Exit Select
+            Case VehicleMod.DoorSpeakers
+                cur = Game.GetGXTEntry("CMM_MOD_S6")
+                Exit Select
+            Case VehicleMod.Seats
+                cur = Game.GetGXTEntry("CMM_MOD_S7")
+                Exit Select
+            Case VehicleMod.SteeringWheels
+                cur = Game.GetGXTEntry("CMM_MOD_S8")
+                Exit Select
+            Case VehicleMod.ColumnShifterLevers
+                cur = Game.GetGXTEntry("CMM_MOD_S9")
+                Exit Select
+            Case VehicleMod.Plaques
+                cur = Game.GetGXTEntry("CMM_MOD_S10")
+                Exit Select
+            Case VehicleMod.Speakers
+                cur = Game.GetGXTEntry("CMM_MOD_S11")
+                Exit Select
+            Case VehicleMod.Trunk
+                cur = Game.GetGXTEntry("CMM_MOD_S12")
+                Exit Select
+            Case VehicleMod.Hydraulics
+                cur = Game.GetGXTEntry("CMM_MOD_S13")
+                Exit Select
+            Case VehicleMod.EngineBlock
+                cur = Game.GetGXTEntry("CMM_MOD_S14")
+                Exit Select
+            Case VehicleMod.AirFilter
+                If Bennys.veh.Model = VehicleHash.SultanRS Then
+                    cur = Game.GetGXTEntry("CMM_MOD_S15b")
+                Else
+                    cur = Game.GetGXTEntry("CMM_MOD_S15")
+                End If
+                Exit Select
+            Case VehicleMod.Struts
+                If Bennys.veh.Model = VehicleHash.SultanRS OrElse Bennys.veh.Model = VehicleHash.Banshee2 Then
+                    cur = Game.GetGXTEntry("CMM_MOD_S16b")
+                Else
+                    cur = Game.GetGXTEntry("CMM_MOD_S16")
+                End If
+                Exit Select
+            Case VehicleMod.ArchCover
+                If Bennys.veh.Model = VehicleHash.SultanRS Then
+                    cur = Game.GetGXTEntry("CMM_MOD_S17b")
+                Else
+                    cur = Game.GetGXTEntry("CMM_MOD_S17")
+                End If
+                Exit Select
+            Case VehicleMod.Aerials
+                If Bennys.veh.Model = VehicleHash.SultanRS Then
+                    cur = Game.GetGXTEntry("CMM_MOD_S18b")
+                ElseIf Bennys.veh.Model = VehicleHash.BType3 Then
+                    cur = Game.GetGXTEntry("CMM_MOD_S18c")
+                Else
+                    cur = Game.GetGXTEntry("CMM_MOD_S18")
+                End If
+                Exit Select
+            Case VehicleMod.Trim
+                If Bennys.veh.Model = VehicleHash.SultanRS Then
+                    cur = Game.GetGXTEntry("CMM_MOD_S19b")
+                ElseIf Bennys.veh.Model = VehicleHash.BType3 Then
+                    cur = Game.GetGXTEntry("CMM_MOD_S19c")
+                ElseIf Bennys.veh.Model = VehicleHash.Virgo2 Then
+                    cur = Game.GetGXTEntry("CMM_MOD_S19d")
+                Else
+                    cur = Game.GetGXTEntry("CMM_MOD_S19")
+                End If
+                Exit Select
+            Case VehicleMod.Tank
+                If Bennys.veh.Model = VehicleHash.SlamVan3 Then
+                    cur = Game.GetGXTEntry("CMM_MOD_S27")
+                Else
+                    cur = Game.GetGXTEntry("CMM_MOD_S20")
+                End If
+                Exit Select
+
+            Case VehicleMod.Windows
+                If Bennys.veh.Model = VehicleHash.BType3 Then
+                    cur = Game.GetGXTEntry("CMM_MOD_S21b")
+                Else
+                    cur = Game.GetGXTEntry("CMM_MOD_S21")
+                End If
+                Exit Select
+            Case DirectCast(47, VehicleMod)
+                If Bennys.veh.Model = VehicleHash.SlamVan3 Then
+                    cur = Game.GetGXTEntry("SLVAN3_RDOOR")
+                Else
+                    cur = Game.GetGXTEntry("CMM_MOD_S22")
+                End If
+                Exit Select
+            Case VehicleMod.Livery
+                cur = Game.GetGXTEntry("CMM_MOD_S23")
+                Exit Select
+            Case Else
+
+                cur = Native.Function.Call(Of String)(Hash.GET_MOD_SLOT_NAME, Bennys.veh.Handle, modType)
+                If DoesGXTEntryExist(cur) Then
+                    cur = Game.GetGXTEntry(cur)
+                End If
+                Exit Select
+        End Select
+        If cur = "" Then
+            'would only happen if the text isnt loaded
+            cur = [Enum].GetName(GetType(VehicleMod), modType)
+        End If
+
+        Return cur
+    End Function
+
+    Public Shared Function DoesGXTEntryExist(entry As String) As Boolean
+        Return Native.Function.Call(Of Boolean)(Hash.DOES_TEXT_LABEL_EXIST, entry)
+    End Function
+
+    Public Shared Function GetLocalizedModName(index As Integer, modCount As Integer, modType As VehicleMod) As String
+        'this still needs a little more work, but its better than what it used to be
+        If modCount = 0 Then
+            Return ""
+        End If
+        If index < -1 OrElse index >= modCount Then
+            Return ""
+        End If
+        If Not Native.Function.Call(Of Boolean)(Hash.HAS_THIS_ADDITIONAL_TEXT_LOADED, "mod_mnu", 10) Then
+            Native.Function.Call(Hash.CLEAR_ADDITIONAL_TEXT, 10, True)
+            Native.Function.Call(Hash.REQUEST_ADDITIONAL_TEXT, "mod_mnu", 10)
+        End If
+        Dim cur As String
+        If modType = VehicleMod.Horns Then
+            If _hornNames.ContainsKey(index) Then
+                If DoesGXTEntryExist(_hornNames(index).Item1) Then
+                    Return Game.GetGXTEntry(_hornNames(index).Item1)
+                End If
+                Return _hornNames(index).Item2
+            End If
+            Return ""
+        End If
+        If modType = VehicleMod.FrontWheels OrElse modType = VehicleMod.BackWheels Then
+            If index = -1 Then
+                If Not Bennys.veh.Model.IsBike AndAlso Bennys.veh.Model.IsBicycle Then
+                    Return Game.GetGXTEntry("CMOD_WHE_0")
+                Else
+                    Return Game.GetGXTEntry("CMOD_WHE_B_0")
+                End If
+            End If
+            If index >= modCount / 2 Then
+                Return Game.GetGXTEntry("CHROME") + " " + Game.GetGXTEntry(Native.Function.Call(Of ULong)(Hash.GET_MOD_TEXT_LABEL, Bennys.veh.Handle, modType, index))
+            Else
+                Return Game.GetGXTEntry(Native.Function.Call(Of ULong)(Hash.GET_MOD_TEXT_LABEL, Bennys.veh.Handle, modType, index))
+            End If
+        End If
+
+        Select Case modType
+            Case VehicleMod.Armor
+                Return Game.GetGXTEntry("CMOD_ARM_" + (index + 1).ToString())
+            Case VehicleMod.Brakes
+                Return Game.GetGXTEntry("CMOD_BRA_" + (index + 1).ToString())
+            Case VehicleMod.Engine
+                If index = -1 Then
+                    'Engine doesn't list anything in LSC for no parts, but there is a setting with no part. so just use armours none
+                    Return Game.GetGXTEntry("CMOD_ARM_0")
+                End If
+                Return Game.GetGXTEntry("CMOD_ENG_" + (index + 2).ToString())
+            Case VehicleMod.Suspension
+                Return Game.GetGXTEntry("CMOD_SUS_" + (index + 1).ToString())
+            Case VehicleMod.Transmission
+                Return Game.GetGXTEntry("CMOD_GBX_" + (index + 1).ToString())
+        End Select
+        If index > -1 Then
+            cur = Native.Function.Call(Of String)(Hash.GET_MOD_TEXT_LABEL, Bennys.veh.Handle, modType, index)
+            If DoesGXTEntryExist(cur) Then
+                cur = Game.GetGXTEntry(cur)
+                If cur = "" OrElse cur = "NULL" Then
+                    Return LocalizedModTypeName(modType) + " " + (index + 1).ToString()
+                End If
+                Return cur
+            End If
+            Return LocalizedModTypeName(modType) + " " + (index + 1).ToString()
+        Else
+            Select Case modType
+                Case VehicleMod.AirFilter
+                    If Bennys.veh.Model = VehicleHash.Tornado Then
+                    End If
+                    Exit Select
+                Case VehicleMod.Struts
+                    Select Case Bennys.veh.Model
+                        Case VehicleHash.Banshee, VehicleHash.Banshee2, VehicleHash.SultanRS
+                            Return Game.GetGXTEntry("CMOD_COL5_41")
+                    End Select
+                    Exit Select
+
+            End Select
+            Return Game.GetGXTEntry("CMOD_DEF_0")
+        End If
+    End Function
+
+    Private Shared ReadOnly _hornNames As New Dictionary(Of Integer, Tuple(Of String, String))(New Dictionary(Of Integer, Tuple(Of String, String))() From {
+    {-1, New Tuple(Of String, String)("CMOD_HRN_0", "Stock Horn")},
+    {0, New Tuple(Of String, String)("CMOD_HRN_TRK", "Truck Horn")},
+    {1, New Tuple(Of String, String)("CMOD_HRN_COP", "Cop Horn")},
+    {2, New Tuple(Of String, String)("CMOD_HRN_CLO", "Clown Horn")},
+    {3, New Tuple(Of String, String)("CMOD_HRN_MUS1", "Musical Horn 1")},
+    {4, New Tuple(Of String, String)("CMOD_HRN_MUS2", "Musical Horn 2")},
+    {5, New Tuple(Of String, String)("CMOD_HRN_MUS3", "Musical Horn 3")},
+    {6, New Tuple(Of String, String)("CMOD_HRN_MUS4", "Musical Horn 4")},
+    {7, New Tuple(Of String, String)("CMOD_HRN_MUS5", "Musical Horn 5")},
+    {8, New Tuple(Of String, String)("CMOD_HRN_SAD", "Sad Trombone")},
+    {9, New Tuple(Of String, String)("HORN_CLAS1", "Classical Horn 1")},
+    {10, New Tuple(Of String, String)("HORN_CLAS2", "Classical Horn 2")},
+    {11, New Tuple(Of String, String)("HORN_CLAS3", "Classical Horn 3")},
+    {12, New Tuple(Of String, String)("HORN_CLAS4", "Classical Horn 4")},
+    {13, New Tuple(Of String, String)("HORN_CLAS5", "Classical Horn 5")},
+    {14, New Tuple(Of String, String)("HORN_CLAS6", "Classical Horn 6")},
+    {15, New Tuple(Of String, String)("HORN_CLAS7", "Classical Horn 7")},
+    {16, New Tuple(Of String, String)("HORN_CNOTE_C0", "Scale Do")},
+    {17, New Tuple(Of String, String)("HORN_CNOTE_D0", "Scale Re")},
+    {18, New Tuple(Of String, String)("HORN_CNOTE_E0", "Scale Mi")},
+    {19, New Tuple(Of String, String)("HORN_CNOTE_F0", "Scale Fa")},
+    {20, New Tuple(Of String, String)("HORN_CNOTE_G0", "Scale Sol")},
+    {21, New Tuple(Of String, String)("HORN_CNOTE_A0", "Scale La")},
+    {22, New Tuple(Of String, String)("HORN_CNOTE_B0", "Scale Ti")},
+    {23, New Tuple(Of String, String)("HORN_CNOTE_C1", "Scale Do (High)")},
+    {24, New Tuple(Of String, String)("HORN_HIPS1", "Jazz Horn 1")},
+    {25, New Tuple(Of String, String)("HORN_HIPS2", "Jazz Horn 2")},
+    {26, New Tuple(Of String, String)("HORN_HIPS3", "Jazz Horn 3")},
+    {27, New Tuple(Of String, String)("HORN_HIPS4", "Jazz Horn Loop")},
+    {28, New Tuple(Of String, String)("HORN_INDI_1", "Star Spangled Banner 1")},
+    {29, New Tuple(Of String, String)("HORN_INDI_2", "Star Spangled Banner 2")},
+    {30, New Tuple(Of String, String)("HORN_INDI_3", "Star Spangled Banner 3")},
+    {31, New Tuple(Of String, String)("HORN_INDI_4", "Star Spangled Banner 4")},
+    {32, New Tuple(Of String, String)("HORN_LUXE2", "Classical Horn Loop 1")},
+    {33, New Tuple(Of String, String)("HORN_LUXE1", "Classical Horn 8")},
+    {34, New Tuple(Of String, String)("HORN_LUXE3", "Classical Horn Loop 2")},
+    {35, New Tuple(Of String, String)("HORN_LUXE2", "Classical Horn Loop 1")},
+    {36, New Tuple(Of String, String)("HORN_LUXE1", "Classical Horn 8")},
+    {37, New Tuple(Of String, String)("HORN_LUXE3", "Classical Horn Loop 2")},
+    {38, New Tuple(Of String, String)("HORN_HWEEN1", "Halloween Loop 1")},
+    {39, New Tuple(Of String, String)("HORN_HWEEN1", "Halloween Loop 1")},
+    {40, New Tuple(Of String, String)("HORN_HWEEN2", "Halloween Loop 2")},
+    {41, New Tuple(Of String, String)("HORN_HWEEN2", "Halloween Loop 2")},
+    {42, New Tuple(Of String, String)("HORN_LOWRDER1", "San Andreas Loop")},
+    {43, New Tuple(Of String, String)("HORN_LOWRDER1", "San Andreas Loop")},
+    {44, New Tuple(Of String, String)("HORN_LOWRDER2", "Liberty City Loop")},
+    {45, New Tuple(Of String, String)("HORN_LOWRDER2", "Liberty City Loop")},
+    {46, New Tuple(Of String, String)("HORN_XM15_1", "Festive Loop 1")},
+    {47, New Tuple(Of String, String)("HORN_XM15_2", "Festive Loop 2")},
+    {48, New Tuple(Of String, String)("HORN_XM15_3", "Festive Loop 3")}
+})
 End Class

@@ -10,3 +10,15 @@ D:\GTAV Mods\BennysOriginalMotorworks\BennysOriginalMotorworks\obj\Debug\BennysO
 D:\GTAV Mods\BennysOriginalMotorworks\BennysOriginalMotorworks\obj\Debug\BennysOriginalMotorworks.dll
 D:\GTAV Mods\BennysOriginalMotorworks\BennysOriginalMotorworks\obj\Debug\BennysOriginalMotorworks.xml
 D:\GTAV Mods\BennysOriginalMotorworks\BennysOriginalMotorworks\obj\Debug\BennysOriginalMotorworks.pdb
+F:\Users\Bartholomew\Documents\GitHub\BennysOriginalMotorWorks\BennysOriginalMotorworks\bin\Debug\BennysOriginalMotorworks.dll
+F:\Users\Bartholomew\Documents\GitHub\BennysOriginalMotorWorks\BennysOriginalMotorworks\bin\Debug\BennysOriginalMotorworks.pdb
+F:\Users\Bartholomew\Documents\GitHub\BennysOriginalMotorWorks\BennysOriginalMotorworks\bin\Debug\BennysOriginalMotorworks.xml
+F:\Users\Bartholomew\Documents\GitHub\BennysOriginalMotorWorks\BennysOriginalMotorworks\bin\Debug\INMNativeUI.dll
+F:\Users\Bartholomew\Documents\GitHub\BennysOriginalMotorWorks\BennysOriginalMotorworks\bin\Debug\ScriptHookVDotNet.dll
+F:\Users\Bartholomew\Documents\GitHub\BennysOriginalMotorWorks\BennysOriginalMotorworks\bin\Debug\ScriptHookVDotNet.xml
+F:\Users\Bartholomew\Documents\GitHub\BennysOriginalMotorWorks\BennysOriginalMotorworks\obj\Debug\BennysOriginalMotorworks.vbprojResolveAssemblyReference.cache
+F:\Users\Bartholomew\Documents\GitHub\BennysOriginalMotorWorks\BennysOriginalMotorworks\obj\Debug\BennysOriginalMotorworks.Resources.resources
+F:\Users\Bartholomew\Documents\GitHub\BennysOriginalMotorWorks\BennysOriginalMotorworks\obj\Debug\BennysOriginalMotorworks.vbproj.GenerateResource.Cache
+F:\Users\Bartholomew\Documents\GitHub\BennysOriginalMotorWorks\BennysOriginalMotorworks\obj\Debug\BennysOriginalMotorworks.dll
+F:\Users\Bartholomew\Documents\GitHub\BennysOriginalMotorWorks\BennysOriginalMotorworks\obj\Debug\BennysOriginalMotorworks.xml
+F:\Users\Bartholomew\Documents\GitHub\BennysOriginalMotorWorks\BennysOriginalMotorworks\obj\Debug\BennysOriginalMotorworks.pdb

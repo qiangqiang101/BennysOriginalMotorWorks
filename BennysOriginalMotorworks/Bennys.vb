@@ -14,10 +14,12 @@ Public Class Bennys
     Public Shared bennyIntID As Integer
     Public Shared isExiting As Boolean = False
     Public Shared lastVehMemory As VehicleDefaultParts
+    Public Shared BennysBlip As Blip
 
     Public Sub New()
         LoadSettings()
         bennyIntID = Helper.GetInteriorID(New Vector3(-211.798, -1324.292, 30.37535))
+        CreateBlip()
     End Sub
 
     Public Sub LoadSettings()
@@ -34,6 +36,11 @@ Public Class Bennys
         Try
             veh = Game.Player.Character.LastVehicle
             ply = Game.Player.Character
+
+            If Game.IsControlJustPressed(0, Control.Jump) AndAlso Game.IsControlJustPressed(0, Control.Context) Then
+                Dim s As String = Game.GetUserInput(99)
+                UI.Notify(Game.GetGXTEntry(s))
+            End If
 
             If fixDoor = 1 Then
                 If ply.Position.DistanceTo(New Vector3(-205.6828, -1310.683, 30.29572)) <= 10 Then
@@ -56,6 +63,13 @@ Public Class Bennys
         End Try
     End Sub
 
+    Public Shared Sub CreateBlip()
+        BennysBlip = World.CreateBlip(New Vector3(-205.5417, -1307.118, 30.26981))
+        BennysBlip.Sprite = (BlipSprite.DollarSignSquared Or BlipSprite.ArrowDownOutlined)
+        BennysBlip.Color = BlipColor.Yellow
+        BennysBlip.IsShortRange = True
+    End Sub
+
     Public Sub PutVehIntoShop()
         Try
             Game.FadeScreenOut(500)
@@ -67,12 +81,26 @@ Public Class Bennys
             RefreshEngineMenu()
             RefreshInteriorMenu()
             RefreshBumperMenu()
+            RefreshModMenuFor(mFBumper, iFBumper, VehicleMod.FrontBumper)
+            RefreshModMenuFor(mRBumper, iRBumper, VehicleMod.RearBumper)
+            RefreshModMenuFor(mSSkirt, iSideSkirt, VehicleMod.SideSkirt)
             RefreshWheelsMenu()
             RefreshPlateMenu()
             RefreshLightsMenu()
             RefreshResprayMenu()
-            RefreshSuspensionMenu()
-            lastVehMemory = New VehicleDefaultParts() With {.Aerials = veh.GetMod(VehicleMod.Aerials), .Suspension = veh.GetMod(VehicleMod.Suspension)}
+            RefreshAerialsMenu()
+            RefreshPerformanceMenuFor(mSuspension, iSuspension, VehicleMod.Suspension, "CMOD_SUS_")
+            RefreshPerformanceMenuFor(mArmor, iArmor, VehicleMod.Armor, "CMOD_ARM_")
+            RefreshPerformanceMenuFor(mBrakes, iBrakes, VehicleMod.Brakes, "CMOD_BRA_")
+            RefreshPerformanceMenuFor(mEngine, iEngine, VehicleMod.Engine, "CMOD_ENG_")
+            RefreshPerformanceMenuFor(mTransmission, iTransmission, VehicleMod.Transmission, "CMOD_GBX_")
+            lastVehMemory = New VehicleDefaultParts() With {
+                .Aerials = veh.GetMod(VehicleMod.Aerials),
+                .Armor = veh.GetMod(VehicleMod.Armor),
+                .Brakes = veh.GetMod(VehicleMod.Brakes),
+                .Engine = veh.GetMod(VehicleMod.Engine),
+                .Transmission = veh.GetMod(VehicleMod.Transmission),
+                .Suspension = veh.GetMod(VehicleMod.Suspension)}
             veh.Position = New Vector3(-211.798, -1324.292, 30.37535)
             veh.Heading = 358.6677
             MainMenu.Visible = Not MainMenu.Visible
@@ -84,7 +112,7 @@ Public Class Bennys
     End Sub
 
     Public Sub OnAborted() Handles MyBase.Aborted
-        Wait(500)
+        BennysBlip.Remove()
         Game.FadeScreenIn(500)
     End Sub
 End Class

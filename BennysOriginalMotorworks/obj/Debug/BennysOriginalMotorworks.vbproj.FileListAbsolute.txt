@@ -1,0 +1,12 @@
+D:\GTAV Mods\BennysOriginalMotorworks\BennysOriginalMotorworks\bin\Debug\BennysOriginalMotorworks.dll
+D:\GTAV Mods\BennysOriginalMotorworks\BennysOriginalMotorworks\bin\Debug\BennysOriginalMotorworks.pdb
+D:\GTAV Mods\BennysOriginalMotorworks\BennysOriginalMotorworks\bin\Debug\BennysOriginalMotorworks.xml
+D:\GTAV Mods\BennysOriginalMotorworks\BennysOriginalMotorworks\bin\Debug\INMNativeUI.dll
+D:\GTAV Mods\BennysOriginalMotorworks\BennysOriginalMotorworks\bin\Debug\ScriptHookVDotNet.dll
+D:\GTAV Mods\BennysOriginalMotorworks\BennysOriginalMotorworks\bin\Debug\ScriptHookVDotNet.xml
+D:\GTAV Mods\BennysOriginalMotorworks\BennysOriginalMotorworks\obj\Debug\BennysOriginalMotorworks.vbprojResolveAssemblyReference.cache
+D:\GTAV Mods\BennysOriginalMotorworks\BennysOriginalMotorworks\obj\Debug\BennysOriginalMotorworks.Resources.resources
+D:\GTAV Mods\BennysOriginalMotorworks\BennysOriginalMotorworks\obj\Debug\BennysOriginalMotorworks.vbproj.GenerateResource.Cache
+D:\GTAV Mods\BennysOriginalMotorworks\BennysOriginalMotorworks\obj\Debug\BennysOriginalMotorworks.dll
+D:\GTAV Mods\BennysOriginalMotorworks\BennysOriginalMotorworks\obj\Debug\BennysOriginalMotorworks.xml
+D:\GTAV Mods\BennysOriginalMotorworks\BennysOriginalMotorworks\obj\Debug\BennysOriginalMotorworks.pdb

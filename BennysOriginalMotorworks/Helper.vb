@@ -171,6 +171,8 @@ Public Class Helper
                 result = "virgo2"
             Case "voodoo2"
                 result = "voodoo"
+            Case "elegy2"
+                result = "elegy"
             Case Else
                 result = model
         End Select

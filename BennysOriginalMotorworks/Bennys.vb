@@ -70,35 +70,28 @@ Public Class Bennys
         BennysBlip.IsShortRange = True
     End Sub
 
-    Public Sub PutVehIntoShop()
+    Public Shared Sub PutVehIntoShop()
         Try
+            'mColumnShifterLevers, mDashboard, mDialDesign, mOrnaments, mSeats,                mSteeringWheels, mTrimDesign
             Game.FadeScreenOut(500)
             Wait(500)
             veh.InstallModKit()
-            'Refresh Menus
-            RefreshMainMenu()
-            RefreshBodyworkMenu()
-            RefreshEngineMenu()
-            RefreshInteriorMenu()
-            RefreshBumperMenu()
-            RefreshModMenuFor(mFBumper, iFBumper, VehicleMod.FrontBumper)
-            RefreshModMenuFor(mRBumper, iRBumper, VehicleMod.RearBumper)
-            RefreshModMenuFor(mSSkirt, iSideSkirt, VehicleMod.SideSkirt)
-            RefreshWheelsMenu()
-            RefreshPlateMenu()
-            RefreshLightsMenu()
-            RefreshResprayMenu()
-            RefreshAerialsMenu()
-            RefreshPerformanceMenuFor(mSuspension, iSuspension, VehicleMod.Suspension, "CMOD_SUS_")
-            RefreshPerformanceMenuFor(mArmor, iArmor, VehicleMod.Armor, "CMOD_ARM_")
-            RefreshPerformanceMenuFor(mBrakes, iBrakes, VehicleMod.Brakes, "CMOD_BRA_")
-            RefreshPerformanceMenuFor(mEngine, iEngine, VehicleMod.Engine, "CMOD_ENG_")
-            RefreshPerformanceMenuFor(mTransmission, iTransmission, VehicleMod.Transmission, "CMOD_GBX_")
+            RefreshMenus()
             lastVehMemory = New VehicleDefaultParts() With {
                 .Aerials = veh.GetMod(VehicleMod.Aerials),
+                .Trim = veh.GetMod(VehicleMod.Trim),
                 .FrontBumper = veh.GetMod(VehicleMod.FrontBumper),
                 .RearBumper = veh.GetMod(VehicleMod.RearBumper),
                 .SideSkirt = veh.GetMod(VehicleMod.SideSkirt),
+                .ColumnShifterLevers = veh.GetMod(VehicleMod.ColumnShifterLevers),
+                .Dashboard = veh.GetMod(VehicleMod.Dashboard),
+                .DialDesign = veh.GetMod(VehicleMod.DialDesign),
+                .Ornaments = veh.GetMod(VehicleMod.Ornaments),
+                .Seats = veh.GetMod(VehicleMod.Seats),
+                .SteeringWheels = veh.GetMod(VehicleMod.SteeringWheels),
+                .TrimDesign = veh.GetMod(VehicleMod.TrimDesign),
+                .DashboardColor = veh.DashboardColor,
+                .TrimColor = veh.TrimColor,
                 .Armor = veh.GetMod(VehicleMod.Armor),
                 .Brakes = veh.GetMod(VehicleMod.Brakes),
                 .Engine = veh.GetMod(VehicleMod.Engine),

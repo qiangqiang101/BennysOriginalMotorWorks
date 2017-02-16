@@ -92,4 +92,135 @@
             _sideskirt = value
         End Set
     End Property
+
+    Private _trim As Integer
+    Public Property Trim() As Integer
+        Get
+            Return _trim
+        End Get
+        Set(value As Integer)
+            _trim = value
+        End Set
+    End Property
+
+    Private _engineblock As Integer
+    Public Property EngineBlock() As Integer
+        Get
+            Return _engineblock
+        End Get
+        Set(value As Integer)
+            _engineblock = value
+        End Set
+    End Property
+
+    Private _airfilter As Integer
+    Public Property AirFilter() As Integer
+        Get
+            Return _airfilter
+        End Get
+        Set(value As Integer)
+            _airfilter = value
+        End Set
+    End Property
+
+    Private _struts As Integer
+    Public Property Struts() As Integer
+        Get
+            Return _struts
+        End Get
+        Set(value As Integer)
+            _struts = value
+        End Set
+    End Property
+
+    Private _columnshifterlevers As Integer
+    Public Property ColumnShifterLevers() As Integer
+        Get
+            Return _ColumnShifterLevers
+        End Get
+        Set(value As Integer)
+            _columnshifterlevers = value
+        End Set
+    End Property
+
+    Private _dashboard As Integer
+    Public Property Dashboard() As Integer
+        Get
+            Return _dashboard
+        End Get
+        Set(value As Integer)
+            _dashboard = value
+        End Set
+    End Property
+
+    Private _dialdesign As Integer
+    Public Property DialDesign() As Integer
+        Get
+            Return _dialdesign
+        End Get
+        Set(value As Integer)
+            _dialdesign = value
+        End Set
+    End Property
+
+    Private _ornaments As Integer
+    Public Property Ornaments() As Integer
+        Get
+            Return _ornaments
+        End Get
+        Set(value As Integer)
+            _ornaments = value
+        End Set
+    End Property
+
+    Private _seats As Integer
+    Public Property Seats() As Integer
+        Get
+            Return _seats
+        End Get
+        Set(value As Integer)
+            _seats = value
+        End Set
+    End Property
+
+    Private _steeringwheels As Integer
+    Public Property SteeringWheels() As Integer
+        Get
+            Return _steeringwheels
+        End Get
+        Set(value As Integer)
+            _steeringwheels = value
+        End Set
+    End Property
+
+    Private _trimdesign As Integer
+    Public Property TrimDesign() As Integer
+        Get
+            Return _trimdesign
+        End Get
+        Set(value As Integer)
+            _trimdesign = value
+        End Set
+    End Property
+
+    Private _dashboardcol As Integer
+    Public Property DashboardColor() As Integer
+        Get
+            Return _dashboardcol
+        End Get
+        Set(value As Integer)
+            _dashboardcol = value
+        End Set
+    End Property
+
+    Private _trimcol As Integer
+    Public Property TrimColor() As Integer
+        Get
+            Return _trimcol
+        End Get
+        Set(value As Integer)
+            _trimcol = value
+        End Set
+    End Property
+
 End Class

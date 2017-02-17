@@ -546,6 +546,20 @@ Public Class Helper
         End If
     End Function
 
+    Public Shared Function GetLocalizedWheelTypeName(wheelType As VehicleWheelType) As String
+        If Not Native.Function.Call(Of Boolean)(Hash.HAS_THIS_ADDITIONAL_TEXT_LOADED, "mod_mnu", 10) Then
+            Native.Function.Call(Hash.CLEAR_ADDITIONAL_TEXT, 10, True)
+            Native.Function.Call(Hash.REQUEST_ADDITIONAL_TEXT, "mod_mnu", 10)
+        End If
+        If _wheelNames.ContainsKey(wheelType) Then
+            If DoesGXTEntryExist(_wheelNames(wheelType).Item1) Then
+                Return Game.GetGXTEntry(_wheelNames(wheelType).Item1)
+            End If
+            Return _wheelNames(wheelType).Item2
+        End If
+        Throw New ArgumentException("Wheel Type is undefined", "wheelType")
+    End Function
+
     Private Shared ReadOnly _hornNames As New Dictionary(Of Integer, Tuple(Of String, String))(New Dictionary(Of Integer, Tuple(Of String, String))() From {
     {-1, New Tuple(Of String, String)("CMOD_HRN_0", "Stock Horn")},
     {0, New Tuple(Of String, String)("CMOD_HRN_TRK", "Truck Horn")},
@@ -597,5 +611,18 @@ Public Class Helper
     {46, New Tuple(Of String, String)("HORN_XM15_1", "Festive Loop 1")},
     {47, New Tuple(Of String, String)("HORN_XM15_2", "Festive Loop 2")},
     {48, New Tuple(Of String, String)("HORN_XM15_3", "Festive Loop 3")}
+})
+
+    Private Shared ReadOnly _wheelNames As New Dictionary(Of VehicleWheelType, Tuple(Of String, String))(New Dictionary(Of VehicleWheelType, Tuple(Of String, String))() From {
+    {VehicleWheelType.BikeWheels, New Tuple(Of String, String)("CMOD_WHE1_0", "Bike")},
+    {VehicleWheelType.HighEnd, New Tuple(Of String, String)("CMOD_WHE1_1", "High End")},
+    {VehicleWheelType.Lowrider, New Tuple(Of String, String)("CMOD_WHE1_2", "Lowrider")},
+    {VehicleWheelType.Muscle, New Tuple(Of String, String)("CMOD_WHE1_3", "Muscle")},
+    {VehicleWheelType.Offroad, New Tuple(Of String, String)("CMOD_WHE1_4", "Offroad")},
+    {VehicleWheelType.Sport, New Tuple(Of String, String)("CMOD_WHE1_5", "Sport")},
+    {VehicleWheelType.SUV, New Tuple(Of String, String)("CMOD_WHE1_6", "SUV")},
+    {VehicleWheelType.Tuner, New Tuple(Of String, String)("CMOD_WHE1_7", "Tuner")},
+    {8, New Tuple(Of String, String)("CMOD_WHE1_8", "Benny's Originals")},
+    {9, New Tuple(Of String, String)("CMOD_WHE1_9", "Benny's Bespoke")}
 })
 End Class

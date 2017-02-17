@@ -223,4 +223,43 @@
         End Set
     End Property
 
+    Private _plateholder As Integer
+    Public Property PlateHolder() As Integer
+        Get
+            Return _plateholder
+        End Get
+        Set(value As Integer)
+            _plateholder = value
+        End Set
+    End Property
+
+    Private _vanityplates As Integer
+    Public Property VanityPlates() As Integer
+        Get
+            Return _vanityplates
+        End Get
+        Set(value As Integer)
+            _vanityplates = value
+        End Set
+    End Property
+
+    Private _numberplate As GTA.NumberPlateType
+    Public Property NumberPlate() As GTA.NumberPlateType
+        Get
+            Return _numberplate
+        End Get
+        Set(value As GTA.NumberPlateType)
+            _numberplate = value
+        End Set
+    End Property
+
+    Private _wheeltype As GTA.VehicleWheelType
+    Public Property WheelType() As GTA.VehicleWheelType
+        Get
+            Return _wheeltype
+        End Get
+        Set(value As GTA.VehicleWheelType)
+            _wheeltype = value
+        End Set
+    End Property
 End Class

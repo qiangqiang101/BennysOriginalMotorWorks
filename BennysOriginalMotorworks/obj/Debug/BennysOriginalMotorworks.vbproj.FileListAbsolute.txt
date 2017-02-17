@@ -22,3 +22,13 @@ F:\Users\Bartholomew\Documents\GitHub\BennysOriginalMotorWorks\BennysOriginalMot
 F:\Users\Bartholomew\Documents\GitHub\BennysOriginalMotorWorks\BennysOriginalMotorworks\obj\Debug\BennysOriginalMotorworks.dll
 F:\Users\Bartholomew\Documents\GitHub\BennysOriginalMotorWorks\BennysOriginalMotorworks\obj\Debug\BennysOriginalMotorworks.xml
 F:\Users\Bartholomew\Documents\GitHub\BennysOriginalMotorWorks\BennysOriginalMotorworks\obj\Debug\BennysOriginalMotorworks.pdb
+C:\Users\new\Documents\GitHub\BennysOriginalMotorWorks\BennysOriginalMotorworks\bin\Debug\BennysOriginalMotorworks.dll
+C:\Users\new\Documents\GitHub\BennysOriginalMotorWorks\BennysOriginalMotorworks\bin\Debug\BennysOriginalMotorworks.pdb
+C:\Users\new\Documents\GitHub\BennysOriginalMotorWorks\BennysOriginalMotorworks\bin\Debug\BennysOriginalMotorworks.xml
+C:\Users\new\Documents\GitHub\BennysOriginalMotorWorks\BennysOriginalMotorworks\bin\Debug\ScriptHookVDotNet.xml
+C:\Users\new\Documents\GitHub\BennysOriginalMotorWorks\BennysOriginalMotorworks\obj\Debug\BennysOriginalMotorworks.vbprojResolveAssemblyReference.cache
+C:\Users\new\Documents\GitHub\BennysOriginalMotorWorks\BennysOriginalMotorworks\obj\Debug\BennysOriginalMotorworks.Resources.resources
+C:\Users\new\Documents\GitHub\BennysOriginalMotorWorks\BennysOriginalMotorworks\obj\Debug\BennysOriginalMotorworks.vbproj.GenerateResource.Cache
+C:\Users\new\Documents\GitHub\BennysOriginalMotorWorks\BennysOriginalMotorworks\obj\Debug\BennysOriginalMotorworks.dll
+C:\Users\new\Documents\GitHub\BennysOriginalMotorWorks\BennysOriginalMotorworks\obj\Debug\BennysOriginalMotorworks.xml
+C:\Users\new\Documents\GitHub\BennysOriginalMotorWorks\BennysOriginalMotorworks\obj\Debug\BennysOriginalMotorworks.pdb

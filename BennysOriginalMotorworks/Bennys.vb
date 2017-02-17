@@ -13,7 +13,7 @@ Public Class Bennys
     Public Shared fixDoor As Integer = 0
     Public Shared bennyIntID As Integer
     Public Shared isExiting As Boolean = False
-    Public Shared lastVehMemory As VehicleDefaultParts
+    Public Shared lastVehMemory As Memory
     Public Shared BennysBlip As Blip
 
     Public Sub New()
@@ -37,7 +37,7 @@ Public Class Bennys
             veh = Game.Player.Character.LastVehicle
             ply = Game.Player.Character
 
-            If Game.IsControlJustPressed(0, Control.Jump) AndAlso Game.IsControlJustPressed(0, Control.Context) Then
+            If Game.IsControlPressed(0, Control.Jump) AndAlso Game.IsControlPressed(0, Control.Reload) Then
                 Dim s As String = Game.GetUserInput(99)
                 UI.Notify(Game.GetGXTEntry(s))
             End If
@@ -54,10 +54,14 @@ Public Class Bennys
                 If Not isExiting Then
                     If ply.Position.DistanceTo(New Vector3(-205.8678, -1321.805, 30.41191)) <= 5 Then
                         PutVehIntoShop()
+                    Else
+                        If ply.Position.DistanceTo(New Vector3(-211.798, -1324.292, 30.37535)) <= 5 Then
+                            BennysMenu.camera.Update()
+                            Native.Function.Call(Hash.HIDE_HUD_AND_RADAR_THIS_FRAME)
+                        End If
                     End If
                 End If
             End If
-
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
         End Try
@@ -77,7 +81,7 @@ Public Class Bennys
             Wait(500)
             veh.InstallModKit()
             RefreshMenus()
-            lastVehMemory = New VehicleDefaultParts() With {
+            lastVehMemory = New Memory() With {
                 .Aerials = veh.GetMod(VehicleMod.Aerials),
                 .Trim = veh.GetMod(VehicleMod.Trim),
                 .FrontBumper = veh.GetMod(VehicleMod.FrontBumper),
@@ -96,7 +100,7 @@ Public Class Bennys
                 .AirFilter = veh.GetMod(VehicleMod.AirFilter),
                 .EngineBlock = veh.GetMod(VehicleMod.EngineBlock),
                 .Struts = veh.GetMod(VehicleMod.Struts),
-                .NumberPlate = veh.NumberPlate,
+                .NumberPlate = veh.NumberPlateType,
                 .PlateHolder = veh.GetMod(VehicleMod.PlateHolder),
                 .VanityPlates = veh.GetMod(VehicleMod.VanityPlates),
                 .Armor = veh.GetMod(VehicleMod.Armor),
@@ -107,6 +111,7 @@ Public Class Bennys
             veh.Position = New Vector3(-211.798, -1324.292, 30.37535)
             veh.Heading = 358.6677
             MainMenu.Visible = Not MainMenu.Visible
+            BennysMenu.camera.RepositionFor(veh)
             Wait(500)
             Game.FadeScreenIn(500)
         Catch ex As Exception

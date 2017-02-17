@@ -8,11 +8,11 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("BennysOriginalMotorworks")> 
-<Assembly: AssemblyDescription("")> 
-<Assembly: AssemblyCompany("Microsoft")> 
-<Assembly: AssemblyProduct("BennysOriginalMotorworks")> 
-<Assembly: AssemblyCopyright("Copyright © Microsoft 2017")> 
+<Assembly: AssemblyTitle("Benny's Original Motorworks")>
+<Assembly: AssemblyDescription("")>
+<Assembly: AssemblyCompany("Zettabyte Technology")>
+<Assembly: AssemblyProduct("Benny's Original Motorworks")>
+<Assembly: AssemblyCopyright("Copyright © 2017 Zettabyte Technology")>
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("0.2.216.0")>
-<Assembly: AssemblyFileVersion("0.2.216.0")>
+<Assembly: AssemblyVersion("0.2.217.0")>
+<Assembly: AssemblyFileVersion("0.2.217.0")>

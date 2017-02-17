@@ -10,18 +10,21 @@ Public Class BennysMenu
         "slamvan", "specter", "sultan", "tornado", "tornado2", "tornado3", "virgo3", "voodoo2", "elegy2"}
     Public Shared MainMenu, gmBodywork, gmEngine, gmInterior, gmPlate, gmLights, gmRespray, gmWheels, gmBumper, gmWheelType As UIMenu
     Public Shared mAerials, mSuspension, mArmor, mBrakes, mEngine, mTransmission, mFBumper, mRBumper, mSSkirt, mTrim, mEngineBlock, mAirFilter, mStruts, mColumnShifterLevers, mDashboard, mDialDesign, mOrnaments, mSeats,
-        mSteeringWheels, mTrimDesign, mPlateHolder, mVanityPlates, mNumberPlate As UIMenu
+        mSteeringWheels, mTrimDesign, mPlateHolder, mVanityPlates, mNumberPlate, mBikeWheels, mHighEnd, mLowrider, mMuscle, mOffroad, mSport, mSUV, mTuner, mBennysOriginals, mBespoke As UIMenu
     Public Shared iRepair, iHorn, iArmor, iBrakes, iFBumper, iExhaust, iFender, iRollcage, iRoof, iTransmission, iEngine, iPlate, iLights, iTint, iTurbo, iRespray, iWheels, iSuspension, iEngineBlock, iAerials, iAirFilter,
         iArchCover, iDoor, iFrame, iGrille, iHood, iHydraulics, iLivery, iPlaques, iRFender, iSpeaker, iSpoilers, iTank, iTrunk, iWindows, iTrim, iUpgrade, iStruts, iTrimColor, iColumnShifterLevers, iDashboard, iDialDesign,
-        iOrnaments, iSeats, iSteeringWheels, iTrimDesign, iRBumper, iSideSkirt, iRimColor, iPlateHolder, iVanityPlates, iHeadlights, iDashboardColor, iNumberPlate As UIMenuItem
+        iOrnaments, iSeats, iSteeringWheels, iTrimDesign, iRBumper, iSideSkirt, iRimColor, iPlateHolder, iVanityPlates, iHeadlights, iDashboardColor, iNumberPlate, iBikeWheels, iHighEnd, iLowrider, iMuscle, iOffroad,
+    iSport, iSUV, iTuner, iBennys, iBespoke As UIMenuItem
     Public Shared giBodywork, giEngine, giInterior, giPlate, giLights, giRespray, giWheels, giBumper, giWheelType, giTires, giNeonKits, giPrimaryCol, giSecondaryCol, giAccentCol, giBikeWheels, giHighEndWheels,
-        giLowriderWheels, giMuscleWheels, giOffroadWheels, giSportWheels, giSUVWheels, giTunerWheels, giBennysWheels, giBespokeWheels As UIMenuItem
+        giLowriderWheels, giMuscleWheels, giOffroadWheels, giSportWheels, giSUVWheels, giTunerWheels, giBennysWheels, giBespokeWheels, giFBumper, giRBumper, giSSkirt, giNumberPlate, giVanityPlate, giPlateHolder As UIMenuItem
     Public Shared _menuPool As MenuPool
+    Public Shared camera As WorkshopCamera
 
     Public Shared Sub CreateMainMenu()
         Try
             MainMenu = New UIMenu("", "MAIN MENU")
             MainMenu.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
+            MainMenu.MouseEdgeEnabled = False
             _menuPool.Add(MainMenu)
             MainMenu.AddItem(New UIMenuItem("Noting"))
             MainMenu.RefreshIndex()
@@ -68,7 +71,7 @@ Public Class BennysMenu
                     MainMenu.BindMenuToItem(gmBumper, giBumper)
                 End If
                 If (Bennys.veh.GetModCount(VehicleMod.PlateHolder) <> 0 Or Bennys.veh.GetModCount(VehicleMod.VanityPlates) <> 0) Then
-                    giPlate = New UIMenuItem("Number Plate")
+                    giPlate = New UIMenuItem("Plate")
                     MainMenu.AddItem(giPlate)
                     MainMenu.BindMenuToItem(gmPlate, giPlate)
                 End If
@@ -190,6 +193,7 @@ Public Class BennysMenu
             Game.FadeScreenOut(500)
             Wait(500)
             Bennys.isExiting = True
+            camera.Stop()
             Bennys.veh.Position = New Vector3(-205.8678, -1321.805, 30.41191)
             Bennys.ply.Task.DriveTo(Bennys.veh, New Vector3(-205.743, -1303.657, 30.84998), 0.5, 5)
             Wait(500)
@@ -204,32 +208,40 @@ Public Class BennysMenu
 
     Public Shared Sub MainMenuItemSelectHandler(sender As UIMenu, selectedItem As UIMenuItem, index As Integer)
         Try
-            If selectedItem Is iRepair Then
-                Bennys.veh.Repair()
-                RefreshMenus()
-            ElseIf selectedItem Is iUpgrade Then
-                Game.FadeScreenOut(500)
-                Wait(500)
-                Dim veh As Vehicle = World.CreateVehicle(Helper.LowriderUpgrade(Bennys.veh.Model), Bennys.veh.Position, Bennys.veh.Heading)
-                veh.IsPersistent = False
-                veh.PrimaryColor = Bennys.veh.PrimaryColor
-                veh.SecondaryColor = Bennys.veh.SecondaryColor
-                veh.DashboardColor = Bennys.veh.DashboardColor
-                veh.PearlescentColor = Bennys.veh.PearlescentColor
-                veh.TrimColor = Bennys.veh.TrimColor
-                veh.RimColor = Bennys.veh.RimColor
-                veh.NumberPlate = Bennys.veh.NumberPlate
-                Bennys.veh.Delete()
-                Bennys.ply.Task.WarpIntoVehicle(veh, VehicleSeat.Driver)
-                veh.InstallModKit()
-                MainMenu.MenuItems.Remove(selectedItem)
-                RefreshMenus()
-                Wait(500)
-                Game.FadeScreenIn(500)
-                Helper.ScreenEffectStart(Helper.ScreenEffect.RaceTurbo, 1000)
-            ElseIf selectedItem Is giEngine Then
-                'Open Doors
-                Bennys.veh.OpenDoor(VehicleDoor.Hood, False, False)
+            If sender Is MainMenu Then
+                If selectedItem Is iRepair Then
+                    Bennys.veh.Repair()
+                    RefreshMenus()
+                ElseIf selectedItem Is iUpgrade Then
+                    Game.FadeScreenOut(500)
+                    Wait(500)
+                    Dim veh As Vehicle = World.CreateVehicle(Helper.LowriderUpgrade(Bennys.veh.Model), Bennys.veh.Position, Bennys.veh.Heading)
+                    veh.IsPersistent = False
+                    veh.PrimaryColor = Bennys.veh.PrimaryColor
+                    veh.SecondaryColor = Bennys.veh.SecondaryColor
+                    veh.DashboardColor = Bennys.veh.DashboardColor
+                    veh.PearlescentColor = Bennys.veh.PearlescentColor
+                    veh.TrimColor = Bennys.veh.TrimColor
+                    veh.RimColor = Bennys.veh.RimColor
+                    veh.NumberPlate = Bennys.veh.NumberPlate
+                    Bennys.veh.Delete()
+                    Bennys.ply.Task.WarpIntoVehicle(veh, VehicleSeat.Driver)
+                    Bennys.veh = veh
+                    veh.InstallModKit()
+                    MainMenu.MenuItems.Remove(selectedItem)
+                    RefreshMenus()
+                    camera.RepositionFor(veh)
+                    Wait(500)
+                    Game.FadeScreenIn(500)
+                    Helper.ScreenEffectStart(Helper.ScreenEffect.RaceTurbo, 1000)
+                ElseIf selectedItem Is giEngine Then
+                    Bennys.veh.OpenDoor(VehicleDoor.Hood, False, False)
+                    camera.MainCameraPosition = CameraPosition.Engine
+                ElseIf selectedItem Is giInterior Then
+                    camera.MainCameraPosition = CameraPosition.Interior
+                ElseIf selectedItem Is giWheels Then
+                    camera.MainCameraPosition = CameraPosition.Wheels
+                End If
             End If
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
@@ -240,6 +252,7 @@ Public Class BennysMenu
         Try
             gmBodywork = New UIMenu("", "BODYWORK")
             gmBodywork.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
+            gmBodywork.MouseEdgeEnabled = False
             _menuPool.Add(gmBodywork)
             gmBodywork.AddItem(New UIMenuItem("Nothing"))
             gmBodywork.RefreshIndex()
@@ -271,6 +284,7 @@ Public Class BennysMenu
         Try
             gmEngine = New UIMenu("", "ENGINE")
             gmEngine.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
+            gmEngine.MouseEdgeEnabled = False
             _menuPool.Add(gmEngine)
             gmEngine.AddItem(New UIMenuItem("Nothing"))
             gmEngine.RefreshIndex()
@@ -313,9 +327,11 @@ Public Class BennysMenu
         Try
             gmInterior = New UIMenu("", "INTERIOR")
             gmInterior.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
+            gmInterior.MouseEdgeEnabled = False
             _menuPool.Add(gmInterior)
             gmInterior.AddItem(New UIMenuItem("Nothing"))
             gmInterior.RefreshIndex()
+            AddHandler gmInterior.OnMenuClose, AddressOf ModsMenuCloseHandler
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
         End Try
@@ -373,9 +389,11 @@ Public Class BennysMenu
         Try
             gmBumper = New UIMenu("", "BUMPER")
             gmBumper.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
+            gmBumper.MouseEdgeEnabled = False
             _menuPool.Add(gmBumper)
             gmBumper.AddItem(New UIMenuItem("Nothing"))
             gmBumper.RefreshIndex()
+            AddHandler gmBumper.OnItemSelect, AddressOf ModsMenuItemSelectHandler
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
         End Try
@@ -385,19 +403,19 @@ Public Class BennysMenu
         Try
             gmBumper.MenuItems.Clear()
             If Bennys.veh.GetModCount(VehicleMod.FrontBumper) <> 0 Then
-                iFBumper = New UIMenuItem("Front Bumper")
-                gmBumper.AddItem(iFBumper)
-                gmBumper.BindMenuToItem(mFBumper, iFBumper)
+                giFBumper = New UIMenuItem("Front Bumper")
+                gmBumper.AddItem(giFBumper)
+                gmBumper.BindMenuToItem(mFBumper, giFBumper)
             End If
             If Bennys.veh.GetModCount(VehicleMod.SideSkirt) <> 0 Then
-                iSideSkirt = New UIMenuItem("Side Skirt")
-                gmBumper.AddItem(iSideSkirt)
-                gmBumper.BindMenuToItem(mSSkirt, iSideSkirt)
+                giSSkirt = New UIMenuItem("Side Skirt")
+                gmBumper.AddItem(giSSkirt)
+                gmBumper.BindMenuToItem(mSSkirt, giSSkirt)
             End If
             If Bennys.veh.GetModCount(VehicleMod.RearBumper) <> 0 Then
-                iRBumper = New UIMenuItem("Rear Bumper")
-                gmBumper.AddItem(iRBumper)
-                gmBumper.BindMenuToItem(mRBumper, iRBumper)
+                giRBumper = New UIMenuItem("Rear Bumper")
+                gmBumper.AddItem(giRBumper)
+                gmBumper.BindMenuToItem(mRBumper, giRBumper)
             End If
             gmBumper.RefreshIndex()
         Catch ex As Exception
@@ -409,9 +427,11 @@ Public Class BennysMenu
         Try
             gmWheels = New UIMenu("", "WHEELS")
             gmWheels.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
+            gmWheels.MouseEdgeEnabled = False
             _menuPool.Add(gmWheels)
             gmWheels.AddItem(New UIMenuItem("Nothing"))
             gmWheels.RefreshIndex()
+            AddHandler gmWheels.OnMenuClose, AddressOf ModsMenuCloseHandler
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
         End Try
@@ -437,6 +457,7 @@ Public Class BennysMenu
         Try
             gmWheelType = New UIMenu("", "WHEEL TYPE")
             gmWheelType.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
+            gmWheelType.MouseEdgeEnabled = False
             _menuPool.Add(gmWheelType)
             gmWheelType.AddItem(New UIMenuItem("Nothing"))
             gmWheelType.RefreshIndex()
@@ -454,25 +475,35 @@ Public Class BennysMenu
                 Case VehicleClass.Motorcycles, VehicleClass.Cycles
                     giBikeWheels = New UIMenuItem(Helper.GetLocalizedWheelTypeName(VehicleWheelType.BikeWheels))
                     gmWheelType.AddItem(giBikeWheels)
+                    gmWheelType.BindMenuToItem(mBikeWheels, giBikeWheels)
                 Case Else
                     giHighEndWheels = New UIMenuItem(Helper.GetLocalizedWheelTypeName(VehicleWheelType.HighEnd))
                     gmWheelType.AddItem(giHighEndWheels)
+                    gmWheelType.BindMenuToItem(mHighEnd, giHighEndWheels)
                     giLowriderWheels = New UIMenuItem(Helper.GetLocalizedWheelTypeName(VehicleWheelType.Lowrider))
                     gmWheelType.AddItem(giLowriderWheels)
+                    gmWheelType.BindMenuToItem(mLowrider, giLowriderWheels)
                     giMuscleWheels = New UIMenuItem(Helper.GetLocalizedWheelTypeName(VehicleWheelType.Muscle))
                     gmWheelType.AddItem(giMuscleWheels)
+                    gmWheelType.BindMenuToItem(mMuscle, giMuscleWheels)
                     giOffroadWheels = New UIMenuItem(Helper.GetLocalizedWheelTypeName(VehicleWheelType.Offroad))
                     gmWheelType.AddItem(giOffroadWheels)
+                    gmWheelType.BindMenuToItem(mOffroad, giOffroadWheels)
                     giSportWheels = New UIMenuItem(Helper.GetLocalizedWheelTypeName(VehicleWheelType.Sport))
                     gmWheelType.AddItem(giSportWheels)
+                    gmWheelType.BindMenuToItem(mSport, giSportWheels)
                     giSUVWheels = New UIMenuItem(Helper.GetLocalizedWheelTypeName(VehicleWheelType.SUV))
                     gmWheelType.AddItem(giSUVWheels)
+                    gmWheelType.BindMenuToItem(mSUV, giSUVWheels)
                     giTunerWheels = New UIMenuItem(Helper.GetLocalizedWheelTypeName(VehicleWheelType.Tuner))
                     gmWheelType.AddItem(giTunerWheels)
+                    gmWheelType.BindMenuToItem(mTuner, giTunerWheels)
                     giBennysWheels = New UIMenuItem(Helper.GetLocalizedWheelTypeName(8)) 'Benny's Original
                     gmWheelType.AddItem(giBennysWheels)
+                    gmWheelType.BindMenuToItem(mBennysOriginals, giBennysWheels)
                     giBespokeWheels = New UIMenuItem(Helper.GetLocalizedWheelTypeName(9)) 'Benny's Bespoke
                     gmWheelType.AddItem(giBespokeWheels)
+                    gmWheelType.BindMenuToItem(mBespoke, giBespokeWheels)
             End Select
 
             gmWheelType.RefreshIndex()
@@ -483,11 +514,14 @@ Public Class BennysMenu
 
     Public Shared Sub CreatePlateMenu()
         Try
-            gmPlate = New UIMenu("", "NUMBER PLATE")
+            gmPlate = New UIMenu("", "PLATE")
             gmPlate.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
+            gmPlate.MouseEdgeEnabled = False
             _menuPool.Add(gmPlate)
             gmPlate.AddItem(New UIMenuItem("Nothing"))
             gmPlate.RefreshIndex()
+            AddHandler gmPlate.OnMenuClose, AddressOf ModsMenuCloseHandler
+            AddHandler gmPlate.OnItemSelect, AddressOf ModsMenuItemSelectHandler
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
         End Try
@@ -497,18 +531,18 @@ Public Class BennysMenu
         Try
             gmPlate.MenuItems.Clear()
             If Bennys.veh.GetModCount(VehicleMod.PlateHolder) <> 0 Then
-                iPlateHolder = New UIMenuItem("Plate Holder")
-                gmPlate.AddItem(iPlateHolder)
-                gmPlate.BindMenuToItem(mPlateHolder, iPlateHolder)
+                giPlateHolder = New UIMenuItem("Plate Holder")
+                gmPlate.AddItem(giPlateHolder)
+                gmPlate.BindMenuToItem(mPlateHolder, giPlateHolder)
             End If
             If Bennys.veh.GetModCount(VehicleMod.VanityPlates) <> 0 Then
-                iVanityPlates = New UIMenuItem("Vanity Plates")
-                gmPlate.AddItem(iVanityPlates)
-                gmPlate.BindMenuToItem(mVanityPlates, iVanityPlates)
+                giVanityPlate = New UIMenuItem("Vanity Plates")
+                gmPlate.AddItem(giVanityPlate)
+                gmPlate.BindMenuToItem(mVanityPlates, giVanityPlate)
             End If
-            iPlate = New UIMenuItem("Number Plate")
-            gmPlate.AddItem(iPlate)
-            gmPlate.BindMenuToItem(mNumberPlate, iNumberPlate)
+            giNumberPlate = New UIMenuItem("Number Plate")
+            gmPlate.AddItem(giNumberPlate)
+            gmPlate.BindMenuToItem(mNumberPlate, giNumberPlate)
             gmPlate.RefreshIndex()
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
@@ -519,6 +553,7 @@ Public Class BennysMenu
         Try
             gmLights = New UIMenu("", "LIGHTS")
             gmLights.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
+            gmLights.MouseEdgeEnabled = False
             _menuPool.Add(gmLights)
             gmLights.AddItem(New UIMenuItem("Nothing"))
             gmLights.RefreshIndex()
@@ -544,6 +579,7 @@ Public Class BennysMenu
         Try
             gmRespray = New UIMenu("", "RESPRAY")
             gmRespray.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
+            gmRespray.MouseEdgeEnabled = False
             _menuPool.Add(gmRespray)
             gmRespray.AddItem(New UIMenuItem("Nothing"))
             gmRespray.RefreshIndex()
@@ -571,6 +607,7 @@ Public Class BennysMenu
         Try
             menu = New UIMenu("", title.ToUpper)
             menu.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
+            menu.MouseEdgeEnabled = False
             _menuPool.Add(menu)
             menu.AddItem(New UIMenuItem("Nothing"))
             menu.RefreshIndex()
@@ -611,6 +648,7 @@ Public Class BennysMenu
         Try
             menu = New UIMenu("", title.ToUpper)
             menu.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
+            menu.MouseEdgeEnabled = False
             _menuPool.Add(menu)
             menu.AddItem(New UIMenuItem("Nothing"))
             menu.RefreshIndex()
@@ -655,6 +693,8 @@ Public Class BennysMenu
             Bennys.veh.SetMod(VehicleMod.RearBumper, Bennys.lastVehMemory.RearBumper, False)
             Bennys.veh.SetMod(VehicleMod.SideSkirt, Bennys.lastVehMemory.SideSkirt, False)
             Bennys.veh.NumberPlateType = Bennys.lastVehMemory.NumberPlate
+            Bennys.veh.SetMod(VehicleMod.FrontWheels, Bennys.lastVehMemory.FrontWheels, False)
+            Bennys.veh.SetMod(VehicleMod.BackWheels, Bennys.lastVehMemory.BackWheels, False)
 
             'Super Mods
             Bennys.veh.SetMod(VehicleMod.Aerials, Bennys.lastVehMemory.Aerials, False)
@@ -669,8 +709,8 @@ Public Class BennysMenu
             Bennys.veh.SetMod(VehicleMod.Seats, Bennys.lastVehMemory.Seats, False)
             Bennys.veh.SetMod(VehicleMod.SteeringWheels, Bennys.lastVehMemory.SteeringWheels, False)
             Bennys.veh.SetMod(VehicleMod.TrimDesign, Bennys.lastVehMemory.TrimDesign, False)
-            Bennys.veh.SetMod(VehicleMod.PlateHolder, Bennys.lastVehMemory.TrimDesign, False)
-            Bennys.veh.SetMod(VehicleMod.VanityPlates, Bennys.lastVehMemory.TrimDesign, False)
+            Bennys.veh.SetMod(VehicleMod.PlateHolder, Bennys.lastVehMemory.PlateHolder, False)
+            Bennys.veh.SetMod(VehicleMod.VanityPlates, Bennys.lastVehMemory.VanityPlates, False)
 
             'Color
             Bennys.veh.DashboardColor = Bennys.lastVehMemory.DashboardColor
@@ -678,6 +718,12 @@ Public Class BennysMenu
 
             'Close Doors
             If sender Is gmEngine Then Bennys.veh.CloseDoor(VehicleDoor.Hood, False)
+
+            'Reset Camera Position
+            If (sender Is gmInterior) Or (sender Is gmEngine) Or (sender Is mFBumper) Or (sender Is mRBumper) Or (sender Is mSSkirt) Or (sender Is mNumberPlate) Or (sender Is mPlateHolder) Or
+                (sender Is mVanityPlates) Or (sender Is gmWheels) Then
+                camera.MainCameraPosition = CameraPosition.Car
+            End If
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
         End Try
@@ -746,6 +792,23 @@ Public Class BennysMenu
                     Bennys.veh.NumberPlateType = selectedItem.SubInteger1
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.NumberPlate = selectedItem.SubInteger1
+                End If
+            End If
+
+            'Wheels Mods
+            If sender Is mBikeWheels Then
+                If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
+                    Bennys.veh.SetMod(VehicleMod.FrontWheels, selectedItem.SubInteger1, False)
+                    Bennys.veh.SetMod(VehicleMod.BackWheels, selectedItem.SubInteger1, False)
+                    selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    Bennys.lastVehMemory.FrontWheels = selectedItem.SubInteger1
+                    Bennys.lastVehMemory.BackWheels = selectedItem.SubInteger1
+                End If
+            ElseIf (sender Is mHighEnd) Or (sender Is mLowrider) Or (sender Is mMuscle) Or (sender Is mOffroad) Or (sender Is mSport) Or (sender Is mSUV) Or (sender Is mTuner) Or (sender Is mBennysOriginals) Or (sender Is mBespoke) Then
+                If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
+                    Bennys.veh.SetMod(VehicleMod.FrontWheels, selectedItem.SubInteger1, False)
+                    selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    Bennys.lastVehMemory.FrontWheels = selectedItem.SubInteger1
                 End If
             End If
 
@@ -840,24 +903,54 @@ Public Class BennysMenu
             If sender Is gmWheelType Then
                 If selectedItem Is giBikeWheels Then
                     Bennys.veh.WheelType = VehicleWheelType.BikeWheels
+                    Bennys.lastVehMemory.WheelType = VehicleWheelType.BikeWheels
+                    Wait(500)
+                    RefreshModMenuFor(mBikeWheels, iBikeWheels, VehicleMod.BackWheels)
                 ElseIf selectedItem Is giHighEndWheels Then
                     Bennys.veh.WheelType = VehicleWheelType.HighEnd
+                    Bennys.lastVehMemory.WheelType = VehicleWheelType.HighEnd
+                    Wait(500)
+                    RefreshModMenuFor(mHighEnd, iHighEnd, VehicleMod.FrontWheels)
                 ElseIf selectedItem Is giLowriderWheels Then
                     Bennys.veh.WheelType = VehicleWheelType.Lowrider
+                    Bennys.lastVehMemory.WheelType = VehicleWheelType.Lowrider
+                    Wait(500)
+                    RefreshModMenuFor(mLowrider, iLowrider, VehicleMod.FrontWheels)
                 ElseIf selectedItem Is giMuscleWheels Then
                     Bennys.veh.WheelType = VehicleWheelType.Muscle
+                    Bennys.lastVehMemory.WheelType = VehicleWheelType.Muscle
+                    Wait(500)
+                    RefreshModMenuFor(mMuscle, iMuscle, VehicleMod.FrontWheels)
                 ElseIf selectedItem Is giOffroadWheels Then
                     Bennys.veh.WheelType = VehicleWheelType.Offroad
+                    Bennys.lastVehMemory.WheelType = VehicleWheelType.Offroad
+                    Wait(500)
+                    RefreshModMenuFor(mOffroad, iOffroad, VehicleMod.FrontWheels)
                 ElseIf selectedItem Is giSportWheels Then
                     Bennys.veh.WheelType = VehicleWheelType.Sport
+                    Bennys.lastVehMemory.WheelType = VehicleWheelType.Sport
+                    Wait(500)
+                    RefreshModMenuFor(mSport, iSport, VehicleMod.FrontWheels)
                 ElseIf selectedItem Is giSUVWheels Then
                     Bennys.veh.WheelType = VehicleWheelType.SUV
+                    Bennys.lastVehMemory.WheelType = VehicleWheelType.SUV
+                    Wait(500)
+                    RefreshModMenuFor(mSUV, iSUV, VehicleMod.FrontWheels)
                 ElseIf selectedItem Is giTunerWheels Then
                     Bennys.veh.WheelType = VehicleWheelType.Tuner
+                    Bennys.lastVehMemory.WheelType = VehicleWheelType.Tuner
+                    Wait(500)
+                    RefreshModMenuFor(mTuner, iTuner, VehicleMod.FrontWheels)
                 ElseIf selectedItem Is giBennysWheels Then
                     Bennys.veh.WheelType = 8
-                ElseIf selectedItem Is giBennysWheels Then
+                    Bennys.lastVehMemory.WheelType = 8
+                    Wait(500)
+                    RefreshModMenuFor(mBennysOriginals, iBennys, VehicleMod.FrontWheels)
+                ElseIf selectedItem Is giBespokeWheels Then
                     Bennys.veh.WheelType = 9
+                    Bennys.lastVehMemory.WheelType = 9
+                    Wait(500)
+                    RefreshModMenuFor(mBespoke, iBespoke, VehicleMod.FrontWheels)
                 End If
             End If
 
@@ -875,6 +968,25 @@ Public Class BennysMenu
             '        Bennys.lastVehMemory.TrimColor = selectedItem.SubInteger1
             '    End If
             'End If
+
+            'Camera
+            If sender Is gmBumper Then
+                If selectedItem Is giFBumper Then
+                    camera.MainCameraPosition = CameraPosition.FrontBumper
+                ElseIf selectedItem Is giRBumper Then
+                    camera.MainCameraPosition = CameraPosition.RearBumper
+                ElseIf selectedItem Is giSSkirt
+                    camera.MainCameraPosition = CameraPosition.Car
+                End If
+            ElseIf sender Is gmPlate Then
+                If selectedItem Is giNumberPlate Then
+                    camera.MainCameraPosition = CameraPosition.BackPlate
+                ElseIf selectedItem Is giPlateHolder Then
+                    camera.MainCameraPosition = CameraPosition.FrontBumper
+                ElseIf selectedItem Is giVanityPlate Then
+                    camera.MainCameraPosition = CameraPosition.FrontBumper
+                End If
+            End If
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
         End Try
@@ -898,12 +1010,20 @@ Public Class BennysMenu
             'Mod
             If sender Is mFBumper Then
                 Bennys.veh.SetMod(VehicleMod.FrontBumper, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mrbumper Then
+            ElseIf sender Is mRBumper Then
                 Bennys.veh.SetMod(VehicleMod.RearBumper, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is msskirt Then
+            ElseIf sender Is mSSkirt Then
                 Bennys.veh.SetMod(VehicleMod.SideSkirt, sender.MenuItems(index).SubInteger1, False)
             ElseIf sender Is mNumberPlate Then
                 Bennys.veh.NumberPlateType = sender.MenuItems(index).SubInteger1
+            End If
+
+            'Wheels Mods
+            If sender Is mBikeWheels Then
+                Bennys.veh.SetMod(VehicleMod.FrontWheels, sender.MenuItems(index).SubInteger1, False)
+                Bennys.veh.SetMod(VehicleMod.BackWheels, sender.MenuItems(index).SubInteger1, False)
+            ElseIf (sender Is mHighEnd) Or (sender Is mLowrider) Or (sender Is mMuscle) Or (sender Is mOffroad) Or (sender Is mSport) Or (sender Is mSUV) Or (sender Is mTuner) Or (sender Is mBennysOriginals) Or (sender Is mBespoke) Then
+                Bennys.veh.SetMod(VehicleMod.FrontWheels, sender.MenuItems(index).SubInteger1, False)
             End If
 
             'Super Mod
@@ -952,6 +1072,7 @@ Public Class BennysMenu
         Try
             mNumberPlate = New UIMenu("", "NUMBER PLATE")
             mNumberPlate.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
+            mNumberPlate.MouseEdgeEnabled = False
             _menuPool.Add(mNumberPlate)
             mNumberPlate.AddItem(New UIMenuItem("Nothing"))
             mNumberPlate.RefreshIndex()
@@ -984,8 +1105,11 @@ Public Class BennysMenu
 
     Public Sub New()
         _menuPool = New MenuPool()
+        camera = New WorkshopCamera
         CreateMainMenu()
         CreateBodyworkMenu()
+        CreateModMenuFor(mAerials, "AERIALS")
+        CreateModMenuFor(mTrim, "TRIM")
         CreateEngineMenu()
         CreatePerformanceMenuFor(mEngine, "ENGINE")
         CreateModMenuFor(mEngineBlock, "ENGINE BLOCK")
@@ -1003,10 +1127,18 @@ Public Class BennysMenu
         CreateModMenuFor(mFBumper, "FRONT BUMPER")
         CreateModMenuFor(mRBumper, "REAR BUMPER")
         CreateModMenuFor(mSSkirt, "SIDE SKIRT")
-        CreateModMenuFor(mAerials, "AERIALS")
-        CreateModMenuFor(mTrim, "TRIM")
         CreateWheelsMenu()
         CreateWheelTypeMenu()
+        CreateModMenuFor(mBikeWheels, "BIKE WHEELS")
+        CreateModMenuFor(mHighEnd, "HIGH END")
+        CreateModMenuFor(mLowrider, "LOWRIDER")
+        CreateModMenuFor(mMuscle, "MUSCLE")
+        CreateModMenuFor(mOffroad, "OFFROAD")
+        CreateModMenuFor(mSport, "SPORT")
+        CreateModMenuFor(mSUV, "SUV")
+        CreateModMenuFor(mTuner, "TUNER")
+        CreateModMenuFor(mBennysOriginals, "BENNY'S ORIGINALS")
+        CreateModMenuFor(mBespoke, "BENNY'S BESPOKE")
         CreatePlateMenu()
         CreateModMenuFor(mPlateHolder, "PLATE HOLDER")
         CreateModMenuFor(mVanityPlates, "VANITY PLATE")
@@ -1043,6 +1175,16 @@ Public Class BennysMenu
         RefreshModMenuFor(mSSkirt, iSideSkirt, VehicleMod.SideSkirt)
         RefreshWheelsMenu()
         RefreshWheelTypeMenu()
+        RefreshModMenuFor(mBikeWheels, iBikeWheels, VehicleMod.BackWheels)
+        RefreshModMenuFor(mHighEnd, iHighEnd, VehicleMod.FrontWheels)
+        RefreshModMenuFor(mLowrider, iLowrider, VehicleMod.FrontWheels)
+        RefreshModMenuFor(mMuscle, iMuscle, VehicleMod.FrontWheels)
+        RefreshModMenuFor(mOffroad, iOffroad, VehicleMod.FrontWheels)
+        RefreshModMenuFor(mSport, iSport, VehicleMod.FrontWheels)
+        RefreshModMenuFor(mSUV, iSUV, VehicleMod.FrontWheels)
+        RefreshModMenuFor(mTuner, iTuner, VehicleMod.FrontWheels)
+        RefreshModMenuFor(mBennysOriginals, iBennys, VehicleMod.FrontWheels)
+        RefreshModMenuFor(mBespoke, iBespoke, VehicleMod.FrontWheels)
         RefreshPlateMenu()
         RefreshModMenuFor(mPlateHolder, iPlateHolder, VehicleMod.PlateHolder)
         RefreshModMenuFor(mVanityPlates, iVanityPlates, VehicleMod.VanityPlates)

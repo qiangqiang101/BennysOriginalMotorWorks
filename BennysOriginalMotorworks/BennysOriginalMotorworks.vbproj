@@ -73,11 +73,10 @@
   <ItemGroup>
     <Compile Include="Bennys.vb" />
     <Compile Include="BennysMenu.vb" />
-    <Compile Include="CameraClamp.vb" />
-    <Compile Include="CutsceneManager.vb" />
-    <Compile Include="Helper.vb" />
-    <Compile Include="Logger.vb" />
-    <Compile Include="ModPreviewInfo.vb" />
+    <Compile Include="Class\CameraClamp.vb" />
+    <Compile Include="Class\CutsceneManager.vb" />
+    <Compile Include="Class\Helper.vb" />
+    <Compile Include="Class\Logger.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -93,8 +92,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="VehicleDefaultParts.vb" />
-    <Compile Include="WordshopCamera.vb" />
+    <Compile Include="Class\Memory.vb" />
+    <Compile Include="Class\WorkshopCamera.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">

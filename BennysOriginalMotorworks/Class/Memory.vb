@@ -1,4 +1,4 @@
-﻿Public Class VehicleDefaultParts
+﻿Public Class Memory
 
     Public Sub New()
     End Sub
@@ -136,7 +136,7 @@
     Private _columnshifterlevers As Integer
     Public Property ColumnShifterLevers() As Integer
         Get
-            Return _ColumnShifterLevers
+            Return _columnshifterlevers
         End Get
         Set(value As Integer)
             _columnshifterlevers = value
@@ -260,6 +260,26 @@
         End Get
         Set(value As GTA.VehicleWheelType)
             _wheeltype = value
+        End Set
+    End Property
+
+    Private _frontwheels As Integer
+    Public Property FrontWheels() As Integer
+        Get
+            Return _frontwheels
+        End Get
+        Set(value As Integer)
+            _frontwheels = value
+        End Set
+    End Property
+
+    Private _backwheels As Integer
+    Public Property BackWheels() As Integer
+        Get
+            Return _backwheels
+        End Get
+        Set(value As Integer)
+            _backwheels = value
         End Set
     End Property
 End Class

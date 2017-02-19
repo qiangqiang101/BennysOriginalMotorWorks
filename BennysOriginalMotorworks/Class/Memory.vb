@@ -282,4 +282,64 @@
             _backwheels = value
         End Set
     End Property
+
+    Private _wheelsvariation As Integer
+    Public Property WheelsVariation() As Boolean
+        Get
+            Return _wheelsvariation
+        End Get
+        Set(value As Boolean)
+            _wheelsvariation = value
+        End Set
+    End Property
+
+    Private _headlights As Boolean
+    Public Property Headlights() As Boolean
+        Get
+            Return _headlights
+        End Get
+        Set(value As Boolean)
+            _headlights = value
+        End Set
+    End Property
+
+    Private _frontneon As Boolean
+    Public Property FrontNeon() As Boolean
+        Get
+            Return _frontneon
+        End Get
+        Set(value As Boolean)
+            _frontneon = value
+        End Set
+    End Property
+
+    Private _backneon As Boolean
+    Public Property BackNeon() As Boolean
+        Get
+            Return _backneon
+        End Get
+        Set(value As Boolean)
+            _backneon = value
+        End Set
+    End Property
+
+    Private _leftneon As Boolean
+    Public Property LeftNeon() As Boolean
+        Get
+            Return _leftneon
+        End Get
+        Set(value As Boolean)
+            _leftneon = value
+        End Set
+    End Property
+
+    Private _rightneon As Boolean
+    Public Property RightNeon() As Boolean
+        Get
+            Return _rightneon
+        End Get
+        Set(value As Boolean)
+            _rightneon = value
+        End Set
+    End Property
 End Class

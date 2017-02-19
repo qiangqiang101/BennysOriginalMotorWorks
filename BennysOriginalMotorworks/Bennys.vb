@@ -107,6 +107,14 @@ Public Class Bennys
                 .Brakes = veh.GetMod(VehicleMod.Brakes),
                 .Engine = veh.GetMod(VehicleMod.Engine),
                 .Transmission = veh.GetMod(VehicleMod.Transmission),
+                .BackNeon = veh.IsNeonLightsOn(VehicleNeonLight.Back),
+                .FrontNeon = veh.IsNeonLightsOn(VehicleNeonLight.Front),
+                .LeftNeon = veh.IsNeonLightsOn(VehicleNeonLight.Left),
+                .RightNeon = veh.IsNeonLightsOn(VehicleNeonLight.Right),
+                .BackWheels = veh.GetMod(VehicleMod.BackWheels),
+                .FrontWheels = veh.GetMod(VehicleMod.FrontWheels),
+                .Headlights = veh.IsToggleModOn(VehicleToggleMod.XenonHeadlights),
+                .WheelsVariation = Helper.IsCustomWheels(),
                 .Suspension = veh.GetMod(VehicleMod.Suspension)}
             veh.Position = New Vector3(-211.798, -1324.292, 30.37535)
             veh.Heading = 358.6677

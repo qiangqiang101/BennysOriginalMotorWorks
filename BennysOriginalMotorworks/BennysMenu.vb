@@ -8,13 +8,14 @@ Public Class BennysMenu
 
     Public Shared lowriders As List(Of Model) = New List(Of Model) From {"banshee", "Buccaneer", "chino", "diabolus", "comet2", "faction", "faction2", "fcr", "italigtb", "minivan", "moonbeam", "nero", "primo", "sabregt",
         "slamvan", "specter", "sultan", "tornado", "tornado2", "tornado3", "virgo3", "voodoo2", "elegy2"}
+    Public Shared tyres As String() = New String() {"Stock", "Thin White", "White", "Fat White", "Red", "Blue", "Atomic"}
     Public Shared MainMenu, gmBodywork, gmEngine, gmInterior, gmPlate, gmLights, gmRespray, gmWheels, gmBumper, gmWheelType As UIMenu
     Public Shared mAerials, mSuspension, mArmor, mBrakes, mEngine, mTransmission, mFBumper, mRBumper, mSSkirt, mTrim, mEngineBlock, mAirFilter, mStruts, mColumnShifterLevers, mDashboard, mDialDesign, mOrnaments, mSeats,
-        mSteeringWheels, mTrimDesign, mPlateHolder, mVanityPlates, mNumberPlate, mBikeWheels, mHighEnd, mLowrider, mMuscle, mOffroad, mSport, mSUV, mTuner, mBennysOriginals, mBespoke As UIMenu
+        mSteeringWheels, mTrimDesign, mPlateHolder, mVanityPlates, mNumberPlate, mBikeWheels, mHighEnd, mLowrider, mMuscle, mOffroad, mSport, mSUV, mTuner, mBennysOriginals, mBespoke, mTires, mHeadlights, mNeon As UIMenu
     Public Shared iRepair, iHorn, iArmor, iBrakes, iFBumper, iExhaust, iFender, iRollcage, iRoof, iTransmission, iEngine, iPlate, iLights, iTint, iTurbo, iRespray, iWheels, iSuspension, iEngineBlock, iAerials, iAirFilter,
         iArchCover, iDoor, iFrame, iGrille, iHood, iHydraulics, iLivery, iPlaques, iRFender, iSpeaker, iSpoilers, iTank, iTrunk, iWindows, iTrim, iUpgrade, iStruts, iTrimColor, iColumnShifterLevers, iDashboard, iDialDesign,
         iOrnaments, iSeats, iSteeringWheels, iTrimDesign, iRBumper, iSideSkirt, iRimColor, iPlateHolder, iVanityPlates, iHeadlights, iDashboardColor, iNumberPlate, iBikeWheels, iHighEnd, iLowrider, iMuscle, iOffroad,
-    iSport, iSUV, iTuner, iBennys, iBespoke As UIMenuItem
+    iSport, iSUV, iTuner, iBennys, iBespoke, iTires, iNeon As UIMenuItem
     Public Shared giBodywork, giEngine, giInterior, giPlate, giLights, giRespray, giWheels, giBumper, giWheelType, giTires, giNeonKits, giPrimaryCol, giSecondaryCol, giAccentCol, giBikeWheels, giHighEndWheels,
         giLowriderWheels, giMuscleWheels, giOffroadWheels, giSportWheels, giSUVWheels, giTunerWheels, giBennysWheels, giBespokeWheels, giFBumper, giRBumper, giSSkirt, giNumberPlate, giVanityPlate, giPlateHolder As UIMenuItem
     Public Shared _menuPool As MenuPool
@@ -241,6 +242,8 @@ Public Class BennysMenu
                     camera.MainCameraPosition = CameraPosition.Interior
                 ElseIf selectedItem Is giWheels Then
                     camera.MainCameraPosition = CameraPosition.Wheels
+                ElseIf selectedItem Is giLights Then
+                    Bennys.veh.HighBeamsOn = True
                 End If
             End If
         Catch ex As Exception
@@ -432,6 +435,7 @@ Public Class BennysMenu
             gmWheels.AddItem(New UIMenuItem("Nothing"))
             gmWheels.RefreshIndex()
             AddHandler gmWheels.OnMenuClose, AddressOf ModsMenuCloseHandler
+            AddHandler gmWheels.OnItemSelect, AddressOf ModsMenuItemSelectHandler
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
         End Try
@@ -447,6 +451,7 @@ Public Class BennysMenu
             gmWheels.AddItem(iRimColor)
             giTires = New UIMenuItem("Tires")
             gmWheels.AddItem(giTires)
+            gmWheels.BindMenuToItem(mTires, giTires)
             gmWheels.RefreshIndex()
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
@@ -512,6 +517,54 @@ Public Class BennysMenu
         End Try
     End Sub
 
+    Public Shared Sub CreateTyresMenu()
+        Try
+            mTires = New UIMenu("", "TIRES")
+            mTires.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
+            mTires.MouseEdgeEnabled = False
+            _menuPool.Add(mTires)
+            mTires.AddItem(New UIMenuItem("Nothing"))
+            mTires.RefreshIndex()
+            AddHandler mTires.OnItemSelect, AddressOf ModsMenuItemSelectHandler
+            AddHandler mTires.OnIndexChange, AddressOf ModsMenuIndexChangedHandler
+        Catch ex As Exception
+            Logger.Log(ex.Message & " " & ex.StackTrace)
+        End Try
+    End Sub
+
+    Public Shared Sub RefreshTyresMenu()
+        Try
+            mTires.MenuItems.Clear()
+
+            Select Case Bennys.veh.WheelType
+                Case 8, 9
+                    iTires = New UIMenuItem(tyres(0))
+                    With iTires
+                        .SubInteger1 = 0
+                        If Not Helper.IsCustomWheels Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    End With
+                    mTires.AddItem(iTires)
+                Case Else
+                    iTires = New UIMenuItem(tyres(0))
+                    With iTires
+                        .SubInteger1 = 0
+                        If Not Helper.IsCustomWheels Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    End With
+                    mTires.AddItem(iTires)
+                    iTires = New UIMenuItem(tyres(6))
+                    With iTires
+                        .SubInteger1 = 6
+                        If Helper.IsCustomWheels Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    End With
+                    mTires.AddItem(iTires)
+            End Select
+
+            mTires.RefreshIndex()
+        Catch ex As Exception
+            Logger.Log(ex.Message & " " & ex.StackTrace)
+        End Try
+    End Sub
+
     Public Shared Sub CreatePlateMenu()
         Try
             gmPlate = New UIMenu("", "PLATE")
@@ -557,6 +610,7 @@ Public Class BennysMenu
             _menuPool.Add(gmLights)
             gmLights.AddItem(New UIMenuItem("Nothing"))
             gmLights.RefreshIndex()
+            AddHandler gmLights.OnMenuClose, AddressOf ModsMenuCloseHandler
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
         End Try
@@ -567,9 +621,86 @@ Public Class BennysMenu
             gmLights.MenuItems.Clear()
             iHeadlights = New UIMenuItem("Headlights")
             gmLights.AddItem(iHeadlights)
-            giNeonKits = New UIMenuItem("Neon Kits")
-            gmLights.AddItem(giNeonKits)
+            gmLights.BindMenuToItem(mHeadlights, iHeadlights)
+            iNeon = New UIMenuItem("Neon Kits")
+            gmLights.AddItem(iNeon)
+            gmLights.BindMenuToItem(mNeon, iNeon)
             gmLights.RefreshIndex()
+        Catch ex As Exception
+            Logger.Log(ex.Message & " " & ex.StackTrace)
+        End Try
+    End Sub
+
+    Public Shared Sub CreateNeonMenu()
+        Try
+            mNeon = New UIMenu("", "NEON LAYOUT")
+            mNeon.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
+            mNeon.MouseEdgeEnabled = False
+            _menuPool.Add(mNeon)
+            mNeon.AddItem(New UIMenuItem("Nothing"))
+            mNeon.RefreshIndex()
+            AddHandler mNeon.OnMenuClose, AddressOf ModsMenuCloseHandler
+            AddHandler mNeon.OnItemSelect, AddressOf ModsMenuItemSelectHandler
+            AddHandler mNeon.OnIndexChange, AddressOf ModsMenuIndexChangedHandler
+        Catch ex As Exception
+            Logger.Log(ex.Message & " " & ex.StackTrace)
+        End Try
+    End Sub
+
+    Public Shared Sub RefreshNeonMenu()
+        Try
+            mNeon.MenuItems.Clear()
+
+            iNeon = New UIMenuItem("None")
+            With iNeon
+                .SubInteger1 = Helper.NeonLayouts.None
+                If Helper.NeonLayout = Helper.NeonLayouts.None Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+            End With
+            mNeon.AddItem(iNeon)
+            iNeon = New UIMenuItem("Front")
+            With iNeon
+                .SubInteger1 = Helper.NeonLayouts.Front
+                If Helper.NeonLayout = Helper.NeonLayouts.Front Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+            End With
+            mNeon.AddItem(iNeon)
+            iNeon = New UIMenuItem("Back")
+            With iNeon
+                .SubInteger1 = Helper.NeonLayouts.Back
+                If Helper.NeonLayout = Helper.NeonLayouts.Back Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+            End With
+            mNeon.AddItem(iNeon)
+            iNeon = New UIMenuItem("Sides")
+            With iNeon
+                .SubInteger1 = Helper.NeonLayouts.Sides
+                If Helper.NeonLayout = Helper.NeonLayouts.Sides Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+            End With
+            mNeon.AddItem(iNeon)
+            iNeon = New UIMenuItem("Front and Back")
+            With iNeon
+                .SubInteger1 = Helper.NeonLayouts.FrontAndBack
+                If Helper.NeonLayout = Helper.NeonLayouts.FrontAndBack Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+            End With
+            mNeon.AddItem(iNeon)
+            iNeon = New UIMenuItem("Front and Sides")
+            With iNeon
+                .SubInteger1 = Helper.NeonLayouts.FrontAndSides
+                If Helper.NeonLayout = Helper.NeonLayouts.FrontAndSides Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+            End With
+            mNeon.AddItem(iNeon)
+            iNeon = New UIMenuItem("Back and Sides")
+            With iNeon
+                .SubInteger1 = Helper.NeonLayouts.BackAndSides
+                If Helper.NeonLayout = Helper.NeonLayouts.BackAndSides Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+            End With
+            mNeon.AddItem(iNeon)
+            iNeon = New UIMenuItem("Front, Back and Sides")
+            With iNeon
+                .SubInteger1 = Helper.NeonLayouts.FrontBackAndSides
+                If Helper.NeonLayout = Helper.NeonLayouts.FrontBackAndSides Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+            End With
+            mNeon.AddItem(iNeon)
+
+            mNeon.RefreshIndex()
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
         End Try
@@ -663,7 +794,6 @@ Public Class BennysMenu
     Public Shared Sub RefreshModMenuFor(ByRef menu As UIMenu, ByRef item As UIMenuItem, ByRef vehmod As VehicleMod)
         Try
             menu.MenuItems.Clear()
-
             For i As Integer = -1 To Bennys.veh.GetModCount(vehmod) - 1
                 item = New UIMenuItem(Helper.GetLocalizedModName(i, Bennys.veh.GetModCount(vehmod), vehmod))
                 With item
@@ -673,6 +803,31 @@ Public Class BennysMenu
                 End With
                 menu.AddItem(item)
             Next
+            menu.RefreshIndex()
+        Catch ex As Exception
+            Logger.Log(ex.Message & " " & ex.StackTrace)
+        End Try
+    End Sub
+
+    Public Shared Sub RefreshModMenuFor(ByRef menu As UIMenu, ByRef item As UIMenuItem, ByRef vehmod As VehicleToggleMod)
+        Try
+            menu.MenuItems.Clear()
+
+            item = New UIMenuItem(Helper.LocalizedModTypeName(vehmod, True))
+            With item
+                If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_ARM_0")
+                .SubInteger1 = 0
+                If Not Bennys.veh.IsToggleModOn(vehmod) Then item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+            End With
+            menu.AddItem(item)
+            item = New UIMenuItem(Helper.LocalizedModTypeName(vehmod))
+            With item
+                If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_ARM_0")
+                .SubInteger1 = 1
+                If Bennys.veh.IsToggleModOn(vehmod) Then item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+            End With
+            menu.AddItem(item)
+
             menu.RefreshIndex()
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
@@ -693,8 +848,14 @@ Public Class BennysMenu
             Bennys.veh.SetMod(VehicleMod.RearBumper, Bennys.lastVehMemory.RearBumper, False)
             Bennys.veh.SetMod(VehicleMod.SideSkirt, Bennys.lastVehMemory.SideSkirt, False)
             Bennys.veh.NumberPlateType = Bennys.lastVehMemory.NumberPlate
-            Bennys.veh.SetMod(VehicleMod.FrontWheels, Bennys.lastVehMemory.FrontWheels, False)
-            Bennys.veh.SetMod(VehicleMod.BackWheels, Bennys.lastVehMemory.BackWheels, False)
+            Bennys.veh.WheelType = Bennys.lastVehMemory.WheelType
+            Bennys.veh.SetMod(VehicleMod.FrontWheels, Bennys.lastVehMemory.FrontWheels, Bennys.lastVehMemory.WheelsVariation)
+            Bennys.veh.SetMod(VehicleMod.BackWheels, Bennys.lastVehMemory.BackWheels, Bennys.lastVehMemory.WheelsVariation)
+            Bennys.veh.ToggleMod(VehicleToggleMod.XenonHeadlights, Bennys.lastVehMemory.Headlights)
+            Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Back, Bennys.lastVehMemory.BackNeon)
+            Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Front, Bennys.lastVehMemory.FrontNeon)
+            Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Left, Bennys.lastVehMemory.LeftNeon)
+            Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Right, Bennys.lastVehMemory.RightNeon)
 
             'Super Mods
             Bennys.veh.SetMod(VehicleMod.Aerials, Bennys.lastVehMemory.Aerials, False)
@@ -718,6 +879,7 @@ Public Class BennysMenu
 
             'Close Doors
             If sender Is gmEngine Then Bennys.veh.CloseDoor(VehicleDoor.Hood, False)
+            If sender Is gmLights Then Bennys.veh.HighBeamsOn = False
 
             'Reset Camera Position
             If (sender Is gmInterior) Or (sender Is gmEngine) Or (sender Is mFBumper) Or (sender Is mRBumper) Or (sender Is mSSkirt) Or (sender Is mNumberPlate) Or (sender Is mPlateHolder) Or
@@ -793,14 +955,126 @@ Public Class BennysMenu
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.NumberPlate = selectedItem.SubInteger1
                 End If
+            ElseIf sender Is mHeadlights Then
+                If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
+                    Bennys.veh.ToggleMod(VehicleToggleMod.XenonHeadlights, CBool(selectedItem.SubInteger1))
+                    selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    Bennys.lastVehMemory.Headlights = CBool(selectedItem.SubInteger1)
+                End If
+            End If
+
+            'Neons Mods
+            If sender Is mNeon Then
+                Select Case selectedItem.SubInteger1
+                    Case Helper.NeonLayouts.None
+                        If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
+                            Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Back, False)
+                            Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Front, False)
+                            Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Left, False)
+                            Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Right, False)
+                            selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                            Bennys.lastVehMemory.FrontNeon = False
+                            Bennys.lastVehMemory.BackNeon = False
+                            Bennys.lastVehMemory.LeftNeon = False
+                            Bennys.lastVehMemory.RightNeon = False
+                        End If
+                    Case Helper.NeonLayouts.Front
+                        If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
+                            Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Back, False)
+                            Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Front, True)
+                            Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Left, False)
+                            Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Right, False)
+                            selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                            Bennys.lastVehMemory.FrontNeon = True
+                            Bennys.lastVehMemory.BackNeon = False
+                            Bennys.lastVehMemory.LeftNeon = False
+                            Bennys.lastVehMemory.RightNeon = False
+                        End If
+                    Case Helper.NeonLayouts.Back
+                        If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
+                            Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Back, True)
+                            Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Front, False)
+                            Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Left, False)
+                            Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Right, False)
+                            selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                            Bennys.lastVehMemory.FrontNeon = False
+                            Bennys.lastVehMemory.BackNeon = True
+                            Bennys.lastVehMemory.LeftNeon = False
+                            Bennys.lastVehMemory.RightNeon = False
+                        End If
+                    Case Helper.NeonLayouts.Sides
+                        If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
+                            Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Back, False)
+                            Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Front, False)
+                            Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Left, True)
+                            Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Right, True)
+                            selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                            Bennys.lastVehMemory.FrontNeon = False
+                            Bennys.lastVehMemory.BackNeon = False
+                            Bennys.lastVehMemory.LeftNeon = True
+                            Bennys.lastVehMemory.RightNeon = True
+                        End If
+                    Case Helper.NeonLayouts.FrontAndBack
+                        If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
+                            Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Back, True)
+                            Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Front, True)
+                            Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Left, False)
+                            Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Right, False)
+                            selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                            Bennys.lastVehMemory.FrontNeon = True
+                            Bennys.lastVehMemory.BackNeon = True
+                            Bennys.lastVehMemory.LeftNeon = False
+                            Bennys.lastVehMemory.RightNeon = False
+                        End If
+                    Case Helper.NeonLayouts.FrontAndSides
+                        If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
+                            Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Back, False)
+                            Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Front, True)
+                            Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Left, True)
+                            Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Right, True)
+                            selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                            Bennys.lastVehMemory.FrontNeon = True
+                            Bennys.lastVehMemory.BackNeon = False
+                            Bennys.lastVehMemory.LeftNeon = True
+                            Bennys.lastVehMemory.RightNeon = True
+                        End If
+                    Case Helper.NeonLayouts.BackAndSides
+                        If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
+                            Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Back, True)
+                            Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Front, False)
+                            Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Left, True)
+                            Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Right, True)
+                            selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                            Bennys.lastVehMemory.FrontNeon = False
+                            Bennys.lastVehMemory.BackNeon = True
+                            Bennys.lastVehMemory.LeftNeon = True
+                            Bennys.lastVehMemory.RightNeon = True
+                        End If
+                    Case Helper.NeonLayouts.FrontBackAndSides
+                        If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
+                            Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Back, True)
+                            Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Front, True)
+                            Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Left, True)
+                            Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Right, True)
+                            selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                            Bennys.lastVehMemory.FrontNeon = True
+                            Bennys.lastVehMemory.BackNeon = True
+                            Bennys.lastVehMemory.LeftNeon = True
+                            Bennys.lastVehMemory.RightNeon = True
+                        End If
+                End Select
             End If
 
             'Wheels Mods
+            If sender Is gmWheels Then
+                If selectedItem Is giTires Then RefreshTyresMenu()
+            End If
             If sender Is mBikeWheels Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.FrontWheels, selectedItem.SubInteger1, False)
                     Bennys.veh.SetMod(VehicleMod.BackWheels, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    Bennys.lastVehMemory.WheelType = Bennys.veh.WheelType
                     Bennys.lastVehMemory.FrontWheels = selectedItem.SubInteger1
                     Bennys.lastVehMemory.BackWheels = selectedItem.SubInteger1
                 End If
@@ -808,8 +1082,28 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.FrontWheels, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    Bennys.lastVehMemory.WheelType = Bennys.veh.WheelType
                     Bennys.lastVehMemory.FrontWheels = selectedItem.SubInteger1
                 End If
+            End If
+            If sender Is mTires Then
+                Select Case Bennys.veh.WheelType
+                    Case 8, 9
+                    Case Else
+                        If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
+                            If selectedItem.SubInteger1 = 0 Then
+                                Bennys.veh.SetMod(VehicleMod.FrontWheels, Bennys.veh.GetMod(VehicleMod.FrontWheels), False)
+                                If Bennys.veh.ClassType = VehicleClass.Motorcycles Then Bennys.veh.SetMod(VehicleMod.FrontWheels, Bennys.veh.GetMod(VehicleMod.BackWheels), False)
+                                selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                                Bennys.lastVehMemory.WheelsVariation = False
+                            ElseIf selectedItem.SubInteger1 = 6 Then
+                                Bennys.veh.SetMod(VehicleMod.FrontWheels, Bennys.veh.GetMod(VehicleMod.FrontWheels), True)
+                                If Bennys.veh.ClassType = VehicleClass.Motorcycles Then Bennys.veh.SetMod(VehicleMod.FrontWheels, Bennys.veh.GetMod(VehicleMod.BackWheels), True)
+                                selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                                Bennys.lastVehMemory.WheelsVariation = True
+                            End If
+                        End If
+                End Select
             End If
 
             'Super Mods
@@ -903,53 +1197,53 @@ Public Class BennysMenu
             If sender Is gmWheelType Then
                 If selectedItem Is giBikeWheels Then
                     Bennys.veh.WheelType = VehicleWheelType.BikeWheels
-                    Bennys.lastVehMemory.WheelType = VehicleWheelType.BikeWheels
-                    Wait(500)
+                    'Bennys.lastVehMemory.WheelType = VehicleWheelType.BikeWheels
+                    'Wait(500)
                     RefreshModMenuFor(mBikeWheels, iBikeWheels, VehicleMod.BackWheels)
                 ElseIf selectedItem Is giHighEndWheels Then
                     Bennys.veh.WheelType = VehicleWheelType.HighEnd
-                    Bennys.lastVehMemory.WheelType = VehicleWheelType.HighEnd
-                    Wait(500)
+                    'Bennys.lastVehMemory.WheelType = VehicleWheelType.HighEnd
+                    'Wait(500)
                     RefreshModMenuFor(mHighEnd, iHighEnd, VehicleMod.FrontWheels)
                 ElseIf selectedItem Is giLowriderWheels Then
                     Bennys.veh.WheelType = VehicleWheelType.Lowrider
-                    Bennys.lastVehMemory.WheelType = VehicleWheelType.Lowrider
-                    Wait(500)
+                    'Bennys.lastVehMemory.WheelType = VehicleWheelType.Lowrider
+                    'Wait(500)
                     RefreshModMenuFor(mLowrider, iLowrider, VehicleMod.FrontWheels)
                 ElseIf selectedItem Is giMuscleWheels Then
                     Bennys.veh.WheelType = VehicleWheelType.Muscle
-                    Bennys.lastVehMemory.WheelType = VehicleWheelType.Muscle
-                    Wait(500)
+                    'Bennys.lastVehMemory.WheelType = VehicleWheelType.Muscle
+                    'Wait(500)
                     RefreshModMenuFor(mMuscle, iMuscle, VehicleMod.FrontWheels)
                 ElseIf selectedItem Is giOffroadWheels Then
                     Bennys.veh.WheelType = VehicleWheelType.Offroad
-                    Bennys.lastVehMemory.WheelType = VehicleWheelType.Offroad
-                    Wait(500)
+                    'Bennys.lastVehMemory.WheelType = VehicleWheelType.Offroad
+                    'Wait(500)
                     RefreshModMenuFor(mOffroad, iOffroad, VehicleMod.FrontWheels)
                 ElseIf selectedItem Is giSportWheels Then
                     Bennys.veh.WheelType = VehicleWheelType.Sport
-                    Bennys.lastVehMemory.WheelType = VehicleWheelType.Sport
-                    Wait(500)
+                    'Bennys.lastVehMemory.WheelType = VehicleWheelType.Sport
+                    'Wait(500)
                     RefreshModMenuFor(mSport, iSport, VehicleMod.FrontWheels)
                 ElseIf selectedItem Is giSUVWheels Then
                     Bennys.veh.WheelType = VehicleWheelType.SUV
-                    Bennys.lastVehMemory.WheelType = VehicleWheelType.SUV
-                    Wait(500)
+                    'Bennys.lastVehMemory.WheelType = VehicleWheelType.SUV
+                    'Wait(500)
                     RefreshModMenuFor(mSUV, iSUV, VehicleMod.FrontWheels)
                 ElseIf selectedItem Is giTunerWheels Then
                     Bennys.veh.WheelType = VehicleWheelType.Tuner
-                    Bennys.lastVehMemory.WheelType = VehicleWheelType.Tuner
-                    Wait(500)
+                    'Bennys.lastVehMemory.WheelType = VehicleWheelType.Tuner
+                    'Wait(500)
                     RefreshModMenuFor(mTuner, iTuner, VehicleMod.FrontWheels)
                 ElseIf selectedItem Is giBennysWheels Then
                     Bennys.veh.WheelType = 8
-                    Bennys.lastVehMemory.WheelType = 8
-                    Wait(500)
+                    'Bennys.lastVehMemory.WheelType = 8
+                    'Wait(500)
                     RefreshModMenuFor(mBennysOriginals, iBennys, VehicleMod.FrontWheels)
                 ElseIf selectedItem Is giBespokeWheels Then
                     Bennys.veh.WheelType = 9
-                    Bennys.lastVehMemory.WheelType = 9
-                    Wait(500)
+                    'Bennys.lastVehMemory.WheelType = 9
+                    'Wait(500)
                     RefreshModMenuFor(mBespoke, iBespoke, VehicleMod.FrontWheels)
                 End If
             End If
@@ -1016,6 +1310,54 @@ Public Class BennysMenu
                 Bennys.veh.SetMod(VehicleMod.SideSkirt, sender.MenuItems(index).SubInteger1, False)
             ElseIf sender Is mNumberPlate Then
                 Bennys.veh.NumberPlateType = sender.MenuItems(index).SubInteger1
+            ElseIf sender Is mHeadlights Then
+                Bennys.veh.ToggleMod(VehicleToggleMod.XenonHeadlights, CBool(sender.MenuItems(index).SubInteger1))
+            End If
+
+            'Neons Mods
+            If sender Is mNeon Then
+                Select Case sender.MenuItems(index).SubInteger1
+                    Case Helper.NeonLayouts.None
+                        Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Back, False)
+                        Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Front, False)
+                        Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Left, False)
+                        Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Right, False)
+                    Case Helper.NeonLayouts.Front
+                        Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Back, False)
+                        Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Front, True)
+                        Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Left, False)
+                        Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Right, False)
+                    Case Helper.NeonLayouts.Back
+                        Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Back, True)
+                        Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Front, False)
+                        Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Left, False)
+                        Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Right, False)
+                    Case Helper.NeonLayouts.Sides
+                        Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Back, False)
+                        Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Front, False)
+                        Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Left, True)
+                        Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Right, True)
+                    Case Helper.NeonLayouts.FrontAndBack
+                        Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Back, True)
+                        Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Front, True)
+                        Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Left, False)
+                        Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Right, False)
+                    Case Helper.NeonLayouts.FrontAndSides
+                        Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Back, False)
+                        Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Front, True)
+                        Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Left, True)
+                        Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Right, True)
+                    Case Helper.NeonLayouts.BackAndSides
+                        Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Back, True)
+                        Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Front, False)
+                        Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Left, True)
+                        Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Right, True)
+                    Case Helper.NeonLayouts.FrontBackAndSides
+                        Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Back, True)
+                        Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Front, True)
+                        Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Left, True)
+                        Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Right, True)
+                End Select
             End If
 
             'Wheels Mods
@@ -1024,6 +1366,19 @@ Public Class BennysMenu
                 Bennys.veh.SetMod(VehicleMod.BackWheels, sender.MenuItems(index).SubInteger1, False)
             ElseIf (sender Is mHighEnd) Or (sender Is mLowrider) Or (sender Is mMuscle) Or (sender Is mOffroad) Or (sender Is mSport) Or (sender Is mSUV) Or (sender Is mTuner) Or (sender Is mBennysOriginals) Or (sender Is mBespoke) Then
                 Bennys.veh.SetMod(VehicleMod.FrontWheels, sender.MenuItems(index).SubInteger1, False)
+            End If
+            If sender Is mTires Then
+                Select Case Bennys.veh.WheelType
+                    Case 8, 9
+                    Case Else
+                        If sender.MenuItems(index).SubInteger1 = 0 Then
+                            Bennys.veh.SetMod(VehicleMod.FrontWheels, Bennys.veh.GetMod(VehicleMod.FrontWheels), False)
+                            If Bennys.veh.ClassType = VehicleClass.Motorcycles Then Bennys.veh.SetMod(VehicleMod.FrontWheels, Bennys.veh.GetMod(VehicleMod.BackWheels), False)
+                        ElseIf sender.MenuItems(index).SubInteger1 = 6 Then
+                            Bennys.veh.SetMod(VehicleMod.FrontWheels, Bennys.veh.GetMod(VehicleMod.FrontWheels), True)
+                            If Bennys.veh.ClassType = VehicleClass.Motorcycles Then Bennys.veh.SetMod(VehicleMod.FrontWheels, Bennys.veh.GetMod(VehicleMod.BackWheels), True)
+                        End If
+                End Select
             End If
 
             'Super Mod
@@ -1139,11 +1494,14 @@ Public Class BennysMenu
         CreateModMenuFor(mTuner, "TUNER")
         CreateModMenuFor(mBennysOriginals, "BENNY'S ORIGINALS")
         CreateModMenuFor(mBespoke, "BENNY'S BESPOKE")
+        CreateTyresMenu()
         CreatePlateMenu()
         CreateModMenuFor(mPlateHolder, "PLATE HOLDER")
         CreateModMenuFor(mVanityPlates, "VANITY PLATE")
         CreatePlateNumberMenu()
         CreateLightsMenu()
+        CreateModMenuFor(mHeadlights, "HEADLIGHTS")
+        CreateNeonMenu()
         CreateResprayMenu()
         CreatePerformanceMenuFor(mSuspension, "SUSPENSION")
         CreatePerformanceMenuFor(mArmor, "ARMOR")
@@ -1185,11 +1543,14 @@ Public Class BennysMenu
         RefreshModMenuFor(mTuner, iTuner, VehicleMod.FrontWheels)
         RefreshModMenuFor(mBennysOriginals, iBennys, VehicleMod.FrontWheels)
         RefreshModMenuFor(mBespoke, iBespoke, VehicleMod.FrontWheels)
+        RefreshTyresMenu()
         RefreshPlateMenu()
         RefreshModMenuFor(mPlateHolder, iPlateHolder, VehicleMod.PlateHolder)
         RefreshModMenuFor(mVanityPlates, iVanityPlates, VehicleMod.VanityPlates)
         RefreshPlateNumberMenu()
         RefreshLightsMenu()
+        RefreshModMenuFor(mHeadlights, iHeadlights, VehicleToggleMod.XenonHeadlights)
+        RefreshNeonMenu()
         RefreshResprayMenu()
         RefreshPerformanceMenuFor(mSuspension, iSuspension, VehicleMod.Suspension, "CMOD_SUS_")
         RefreshPerformanceMenuFor(mArmor, iArmor, VehicleMod.Armor, "CMOD_ARM_")

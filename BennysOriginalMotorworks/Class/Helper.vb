@@ -277,17 +277,22 @@ Public Class Helper
         Native.Function.Call(&H6089CDF6A57F326C, vehicle, color)
     End Sub
 
-    Public Shared Function LocalizedModTypeName(toggleModType As VehicleToggleMod) As String
+    Public Shared Function LocalizedModTypeName(toggleModType As VehicleToggleMod, Optional stock As Boolean = False) As String
         If Not Native.Function.Call(Of Boolean)(Hash.HAS_THIS_ADDITIONAL_TEXT_LOADED, "mod_mnu", 10) Then
             Native.Function.Call(Hash.CLEAR_ADDITIONAL_TEXT, 10, True)
             Native.Function.Call(Hash.REQUEST_ADDITIONAL_TEXT, "mod_mnu", 10)
         End If
-        Dim cur As String = Native.Function.Call(Of String)(Hash.GET_MOD_SLOT_NAME, Bennys.veh.Handle, toggleModType)
-        If cur = "" Then
-            'would only happen if the text isnt loaded
-            cur = [Enum].GetName(GetType(VehicleToggleMod), toggleModType)
+        Dim result As String = Nothing
+        If stock = True Then
+            result = Game.GetGXTEntry("CMOD_ARM_0")
+        Else
+            result = Native.Function.Call(Of String)(Hash.GET_MOD_SLOT_NAME, Bennys.veh, toggleModType)
+            If result = "" Then
+                'would only happen if the text isnt loaded
+                result = [Enum].GetName(GetType(VehicleToggleMod), toggleModType)
+            End If
         End If
-        Return cur
+        Return result
     End Function
 
     Public Shared Function LocalizedModTypeName(modType As VehicleMod) As String
@@ -496,9 +501,9 @@ Public Class Helper
                 End If
             End If
             If index >= modCount / 2 Then
-                Return Game.GetGXTEntry("CHROME") + " " + Game.GetGXTEntry(Native.Function.Call(Of ULong)(Hash.GET_MOD_TEXT_LABEL, Bennys.veh.Handle, modType, index))
+                Return Game.GetGXTEntry("CHROME") + " " + Game.GetGXTEntry(Native.Function.Call(Of String)(Hash.GET_MOD_TEXT_LABEL, Bennys.veh.Handle, modType, index))
             Else
-                Return Game.GetGXTEntry(Native.Function.Call(Of ULong)(Hash.GET_MOD_TEXT_LABEL, Bennys.veh.Handle, modType, index))
+                Return Game.GetGXTEntry(Native.Function.Call(Of String)(Hash.GET_MOD_TEXT_LABEL, Bennys.veh.Handle, modType, index))
             End If
         End If
 
@@ -625,4 +630,48 @@ Public Class Helper
     {8, New Tuple(Of String, String)("CMOD_WHE1_8", "Benny's Originals")},
     {9, New Tuple(Of String, String)("CMOD_WHE1_9", "Benny's Bespoke")}
 })
+
+    Public Shared Function IsCustomWheels() As Boolean
+        Return Native.Function.Call(Of Boolean)(Hash.GET_VEHICLE_MOD_VARIATION, Bennys.veh, VehicleMod.FrontWheels)
+    End Function
+
+    Enum NeonLayouts
+        None
+        Sides = 3
+        Front
+        FrontAndSides = 7
+        Back
+        BackAndSides = 11
+        FrontAndBack
+        FrontBackAndSides = 15
+    End Enum
+
+    Public Shared Function NeonLayout() As NeonLayouts
+        Dim v As Vehicle = Bennys.veh
+        Dim back As Boolean = v.IsNeonLightsOn(VehicleNeonLight.Back)
+        Dim front As Boolean = v.IsNeonLightsOn(VehicleNeonLight.Front)
+        Dim left As Boolean = v.IsNeonLightsOn(VehicleNeonLight.Left)
+        Dim right As Boolean = v.IsNeonLightsOn(VehicleNeonLight.Right)
+        Dim result As Integer = -1
+
+        If Not back AndAlso Not front AndAlso Not left AndAlso Not right Then
+            result = NeonLayouts.None
+        ElseIf Not back AndAlso front AndAlso Not left AndAlso Not right Then
+            result = NeonLayouts.Front
+        ElseIf back AndAlso Not front AndAlso Not left AndAlso Not right Then
+            result = NeonLayouts.Back
+        ElseIf Not back AndAlso Not front AndAlso left AndAlso right Then
+            result = NeonLayouts.Sides
+        ElseIf back AndAlso front AndAlso Not left AndAlso Not right Then
+            result = NeonLayouts.FrontAndBack
+        ElseIf Not back AndAlso front AndAlso left AndAlso right Then
+            result = NeonLayouts.FrontAndSides
+        ElseIf back AndAlso Not front AndAlso left AndAlso right Then
+            result = NeonLayouts.BackAndSides
+        ElseIf back AndAlso front AndAlso left AndAlso right Then
+            result = NeonLayouts.FrontBackAndSides
+        End If
+
+        Return result
+    End Function
 End Class

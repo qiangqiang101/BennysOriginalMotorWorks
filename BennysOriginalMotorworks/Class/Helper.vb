@@ -277,24 +277,6 @@ Public Class Helper
         Native.Function.Call(&H6089CDF6A57F326C, vehicle, color)
     End Sub
 
-    Public Shared Function LocalizedModTypeName(toggleModType As VehicleToggleMod, Optional stock As Boolean = False) As String
-        If Not Native.Function.Call(Of Boolean)(Hash.HAS_THIS_ADDITIONAL_TEXT_LOADED, "mod_mnu", 10) Then
-            Native.Function.Call(Hash.CLEAR_ADDITIONAL_TEXT, 10, True)
-            Native.Function.Call(Hash.REQUEST_ADDITIONAL_TEXT, "mod_mnu", 10)
-        End If
-        Dim result As String = Nothing
-        If stock = True Then
-            result = Game.GetGXTEntry("CMOD_ARM_0")
-        Else
-            result = Native.Function.Call(Of String)(Hash.GET_MOD_SLOT_NAME, Bennys.veh, toggleModType)
-            If result = "" Then
-                'would only happen if the text isnt loaded
-                result = [Enum].GetName(GetType(VehicleToggleMod), toggleModType)
-            End If
-        End If
-        Return result
-    End Function
-
     Public Shared Function LocalizedModTypeName(modType As VehicleMod) As String
         If Not Native.Function.Call(Of Boolean)(Hash.HAS_THIS_ADDITIONAL_TEXT_LOADED, "mod_mnu", 10) Then
             Native.Function.Call(Hash.CLEAR_ADDITIONAL_TEXT, 10, True)
@@ -339,7 +321,11 @@ Public Class Helper
                 cur = Game.GetGXTEntry("CMM_MOD_S0")
                 Exit Select
             Case VehicleMod.VanityPlates
-                cur = Game.GetGXTEntry("CMM_MOD_S1")
+                If Bennys.veh.Model = Game.GenerateHash("elegy") Then
+                    cur = Game.GetGXTEntry("CMM_MOD_S40")
+                Else
+                    cur = Game.GetGXTEntry("CMM_MOD_S1")
+                End If
                 Exit Select
             Case VehicleMod.TrimDesign
                 If Bennys.veh.Model = VehicleHash.SultanRS Then
@@ -385,7 +371,7 @@ Public Class Helper
                 cur = Game.GetGXTEntry("CMM_MOD_S14")
                 Exit Select
             Case VehicleMod.AirFilter
-                If Bennys.veh.Model = VehicleHash.SultanRS Then
+                If Bennys.veh.Model = VehicleHash.SultanRS OrElse Game.GenerateHash("elegy") Then
                     cur = Game.GetGXTEntry("CMM_MOD_S15b")
                 Else
                     cur = Game.GetGXTEntry("CMM_MOD_S15")
@@ -450,6 +436,25 @@ Public Class Helper
             Case VehicleMod.Livery
                 cur = Game.GetGXTEntry("CMM_MOD_S23")
                 Exit Select
+
+            'I'm Not MentaL
+            Case VehicleMod.Fender
+                cur = Game.GetGXTEntry("CMOD_MOD_FEN")
+                Exit Select
+            Case VehicleMod.Spoilers
+                If Bennys.veh.Model = VehicleHash.BType3 Then
+                    cur = Game.GetGXTEntry("BT_SPARE2")
+                Else
+                    cur = Game.GetGXTEntry("CMOD_MOD_SPO")
+                End If
+                Exit Select
+            Case VehicleMod.Frame
+                If Bennys.veh.Model = VehicleHash.SultanRS Then
+                    cur = Game.GetGXTEntry("TOP_CAGE")
+                Else
+                    cur = Game.GetGXTEntry("CMOD_MOD_CHA")
+                End If
+                Exit Select
             Case Else
 
                 cur = Native.Function.Call(Of String)(Hash.GET_MOD_SLOT_NAME, Bennys.veh.Handle, modType)
@@ -464,6 +469,130 @@ Public Class Helper
         End If
 
         Return cur
+    End Function
+
+    Enum GroupName
+        NeonKits
+        NeonLayout
+        NeonColor
+        Headlights
+        Lights
+        Bumpers
+        Respray
+        Extras
+        Plate
+        License
+        Tires
+        WheelColor
+        Turbo
+        Wheels
+        Windows
+        Upgrade
+        Door
+        Bodyworks
+        Interior
+        Plates
+        Engine
+    End Enum
+
+    Public Shared Function LocalizedModGroupName(groupName As GroupName) As String
+        If Not Native.Function.Call(Of Boolean)(Hash.HAS_THIS_ADDITIONAL_TEXT_LOADED, "mod_mnu", 10) Then
+            Native.Function.Call(Hash.CLEAR_ADDITIONAL_TEXT, 10, True)
+            Native.Function.Call(Hash.REQUEST_ADDITIONAL_TEXT, "mod_mnu", 10)
+        End If
+        Dim cur As String = Nothing
+        Select Case groupName
+            Case GroupName.NeonKits
+                cur = Game.GetGXTEntry("CMOD_MOD_LGT_N")
+                Exit Select
+            Case GroupName.Headlights
+                cur = Game.GetGXTEntry("CMOD_MOD_LGT_H")
+                Exit Select
+            Case GroupName.Lights
+                cur = Game.GetGXTEntry("CMOD_MOD_LGT")
+                Exit Select
+            Case GroupName.Bumpers
+                cur = Game.GetGXTEntry("CMOD_MOD_BUM")
+                Exit Select
+            Case GroupName.Respray
+                cur = Game.GetGXTEntry("CMOD_MOD_COL")
+                Exit Select
+            Case GroupName.Extras
+                cur = Game.GetGXTEntry("CMOD_MOD_GLD2")
+                Exit Select
+            Case GroupName.Plate
+                cur = Game.GetGXTEntry("CMOD_MOD_PLA")
+                Exit Select
+            Case GroupName.License
+                cur = Game.GetGXTEntry("CMOD_MOD_PLA2")
+                Exit Select
+            Case GroupName.Tires
+                cur = Game.GetGXTEntry("CMOD_MOD_TYR")
+                Exit Select
+            Case GroupName.WheelColor
+                cur = Game.GetGXTEntry("CMOD_MOD_WCL")
+                Exit Select
+            Case GroupName.Turbo
+                cur = Game.GetGXTEntry("CMOD_MOD_TRN")
+                Exit Select
+            Case GroupName.Wheels
+                cur = Game.GetGXTEntry("CMOD_MOD_WHEM")
+                Exit Select
+            Case GroupName.Windows
+                cur = Game.GetGXTEntry("CMOD_MOD_WIN")
+                Exit Select
+            Case GroupName.Upgrade
+                cur = Game.GetGXTEntry("CMM_MOD_LOW")
+                Exit Select
+            Case GroupName.Door
+                cur = Game.GetGXTEntry("CMM_MOD_S21")
+                Exit Select
+            Case GroupName.NeonLayout
+                cur = Game.GetGXTEntry("CMOD_NEON_0")
+                Exit Select
+            Case GroupName.NeonColor
+                cur = Game.GetGXTEntry("CMOD_NEON_1")
+                Exit Select
+            Case GroupName.Bodyworks
+                cur = Game.GetGXTEntry("CMM_MOD_BODY_W")
+                Exit Select
+            Case GroupName.Interior
+                cur = Game.GetGXTEntry("CMM_MOD_G1")
+                Exit Select
+            Case GroupName.Plates
+                cur = Game.GetGXTEntry("CMM_MOD_G2")
+                Exit Select
+            Case GroupName.Engine
+                cur = Game.GetGXTEntry("CMM_MOD_G3")
+                Exit Select
+        End Select
+
+        Return cur
+    End Function
+
+    Public Shared Function LocalizedModTypeName(toggleModType As VehicleToggleMod, Optional stock As Boolean = False) As String
+        Dim result As String = Nothing
+        If stock = True Then
+            result = Game.GetGXTEntry("CMOD_ARM_0")
+        Else
+            'result = Native.Function.Call(Of String)(Hash.GET_MOD_SLOT_NAME, Bennys.veh.Handle, toggleModType)
+            Select Case toggleModType
+                Case VehicleToggleMod.Turbo
+                    result = Game.GetGXTEntry("CMOD_MOD_TRN")
+                    Exit Select
+                Case VehicleToggleMod.XenonHeadlights
+                    result = Game.GetGXTEntry("CMOD_MOD_LGT_H")
+                    Exit Select
+                Case VehicleToggleMod.TireSmoke
+                    result = Game.GetGXTEntry("CMOD_MOD_LGT_H")
+                    Exit Select
+            End Select
+            If result = "" Then
+                'would only happen if the text isnt loaded
+                result = [Enum].GetName(GetType(VehicleToggleMod), toggleModType)
+            End If
+        End If
+        Return result
     End Function
 
     Public Shared Function DoesGXTEntryExist(entry As String) As Boolean
@@ -551,6 +680,63 @@ Public Class Helper
         End If
     End Function
 
+    Public Shared Function LocalizedLicensePlate(plateType As GTA.NumberPlateType) As String
+        Dim result As String = Nothing
+
+        Select Case plateType
+            Case NumberPlateType.BlueOnWhite1
+                result = Game.GetGXTEntry("CMOD_PLA_0")
+                Exit Select
+            Case NumberPlateType.BlueOnWhite2
+                result = Game.GetGXTEntry("CMOD_PLA_1")
+                Exit Select
+            Case NumberPlateType.BlueOnWhite3
+                result = Game.GetGXTEntry("CMOD_PLA_2")
+                Exit Select
+            Case NumberPlateType.NorthYankton
+                result = Game.GetGXTEntry("CMOD_MOD_GLD2")
+                Exit Select
+            Case NumberPlateType.YellowOnBlack
+                result = Game.GetGXTEntry("CMOD_PLA_4")
+                Exit Select
+            Case NumberPlateType.YellowOnBlue
+                result = Game.GetGXTEntry("CMOD_PLA_3")
+                Exit Select
+        End Select
+
+        Return result
+    End Function
+
+    Public Shared Function LocalizedWindowsTint(tint As GTA.VehicleWindowTint) As String
+        Dim result As String = Nothing
+
+        Select Case tint
+            Case VehicleWindowTint.DarkSmoke
+                result = Game.GetGXTEntry("CMOD_WIN_2")
+                Exit Select
+            Case VehicleWindowTint.Green
+                result = Game.GetGXTEntry("GREEN")
+                Exit Select
+            Case VehicleWindowTint.LightSmoke
+                result = Game.GetGXTEntry("CMOD_WIN_1")
+                Exit Select
+            Case VehicleWindowTint.Limo
+                result = Game.GetGXTEntry("CMOD_WIN_3")
+                Exit Select
+            Case VehicleWindowTint.None
+                result = Game.GetGXTEntry("CMOD_WIN_0")
+                Exit Select
+            Case VehicleWindowTint.PureBlack
+                result = Game.GetGXTEntry("CMOD_WIN_5")
+                Exit Select
+            Case VehicleWindowTint.Stock
+                result = Game.GetGXTEntry("CMOD_WIN_4")
+                Exit Select
+        End Select
+
+        Return result
+    End Function
+
     Public Shared Function GetLocalizedWheelTypeName(wheelType As VehicleWheelType) As String
         If Not Native.Function.Call(Of Boolean)(Hash.HAS_THIS_ADDITIONAL_TEXT_LOADED, "mod_mnu", 10) Then
             Native.Function.Call(Hash.CLEAR_ADDITIONAL_TEXT, 10, True)
@@ -562,8 +748,186 @@ Public Class Helper
             End If
             Return _wheelNames(wheelType).Item2
         End If
-        Throw New ArgumentException("Wheel Type is undefined", "wheelType")
+        Throw New ArgumentException("Wheel Type Is undefined", "wheelType")
     End Function
+
+    Public Shared Function GetLocalizedColorName(vehColor As VehicleColor) As String
+        If Not Native.Function.Call(Of Boolean)(Hash.HAS_THIS_ADDITIONAL_TEXT_LOADED, "mod_mnu", 10) Then
+            Native.Function.Call(Hash.CLEAR_ADDITIONAL_TEXT, 10, True)
+            Native.Function.Call(Hash.REQUEST_ADDITIONAL_TEXT, "mod_mnu", 10)
+        End If
+        If _colorNames.ContainsKey(vehColor) Then
+            If DoesGXTEntryExist(_colorNames(vehColor).Item1) Then
+                Return Game.GetGXTEntry(_colorNames(vehColor).Item1)
+            End If
+            Return _colorNames(vehColor).Item2
+        End If
+        Throw New ArgumentException("Vehicle Color Is undefined", "Vehicle Color")
+    End Function
+
+    Private Shared ReadOnly _colorNames As New Dictionary(Of Integer, Tuple(Of String, String))(New Dictionary(Of Integer, Tuple(Of String, String))() From {
+    {0, New Tuple(Of String, String)("BLACK", "MetallicBlack")},
+    {1, New Tuple(Of String, String)("GRAPHITE", "MetallicGraphiteBlack")},
+    {2, New Tuple(Of String, String)("BLACK_STEEL", "MetallicBlackSteel")},
+    {3, New Tuple(Of String, String)("DARK_SILVER", "MetallicDarkSilver")},
+    {4, New Tuple(Of String, String)("SILVER", "MetallicSilver")},
+    {5, New Tuple(Of String, String)("BLUE_SILVER", "MetallicBlueSilver")},
+    {6, New Tuple(Of String, String)("ROLLED_STEEL", "MetallicSteelGray")},
+    {7, New Tuple(Of String, String)("SHADOW_SILVER", "MetallicShadowSilver")},
+    {8, New Tuple(Of String, String)("STONE_SILVER", "MetallicStoneSilver")},
+    {9, New Tuple(Of String, String)("MIDNIGHT_SILVER", "MetallicMidnightSilver")},
+    {10, New Tuple(Of String, String)("CAST_IRON_SIL", "MetallicGunMetal")},
+    {11, New Tuple(Of String, String)("ANTHR_BLACK", "MetallicAnthraciteGray")},
+    {12, New Tuple(Of String, String)("BLACK", "MatteBlack")},
+    {13, New Tuple(Of String, String)("GREY", "MatteGray")},
+    {14, New Tuple(Of String, String)("LIGHT_GREY", "MatteLightGray")},
+    {15, New Tuple(Of String, String)("BLACK", "UtilBlack")},
+    {16, New Tuple(Of String, String)("BLACK", "UtilBlackPoly")},
+    {17, New Tuple(Of String, String)("DARK_SILVER", "UtilDarksilver")},
+    {18, New Tuple(Of String, String)("SILVER", "UtilSilver")},
+    {19, New Tuple(Of String, String)("CAST_IRON_SIL", "UtilGunMetal")},
+    {20, New Tuple(Of String, String)("SHADOW_SILVER", "UtilShadowSilver")},
+    {21, New Tuple(Of String, String)("BLACK", "WornBlack")},
+    {22, New Tuple(Of String, String)("GRAPHITE", "WornGraphite")},
+    {23, New Tuple(Of String, String)("ROLLED_STEEL", "WornSilverGray")},
+    {24, New Tuple(Of String, String)("SILVER", "WornSilver")},
+    {25, New Tuple(Of String, String)("BLUE_SILVER", "WornBlueSilver")},
+    {26, New Tuple(Of String, String)("SHADOW_SILVER", "WornShadowSilver")},
+    {27, New Tuple(Of String, String)("RED", "MetallicRed")},
+    {28, New Tuple(Of String, String)("TORINO_RED", "MetallicTorinoRed")},
+    {29, New Tuple(Of String, String)("FORMULA_RED", "MetallicFormulaRed")},
+    {30, New Tuple(Of String, String)("BLAZE_RED", "MetallicBlazeRed")},
+    {31, New Tuple(Of String, String)("GRACE_RED", "MetallicGracefulRed")},
+    {32, New Tuple(Of String, String)("GARNET_RED", "MetallicGarnetRed")},
+    {33, New Tuple(Of String, String)("SUNSET_RED", "MetallicDesertRed")},
+    {34, New Tuple(Of String, String)("CABERNET_RED", "MetallicCabernetRed")},
+    {35, New Tuple(Of String, String)("CANDY_RED", "MetallicCandyRed")},
+    {36, New Tuple(Of String, String)("SUNRISE_ORANGE", "MetallicSunriseOrange")},
+    {37, New Tuple(Of String, String)("GOLD", "MetallicClassicGold")},
+    {38, New Tuple(Of String, String)("ORANGE", "MetallicOrange")},
+    {39, New Tuple(Of String, String)("RED", "MatteRed")},
+    {40, New Tuple(Of String, String)("DARK_RED", "MatteDarkRed")},
+    {41, New Tuple(Of String, String)("ORANGE", "MatteOrange")},
+    {42, New Tuple(Of String, String)("YELLOW", "MatteYellow")},
+    {43, New Tuple(Of String, String)("RED", "UtilRed")},
+    {44, New Tuple(Of String, String)("NULL", "UtilBrightRed")},
+    {45, New Tuple(Of String, String)("GARNET_RED", "UtilGarnetRed")},
+    {46, New Tuple(Of String, String)("RED", "WornRed")},
+    {47, New Tuple(Of String, String)("NULL", "WornGoldenRed")},
+    {48, New Tuple(Of String, String)("DARK_RED", "WornDarkRed")},
+    {49, New Tuple(Of String, String)("DARK_GREEN", "MetallicDarkGreen")},
+    {50, New Tuple(Of String, String)("RACING_GREEN", "MetallicRacingGreen")},
+    {51, New Tuple(Of String, String)("SEA_GREEN", "MetallicSeaGreen")},
+    {52, New Tuple(Of String, String)("OLIVE_GREEN", "MetallicOliveGreen")},
+    {53, New Tuple(Of String, String)("BRIGHT_GREEN", "MetallicGreen")},
+    {54, New Tuple(Of String, String)("PETROL_GREEN", "MetallicGasolineBlueGreen")},
+    {55, New Tuple(Of String, String)("LIME_GREEN", "MatteLimeGreen")},
+    {56, New Tuple(Of String, String)("DARK_GREEN", "UtilDarkGreen")},
+    {57, New Tuple(Of String, String)("GREEN", "UtilGreen")},
+    {58, New Tuple(Of String, String)("DARK_GREEN", "WornDarkGreen")},
+    {59, New Tuple(Of String, String)("GREEN", "WornGreen")},
+    {60, New Tuple(Of String, String)("NULL", "WornSeaWash")},
+    {61, New Tuple(Of String, String)("GALAXY_BLUE", "MetallicMidnightBlue")},
+    {62, New Tuple(Of String, String)("DARK_BLUE", "MetallicDarkBlue")},
+    {63, New Tuple(Of String, String)("SAXON_BLUE", "MetallicSaxonyBlue")},
+    {64, New Tuple(Of String, String)("BLUE", "MetallicBlue")},
+    {65, New Tuple(Of String, String)("MARINER_BLUE", "MetallicMarinerBlue")},
+    {66, New Tuple(Of String, String)("HARBOR_BLUE", "MetallicHarborBlue")},
+    {67, New Tuple(Of String, String)("DIAMOND_BLUE", "MetallicDiamondBlue")},
+    {68, New Tuple(Of String, String)("SURF_BLUE", "MetallicSurfBlue")},
+    {69, New Tuple(Of String, String)("NAUTICAL_BLUE", "MetallicNauticalBlue")},
+    {70, New Tuple(Of String, String)("ULTRA_BLUE", "MetallicBrightBlue")},
+    {71, New Tuple(Of String, String)("PURPLE", "MetallicPurpleBlue")},
+    {72, New Tuple(Of String, String)("SPIN_PURPLE", "MetallicSpinnakerBlue")},
+    {73, New Tuple(Of String, String)("RACING_BLUE", "MetallicUltraBlue")},
+    {74, New Tuple(Of String, String)("LIGHT_BLUE", "MetallicLightBlue")},
+    {75, New Tuple(Of String, String)("DARK_BLUE", "UtilDarkBlue")},
+    {76, New Tuple(Of String, String)("MIDNIGHT_BLUE", "UtilMidnightBlue")},
+    {77, New Tuple(Of String, String)("BLUE", "UtilBlue")},
+    {78, New Tuple(Of String, String)("NULL", "UtilSeaFoamBlue")},
+    {79, New Tuple(Of String, String)("LIGHT_BLUE", "UtilLightningBlue")},
+    {80, New Tuple(Of String, String)("NULL", "UtilMauiBluePoly")},
+    {81, New Tuple(Of String, String)("NULL", "UtilBrightBlue")},
+    {82, New Tuple(Of String, String)("DARK_BLUE", "MatteDarkBlue")},
+    {83, New Tuple(Of String, String)("BLUE", "MatteBlue")},
+    {84, New Tuple(Of String, String)("MIDNIGHT_BLUE", "MatteMidnightBlue")},
+    {85, New Tuple(Of String, String)("DARK_BLUE", "WornDarkBlue")},
+    {86, New Tuple(Of String, String)("BLUE", "WornBlue")},
+    {87, New Tuple(Of String, String)("LIGHT_BLUE", "WornLightBlue")},
+    {88, New Tuple(Of String, String)("YELLOW", "MetallicTaxiYellow")},
+    {89, New Tuple(Of String, String)("RACE_YELLOW", "MetallicRaceYellow")},
+    {90, New Tuple(Of String, String)("BRONZE", "MetallicBronze")},
+    {91, New Tuple(Of String, String)("FLUR_YELLOW", "MetallicYellowBird")},
+    {92, New Tuple(Of String, String)("LIME_GREEN", "MetallicLime")},
+    {93, New Tuple(Of String, String)("NULL", "MetallicChampagne")},
+    {94, New Tuple(Of String, String)("UMBER_BROWN", "MetallicPuebloBeige")},
+    {95, New Tuple(Of String, String)("CREEK_BROWN", "MetallicDarkIvory")},
+    {96, New Tuple(Of String, String)("CHOCOLATE_BROWN", "MetallicChocoBrown")},
+    {97, New Tuple(Of String, String)("MAPLE_BROWN", "MetallicGoldenBrown")},
+    {98, New Tuple(Of String, String)("SADDLE_BROWN", "MetallicLightBrown")},
+    {99, New Tuple(Of String, String)("STRAW_BROWN", "MetallicStrawBeige")},
+    {100, New Tuple(Of String, String)("MOSS_BROWN", "MetallicMossBrown")},
+    {101, New Tuple(Of String, String)("BISON_BROWN", "MetallicBistonBrown")},
+    {102, New Tuple(Of String, String)("WOODBEECH_BROWN", "MetallicBeechwood")},
+    {103, New Tuple(Of String, String)("NULL", "MetallicDarkBeechwood")},
+    {104, New Tuple(Of String, String)("SIENNA_BROWN", "MetallicChocoOrange")},
+    {105, New Tuple(Of String, String)("SANDY_BROWN", "MetallicBeachSand")},
+    {106, New Tuple(Of String, String)("BLEECHED_BROWN", "MetallicSunBleechedSand")},
+    {107, New Tuple(Of String, String)("CREAM", "MetallicCream")},
+    {108, New Tuple(Of String, String)("BROWN", "UtilBrown")},
+    {109, New Tuple(Of String, String)("NULL", "UtilMediumBrown")},
+    {110, New Tuple(Of String, String)("NULL", "UtilLightBrown")},
+    {111, New Tuple(Of String, String)("WHITE", "MetallicWhite")},
+    {112, New Tuple(Of String, String)("FROST_WHITE", "MetallicFrostWhite")},
+    {113, New Tuple(Of String, String)("NULL", "WornHoneyBeige")},
+    {114, New Tuple(Of String, String)("BROWN", "WornBrown")},
+    {115, New Tuple(Of String, String)("DARK_BROWN", "WornDarkBrown")},
+    {116, New Tuple(Of String, String)("STRAW_BROWN", "WornStrawBeige")},
+    {117, New Tuple(Of String, String)("BR_STEEL", "BrushedSteel")},
+    {118, New Tuple(Of String, String)("BR BLACK_STEEL", "BrushedBlackSteel")},
+    {119, New Tuple(Of String, String)("BR_ALUMINIUM", "BrushedAluminium")},
+    {120, New Tuple(Of String, String)("CHROME", "Chrome")},
+    {121, New Tuple(Of String, String)("NULL", "WornOffWhite")},
+    {122, New Tuple(Of String, String)("NULL", "UtilOffWhite")},
+    {123, New Tuple(Of String, String)("ORANGE", "WornOrange")},
+    {124, New Tuple(Of String, String)("NULL", "WornLightOrange")},
+    {125, New Tuple(Of String, String)("NULL", "MetallicSecuricorGreen")},
+    {126, New Tuple(Of String, String)("YELLOW", "WornTaxiYellow")},
+    {127, New Tuple(Of String, String)("NULL", "PoliceCarBlue")},
+    {128, New Tuple(Of String, String)("GREEN", "MatteGreen")},
+    {129, New Tuple(Of String, String)("BROWN", "MatteBrown")},
+    {130, New Tuple(Of String, String)("NULL", "SteelBlue")},
+    {131, New Tuple(Of String, String)("WHITE", "MatteWhite")},
+    {132, New Tuple(Of String, String)("WHITE", "WornWhite")},
+    {133, New Tuple(Of String, String)("OLIVE_GREEN", "WornOliveArmyGreen")},
+    {134, New Tuple(Of String, String)("WHITE", "PureWhite")},
+    {135, New Tuple(Of String, String)("HOT PINK", "HotPink")},
+    {136, New Tuple(Of String, String)("SALMON_PINK", "Salmonpink")},
+    {137, New Tuple(Of String, String)("PINK", "MetallicVermillionPink")},
+    {138, New Tuple(Of String, String)("BRIGHT_ORANGE", "Orange")},
+    {139, New Tuple(Of String, String)("GREEN", "Green")},
+    {140, New Tuple(Of String, String)("BLUE", "Blue")},
+    {141, New Tuple(Of String, String)("MIDNIGHT_BLUE", "MettalicBlackBlue")},
+    {142, New Tuple(Of String, String)("MIGHT_PURPLE", "MetallicBlackPurple")},
+    {143, New Tuple(Of String, String)("WINE_RED", "MetallicBlackRed")},
+    {144, New Tuple(Of String, String)("NULL", "HunterGreen")},
+    {145, New Tuple(Of String, String)("BRIGHT_PURPLE", "MetallicPurple")},
+    {146, New Tuple(Of String, String)("MIGHT_PURPLE", "MetaillicVDarkBlue")},
+    {147, New Tuple(Of String, String)("BLACK_GRAPHITE", "ModshopBlack1")},
+    {148, New Tuple(Of String, String)("PURPLE", "MattePurple")},
+    {149, New Tuple(Of String, String)("MIGHT_PURPLE", "MatteDarkPurple")},
+    {150, New Tuple(Of String, String)("LAVA_RED", "MetallicLavaRed")},
+    {151, New Tuple(Of String, String)("MATTE_FOR", "MatteForestGreen")},
+    {152, New Tuple(Of String, String)("MATTE_OD", "MatteOliveDrab")},
+    {153, New Tuple(Of String, String)("MATTE_DIRT", "MatteDesertBrown")},
+    {154, New Tuple(Of String, String)("MATTE_DESERT", "MatteDesertTan")},
+    {155, New Tuple(Of String, String)("MATTE_FOIL", "MatteFoliageGreen")},
+    {156, New Tuple(Of String, String)("NULL", "DefaultAlloyColor")},
+    {157, New Tuple(Of String, String)("NULL", "EpsilonBlue")},
+    {158, New Tuple(Of String, String)("GOLD_P", "PureGold")},
+    {159, New Tuple(Of String, String)("GOLD_S", "BrushedGold")},
+    {160, New Tuple(Of String, String)("NULL", "SecretGold")}
+    })
 
     Private Shared ReadOnly _hornNames As New Dictionary(Of Integer, Tuple(Of String, String))(New Dictionary(Of Integer, Tuple(Of String, String))() From {
     {-1, New Tuple(Of String, String)("CMOD_HRN_0", "Stock Horn")},
@@ -634,6 +998,18 @@ Public Class Helper
     Public Shared Function IsCustomWheels() As Boolean
         Return Native.Function.Call(Of Boolean)(Hash.GET_VEHICLE_MOD_VARIATION, Bennys.veh, VehicleMod.FrontWheels)
     End Function
+
+    Enum EnumTypes
+        NumberPlateType
+        VehicleColorPrimary
+        VehicleColorSecondary
+        VehicleColorTrim
+        VehicleColorDashboard
+        VehicleColorRim
+        VehicleColorAccent
+        vehicleColorPearlescent
+        VehicleWindowTint
+    End Enum
 
     Enum NeonLayouts
         None

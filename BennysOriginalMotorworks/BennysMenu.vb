@@ -9,15 +9,15 @@ Public Class BennysMenu
     Public Shared lowriders As List(Of Model) = New List(Of Model) From {"banshee", "Buccaneer", "chino", "diabolus", "comet2", "faction", "faction2", "fcr", "italigtb", "minivan", "moonbeam", "nero", "primo", "sabregt",
         "slamvan", "specter", "sultan", "tornado", "tornado2", "tornado3", "virgo3", "voodoo2", "elegy2"}
     Public Shared tyres As String() = New String() {"Stock", "Thin White", "White", "Fat White", "Red", "Blue", "Atomic"}
-    Public Shared MainMenu, gmBodywork, gmEngine, gmInterior, gmPlate, gmLights, gmRespray, gmWheels, gmBumper, gmWheelType As UIMenu
+    Public Shared MainMenu, gmBodywork, gmEngine, gmInterior, gmPlate, gmLights, gmRespray, gmWheels, gmBumper, gmWheelType, gmNeonKits, gmDoor As UIMenu
     Public Shared mAerials, mSuspension, mArmor, mBrakes, mEngine, mTransmission, mFBumper, mRBumper, mSSkirt, mTrim, mEngineBlock, mAirFilter, mStruts, mColumnShifterLevers, mDashboard, mDialDesign, mOrnaments, mSeats,
-        mSteeringWheels, mTrimDesign, mPlateHolder, mVanityPlates, mNumberPlate, mBikeWheels, mHighEnd, mLowrider, mMuscle, mOffroad, mSport, mSUV, mTuner, mBennysOriginals, mBespoke, mTires, mHeadlights, mNeon,
-    mArchCover, mExhaust, mFender, mRFender, mDoor, mFrame, mGrille, mHood, mHorn, mHydraulics, mLivery, mPlaques, mRoof, mSpeakers, mSpoilers, mTank, mTrunk, mWindow, mTurbo As UIMenu
+        mSteeringWheels, mTrimDesign, mPlateHolder, mVanityPlates, mNumberPlate, mBikeWheels, mHighEnd, mLowrider, mMuscle, mOffroad, mSport, mSUV, mTuner, mBennysOriginals, mBespoke, mTires, mHeadlights, mNeon, mNeonColor,
+    mArchCover, mExhaust, mFender, mRFender, mDoor, mFrame, mGrille, mHood, mHorn, mHydraulics, mLivery, mPlaques, mRoof, mSpeakers, mSpoilers, mTank, mTrunk, mWindow, mTurbo, mTint As UIMenu
     Public Shared iRepair, iHorn, iArmor, iBrakes, iFBumper, iExhaust, iFender, iRollcage, iRoof, iTransmission, iEngine, iPlate, iLights, iTint, iTurbo, iRespray, iWheels, iSuspension, iEngineBlock, iAerials, iAirFilter,
         iArchCover, iDoor, iFrame, iGrille, iHood, iHydraulics, iLivery, iPlaques, iRFender, iSpeaker, iSpoilers, iTank, iTrunk, iWindows, iTrim, iUpgrade, iStruts, iTrimColor, iColumnShifterLevers, iDashboard, iDialDesign,
         iOrnaments, iSeats, iSteeringWheels, iTrimDesign, iRBumper, iSideSkirt, iRimColor, iPlateHolder, iVanityPlates, iHeadlights, iDashboardColor, iNumberPlate, iBikeWheels, iHighEnd, iLowrider, iMuscle, iOffroad,
-    iSport, iSUV, iTuner, iBennys, iBespoke, iTires, iNeon, iTireSmoke As UIMenuItem
-    Public Shared giBodywork, giEngine, giInterior, giPlate, giLights, giRespray, giWheels, giBumper, giWheelType, giTires, giNeonKits, giPrimaryCol, giSecondaryCol, giAccentCol, giBikeWheels, giHighEndWheels,
+    iSport, iSUV, iTuner, iBennys, iBespoke, iTires, iNeon, iTireSmoke, iNeonColor As UIMenuItem
+    Public Shared giBodywork, giEngine, giInterior, giPlate, giLights, giRespray, giWheels, giBumper, giWheelType, giTires, giNeonKits, giPrimaryCol, giSecondaryCol, giAccentCol, giBikeWheels, giHighEndWheels, giDoor,
         giLowriderWheels, giMuscleWheels, giOffroadWheels, giSportWheels, giSUVWheels, giTunerWheels, giBennysWheels, giBespokeWheels, giFBumper, giRBumper, giSSkirt, giNumberPlate, giVanityPlate, giPlateHolder As UIMenuItem
     Public Shared _menuPool As MenuPool
     Public Shared camera As WorkshopCamera
@@ -42,7 +42,7 @@ Public Class BennysMenu
             MainMenu.MenuItems.Clear()
 
             If Bennys.veh.IsDamaged Then
-                iRepair = New UIMenuItem("Repair")
+                iRepair = New UIMenuItem("Repair", Game.GetGXTEntry("CMOD_MOD_0_D"))
                 MainMenu.AddItem(iRepair)
             Else
                 'Specials
@@ -77,6 +77,11 @@ Public Class BennysMenu
                     MainMenu.AddItem(giPlate)
                     MainMenu.BindMenuToItem(gmPlate, giPlate)
                 End If
+                If (Bennys.veh.GetModCount(VehicleMod.DoorSpeakers) <> 0 Or Bennys.veh.GetModCount(VehicleMod.Windows) <> 0) Then
+                    giDoor = New UIMenuItem("Door")
+                    MainMenu.AddItem(giDoor)
+                    MainMenu.BindMenuToItem(gmDoor, giDoor)
+                End If
                 giWheels = New UIMenuItem("Wheels")
                 MainMenu.AddItem(giWheels)
                 MainMenu.BindMenuToItem(gmWheels, giWheels)
@@ -102,11 +107,6 @@ Public Class BennysMenu
                     iBrakes = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Brakes))
                     MainMenu.AddItem(iBrakes)
                     MainMenu.BindMenuToItem(mBrakes, iBrakes)
-                End If
-                If Bennys.veh.GetModCount(VehicleMod.DoorSpeakers) <> 0 Then
-                    iDoor = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.DoorSpeakers))
-                    MainMenu.AddItem(iDoor)
-                    MainMenu.BindMenuToItem(mDoor, iDoor)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.Exhaust) <> 0 Then
                     iExhaust = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Exhaust))
@@ -193,14 +193,12 @@ Public Class BennysMenu
                     MainMenu.AddItem(iTrunk)
                     MainMenu.BindMenuToItem(mTrunk, iTrunk)
                 End If
-                If Bennys.veh.GetModCount(VehicleMod.Windows) <> 0 Then
-                    iWindows = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Windows))
-                    MainMenu.AddItem(iWindows)
-                    MainMenu.BindMenuToItem(mWindow, iWindows)
-                End If
                 iTurbo = New UIMenuItem(Helper.LocalizedModTypeName(VehicleToggleMod.Turbo))
                 MainMenu.AddItem(iTurbo)
                 MainMenu.BindMenuToItem(mTurbo, iTurbo)
+                iTint = New UIMenuItem("Windows")
+                MainMenu.AddItem(iTint)
+                MainMenu.BindMenuToItem(mTint, iTint)
             End If
 
             MainMenu.RefreshIndex()
@@ -288,16 +286,48 @@ Public Class BennysMenu
         Try
             gmBodywork.MenuItems.Clear()
             If Bennys.veh.GetModCount(VehicleMod.Aerials) <> 0 Then
-                iAerials = New UIMenuItem("Aerials")
+                iAerials = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Aerials))
                 gmBodywork.AddItem(iAerials)
                 gmBodywork.BindMenuToItem(mAerials, iAerials)
             End If
             If Bennys.veh.GetModCount(VehicleMod.Trim) <> 0 Then
-                iTrim = New UIMenuItem("Trim")
+                iTrim = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Trim))
                 gmBodywork.AddItem(iTrim)
                 gmBodywork.BindMenuToItem(mTrim, iTrim)
             End If
             gmBodywork.RefreshIndex()
+        Catch ex As Exception
+            Logger.Log(ex.Message & " " & ex.StackTrace)
+        End Try
+    End Sub
+
+    Public Shared Sub CreateDoorMenu()
+        Try
+            gmDoor = New UIMenu("", "DOORS")
+            gmDoor.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
+            gmDoor.MouseEdgeEnabled = False
+            _menuPool.Add(gmDoor)
+            gmDoor.AddItem(New UIMenuItem("Nothing"))
+            gmDoor.RefreshIndex()
+        Catch ex As Exception
+            Logger.Log(ex.Message & " " & ex.StackTrace)
+        End Try
+    End Sub
+
+    Public Shared Sub RefreshDoorMenu()
+        Try
+            gmDoor.MenuItems.Clear()
+            If Bennys.veh.GetModCount(VehicleMod.DoorSpeakers) <> 0 Then
+                iDoor = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.DoorSpeakers))
+                gmDoor.AddItem(iDoor)
+                gmDoor.BindMenuToItem(mDoor, iDoor)
+            End If
+            If Bennys.veh.GetModCount(VehicleMod.Windows) <> 0 Then
+                iWindows = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Windows))
+                gmDoor.AddItem(iWindows)
+                gmDoor.BindMenuToItem(mWindow, iWindows)
+            End If
+            gmDoor.RefreshIndex()
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
         End Try
@@ -321,22 +351,22 @@ Public Class BennysMenu
         Try
             gmEngine.MenuItems.Clear()
             If Bennys.veh.GetModCount(VehicleMod.Engine) <> 0 Then
-                iEngine = New UIMenuItem("EMS Engine Upgrade")
+                iEngine = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Engine))
                 gmEngine.AddItem(iEngine)
                 gmEngine.BindMenuToItem(mEngine, iEngine)
             End If
             If Bennys.veh.GetModCount(VehicleMod.EngineBlock) <> 0 Then
-                iEngineBlock = New UIMenuItem("Engine Block")
+                iEngineBlock = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.EngineBlock))
                 gmEngine.AddItem(iEngineBlock)
                 gmEngine.BindMenuToItem(mEngineBlock, iEngineBlock)
             End If
             If Bennys.veh.GetModCount(VehicleMod.AirFilter) <> 0 Then
-                iAirFilter = New UIMenuItem("Air Filter")
+                iAirFilter = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.AirFilter))
                 gmEngine.AddItem(iAirFilter)
                 gmEngine.BindMenuToItem(mAirFilter, iAirFilter)
             End If
             If Bennys.veh.GetModCount(VehicleMod.Struts) <> 0 Then
-                iStruts = New UIMenuItem("Struts")
+                iStruts = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Struts))
                 gmEngine.AddItem(iStruts)
                 gmEngine.BindMenuToItem(mStruts, iStruts)
             End If
@@ -364,39 +394,39 @@ Public Class BennysMenu
         Try
             gmInterior.MenuItems.Clear()
             If Bennys.veh.GetModCount(VehicleMod.ColumnShifterLevers) <> 0 Then
-                iColumnShifterLevers = New UIMenuItem("Column Shifter Levers")
+                iColumnShifterLevers = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.ColumnShifterLevers))
                 gmInterior.AddItem(iColumnShifterLevers)
                 gmInterior.BindMenuToItem(mColumnShifterLevers, iColumnShifterLevers)
             End If
             If Bennys.veh.GetModCount(VehicleMod.Dashboard) <> 0 Then
-                iDashboard = New UIMenuItem("Dashboard")
+                iDashboard = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Dashboard))
                 gmInterior.AddItem(iDashboard)
                 gmInterior.BindMenuToItem(mDashboard, iDashboard)
                 iDashboardColor = New UIMenuItem("Dashboard Color")
                 gmInterior.AddItem(idashboardColor)
             End If
             If Bennys.veh.GetModCount(VehicleMod.DialDesign) <> 0 Then
-                iDialDesign = New UIMenuItem("Dial Design")
+                iDialDesign = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.DialDesign))
                 gmInterior.AddItem(iDialDesign)
                 gmInterior.BindMenuToItem(mDialDesign, iDialDesign)
             End If
             If Bennys.veh.GetModCount(VehicleMod.Ornaments) <> 0 Then
-                iOrnaments = New UIMenuItem("Ornaments")
+                iOrnaments = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Ornaments))
                 gmInterior.AddItem(iOrnaments)
                 gmInterior.BindMenuToItem(mOrnaments, iOrnaments)
             End If
             If Bennys.veh.GetModCount(VehicleMod.Seats) <> 0 Then
-                iSeats = New UIMenuItem("Seats")
+                iSeats = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Seats))
                 gmInterior.AddItem(iSeats)
                 gmInterior.BindMenuToItem(mSeats, iSeats)
             End If
             If Bennys.veh.GetModCount(VehicleMod.SteeringWheels) <> 0 Then
-                iSteeringWheels = New UIMenuItem("Steering Wheel")
+                iSteeringWheels = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.SteeringWheels))
                 gmInterior.AddItem(iSteeringWheels)
                 gmInterior.BindMenuToItem(mSteeringWheels, iSteeringWheels)
             End If
             If Bennys.veh.GetModCount(VehicleMod.TrimDesign) <> 0 Then
-                iTrimDesign = New UIMenuItem("Trim Design")
+                iTrimDesign = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.TrimDesign))
                 gmInterior.AddItem(iTrimDesign)
                 gmInterior.BindMenuToItem(mTrimDesign, iTrimDesign)
                 iTrimColor = New UIMenuItem("Trim Color")
@@ -426,17 +456,17 @@ Public Class BennysMenu
         Try
             gmBumper.MenuItems.Clear()
             If Bennys.veh.GetModCount(VehicleMod.FrontBumper) <> 0 Then
-                giFBumper = New UIMenuItem("Front Bumper")
+                giFBumper = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.FrontBumper))
                 gmBumper.AddItem(giFBumper)
                 gmBumper.BindMenuToItem(mFBumper, giFBumper)
             End If
             If Bennys.veh.GetModCount(VehicleMod.SideSkirt) <> 0 Then
-                giSSkirt = New UIMenuItem("Side Skirt")
+                giSSkirt = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.SideSkirt))
                 gmBumper.AddItem(giSSkirt)
                 gmBumper.BindMenuToItem(mSSkirt, giSSkirt)
             End If
             If Bennys.veh.GetModCount(VehicleMod.RearBumper) <> 0 Then
-                giRBumper = New UIMenuItem("Rear Bumper")
+                giRBumper = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.RearBumper))
                 gmBumper.AddItem(giRBumper)
                 gmBumper.BindMenuToItem(mRBumper, giRBumper)
             End If
@@ -606,12 +636,12 @@ Public Class BennysMenu
         Try
             gmPlate.MenuItems.Clear()
             If Bennys.veh.GetModCount(VehicleMod.PlateHolder) <> 0 Then
-                giPlateHolder = New UIMenuItem("Plate Holder")
+                giPlateHolder = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.PlateHolder))
                 gmPlate.AddItem(giPlateHolder)
                 gmPlate.BindMenuToItem(mPlateHolder, giPlateHolder)
             End If
             If Bennys.veh.GetModCount(VehicleMod.VanityPlates) <> 0 Then
-                giVanityPlate = New UIMenuItem("Vanity Plates")
+                giVanityPlate = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.VanityPlates))
                 gmPlate.AddItem(giVanityPlate)
                 gmPlate.BindMenuToItem(mVanityPlates, giVanityPlate)
             End If
@@ -619,6 +649,146 @@ Public Class BennysMenu
             gmPlate.AddItem(giNumberPlate)
             gmPlate.BindMenuToItem(mNumberPlate, giNumberPlate)
             gmPlate.RefreshIndex()
+        Catch ex As Exception
+            Logger.Log(ex.Message & " " & ex.StackTrace)
+        End Try
+    End Sub
+
+    Public Shared Sub CreatePlateNumberMenu()
+        Try
+            mNumberPlate = New UIMenu("", "NUMBER PLATE")
+            mNumberPlate.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
+            mNumberPlate.MouseEdgeEnabled = False
+            _menuPool.Add(mNumberPlate)
+            mNumberPlate.AddItem(New UIMenuItem("Nothing"))
+            mNumberPlate.RefreshIndex()
+            AddHandler mNumberPlate.OnMenuClose, AddressOf ModsMenuCloseHandler
+            AddHandler mNumberPlate.OnItemSelect, AddressOf ModsMenuItemSelectHandler
+            AddHandler mNumberPlate.OnIndexChange, AddressOf ModsMenuIndexChangedHandler
+        Catch ex As Exception
+            Logger.Log(ex.Message & " " & ex.StackTrace)
+        End Try
+    End Sub
+
+    Public Shared Sub RefreshPlateNumberMenu()
+        Try
+            mNumberPlate.MenuItems.Clear()
+
+            Dim plateType As Array = System.Enum.GetValues(GetType(NumberPlateType))
+            For Each plate As NumberPlateType In plateType
+                iNumberPlate = New UIMenuItem([Enum].GetName(GetType(NumberPlateType), plate))
+                With iNumberPlate
+                    .SubInteger1 = plate
+                    If Bennys.veh.NumberPlateType = plate Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                End With
+                mNumberPlate.AddItem(iNumberPlate)
+            Next
+            mNumberPlate.RefreshIndex()
+        Catch ex As Exception
+            Logger.Log(ex.Message & " " & ex.StackTrace)
+        End Try
+    End Sub
+
+    Public Shared Sub RefreshEnumModMenuFor(ByRef menu As UIMenu, ByRef item As UIMenuItem, ByRef enumType As Helper.EnumTypes)
+        Try
+            menu.MenuItems.Clear()
+
+            Dim enumArray As Array = Nothing
+            Select Case enumType
+                Case Helper.EnumTypes.NumberPlateType
+                    enumArray = System.Enum.GetValues(GetType(NumberPlateType))
+                    For Each enumItem As NumberPlateType In enumArray
+                        item = New UIMenuItem(Helper.LocalizedLicensePlate(enumItem))
+                        With item
+                            .SubInteger1 = enumItem
+                            If Bennys.veh.NumberPlateType = enumItem Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                        End With
+                        menu.AddItem(item)
+                    Next
+                Case Helper.EnumTypes.VehicleWindowTint
+                    enumArray = System.Enum.GetValues(GetType(VehicleWindowTint))
+                    For Each enumItem As VehicleWindowTint In enumArray
+                        item = New UIMenuItem(Helper.LocalizedWindowsTint(enumItem))
+                        With item
+                            .SubInteger1 = enumItem
+                            If Bennys.veh.WindowTint = enumItem Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                        End With
+                        menu.AddItem(item)
+                    Next
+                Case Helper.EnumTypes.VehicleColorPrimary
+                    enumArray = System.Enum.GetValues(GetType(VehicleColor))
+                    For Each enumItem As VehicleColor In enumArray
+                        item = New UIMenuItem([Enum].GetName(GetType(VehicleColor), enumItem))
+                        With item
+                            .SubInteger1 = enumItem
+                            If Bennys.veh.PrimaryColor = enumItem Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                        End With
+                        menu.AddItem(item)
+                    Next
+                Case Helper.EnumTypes.VehicleColorSecondary
+                    enumArray = System.Enum.GetValues(GetType(VehicleColor))
+                    For Each enumItem As VehicleColor In enumArray
+                        item = New UIMenuItem([Enum].GetName(GetType(VehicleColor), enumItem))
+                        With item
+                            .SubInteger1 = enumItem
+                            If Bennys.veh.SecondaryColor = enumItem Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                        End With
+                        menu.AddItem(item)
+                    Next
+                Case Helper.EnumTypes.vehicleColorPearlescent
+                    enumArray = System.Enum.GetValues(GetType(VehicleColor))
+                    For Each enumItem As VehicleColor In enumArray
+                        item = New UIMenuItem([Enum].GetName(GetType(VehicleColor), enumItem))
+                        With item
+                            .SubInteger1 = enumItem
+                            If Bennys.veh.PearlescentColor = enumItem Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                        End With
+                        menu.AddItem(item)
+                    Next
+                Case Helper.EnumTypes.VehicleColorTrim
+                    enumArray = System.Enum.GetValues(GetType(VehicleColor))
+                    For Each enumItem As VehicleColor In enumArray
+                        item = New UIMenuItem([Enum].GetName(GetType(VehicleColor), enumItem))
+                        With item
+                            .SubInteger1 = enumItem
+                            If Bennys.veh.TrimColor = enumItem Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                        End With
+                        menu.AddItem(item)
+                    Next
+                Case Helper.EnumTypes.VehicleColorDashboard
+                    enumArray = System.Enum.GetValues(GetType(VehicleColor))
+                    For Each enumItem As VehicleColor In enumArray
+                        item = New UIMenuItem([Enum].GetName(GetType(VehicleColor), enumItem))
+                        With item
+                            .SubInteger1 = enumItem
+                            If Bennys.veh.DashboardColor = enumItem Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                        End With
+                        menu.AddItem(item)
+                    Next
+                Case Helper.EnumTypes.VehicleColorRim
+                    enumArray = System.Enum.GetValues(GetType(VehicleColor))
+                    For Each enumItem As VehicleColor In enumArray
+                        item = New UIMenuItem([Enum].GetName(GetType(VehicleColor), enumItem))
+                        With item
+                            .SubInteger1 = enumItem
+                            If Bennys.veh.RimColor = enumItem Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                        End With
+                        menu.AddItem(item)
+                    Next
+                Case Helper.EnumTypes.VehicleColorAccent
+                    enumArray = System.Enum.GetValues(GetType(VehicleColor))
+                    For Each enumItem As VehicleColor In enumArray
+                        item = New UIMenuItem([Enum].GetName(GetType(VehicleColor), enumItem))
+                        With item
+                            .SubInteger1 = enumItem
+                            If Helper.GetAccentColor(Bennys.veh) = enumItem Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                        End With
+                        menu.AddItem(item)
+                    Next
+            End Select
+
+
+            mNumberPlate.RefreshIndex()
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
         End Try
@@ -644,10 +814,38 @@ Public Class BennysMenu
             iHeadlights = New UIMenuItem("Headlights")
             gmLights.AddItem(iHeadlights)
             gmLights.BindMenuToItem(mHeadlights, iHeadlights)
-            iNeon = New UIMenuItem("Neon Kits")
-            gmLights.AddItem(iNeon)
-            gmLights.BindMenuToItem(mNeon, iNeon)
+            giNeonKits = New UIMenuItem("Neon Kits")
+            gmLights.AddItem(giNeonKits)
+            gmLights.BindMenuToItem(gmNeonKits, giNeonKits)
             gmLights.RefreshIndex()
+        Catch ex As Exception
+            Logger.Log(ex.Message & " " & ex.StackTrace)
+        End Try
+    End Sub
+
+    Public Shared Sub CreateNeonKitsMenu()
+        Try
+            gmNeonKits = New UIMenu("", "NEON KITS")
+            gmNeonKits.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
+            gmNeonKits.MouseEdgeEnabled = False
+            _menuPool.Add(gmNeonKits)
+            gmNeonKits.AddItem(New UIMenuItem("Nothing"))
+            gmNeonKits.RefreshIndex()
+        Catch ex As Exception
+            Logger.Log(ex.Message & " " & ex.StackTrace)
+        End Try
+    End Sub
+
+    Public Shared Sub RefreshNeonKitsMenu()
+        Try
+            gmNeonKits.MenuItems.Clear()
+            iNeon = New UIMenuItem("Neon Layout")
+            gmNeonKits.AddItem(iNeon)
+            gmNeonKits.BindMenuToItem(mNeon, iNeon)
+            iNeonColor = New UIMenuItem("Neon Color")
+            gmNeonKits.AddItem(iNeonColor)
+            gmNeonKits.BindMenuToItem(mNeonColor, iNeonColor)
+            gmNeonKits.RefreshIndex()
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
         End Try
@@ -1588,41 +1786,6 @@ Public Class BennysMenu
         End Try
     End Sub
 
-    Public Shared Sub CreatePlateNumberMenu()
-        Try
-            mNumberPlate = New UIMenu("", "NUMBER PLATE")
-            mNumberPlate.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
-            mNumberPlate.MouseEdgeEnabled = False
-            _menuPool.Add(mNumberPlate)
-            mNumberPlate.AddItem(New UIMenuItem("Nothing"))
-            mNumberPlate.RefreshIndex()
-            AddHandler mNumberPlate.OnMenuClose, AddressOf ModsMenuCloseHandler
-            AddHandler mNumberPlate.OnItemSelect, AddressOf ModsMenuItemSelectHandler
-            AddHandler mNumberPlate.OnIndexChange, AddressOf ModsMenuIndexChangedHandler
-        Catch ex As Exception
-            Logger.Log(ex.Message & " " & ex.StackTrace)
-        End Try
-    End Sub
-
-    Public Shared Sub RefreshPlateNumberMenu()
-        Try
-            mNumberPlate.MenuItems.Clear()
-
-            Dim plateType As Array = System.Enum.GetValues(GetType(NumberPlateType))
-            For Each plate As NumberPlateType In plateType
-                iNumberPlate = New UIMenuItem([Enum].GetName(GetType(NumberPlateType), plate))
-                With iNumberPlate
-                    .SubInteger1 = plate
-                    If Bennys.veh.NumberPlateType = plate Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
-                End With
-                mNumberPlate.AddItem(iNumberPlate)
-            Next
-            mNumberPlate.RefreshIndex()
-        Catch ex As Exception
-            Logger.Log(ex.Message & " " & ex.StackTrace)
-        End Try
-    End Sub
-
     Public Sub New()
         _menuPool = New MenuPool()
         camera = New WorkshopCamera
@@ -1643,6 +1806,9 @@ Public Class BennysMenu
         CreateModMenuFor(mSeats, "SEATS")
         CreateModMenuFor(mSteeringWheels, "STEERING WHEEL")
         CreateModMenuFor(mTrimDesign, "TRIM DESIGN")
+        CreateDoorMenu()
+        CreateModMenuFor(mDoor, "DOORS")
+        CreateModMenuFor(mWindow, "WINDOW")
         CreateBumperMenu()
         CreateModMenuFor(mFBumper, "FRONT BUMPER")
         CreateModMenuFor(mRBumper, "REAR BUMPER")
@@ -1666,14 +1832,14 @@ Public Class BennysMenu
         CreatePlateNumberMenu()
         CreateLightsMenu()
         CreateModMenuFor(mHeadlights, "HEADLIGHTS")
+        CreateNeonKitsMenu()
         CreateNeonMenu()
         CreateResprayMenu()
         CreateModMenuFor(mArchCover, "ARCH COVER")
         CreateModMenuFor(mExhaust, "EXHAUST")
         CreateModMenuFor(mFender, "FENDER")
         CreateModMenuFor(mRFender, "RIGHT FENDER")
-        CreateModMenuFor(mDoor, "DOORS")
-        CreateModMenuFor(mFrame, "FRAME")
+        CreateModMenuFor(mFrame, "ROLL CAGE")
         CreateModMenuFor(mGrille, "GRILLE")
         CreateModMenuFor(mHood, "HOOD")
         CreateModMenuFor(mHorn, "HORN")
@@ -1685,7 +1851,6 @@ Public Class BennysMenu
         CreateModMenuFor(mSpoilers, "SPOILER")
         CreateModMenuFor(mTank, "TANK")
         CreateModMenuFor(mTrunk, "TRUNK")
-        CreateModMenuFor(mWindow, "WINDOW")
         CreateModMenuFor(mTurbo, "TURBO")
         CreatePerformanceMenuFor(mSuspension, "SUSPENSION")
         CreatePerformanceMenuFor(mArmor, "ARMOR")
@@ -1711,6 +1876,9 @@ Public Class BennysMenu
         RefreshModMenuFor(mSeats, iSeats, VehicleMod.Seats)
         RefreshModMenuFor(mSteeringWheels, iSteeringWheels, VehicleMod.SteeringWheels)
         RefreshModMenuFor(mTrimDesign, iTrimDesign, VehicleMod.TrimDesign)
+        RefreshDoorMenu()
+        RefreshModMenuFor(mDoor, iDoor, VehicleMod.DoorSpeakers)
+        RefreshModMenuFor(mWindow, iWindows, VehicleMod.Windows)
         RefreshBumperMenu()
         RefreshModMenuFor(mFBumper, iFBumper, VehicleMod.FrontBumper)
         RefreshModMenuFor(mRBumper, iRBumper, VehicleMod.RearBumper)
@@ -1734,13 +1902,13 @@ Public Class BennysMenu
         RefreshPlateNumberMenu()
         RefreshLightsMenu()
         RefreshModMenuFor(mHeadlights, iHeadlights, VehicleToggleMod.XenonHeadlights)
+        RefreshNeonKitsMenu()
         RefreshNeonMenu()
         RefreshResprayMenu()
         RefreshModMenuFor(mArchCover, iArchCover, VehicleMod.ArchCover)
         RefreshModMenuFor(mExhaust, iExhaust, VehicleMod.Exhaust)
         RefreshModMenuFor(mFender, iFender, VehicleMod.Fender)
         RefreshModMenuFor(mRFender, iRFender, VehicleMod.RightFender)
-        RefreshModMenuFor(mDoor, iDoor, VehicleMod.DoorSpeakers)
         RefreshModMenuFor(mFrame, iFrame, VehicleMod.Frame)
         RefreshModMenuFor(mGrille, iGrille, VehicleMod.Grille)
         RefreshModMenuFor(mHood, iHood, VehicleMod.Hood)
@@ -1749,11 +1917,10 @@ Public Class BennysMenu
         RefreshModMenuFor(mLivery, iLivery, VehicleMod.Livery)
         RefreshModMenuFor(mPlaques, iPlaques, VehicleMod.Plaques)
         RefreshModMenuFor(mRoof, iRoof, VehicleMod.Roof)
-        RefreshModMenuFor(mSpeakers, iSpeaker, VehicleMod.DoorSpeakers)
+        RefreshModMenuFor(mSpeakers, iSpeaker, VehicleMod.Speakers)
         RefreshModMenuFor(mSpoilers, iSpoilers, VehicleMod.Spoilers)
         RefreshModMenuFor(mTank, iTank, VehicleMod.Tank)
         RefreshModMenuFor(mTrunk, iTrunk, VehicleMod.Trunk)
-        RefreshModMenuFor(mWindow, iWindows, VehicleMod.Windows)
         RefreshModMenuFor(mTurbo, iTurbo, VehicleToggleMod.Turbo)
         RefreshPerformanceMenuFor(mSuspension, iSuspension, VehicleMod.Suspension, "CMOD_SUS_")
         RefreshPerformanceMenuFor(mArmor, iArmor, VehicleMod.Armor, "CMOD_ARM_")

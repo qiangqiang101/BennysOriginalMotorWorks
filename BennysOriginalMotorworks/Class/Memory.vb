@@ -543,4 +543,14 @@
         End Set
     End Property
 
+    Private _tint As GTA.VehicleWindowTint
+    Public Property Tint() As GTA.VehicleWindowTint
+        Get
+            Return _tint
+        End Get
+        Set(value As GTA.VehicleWindowTint)
+            _tint = value
+        End Set
+    End Property
+
 End Class

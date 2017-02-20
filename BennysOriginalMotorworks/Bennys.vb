@@ -10,7 +10,7 @@ Public Class Bennys
     Public Shared veh As Vehicle
     Public Shared ply As Ped
     Public Shared onlineMap As Integer = 1
-    Public Shared fixDoor As Integer = 0
+    Public Shared fixDoor As Integer = 1
     Public Shared bennyIntID As Integer
     Public Shared isExiting As Boolean = False
     Public Shared lastVehMemory As Memory
@@ -25,7 +25,7 @@ Public Class Bennys
     Public Sub LoadSettings()
         Dim config As ScriptSettings = ScriptSettings.Load("scripts\BennysOriginalMotorworks.ini")
         onlineMap = config.GetValue(Of Integer)("SETTINGS", "OnlineMap", 1)
-        fixDoor = config.GetValue(Of Integer)("SETTINGS", "FixDoor", 0)
+        fixDoor = config.GetValue(Of Integer)("SETTINGS", "FixDoor", 1)
 
         If onlineMap = 1 Then
             Helper.LoadMPDLCMap()
@@ -38,8 +38,12 @@ Public Class Bennys
             ply = Game.Player.Character
 
             If Game.IsControlPressed(0, Control.Jump) AndAlso Game.IsControlPressed(0, Control.Reload) Then
-                Dim s As String = Game.GetUserInput(99)
+                Dim s As String = Game.GetUserInput(System.Windows.Forms.Clipboard.GetText(), 99)
                 UI.Notify(Game.GetGXTEntry(s))
+
+                'For Each line As String In IO.File.ReadLines("C:\New.txt")
+                '    Logger.Log(Game.GetGXTEntry(line) & ", " & line)
+                'Next
             End If
 
             If fixDoor = 1 Then
@@ -52,10 +56,10 @@ Public Class Bennys
 
             If Helper.GetInteriorID(ply.Position) = bennyIntID Then
                 If Not isExiting Then
-                    If ply.Position.DistanceTo(New Vector3(-205.8678, -1321.805, 30.41191)) <= 5 Then
+                    If veh.Position.DistanceTo(New Vector3(-205.6165, -1312.976, 31.1331)) <= 5 Then
                         PutVehIntoShop()
                     Else
-                        If ply.Position.DistanceTo(New Vector3(-211.798, -1324.292, 30.37535)) <= 5 Then
+                        If veh.Position.DistanceTo(New Vector3(-211.798, -1324.292, 30.37535)) <= 5 Then
                             BennysMenu.camera.Update()
                             Native.Function.Call(Hash.HIDE_HUD_AND_RADAR_THIS_FRAME)
                         End If
@@ -72,6 +76,7 @@ Public Class Bennys
         BennysBlip.Sprite = (BlipSprite.DollarSignSquared Or BlipSprite.ArrowDownOutlined)
         BennysBlip.Color = BlipColor.Yellow
         BennysBlip.IsShortRange = True
+        BennysBlip.Name = Game.GetGXTEntry("S_MO_09")
     End Sub
 
     Public Shared Sub PutVehIntoShop()

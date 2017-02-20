@@ -43,7 +43,7 @@ Public Class Bennys
             End If
 
             If fixDoor = 1 Then
-                If ply.Position.DistanceTo(New Vector3(-205.6828, -1310.683, 30.29572)) <= 10 Then
+                If veh.Position.DistanceTo(New Vector3(-205.6828, -1310.683, 30.29572)) <= 10 Then
                     Native.Function.Call(Hash._DOOR_CONTROL, -427498890, -205.6828, -1310.683, 30.29572, 0, 0.0, 50.0, 0)
                 Else
                     Native.Function.Call(Hash._DOOR_CONTROL, -427498890, -205.6828, -1310.683, 30.29572, 1, 0.0, 50.0, 0)
@@ -115,6 +115,26 @@ Public Class Bennys
                 .FrontWheels = veh.GetMod(VehicleMod.FrontWheels),
                 .Headlights = veh.IsToggleModOn(VehicleToggleMod.XenonHeadlights),
                 .WheelsVariation = Helper.IsCustomWheels(),
+                .WheelsColor = veh.RimColor,
+                .ArchCover = veh.GetMod(VehicleMod.ArchCover),
+                .Exhaust = veh.GetMod(VehicleMod.Exhaust),
+                .Fender = veh.GetMod(VehicleMod.Fender),
+                .RightFender = veh.GetMod(VehicleMod.RightFender),
+                .DoorSpeakers = veh.GetMod(VehicleMod.DoorSpeakers),
+                .Frame = veh.GetMod(VehicleMod.Frame),
+                .Grille = veh.GetMod(VehicleMod.Grille),
+                .Hood = veh.GetMod(VehicleMod.Hood),
+                .Horns = veh.GetMod(VehicleMod.Horns),
+                .Hydraulics = veh.GetMod(VehicleMod.Hydraulics),
+                .Livery = veh.GetMod(VehicleMod.Livery),
+                .Plaques = veh.GetMod(VehicleMod.Plaques),
+                .Roof = veh.GetMod(VehicleMod.Roof),
+                .Speakers = veh.GetMod(VehicleMod.Speakers),
+                .Spoilers = veh.GetMod(VehicleMod.Spoilers),
+                .Tank = veh.GetMod(VehicleMod.Tank),
+                .Trunk = veh.GetMod(VehicleMod.Trunk),
+                .Turbo = veh.IsToggleModOn(VehicleToggleMod.Turbo),
+                .Windows = veh.GetMod(VehicleMod.Windows),
                 .Suspension = veh.GetMod(VehicleMod.Suspension)}
             veh.Position = New Vector3(-211.798, -1324.292, 30.37535)
             veh.Heading = 358.6677

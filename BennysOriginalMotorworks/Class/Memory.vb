@@ -342,4 +342,205 @@
             _rightneon = value
         End Set
     End Property
+
+    Private _archcover As Integer
+    Public Property ArchCover() As Integer
+        Get
+            Return _archcover
+        End Get
+        Set(value As Integer)
+            _archcover = value
+        End Set
+    End Property
+
+    Private _exhaust As Integer
+    Public Property Exhaust() As Integer
+        Get
+            Return _exhaust
+        End Get
+        Set(value As Integer)
+            _exhaust = value
+        End Set
+    End Property
+
+    Private _wheelscolor As GTA.VehicleColor
+    Public Property WheelsColor() As GTA.VehicleColor
+        Get
+            Return _wheelscolor
+        End Get
+        Set(value As GTA.VehicleColor)
+            _wheelscolor = value
+        End Set
+    End Property
+
+    Private _fender As Integer
+    Public Property Fender() As Integer
+        Get
+            Return _fender
+        End Get
+        Set(value As Integer)
+            _fender = value
+        End Set
+    End Property
+
+    Private _rightfender As Integer
+    Public Property RightFender() As Integer
+        Get
+            Return _rightfender
+        End Get
+        Set(value As Integer)
+            _rightfender = value
+        End Set
+    End Property
+
+    Private _doorspeakers As Integer
+    Public Property DoorSpeakers() As Integer
+        Get
+            Return _doorspeakers
+        End Get
+        Set(value As Integer)
+            _doorspeakers = value
+        End Set
+    End Property
+
+    Private _frame As Integer
+    Public Property Frame() As Integer
+        Get
+            Return _frame
+        End Get
+        Set(value As Integer)
+            _frame = value
+        End Set
+    End Property
+
+    Private _grille As Integer
+    Public Property Grille() As Integer
+        Get
+            Return _grille
+        End Get
+        Set(value As Integer)
+            _grille = value
+        End Set
+    End Property
+
+    Private _hood As Integer
+    Public Property Hood() As Integer
+        Get
+            Return _hood
+        End Get
+        Set(value As Integer)
+            _hood = value
+        End Set
+    End Property
+
+    Private _horns As Integer
+    Public Property Horns() As Integer
+        Get
+            Return _horns
+        End Get
+        Set(value As Integer)
+            _horns = value
+        End Set
+    End Property
+
+    Private _hydraulics As Integer
+    Public Property Hydraulics() As Integer
+        Get
+            Return _hydraulics
+        End Get
+        Set(value As Integer)
+            _hydraulics = value
+        End Set
+    End Property
+
+    Private _livery As Integer
+    Public Property Livery() As Integer
+        Get
+            Return _livery
+        End Get
+        Set(value As Integer)
+            _livery = value
+        End Set
+    End Property
+
+    Private _plaques As Integer
+    Public Property Plaques() As Integer
+        Get
+            Return _plaques
+        End Get
+        Set(value As Integer)
+            _plaques = value
+        End Set
+    End Property
+
+    Private _roof As Integer
+    Public Property Roof() As Integer
+        Get
+            Return _roof
+        End Get
+        Set(value As Integer)
+            _roof = value
+        End Set
+    End Property
+
+    Private _speakers As Integer
+    Public Property Speakers() As Integer
+        Get
+            Return _speakers
+        End Get
+        Set(value As Integer)
+            _speakers = value
+        End Set
+    End Property
+
+    Private _spoilers As Integer
+    Public Property Spoilers() As Integer
+        Get
+            Return _spoilers
+        End Get
+        Set(value As Integer)
+            _spoilers = value
+        End Set
+    End Property
+
+    Private _tank As Integer
+    Public Property Tank() As Integer
+        Get
+            Return _tank
+        End Get
+        Set(value As Integer)
+            _tank = value
+        End Set
+    End Property
+
+    Private _trunk As Integer
+    Public Property Trunk() As Integer
+        Get
+            Return _trunk
+        End Get
+        Set(value As Integer)
+            _trunk = value
+        End Set
+    End Property
+
+    Private _windows As Integer
+    Public Property Windows() As Integer
+        Get
+            Return _windows
+        End Get
+        Set(value As Integer)
+            _windows = value
+        End Set
+    End Property
+
+    Private _turbo As Boolean
+    Public Property Turbo() As Boolean
+        Get
+            Return _turbo
+        End Get
+        Set(value As Boolean)
+            _turbo = value
+        End Set
+    End Property
+
 End Class

@@ -1,0 +1,10 @@
+﻿Version 2 30
+{
+	NIG1A_F_01 = ~w~Willie died.~s~
+	NIG1A_OBJ_01 = Enter the ~y~club~s~ and find Willie.~s~
+	NIG1A_OBJ_02 = Beat up ~r~Willie.~s~
+	NIG1A_OBJ_03 = Collect Willie's ~g~gold tooth.~s~
+	NIG1A_OBJ_04 = Leave the area.~s~
+	NIG1A_OBJ_05 = Lose the Cops.
+	NIG1A_TP_BLIP = Gold tooth
+}

@@ -1,0 +1,26 @@
+﻿Version 2 30
+{
+	0x1A09800B = ~z~Good. I need to see you. Come to La Fuerta Blanca - my ranch off Senora Road,
+	0x1A1A0D10 = 1100000110000011000001100000110000011000001100000110000011000001100000110000011000001100000
+	0x2D93C7DC = SLFL_ABAG
+	0x4EFB0E36 = SFX_PAUSE_150
+	0x7DA54741 = ~z~Hey, Mr. Madrazo. How's the rebuild coming?
+	0x23B0BE04 = SLFL_ABAE
+	0x51F212DC = SLFL_ABAC
+	0x131A7229 = ~z~Hey, look, Franklin? I hardly know the kid. I don't want him caught up in this.
+	0x446A79BB = SFX_PAUSE_110
+	0x483E01DC = SLFL_ABAA
+	0x3006CBAA = SFX_PAUSE_320
+	0x2017325B = SFX_PAUSE_190
+	0x5302994D = SLFL_ABAB
+	0x20110152 = SLFL_ABAD
+	0xA3F016CA = 030010302010302010030010302010030010302
+	0xA12217B6 = 100
+	0xAF972B24 = ~z~You'll need another pair of hands...
+	0xBC3EE80A = SLFL_ABAF
+	0xE6CCBC49 = SFX_PAUSE_230
+	0xE6E03F12 = ~z~Alright, there's another guy... Trevor Philips. Me and him are partners.
+	0xF3DCD563 = SFX_PAUSE_130
+	0xF68EB912 = ~z~and bring Mr. Clinton.
+	0xFA3EE5CF = ~z~Okay. I'll have my people messenger him.
+}

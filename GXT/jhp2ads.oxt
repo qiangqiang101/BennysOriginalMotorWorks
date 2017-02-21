@@ -1,0 +1,29 @@
+﻿Version 2 30
+{
+	0x00AE444E = ~z~You don't wanna keep driving!
+	0x072C4FD2 = ~z~Walk away, you idiot!
+	0x2F53FECA = JHP2A_AMAA
+	0x7C9B417F = 031
+	0x7DF89191 = 031
+	0x7ECCC095 = ~z~The side of the road!
+	0x8EA2F0E3 = ~z~Stop the vehicle!
+	0x14E1EB3D = ~z~Give it up!
+	0x24DD8B34 = ~z~I'm taking the gas - you can live or you can die!
+	0x81ED5778 = ~z~Pull over right now!
+	0x90E964CE = ~z~Pull over!
+	0x91F5D344 = 100
+	0x498FD498 = ~z~It's just knockout gas! Walk away!
+	0x2019DB08 = JHP2A_AQAA
+	0x9061AA9B = 1100000
+	0x92373DB6 = 031
+	0x135869A2 = ~z~You're starting to piss me off!
+	0x856494E1 = 100
+	0x6337096A = ~z~I said stop!
+	0xC81B14AD = 100
+	0xD6F3E44A = JHP2A_AOAA
+	0xE2A786C9 = ~z~Come on, I'm an amateur anaesthesiologist, okay?
+	0xE5318D55 = ~z~Stop right there!
+	0xF0542222 = ~z~I just want the gas!
+	0xF63AFBA4 = 1100000
+	0xFA332521 = 1100000
+}

@@ -1,0 +1,13 @@
+﻿Version 2 30
+{
+	0xF0EB3708 = ~s~TIME LEFT~s~
+	PMDL_BCK = ~s~Get back in the ~b~van.
+	PMDL_BCKT = ~s~Get back in the ~b~truck.
+	PMDL_BTIM = ~s~Deliver the booze to the ~y~bar~s~ before the time runs out.
+	PMDL_DMG = ~s~DAMAGED GOODS~s~
+	PMDL_LOC = ~s~Drive the van to the ~y~shop.~s~
+	PMDL_OBJ = ~s~Pick up the ~b~van.
+	PMDL_REC = ~s~Recover the ~b~van.
+	PMDL_TIM = ~s~Drive the van to the ~y~shop~s~ before the time runs out.
+	PMDL_TRUCK = ~s~Get in the ~b~truck.
+}

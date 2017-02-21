@@ -1,0 +1,15 @@
+﻿Version 2 30
+{
+	0x27778C40 = ~s~Get out of the van.
+	0x54398DC1 = ~s~Detach the van.
+	JHP2A_FCARGO = The cargo was lost.
+	JHP2A_FCARGO2 = The cargo was left behind.
+	JHP2A_FGOTAWAY = The van got away.
+	JHP2A_FGOTAWAY2 = The van and its cargo were left behind.
+	JHP2A_HLP1 = Press ~INPUT_CONTEXT~ to drop the case.
+	JHP2A_HLP2 = Shoot open the doors or destroy the van to gain access to its cargo.
+	JHP2A_RTNBZ = Drop off the BZ grenades at the ~y~garment factory.
+	JHP2A_RTNVAN = Drop off the van at the ~y~garment factory.
+	JHP2A_STEAL = Steal the ~b~Humane van~s~ or its cargo.
+	JHP2A_TAKEBZ = Steal a case of ~g~BZ grenades.
+}

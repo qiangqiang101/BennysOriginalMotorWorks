@@ -1,0 +1,15 @@
+﻿Version 2 30
+{
+	0x08638754 = Climb the ~r~ladder~s~ to reach Michael.
+	0x27FC9A92 = ~s~Leave the area.
+	0x9860A5E1 = Chase ~r~Michael~s~ on foot.
+	0xC2BC9AFE = Find a car or motorbike.
+	0xF071A1E1 = Go meet Michael just off ~y~Route 68.~s~
+	0xF2911ED3 = This vehicle is not suitable.
+	FIN2_CHASE = Chase ~r~Michael.~s~
+	FIN2_DROP = Press ~INPUT_SCRIPT_RDOWN~ to drop Michael.~n~Press ~INPUT_SCRIPT_RRIGHT~ to save Michael.
+	FIN2_FAIL1 = ~w~Michael escaped.
+	FIN2_FAILDF = ~w~Default.
+	FIN2_LOST = Michael's getting away.
+	FIN2_SPOT = Go to ~y~Michael's last known location.~s~
+}

@@ -1,0 +1,23 @@
+﻿Version 2 30
+{
+	0x2BD8A5E6 = EMSER_AAAA
+	0x2D0318D6 = 192
+	0x3A982F93 = 100
+	0x5B4DBE5E = 192
+	0x5C981826 = 100
+	0x6D203E6B = 192
+	0x6E5259FB = 1100000
+	0x7C48514F = 100
+	0x9E3B14C7 = ~z~Thank you. The police are now en route to your current location.
+	0x20A4F0AD = 192
+	0x70D0393F = 1100000
+	0x820B3E44 = ~z~Thank you. The fire department are now en route to your current location.
+	0x4538A1B4 = EMSER_ADAA
+	0x9250AD8B = 1100000
+	0x33616932 = 1100000
+	0xC92D63F6 = ~z~Thank you. Paramedics are now en route to your current location.
+	0xDCA7E04F = EMSER_ACAA
+	0xF0A15793 = ~z~Hello, this is 911. Please state which emergency service you require...
+	0xF9FF31B7 = EMSER_ABAA
+	0xFD5491B1 = 100
+}

@@ -1,0 +1,20 @@
+﻿Version 2 30
+{
+	B3CCBDEST = The Cargobob was destroyed.
+	B3CCBSTUCK = The cargobob got stuck.
+	B3CDELV = Go to Barry's ~y~apartment.~s~
+	B3CENTV = Get in the ~b~stash car.~s~
+	B3CGBTB = Reattach the ~b~stash car.~s~
+	B3CLEAVE = Leave the area.
+	B3CNOGO = Find a way to move the ~b~stash car.~s~
+	B3CREVRS = Hook the ~b~stash car.~s~
+	B3CRTCB = Get back in the ~b~cargobob.~s~
+	B3CRTTT = Get back in the ~b~tow truck.~s~
+	B3CTTHA = Hold ~INPUT_VEH_HEADLIGHT~ to release a towed vehicle.
+	B3CTTHB = Line up with the front or back end of a car to hook it. Use ~INPUT_VEH_MOVE_UD~ to lower and raise the crane.
+	B3CTWDEST = The tow truck was destroyed.
+	B3CTWSTUCK = The tow truck got stuck.
+	B3CVHDEST = The stash car was destroyed.
+	B3CVHSTUCK = The stash car got stuck.
+	B3CWAN1 = Lose the Cops.
+}

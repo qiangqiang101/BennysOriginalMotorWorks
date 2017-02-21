@@ -1,0 +1,19 @@
+﻿Version 2 30
+{
+	NIGEL2_01 = Chase ~r~Al Di Napoli.~s~
+	NIGEL2_03 = Get in ~b~Nigel's car.~s~
+	NIGEL2_04 = Get back in ~b~Nigel's car.~s~
+	NIGEL2_05 = Return to ~b~Nigel.~s~
+	NIGEL2_08 = Return to ~b~Nigel~s~ and ~b~Mrs. Thornhill.~s~
+	NIGEL2_09 = Return to ~b~Mrs. Thornhill.~s~
+	NIGEL2_F1 = ~w~Al Di Napoli died.~s~
+	NIGEL2_F2 = ~w~Al Di Napoli escaped.~s~
+	NIGEL2_F3 = ~w~Nigel's car was destroyed.~s~
+	NIGEL2_F4 = ~w~Nigel died.~s~
+	NIGEL2_F5 = ~w~Mrs. Thornhill died.~s~
+	NIGEL2_F6 = ~w~Nigel and Mrs. Thornhill were abandoned.~s~
+	NIGEL2_F7 = ~w~Nigel was injured.~s~
+	NIGEL2_F8 = ~w~Mrs. Thornhill was injured.~s~
+	NIGEL2_F9 = ~w~Mrs. Thornhill was abandoned.~s~
+	NIGEL2_F10 = ~w~Nigel was abandoned.~s~
+}

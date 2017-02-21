@@ -1,0 +1,39 @@
+﻿Version 2 30
+{
+	0x5C76D77E = Mocap Cutscene of Michael and Trevor entering the stadium. Then getting into the audition to see Tracey.
+	0x58A451F2 = Get back in the ~b~car.~s~
+	0x66C3858C = The truck was abandoned.~s~
+	0x77FDA800 = Michael's car got stuck.~s~
+	0x96444CDD = ~s~Get to the ~y~audition room.~s~
+	0x207678EF = Michael's car was destroyed.~s~
+	0xA46CE92E = ~s~Get a vehicle.~s~
+	0xAF416224 = ~s~MISSION PASSED~s~
+	0xDAC0392D = Get in the ~b~car.~s~
+	0xDB02B9A6 = The truck was abandoned.~s~
+	0xEFDFBE4C = ~s~MISSION PASSED~s~
+	0xF42A08FF = Get to ~r~Lazlow.~s~
+	FAMILY4_FAIL_0 = Michael died.~s~
+	FAMILY4_FAIL_1 = Trevor died.~s~
+	FAMILY4_FAIL_2 = Tracey died.~s~
+	FAMILY4_FAIL_3 = Lazlow died.~s~
+	FAMILY4_FAIL_5 = Lazlow's car was destoyed.~s~
+	FAMILY4_FAIL_6 = Lazlow escaped.~r~
+	FAMILY4_FAIL_9 = Michael was abandoned.~s~
+	FAMILY4_FAIL_10 = Trevor was abandoned.~s~
+	FAMILY4_FAIL_11 = The auditions were disrupted.~s~
+	FAMILY4_FAIL_12 = The auditions were abandoned.~s~
+	FAMILY4_GOD_0 = Go to the ~y~Maze Bank Arena.~s~
+	FAMILY4_GOD_1 = Get in the ~b~truck.~s~
+	FAMILY4_GOD_2 = Chase down ~r~Lazlow.~s~
+	FAMILY4_GOD_3 = Get back in the ~b~truck.~s~
+	FAMILY4_GOD_4 = The truck got stuck.~s~
+	FAMILY4_GOD_5 = The truck was destroyed.~s~
+	FAMILY4_GOD_8 = Return to ~b~Trevor.~s~
+	FAMILY4_GOD_11 = Chase after ~r~Lazlow.~s~
+	FAMILY4_GOD_13 = Go inside.
+	FAMILY4_GOD_14 = ~s~Return to ~b~Michael.~s~
+	FAMILY4_GOD_17 = Lazlow
+	FAMILY4_GOD_18 = ~s~Wait for ~b~Michael.~s~
+	FAMILY4_HELP_0 = ~s~Press ~INPUT_VEH_CIN_CAM~ to toggle Lazlow cam.
+	FAMILY4_HELP_1 = Hold ~INPUT_VEH_HEADLIGHT~ to detach the trailer.
+}

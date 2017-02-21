@@ -1,0 +1,35 @@
+﻿Version 2 30
+{
+	0x342AF5AC = Retry from the beginning?
+	0xB5F9B57B = Use ~INPUT_PARACHUTE_TURN_LR~ to change direction.~n~Hold ~INPUT_PARACHUTE_BRAKE_LEFT~ or ~INPUT_PARACHUTE_BRAKE_RIGHT~ for sharp turns.~n~Hold ~INPUT_PARACHUTE_PRECISION_LANDING~ for precision landing.~n~Press / Hold ~INPUT_VEH_CIN_CAM~ for cinematic camera.~n~Press ~INPUT_JUMP~ to retry jump.
+	BJ_BLIP_CHK = Checkpoint
+	BJ_BLIP_TGT = Target
+	BJ_CONTINUE = Continue
+	BJ_FAIL = Failed
+	BJ_FAIL_01 = Landed too far away.
+	BJ_FAIL_02 = Abandoned the jump.
+	BJ_FAIL_F = ~s~Franklin died.~s~
+	BJ_FAIL_M = ~s~Michael died.~s~
+	BJ_FAIL_T = ~s~Trevor died.~s~
+	BJ_FALLHLP = Use ~INPUTGROUP_MOVE~ to direct your freefall.~n~Press ~INPUT_PARACHUTE_DEPLOY~ to deploy parachute.~n~Press ~INPUT_JUMP~ to retry jump.
+	BJ_MG_BOAT = Parachute onto the ~y~boat.~s~
+	BJ_MG_MTOBJ = Parachute through the ~y~checkpoints.~s~
+	BJ_MG_STOBJ = Parachute onto the ~y~target.~s~
+	BJ_MG_TRAIN = Parachute onto the ~y~train.~s~
+	BJ_MISSED = ~s~Checkpoint missed.
+	BJ_OBJ_JB = Jump off the roof and parachute onto the ~y~target.~s~
+	BJ_OBJ_JCL = Jump off the cliff and parachute through the ~y~checkpoints.~s~
+	BJ_OBJ_JCR = Jump off the crane and parachute onto the ~y~truck.~s~
+	BJ_OBJ_JDB = Drive off the roof and parachute onto the ~y~target.~s~
+	BJ_PARAHLP = Use ~INPUT_PARACHUTE_TURN_LR~ to change direction.~n~Hold ~INPUT_PARACHUTE_BRAKE_LEFT~ or ~INPUT_PARACHUTE_BRAKE_RIGHT~ for sharp turns.~n~Hold ~INPUT_PARACHUTE_BRAKE_LEFT~ + ~INPUT_PARACHUTE_BRAKE_RIGHT~ for precision landing.~n~Press / Hold ~INPUT_VEH_CIN_CAM~ for cinematic camera.~n~Press ~INPUT_JUMP~ to retry jump.
+	BJ_RETRY = Retry
+	BJ_SC_ACC_RWD = Landing Reward
+	BJ_SC_ALLG_RWD = All Checkpoints Bonus
+	BJ_SC_GATES = Checkpoints Hit
+	BJ_SC_GATE_RWD = Checkpoint Reward
+	BJ_SC_LAND_ACC = Landing Accuracy
+	BJ_SC_PASS = Passed
+	BJ_SC_TOT_RWD = Total
+	BJ_VEHHELP = Press ~INPUT_VEH_EXIT~ to ditch the vehicle.
+	BJ_VLOOKHLP = Use ~INPUTGROUP_LOOK~ to look around.~n~Press ~INPUT_JUMP~ to jump.
+}

@@ -1,0 +1,40 @@
+﻿Version 2 30
+{
+	0x2FA43BAD = ~s~Franklin died.~s~
+	0x39C7878E = ~s~Return to the area.
+	0x646B4246 = ~s~Steal the bus and use it as cover to search for the target at nearby stops. Avoid causing harm to innocents to maintain your cover.~s~
+	0x843F642E = Completion
+	0x33822A00 = ~s~Head to the ~y~Dashound Bus Center.~s~
+	0xC49A7632 = ~s~The mission will fail if the bus is abandoned~s~.
+	ASS_BS_ABAND = ~s~The mission was abandoned.~s~
+	ASS_BS_AREA = ~s~Leave the area.~s~
+	ASS_BS_BASE = Base Reward
+	ASS_BS_BDESC = Hit and Run Bonus
+	ASS_BS_BLIP = Bus
+	ASS_BS_BOARD = ~s~Parking near a bus stop will attract passengers to board the bus.~s~
+	ASS_BS_CASH = Money Earned
+	ASS_BS_COMPB = Completion - Bronze
+	ASS_BS_COMPG = Completion - Gold
+	ASS_BS_COMPN = Completion - No Medal
+	ASS_BS_COMPS = Completion - Silver
+	ASS_BS_CONT = Continue
+	ASS_BS_COPS = ~s~Lose the Cops.~s~
+	ASS_BS_COVER = ~s~Franklin's cover was blown.~s~
+	ASS_BS_ENTER = ~s~Get the ~b~bus.~s~
+	ASS_BS_EXIT = ~s~Exit the bus.~s~
+	ASS_BS_FIND = ~s~Drive to each ~y~bus stop~s~ until the target is located.~s~
+	ASS_BS_KILL = ~s~Assassinate the ~r~target.~s~
+	ASS_BS_LEFTBUS = ~s~The bus was abandoned.~s~
+	ASS_BS_LOST = ~s~The target escaped.~s~
+	ASS_BS_NAME = Bus Assassination
+	ASS_BS_PASSED = Mission Passed
+	ASS_BS_RETURN = ~s~Get back in the ~b~bus.~s~
+	ASS_BS_STOP0 = Alesandro Hotel
+	ASS_BS_STOP1 = Mission Row
+	ASS_BS_STOP2 = San Andreas Blvd.
+	ASS_BS_STOP3 = Olympic Fwy.
+	ASS_BS_TIMER = Time Taken
+	ASS_BS_VEHDEST = ~s~The bus was destroyed.~s~
+	ASS_HELP_01 = ~s~Bus passengers will not board the bus unless it is parked parallel to the curb.~s~
+	ASS_HELP_02 = ~s~Press ~INPUT_VEH_CIN_CAM~ to view inside the bus.~s~
+}

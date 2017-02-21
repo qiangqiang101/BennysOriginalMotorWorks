@@ -1,0 +1,27 @@
+﻿Version 2 30
+{
+	MIN2_01 = Apprehend the ~r~suspect.
+	MIN2_06 = Go to the ~y~cement factory.
+	MIN2_15 = One of the suspects died.
+	MIN2_16 = Josef died.
+	MIN2_17 = The Civil Border Patrol vehicle was destroyed.
+	MIN2_19 = Get in the Civil Border Patrol ~b~vehicle.
+	MIN2_23 = One of the suspects escaped.
+	MIN2_25 = Joe died.
+	MIN2_29 = Wait for ~b~Josef~s~ and ~b~Joe.
+	MIN2_31 = Pick up the remaining ~r~suspect.
+	MIN2_32 = Wait for ~b~Josef.
+	MIN2_33 = Wait for ~b~Joe.
+	MIN2_35 = The suspects escaped.
+	MIN2_36 = Josef and Joe were abandoned.
+	MIN2_39 = The suspects are escaping. Get in the Civil Border Patrol ~b~vehicle.
+	MIN2_40 = Josef was abandoned.
+	MIN2_41 = Joe was abandoned.
+	MIN2_43 = The suspect escaped.
+	MIN2_44 = The suspect died.
+	MIN2_45 = Josef and Joe died.
+	MIN2_47 = Exit the vehicle.
+	MIN2_48 = Go back and pick up the ~r~suspect.
+	MIN2_49 = Return to ~b~Josef~s~ and ~b~Joe.
+	MIN2_COPS = Lose the Cops.
+}

@@ -1,0 +1,25 @@
+﻿Version 2 30
+{
+	0x80EB326A = Rampage
+	CH_000 = Get ~1~ Kills
+	CH_001 = Get ~1~ Headshots
+	CH_003 = Destroy ~1~ Vehicles
+	CH_008 = Destroy ~1~ Tanks
+	RAMPAGE = ~l~RAMPAGE
+	RO_RATE = Rating
+	RPASSED = ~y~Passed
+	TR_FAIL = Trevor didn't eliminate enough targets.
+	TR_HKILL = ~r~KILLS
+	TR_HTIME = TIME
+	TR_RAMP1 = Rampage: Rednecks
+	TR_RAMP2 = Rampage: Vagos
+	TR_RAMP3 = Rampage: Ballas
+	TR_RAMP4 = Rampage: Military
+	TR_RAMP5 = Rampage: Hipsters
+	TR_ROBJ1 = Neutralize ~1~ ~a~.
+	TR_RTGT1 = Rednecks
+	TR_RTGT2 = Killer Hipsters
+	TR_RTGT3 = Gang Members
+	TR_RTGT4 = Gang Members
+	TR_RTGT5 = Attacking Soldiers
+}

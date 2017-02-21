@@ -1,0 +1,27 @@
+﻿Version 2 30
+{
+	P3BEVDEAD = Beverly died.
+	P3BEVHURT = Beverly was injured.
+	P3BEVSCARED = Beverly was spooked.
+	PAP3B_COPS = Lose the Cops.
+	PAP3_03 = Pursue ~b~Poppy.~s~
+	PAP3_08 = ~s~The photo opportunity was lost.
+	PAP3_10 = Lose the ~r~bodyguards.~s~
+	PAP3_ALERT = ~s~Security was alerted.
+	PAP3_CON = Meet Beverly's ~b~contact.~s~
+	PAP3_HELP1 = Access the phone using ~INPUT_PHONE~
+	PAP3_HELP2 = Select the camera from the phone with ~INPUTGROUP_CELLPHONE_NAVIGATE~
+	PAP3_HELP6 = Use the camera on the phone to take the picture.
+	PAP3_HELP7 = The picture was sent to the wrong contact. Send the picture to Beverly.
+	PAP3_HELP8 = Send the picture to Beverly.
+	PAP3_INJUR = Poppy was injured.
+	PAP3_INJUR2 = ~s~Franklin injured the princess.
+	PAP3_KILL1 = ~s~The princess died.
+	PAP3_KILL2 = Poppy died.
+	PAP3_KILL3 = ~s~The contact died.
+	PAP3_LOSTP = Franklin lost Poppy.
+	PAP3_POLIC = Franklin attracted police attention.
+	PAP3_POP = Send Beverly a photo of ~b~Poppy.
+	PAP3_PRIN = Send Beverly a photo of the ~b~princess.
+	PAP3_THREAT = ~s~Franklin threatened the contact.
+}

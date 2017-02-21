@@ -1,0 +1,15 @@
+﻿Version 2 30
+{
+	0x9E8A758D = Catch up with ~r~Mark Fostenburg.
+	0x256CF194 = Return to the ~y~golf course.
+	0xD4AD44CE = Weapons and vehicles are prohibited on the golf course.
+	N1D_CLUBDES = The golf club was destroyed.
+	N1D_CLUBLOST = The golf club was abandoned.
+	N1D_COLLECT = Collect the ~g~golf club.
+	N1D_ESCAPE = Mark Fostenburg escaped.
+	N1D_LOSESEC = Escape the ~r~security.
+	N1D_NOLOCATE = Mark Fostenburg couldn't be found.
+	N1D_RETPICKUP = Return to the ~g~golf club.
+	N1D_TAKE = Steal the golf club from ~r~Mark Fostenburg.
+	N1D_WANTED = Lose the Cops.
+}

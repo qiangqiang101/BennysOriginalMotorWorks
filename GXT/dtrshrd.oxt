@@ -1,0 +1,38 @@
+﻿Version 2 30
+{
+	0xD9C57AAF = ~s~Trevor died.~s~
+	0xFEC488A1 = Ground Arms Trafficking
+	DTRFAIR_FAIL_04 = ~s~The plane was badly damaged.~s~
+	DTRFAIR_FAIL_05 = ~s~Not all enemy targets were destroyed.~s~
+	DTRFAIR_FAIL_06 = ~s~Not all enemy convoys were destroyed.~s~
+	DTRFAIR_FAIL_07 = ~s~Not all packages were successfully delivered.~s~
+	DTRFAIR_FAIL_08 = ~s~Trafficking activities detected by the law.~s~
+	DTRSHRD_01 = ~s~Lose your wanted level.~s~
+	DTRSHRD_03 = ~s~Return to the ~b~vehicle.~s~
+	DTRSHRD_06 = ~s~Lose the ~r~rival arms runners.~s~
+	DTRSHRD_ART = Air Trafficking
+	DTRSHRD_CONT = Continue
+	DTRSHRD_FAIL_02 = ~s~The arms run was abandoned.~s~
+	DTRSHRD_FAIL_03 = ~s~The pickup was not made in time.~s~
+	DTRSHRD_FAIL_06 = ~s~The mission was abandoned.~s~
+	DTRSHRD_FAIL_07 = ~s~The rival trafficker has delivered the arms shipment.~s~
+	DTRSHRD_FAIL_08 = ~s~The transport vehicle is undriveable.~s~
+	DTRSHRD_FAIL_09 = ~s~The transport vehicle was destroyed.~s~
+	DTRSHRD_FAIL_11 = ~s~The plane was destroyed.~s~
+	DTRSHRD_FAIL_12 = ~s~Not enough bombs to eliminate remaining targets.~s~
+	DTRSHRD_FAIL_13 = ~s~Not enough packages remaining.~s~
+	DTRSHRD_FAIL_16 = ~s~The arms package has been destroyed.~s~
+	DTRSHRD_FAIL_17 = ~s~The buyer is dead.~s~
+	DTRSHRD_GRT = Ground Trafficking
+	DTRSHRD_MONEY = Total Earned
+	DTRSHRD_MPASS = ~y~Passed~s~
+	DTRSHRD_PLN_01 = ~s~Fly to the drop location.~s~
+	DTRSHRD_TIME = TIME
+	DTRSHRD_TIME1 = Time
+	DTRSHRD_WEAP = Weapons Collected
+	DTRSHRD_WEAP01 = Pistol
+	DTRSHRD_WEAP02 = Micro SMG
+	DTRSHRD_WEAP03 = Grenade
+	DTRSHRD_WEAP04 = Pump Shotgun
+	DTRSHRD_WEAP05 = Assault Rifle
+}

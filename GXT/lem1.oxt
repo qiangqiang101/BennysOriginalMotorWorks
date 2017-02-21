@@ -1,0 +1,46 @@
+﻿Version 2 30
+{
+	0x07BF1B30 = ~s~Press ~INPUT_VEH_LOOK_BEHIND~ to look behind.~s~
+	0x1B9E8428 = ~s~While aiming press ~INPUT_THROW_GRENADE~ to throw a grenade.
+	0x97B68704 = ~s~Try using Franklin's special ability to evade the Cops. Press ~INPUT_SPECIAL_ABILITY_PC~ to activate Franklin's ability.
+	0xA0DD144A = ~s~Press ~INPUT_FRONTEND_ACCEPT~ to purchase mods and ammo.
+	LEM1_ABBOTH = ~s~Lamar and Stretch were abandoned.~s~
+	LEM1_ABLAMAR = ~s~Lamar was abandoned.~s~
+	LEM1_ABSTRETCH = ~s~Stretch was abandoned.~s~
+	LEM1_ACCSTAT1 = ~s~Weapon accuracy, max ammo capacity, reload speed and crosshair movement will improve as the Shooting Stat increases.
+	LEM1_ACCSTAT2 = ~s~The Shooting Stat will increase with successful hits on enemies. Increase this quicker by going to the Shooting Range or performing headshots.
+	LEM1_ALLEYHELP = ~s~The Cops can be evaded more easily by hiding in alleys, finding spots off the road, and switching cars.
+	LEM1_BACKSHOP = Go back to ~y~Ammu-Nation ~s~and buy an item.
+	LEM1_BACKSHOP2 = Go back to ~y~Ammu-Nation ~s~and buy a Pump Shotgun with a flashlight mod.
+	LEM1_BACKSHOP3 = Go back to ~y~Ammu-Nation ~s~and buy a flashlight mod for the shotgun.
+	LEM1_BACKVEH = ~s~Get back into the ~b~vehicle.~s~
+	LEM1_BOTHDEAD = ~s~Lamar and Stretch died.~s~
+	LEM1_BUYANY = Buy an item from the shop.
+	LEM1_BUYFLSH = Buy a flashlight mod for the Pump Shotgun.
+	LEM1_BUYSHOT = Buy a Pump Shotgun and a flashlight mod.
+	LEM1_FAILSHOP = ~s~Franklin was barred from Ammu-Nation.~s~
+	LEM1_FINDCAR = ~s~Find a four-door vehicle.~s~
+	LEM1_FLAHELP = ~s~Press ~INPUT_WEAPON_SPECIAL_TWO~ while aiming to toggle the weapon flashlight.
+	LEM1_GOFRANKLIN = ~s~Go back to ~y~Franklin's house.~s~
+	LEM1_GOGUN = ~s~Go to ~y~Ammu-Nation.~s~
+	LEM1_GOLAD = ~s~Escape the junkyard.~s~
+	LEM1_GOMEET = ~s~Go to the meeting at the ~y~recycling plant.~s~
+	LEM1_GRENHELP1 = ~s~Hold ~INPUT_SELECT_WEAPON~ and use ~INPUTGROUP_WHEEL~ to select grenades.~s~
+	LEM1_GRENHELP2 = ~s~Press ~INPUT_ATTACK~ to throw the grenade.~s~
+	LEM1_KILLSWAT = ~s~Escape the recycling plant.~s~
+	LEM1_LEFTBOTH = ~s~Return to ~b~Lamar ~s~and ~b~Stretch.~s~
+	LEM1_LEFTLEMAR = ~s~Return to ~b~Lamar. ~s~
+	LEM1_LEFTMEET = ~s~Don't abandon the deal.~s~
+	LEM1_LEFTSTRET = ~s~Return to ~b~Stretch. ~s~
+	LEM1_LEMDEAD = ~s~Lamar died.~s~
+	LEM1_MISSDEAL = ~s~The deal was missed.~s~
+	LEM1_NOMON = ~s~Franklin did not have enough money to buy the Pump Shotgun and flashlight mod.~s~
+	LEM1_SHOPOPEN = ~s~Ammu-Nation stores are now available at ~BLIP_GUN_SHOP~
+	LEM1_SPECHELP = ~s~Try using Franklin's special ability to evade the Cops. Press ~INPUT_SPECIAL_ABILITY~ + ~INPUT_SPECIAL_ABILITY_SECONDARY~ together to activate Franklin's ability.
+	LEM1_STRETDEAD = ~s~Stretch died.~s~
+	LEM1_WAITBOTH = ~s~Wait for ~b~Lamar ~s~and ~b~Stretch.~s~
+	LEM1_WAITLEMAR = ~s~Wait for ~b~Lamar.~s~
+	LEM1_WAITSTRET = ~s~Wait for ~b~Stretch.~s~
+	LEM1_WEAPHELP1 = ~s~Hold ~INPUT_SELECT_WEAPON~ to bring up the weapon wheel.
+	LEM1_WEAPHELP2 = ~s~Use ~INPUTGROUP_WHEEL~ to select a weapon, and release ~INPUT_SELECT_WEAPON~ to equip it.
+}

@@ -1,0 +1,12 @@
+﻿Version 2 30
+{
+	0x1B6D063E = This vehicle is not suitable.
+	0x6E88B346 = Find a car or motorbike.
+	0xA37F62E5 = Press ~INPUT_FRONTEND_CANCEL~ to smash Trevor.
+	0xCD7B434E = Go to the ~y~oil derricks.~s~
+	FIN1_CHASE = Chase ~r~Trevor.~s~
+	FIN1_DES = Put down ~r~Trevor.~s~
+	FIN1_FAIL1 = ~w~Trevor escaped.
+	FIN1_FAIL2 = ~w~Franklin's car was destroyed.
+	FIN1_FAILDF = ~w~Default.
+}

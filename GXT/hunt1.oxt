@@ -1,0 +1,17 @@
+﻿Version 2 30
+{
+	HH_FAIL2 = Cletus died.
+	HH_FAIL3 = Cletus was injured.
+	HH_FAIL4 = Trevor killed innocent people.
+	HH_FAIL5 = Trevor abandoned Cletus.
+	HT_1MORE = Snipe one more ~r~coyote.
+	HT_2MORE = Snipe two more ~r~coyote.
+	HT_BKHTER = Return to ~b~Cletus.
+	HT_FAIL6 = Trevor disobeyed Cletus.
+	HT_FAIL8 = Trevor used the wrong weapon.
+	HT_FOLL = Follow ~b~Cletus.
+	HT_NXTLOC = Go to the ~y~motel.
+	HT_SHCOY = Snipe three ~r~coyote.
+	HT_SHDISH = Snipe the ~r~satellite dishes.
+	HT_SHTYRE = Snipe a tire on three passing cars.
+}

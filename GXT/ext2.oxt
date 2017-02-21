@@ -1,0 +1,28 @@
+﻿Version 2 30
+{
+	0x6123B64D = Press ~INPUT_PARACHUTE_DEPLOY~ to deploy the parachute.
+	EXT2_01 = Wait for ~b~Dom.
+	EXT2_02 = Follow Dom onto the ~b~cargo plane.
+	EXT2_03 = Go to the ~y~landing zone.
+	EXT2_04 = Get to ~b~Dom.
+	EXT2_05 = Perform tricks by using ~INPUTGROUP_VEH_MOVE_ALL~ to roll your ATV.
+	EXT2_07 = Wait for ~b~Dom.
+	EXT2_08 = Ride your ATV out of the plane.
+	EXT2_09 = Get back on the ~b~ATV.
+	EXT2_10 = Skydive to the ~y~landing zone.
+	EXT2_12 = Press ~INPUT_VEH_CIN_CAM~ to toggle focus on the cargo plane.
+	EXT2_15 = Press ~INPUT_VEH_CIN_CAM~ to toggle focus on the landing zone.
+	EXT2_16 = Press ~INPUT_VEH_EXIT~ to jump off your ATV.
+	EXT2_F1 = ~s~Dom died.
+	EXT2_F2 = ~s~Franklin abandoned Dom.
+	EXT2_F3 = ~s~Franklin's ATV was destroyed.
+	EXT2_F4 = ~s~Franklin didn't attempt the skydive.
+	EXT2_F5 = ~s~Franklin didn't follow Dom.
+	EXT2_F7 = ~s~Dom was injured.
+	EXT2_F8 = ~s~Dom's ATV was damaged.
+	EXT2_F9 = ~s~The security guard was injured.
+	EXT2_F10 = ~s~Franklin didn't ride the ATV onto the plane.
+	EXT2_F11 = ~s~Dom was spooked.
+	EXT2_F12 = ~s~Franklin landed too far outside the target zone.
+	EXT2_F13 = ~s~Skydive failed.
+}

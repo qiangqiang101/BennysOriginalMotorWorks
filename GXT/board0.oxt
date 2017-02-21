@@ -1,0 +1,7 @@
+﻿Version 2 30
+{
+	BRD_H_01 = Heists can be undertaken in a variety of ways. Different methods of doing the heist can be selected on the planning board. Each method will play out differently.
+	BRD_H_02 = This heist can be undertaken in two ways. One is stealth based and the other high-impact. Make the choice.
+	BRD_H_03 = For some heists crew members must be selected. Crew members will have unique roles to perform on each heist. Select from gunmen, drivers and hackers.
+	BRD_H_04 = Crew members ask for a cut of the job. Lower skilled crew members will ask for less but may perform badly. Crew members will become more skilled the more jobs they do.
+}

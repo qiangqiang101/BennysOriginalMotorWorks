@@ -1,0 +1,44 @@
+﻿Version 2 30
+{
+	0x1DCF4F9C = Scope out the ~y~front entrance.~s~
+	0x5A4142F6 = SWITCH to Michael.
+	0x6A1688F3 = Press ~INPUT_VEH_CIN_CAM~ to toggle focus on the construction entrance.
+	0x18B26152 = ~w~Trevor's truck destroyed.
+	0x6964CF28 = Press ~INPUT_VEH_CIN_CAM~ to toggle focus on the security trucks.
+	0x618714FD = SWITCH to Trevor.
+	0xA63E1F24 = Move to the next search ~y~location.~s~
+	0xB2C1FC90 = ~w~Michael's car was destroyed.
+	FH1_AIR = ~s~Drive to the ~y~airfield.~s~
+	FH1_AIR2 = ~s~Go to the ~y~airfield.~s~
+	FH1_BANK = Drive to the ~y~bank.~s~
+	FH1_BENTR = Scope out the ~y~back entrance.~s~
+	FH1_BKCAR = Get back in the ~b~car.
+	FH1_BKHELI = Get back in the ~b~helicopter.~s~
+	FH1_CAR = Get in the ~b~car.
+	FH1_CLWARN = Pull back from the security trucks.
+	FH1_CSHELP2 = Hover close to the construction entrance while Lester gathers the necessary information.
+	FH1_END2 = Take Franklin to his ~y~house.~s~
+	FH1_FAILBK = ~w~The bank was alerted.
+	FH1_FAILDF = ~r~Default
+	FH1_FAILHD = ~w~The helicopter was destroyed.
+	FH1_FAILLD = ~w~Lester died.
+	FH1_FAILLES = ~w~Lester was abandoned.
+	FH1_FAILLT = ~w~The convoy was lost.
+	FH1_FAILTC = ~w~The security convoy was alerted.
+	FH1_FAILTI = ~w~The security convoy has reached the city.
+	FH1_FBHELP = Press ~INPUT_VEH_CIN_CAM~ to look at the bank entrance.
+	FH1_FILM = Press ~INPUT_VEH_CIN_CAM~ to see Lester's footage.
+	FH1_FLY = Fly to ~y~Murrieta Heights.~s~
+	FH1_FMIKEL = ~w~The job was abandoned.~s~
+	FH1_FRCAR = ~b~Franklin~s~ was abandoned.
+	FH1_FRWARN = Get closer to the security trucks.
+	FH1_HEADBKF = ~s~Return to ~b~Franklin.~s~
+	FH1_HEADBKL = ~s~Return to ~b~Lester.~s~
+	FH1_HELI = Get in the ~b~helicopter.~s~
+	FH1_HOLE = Search for the construction entrance.~s~
+	FH1_HOVERN = Hover near the construction entrance.~s~
+	FH1_MIKERT = Return to the bank.
+	FH1_REC = REC
+	FH1_TIME = TIME
+	FH1_TRUCK = Don't lose sight of the security trucks.~s~
+}

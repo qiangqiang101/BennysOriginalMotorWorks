@@ -1,0 +1,14 @@
+﻿Version 2 30
+{
+	0x0C53D749 = Tax Evasion
+	0x2CDE985E = Resisting Arrest
+	0x3EA83BF1 = Vice Services
+	0x19BC721A = Public Exposure
+	0x50C1E024 = Disorderly Conduct
+	0x67F00E90 = Loitering with Intent
+	0x436F457F = Speeding Offenses
+	0x759FA9EF = DUI
+	0xD5689E3E = TARGET LOST
+	HUD_RNG = OUT OF RANGE
+	SCAN = Scanning...
+}

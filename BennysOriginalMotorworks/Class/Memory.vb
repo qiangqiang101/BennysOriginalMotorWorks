@@ -203,22 +203,12 @@
         End Set
     End Property
 
-    Private _dashboardcol As Integer
-    Public Property DashboardColor() As Integer
-        Get
-            Return _dashboardcol
-        End Get
-        Set(value As Integer)
-            _dashboardcol = value
-        End Set
-    End Property
-
-    Private _trimcol As Integer
-    Public Property TrimColor() As Integer
+    Private _trimcol As GTA.VehicleColor
+    Public Property TrimColor() As GTA.VehicleColor
         Get
             Return _trimcol
         End Get
-        Set(value As Integer)
+        Set(value As GTA.VehicleColor)
             _trimcol = value
         End Set
     End Property
@@ -250,6 +240,16 @@
         End Get
         Set(value As GTA.NumberPlateType)
             _numberplate = value
+        End Set
+    End Property
+
+    Private _platenumbers As String
+    Public Property PlateNumbers() As String
+        Get
+            Return _platenumbers
+        End Get
+        Set(value As String)
+            _platenumbers = value
         End Set
     End Property
 
@@ -363,16 +363,6 @@
         End Set
     End Property
 
-    Private _wheelscolor As GTA.VehicleColor
-    Public Property WheelsColor() As GTA.VehicleColor
-        Get
-            Return _wheelscolor
-        End Get
-        Set(value As GTA.VehicleColor)
-            _wheelscolor = value
-        End Set
-    End Property
-
     Private _fender As Integer
     Public Property Fender() As Integer
         Get
@@ -460,6 +450,16 @@
         End Get
         Set(value As Integer)
             _livery = value
+        End Set
+    End Property
+
+    Private _livery2 As Integer
+    Public Property Livery2() As Integer
+        Get
+            Return _livery2
+        End Get
+        Set(value As Integer)
+            _livery2 = value
         End Set
     End Property
 
@@ -553,4 +553,73 @@
         End Set
     End Property
 
+    Private _primarycolor As GTA.VehicleColor
+    Public Property PrimaryColor() As GTA.VehicleColor
+        Get
+            Return _primarycolor
+        End Get
+        Set(value As GTA.VehicleColor)
+            _primarycolor = value
+        End Set
+    End Property
+
+    Private _secondarycolor As GTA.VehicleColor
+    Public Property SecondaryColor() As GTA.VehicleColor
+        Get
+            Return _secondarycolor
+        End Get
+        Set(value As GTA.VehicleColor)
+            _secondarycolor = value
+        End Set
+    End Property
+
+    Private _pearlescentcolor As GTA.VehicleColor
+    Public Property PearlescentColor() As GTA.VehicleColor
+        Get
+            Return _pearlescentcolor
+        End Get
+        Set(value As GTA.VehicleColor)
+            _pearlescentcolor = value
+        End Set
+    End Property
+
+    Private _rimcolor As GTA.VehicleColor
+    Public Property RimColor() As GTA.VehicleColor
+        Get
+            Return _rimcolor
+        End Get
+        Set(value As GTA.VehicleColor)
+            _rimcolor = value
+        End Set
+    End Property
+
+    Private _lightscolor As GTA.VehicleColor
+    Public Property LightsColor() As Integer
+        Get
+            Return _lightscolor
+        End Get
+        Set(value As Integer)
+            _lightscolor = value
+        End Set
+    End Property
+
+    Private _neonlightscolor As Drawing.Color
+    Public Property NeonLightsColor() As Drawing.Color
+        Get
+            Return _neonlightscolor
+        End Get
+        Set(value As Drawing.Color)
+            _neonlightscolor = value
+        End Set
+    End Property
+
+    Private _tiresmoke As Drawing.Color
+    Public Property TireSmokeColor() As Drawing.Color
+        Get
+            Return _tiresmoke
+        End Get
+        Set(value As Drawing.Color)
+            _tiresmoke = value
+        End Set
+    End Property
 End Class

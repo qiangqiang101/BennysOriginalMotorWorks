@@ -1,0 +1,11 @@
+﻿Version 2 30
+{
+	PRA_FFAR = The garbage truck was abandoned.
+	PRA_FSTUCK = The garbage truck is stuck.
+	PRA_FWRECK = The garbage truck was destroyed.
+	PRA_GOVAN = Steal the ~b~garbage truck.
+	PRA_LEVAREA = Leave the area.
+	PRA_LEVVEH = Leave the garbage truck.
+	PRA_RETVEH = Get back in the ~b~garbage truck.
+	PRA_TAKBACK = Take the garbage truck to the ~y~FIB lot.
+}

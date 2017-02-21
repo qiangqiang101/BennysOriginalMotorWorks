@@ -1,0 +1,29 @@
+﻿Version 2 30
+{
+	0x3CE69D1A = You left your friends behind.
+	0x4F36DB79 = Your friends were scared off.
+	0xC4B520D5 = The friend activity has been cancelled.
+	0xD7A20ED0 = Your friends were injured.
+	FR_GETBACK = ~s~Return to ~b~~a~.~s~
+	FR_GETBACK2 = ~s~Return to your ~b~friends.~s~
+	FR_H_ACTIV1 = There are many activities to visit with friends, such as ~HUD_COLOUR_YELLOW~~BLIP_CINEMA~~s~, ~HUD_COLOUR_YELLOW~~BLIP_TENNIS~~s~ and ~HUD_COLOUR_YELLOW~~BLIP_BAR~~s~
+	FR_H_ACTIV2 = The nearest activity is always visible on the Radar. Open the main map to see all available activities.
+	FR_H_BUDF_A = Franklin will arrive shortly, ~HUD_COLOUR_BLUE~~BLIP_FRANKLIN_FAMILY~~s~ on the Radar shows his location.
+	FR_H_BUDM_A = Michael will arrive shortly, ~HUD_COLOUR_BLUE~~BLIP_MICHAEL_FAMILY~~s~ on the Radar shows his location.
+	FR_H_BUDT_A = Trevor will arrive shortly, ~HUD_COLOUR_BLUE~~BLIP_TREVOR_FAMILY~~s~ on the Radar shows his location.
+	FR_H_BUD_SW = Friends called in as backup can be SWITCHED to once in range.
+	FR_H_DROPOFF0 = Drop off ~a~, or take him to more activities.
+	FR_H_DROPOFF1 = Drop off ~a~, or take her to more activities.
+	FR_H_DROPOFF2 = Drop off your friends, or take them to more activities.
+	FR_H_PKUP = Meet ~a~ at ~BLIP_FRIEND~
+	FR_H_PKUPF = Meet ~a~ at ~BLIP_FRIEND~
+	FR_H_WAIT = ~a~ will arrive shortly at ~BLIP_FRIEND~ Wait there to meet him.
+	FR_H_WAITF = ~a~ will arrive shortly at ~BLIP_FRIEND~ Wait there to meet her.
+	FR_X_ATAC_1F = ~a~ was assaulted.
+	FR_X_ATAC_1M = ~a~ was assaulted.
+	FR_X_FLEE_1F = ~a~ was spooked.
+	FR_X_FLEE_1M = ~a~ was spooked.
+	FR_X_LATE = You failed to meet ~a~ in time. The friend activity with him has been cancelled.
+	FR_X_LOST_1F = ~a~ was abandoned.
+	FR_X_LOST_1M = ~a~ was abandoned.
+}

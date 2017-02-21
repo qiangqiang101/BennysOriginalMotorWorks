@@ -1,0 +1,43 @@
+﻿Version 2 30
+{
+	0xB20B5C76 = The weapons drop plane is in the area. Press ~INPUT_SCRIPT_RRIGHT~ to track the plane.
+	DTRFKGR_01 = ~s~Acquire an offroad vehicle.~s~
+	DTRFKGR_02 = ~s~Drive to the ~y~drop location.~s~
+	DTRFKGR_03 = ~s~Drive to the ~y~airfield.~s~
+	DTRFKGR_03A = ~s~Drive back to the ~y~airfield.~s~
+	DTRFKGR_04 = ~s~Lose the ~r~rival runners.~s~
+	DTRFKGR_06 = ~s~Retrieve the ~g~arms package.~s~
+	DTRFKGR_06A = ~s~Return to the ~g~arms package.~s~
+	DTRFKGR_09 = ~s~Take out the ~r~arms runners.~s~
+	DTRFKGR_1 = ~s~Drive to the ~y~mobile home.~s~
+	DTRFKGR_2 = ~s~Drive to the ~y~boat docks.~s~
+	DTRFKGR_3 = ~s~Drive to the old ~y~farm house.~s~
+	DTRFKGR_4 = ~s~Drive to the ~y~rail station.~s~
+	DTRFKGR_5 = ~s~Drive to the ~y~park.~s~
+	DTRFKGR_6 = ~s~Drive to the ~y~runway.~s~
+	DTRFKGR_7 = ~s~Drive to the ~y~storage barns.~s~
+	DTRFKGR_8 = ~s~Drive to the old ~y~dock house.~s~
+	DTRFKGR_9 = ~s~Drive to the ~y~house on the hill.~s~
+	DTRFKGR_10 = ~s~Drive to the ~y~recycle center.~s~
+	DTRFKGR_11 = ~s~Drive to the ~y~houses.~s~
+	DTRFKGR_12 = ~s~Drive to the rail ~y~shed.~s~
+	DTRFKGR_13 = ~s~Drive to the coastal ~y~home.~s~
+	DTRFKGR_14 = ~s~Drive to the ~y~hardware store.~s~
+	DTRFKGR_15 = ~s~Drive to the ~y~plane graveyard.~s~
+	DTRFKGR_16 = ~s~Drive to the dirt ~y~island.~s~
+	DTRFKGR_17 = ~s~Drive to the rail ~y~shed.~s~
+	DTRFKGR_18 = ~s~Drive to the ~y~trailer park.~s~
+	DTRFKGR_19 = ~s~Drive to the ~y~construction site.~s~
+	DTRFKGR_20 = ~s~Drive to the ~y~plateau.~s~
+	DTRFKGR_BLIP02 = Pickup Location
+	DTRFKGR_BLIP03 = Rival Runner
+	DTRFKGR_BLIP04 = Gang Member
+	DTRFKGR_BLIP07 = Airfield
+	DTRFKGR_HELP_02 = ~s~A weapons drop location has been marked on the Radar. Avoid using main roads to evade the Cops. Staying on the road for too long will trigger a Cop response.~s~
+	DTRFKGR_HELP_03 = ~s~A weapons drop location has been marked on the Radar. Get to the pickup location before the rival arms runners to acquire the weapons.~s~
+	DTRFKGR_HELP_04 = ~s~Rival arms runners have obtained the weapons package. Eliminate the runners and retrieve the weapons before they reach the drop off location.~s~
+	DTRFKGR_HELP_05 = ~s~The arms package can be picked up by driving or walking near the weapons crate.~s~
+	DTRFKGR_HELP_17 = Trevor must use the trafficking vehicle to pick up the weapons.
+	DTRFKGR_KILL = ~s~Kill the ~r~rival arms runners.~s~
+	DTRFKGR_TIME = TIME
+}

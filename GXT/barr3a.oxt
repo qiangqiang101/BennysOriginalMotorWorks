@@ -1,0 +1,15 @@
+﻿Version 2 30
+{
+	0x9BA6AA4A = Return to the ~b~truck.~s~
+	B3ADELV = Go to Barry's ~y~apartment.~s~
+	B3AEXIT = Exit the truck.
+	B3AGETIN = Get in the ~b~truck.~s~
+	B3ALEAVE = Leave the area.
+	B3ANOTDELV = The truck was not delivered.
+	B3ARTV = Get back in the ~b~truck.~s~
+	B3ATIME = TIME
+	B3ATIMEOUT = The truck was not delivered in time.
+	B3AVHDEST = The truck was destroyed.
+	B3AVHSTUCK = The truck got stuck.
+	B3AWAN1 = Lose the Cops.
+}

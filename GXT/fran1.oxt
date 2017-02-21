@@ -1,0 +1,38 @@
+﻿Version 2 30
+{
+	0x12EC5AB6 = ~s~Don't leave ~b~Lamar~s~ behind.~s~
+	0x49EBCDA8 = ~s~Don't leave ~b~Trevor~s~ behind.~s~
+	FRA1_CDIED = ~s~Chop died.
+	FRA1_CDROW = ~s~Chop drowned.
+	FRA1_DBLOW = ~s~The deal was blown.
+	FRA1_ECFRA = ~s~Escape the Cops with ~b~Franklin.~s~
+	FRA1_ECLAM = ~s~Escape the Cops with ~b~Lamar.~s~
+	FRA1_ECTRE = ~s~Escape the Cops with ~b~Trevor.~s~
+	FRA1_ESCGSF = ~s~Escape from Grove Street with ~b~Lamar~s~ and ~b~Trevor.~s~
+	FRA1_ESCGST = ~s~Escape from Grove Street with ~b~Lamar~s~ and ~b~Franklin.~s~
+	FRA1_FAB = ~s~Franklin abandoned his buddies.
+	FRA1_FAIL = ~s~Mission Failed
+	FRA1_FDLLT = ~s~Don't lose ~b~Lamar~s~ and ~b~Trevor.~s~
+	FRA1_FLAMAR = ~s~Follow ~b~Lamar.~s~
+	FRA1_FLB = ~s~Franklin lost his buddies.
+	FRA1_GBIV = Get back in the ~b~van.
+	FRA1_GETBACKIN = ~s~Get back on the ~b~Seashark.~s~
+	FRA1_GIV = Get in the ~b~van.
+	FRA1_GROVE = ~s~Go to ~y~Grove Street.~s~
+	FRA1_GTFRAH = ~s~Go to ~y~Franklin's house.~s~
+	FRA1_GTLAMH = ~s~Go to ~y~Lamar's house.~s~
+	FRA1_GTTREH = ~s~Go to the ~y~strip club.~s~
+	FRA1_HOUSE = ~s~Go to the ~y~house.~s~
+	FRA1_LDIED = ~s~Lamar died.
+	FRA1_LLEFT = ~s~Lamar was left behind.
+	FRA1_PICKUP = ~s~Pick up ~b~Trevor~s~ and ~b~Lamar.~s~
+	FRA1_SCTLF = ~s~Return to ~b~Lamar~s~ and ~b~Franklin.~s~
+	FRA1_SCTLT = ~s~Return to ~b~Lamar~s~ and ~b~Trevor.~s~
+	FRA1_SDEST = ~s~One of the Seasharks was destroyed.
+	FRA1_SUND = ~s~One of the Seasharks is undriveable.
+	FRA1_TAB = ~s~Trevor abandoned his buddies.
+	FRA1_TDLLF = ~s~Don't lose ~b~Lamar~s~ and ~b~Franklin.~s~
+	FRA1_TLB = ~s~Trevor lost his buddies.
+	FRA1_VDEST = ~s~The van was destroyed.
+	FRA1_VUND = ~s~The van is undriveable.
+}

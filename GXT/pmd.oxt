@@ -1,0 +1,6 @@
+﻿Version 2 30
+{
+	0x401DCCA0 = Property defense failed.
+	0xE2BD3506 = Property defense successful.
+	PMD_OBJ = Defend your property from ~r~enemies.~s~
+}

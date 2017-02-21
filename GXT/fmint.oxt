@@ -1,0 +1,19 @@
+﻿Version 2 30
+{
+	0x5F07855D = ~s~GTA Online Jobs will start when enough players stand inside the Job Trigger and press ~INPUT_SPRINT~ to vote.
+	0x1655CFD8 = ~s~Leave Ammu-Nation.
+	0x8884F988 = ~s~Go to the Shooting Range.
+	GET_AMMU = ~s~Go to Ammu-Nation.
+	GET_GUN = ~s~Buy a pistol.
+	HLP_CASHGEN = Cash is the key to success in GTA Online. Buy Apartments, vehicles and entertain yourself and others with various activities. You can earn cash by performing Jobs or purchase GTA Dollars from the Store within Social Club.
+	HLP_CASHPSN = Cash is the key to success in GTA Online. Buy Apartments, vehicles and entertain yourself and others with various activities. You can earn cash by performing Jobs or purchase GTA Dollars from PlayStation®Store.
+	HLP_FEED = Keep an eye on the Feed above the Radar for important Online messages.
+	HLP_RNK1 = Your Rank is shown at the top of the screen. You can press ~INPUT_HUD_SPECIAL~ to display your Rank.
+	HLP_SOC1 = Go to ~HUD_COLOUR_SOCIAL_CLUB~rockstargames.com/socialclub ~s~to check your progress and see how you compare to other players.
+	HLP_SOC2 = Go to ~HUD_COLOUR_SOCIAL_CLUB~rockstargames.com/socialclub ~s~to join a Crew. You can also check your progress and see how you compare to other players.
+	HLP_TAXI = ~s~You can call for a taxi on your phone.
+	HLP_TAXI3 = Go to ~HUD_COLOUR_SOCIAL_CLUB~rockstargames.com/socialclub ~s~to join the Social Club and also to join a Crew. You can also check your progress and see how you compare to other players.
+	HLP_XP1 = As you play you will gain Reputation Points (RP). Performing Jobs and taking out enemies will increase your RP.
+	HLP_XP2 = As your RP increases, your Rank will increase. This will unlock new weapons, equipment and abilities.
+	LOSE_COP = ~s~Lose the Cops.
+}

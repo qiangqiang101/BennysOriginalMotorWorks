@@ -1,0 +1,11 @@
+﻿Version 2 30
+{
+	0x9A48169A = ~s~Stop the ~r~film pirate~s~ escaping.
+	0x89A5581B = ~s~Stop the ~r~paparazzi~s~ escaping.
+	0x1530E0B9 = ~s~Retrieve the ~g~money.
+	0x3759F75E = ~s~Stop the ~r~thief~s~ escaping.
+	0xDED1BFF6 = ~s~Retrieve the ~g~film reel.
+	0xF9C7284B = ~s~Retrieve the ~g~camera~s~ and ~g~smart phone.
+	PAP_HLP = ~s~Stop the ~r~paparazzi~s~ from uploading the photograph without killing them.
+	UPLOAD = ~s~UPLOAD
+}

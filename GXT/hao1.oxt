@@ -1,0 +1,23 @@
+﻿Version 2 30
+{
+	0x8E1EB706 = Franklin attacked a rival racer.
+	0x39FBB3AD = Get a new car.
+	0xB38681DD = Franklin abandoned the race.
+	0xDFEA5AA4 = A rival racer died.
+	0xEFECFAA9 = Franklin's vehicle was destroyed.
+	0xF7AA8937 = ~s~The yellow bar indicates Franklin's special ability level. Press ~INPUT_SPECIAL_ABILITY_PC~ to enhance Franklin's driving.
+	BIKE_BACK = ~s~Get back on the ~b~bike.
+	CAR_BACK = ~s~Get back in the ~b~car.
+	HAO1_1 = Get a car.
+	HAO1_2 = Go to the ~y~race.
+	HAO1_3 = Get a suitable car to race.
+	HAO1_4 = This vehicle is not suitable.
+	HAO1_6 = Lose the Cops.
+	HAO1_ABILITY_HELP = ~s~The yellow bar indicates Franklin's special ability level. Press ~INPUT_SPECIAL_ABILITY~ + ~INPUT_SPECIAL_ABILITY_SECONDARY~ together to enhance Franklin's driving.
+	HAO1_FAIL1 = Hao died.
+	HAO1_FAIL2 = Hao was spooked.
+	HAO1_FAIL3 = Franklin didn't win.
+	HAO1_LAP_HELP = Hold ~INPUT_MULTIPLAYER_INFO~ to view the lap counter.
+	HAO1_LOOK_HELP = ~s~Press and hold ~INPUT_VEH_LOOK_BEHIND~ to look behind.~s~
+	SEA_BACK = ~s~Get back on the ~b~Seashark.
+}

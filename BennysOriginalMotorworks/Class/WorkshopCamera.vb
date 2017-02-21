@@ -19,7 +19,6 @@ Public Enum CameraPosition
     BackPlate
     FrontPlate
     Wheels
-    SideSkirt
 End Enum
 
 Public Enum CameraRotationMode
@@ -218,34 +217,6 @@ Public Class WorkshopCamera
                     Game.Player.Character.Alpha = 255
                     RotationMode = CameraRotationMode.Around
                     _targetPos = GetBonePosition(_target, "neon_f")
-                    _cameraZoom = 2.0
-
-                    startValueRotation = _mainCamera.Rotation
-                    startValuePosition = _mainCamera.Position
-                    duration = 1000.0
-                    IsLerping = True
-                    startTime = DateTime.Now
-
-                    endValuePosition = _targetPos + _target.ForwardVector * 2.0 + _target.UpVector
-                    endValueRotation = New Vector3(0, 0, -_target.Heading)
-                    _mainCamera.StopPointing()
-                    _mainCamera.PointAt(_targetPos)
-
-
-                    CameraClamp = New CameraClamp() With {
-                        .MaxVerticalValue = -40.0,
-                        .MinVerticalValue = -3.0,
-                        .LeftHorizontalValue = _target.Heading - 250.6141,
-                        .RightHorizontalValue = _target.Heading - 470.79
-                    }
-                    _justSwitched = True
-                End If
-                Exit Select
-            Case CameraPosition.SideSkirt
-                If True Then
-                    Game.Player.Character.Alpha = 255
-                    RotationMode = CameraRotationMode.Around
-                    _targetPos = GetBonePosition(_target, "neon_r")
                     _cameraZoom = 2.0
 
                     startValueRotation = _mainCamera.Rotation

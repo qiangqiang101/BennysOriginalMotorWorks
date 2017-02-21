@@ -1,0 +1,7 @@
+﻿Version 2 30
+{
+	MRSP2_F_01 = ~s~The drugs were destroyed.
+	MRSP2_OBJ_01 = ~s~Go to the ~y~trailer.
+	MRSP2_OBJ_02 = ~s~Get back in the ~b~van.
+	MRSP2_OBJ_03 = ~s~Go into the ~y~trailer.
+}

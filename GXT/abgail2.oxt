@@ -1,0 +1,5 @@
+﻿Version 2 30
+{
+	ABGAIL2_HINT = Press ~INPUT_VEH_CIN_CAM~ to toggle focus on Abigail.
+	ABGAIL2_WANTED = Lose the cops.
+}

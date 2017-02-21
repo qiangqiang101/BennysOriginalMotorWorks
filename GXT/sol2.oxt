@@ -1,0 +1,9 @@
+﻿Version 2 30
+{
+	SOL2_FGOTAWAY = ~s~Rocco escaped.
+	SOL2_FSOLDEAD = ~s~Solomon died.
+	SOL2_GOTOSTU = ~s~Go to ~y~Solomon's office.
+	SOL2_KILL = Eliminate ~r~Rocco.
+	SOL2_LEAVEA = Leave the area.
+	SOL2_PHONE = Go to the studio office?
+}

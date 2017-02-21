@@ -1,0 +1,14 @@
+﻿Version 2 30
+{
+	RHP_BK = ~s~Get back in the vehicle carrying the ~b~hardware.~s~
+	RHP_EXIT = ~s~Get out of the truck.
+	RHP_FABN = ~w~The hardware was abandoned.~s~
+	RHP_FDES = ~w~The transport truck was destroyed.~s~
+	RHP_FEND = ~w~The convoy reached the base.~s~
+	RHP_GOODS = ~s~Intercept the ~b~military hardware.~s~
+	RHP_HELP = ~s~The hardware must not be destroyed.
+	RHP_KILL = ~s~Take out the remaining ~r~guards.~s~
+	RHP_LWARN = ~s~Don't leave the ~b~hardware.~s~
+	RHP_RTN = ~s~Go to the ~y~meth lab.~s~
+	RHP_TRKSTCK = ~s~The transport truck got stuck.
+}

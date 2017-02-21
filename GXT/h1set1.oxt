@@ -1,0 +1,25 @@
+﻿Version 2 30
+{
+	0x52B57C8C = Press ~INPUT_VEH_CIN_CAM~ to focus on the janitor.
+	0x84467AA5 = ~s~Inject the ~r~janitor~s~.
+	S1_ABAND = Lester was abandoned. ~s~
+	S1_BACKUP = You are getting too close to the ~b~janitor.~s~
+	S1_BKINCAR = ~s~Get back in your ~b~car. ~s~
+	S1_BKTOAPT = Go back to the ~b~janitor. ~s~
+	S1_FAILED = The janitor escaped. ~s~
+	S1_FAILED_C = The janitor cannot get home. ~s~
+	S1_FAILED_K = The janitor died. ~s~
+	S1_FAILLV = The area was abandoned. ~s~
+	S1_FOCUS = ~s~Press ~INPUT_VEH_CIN_CAM~ to toggle focus on the license plate.
+	S1_FOLLOW = ~s~Follow the ~b~janitor.~s~
+	S1_FOLLOW2 = ~s~Follow the ~b~janitor ~s~into his apartment.
+	S1_GETTOBANK = ~s~Go to the ~y~FIB building.~s~
+	S1_GOTOSH = ~s~Go to the ~y~garment factory. ~s~
+	S1_JSPOOK = The janitor was spooked. ~s~
+	S1_LESFAIL = Lester died. ~s~
+	S1_LOSECOPS = ~s~Lose the Cops. ~s~
+	S1_SECFAIL = Security was alerted. ~s~
+	S1_UPSTAIRS = ~s~Go to the ~y~office.~s~
+	S1_VEHSTUCK = ~s~The car got stuck. ~s~
+	S1_WAIT = ~s~Wait for the janitor's car.
+}

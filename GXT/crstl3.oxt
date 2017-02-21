@@ -1,0 +1,37 @@
+﻿Version 2 30
+{
+	0x1CF04D0F = ~s~Mission Passed~s~
+	0x358DBC4D = Franklin, Michael, and Trevor arrive at Los Santos Customs.~n~Devin and his lawyer tell them about the cars they need to steal, two cars owned by some trust fund kids.~n~Franklin has to challenge them to a street race in the back country.~n~Michael and Trevor leave to dress up as highway patrol and stop them speeding on the motorway.~n~Franklin goes off in the car Devin's provided.~s~
+	0x45129B9B = ~s~Get on the ~b~bike.~s~
+	0xE3941C88 = ~s~Press ~INPUT_SPECIAL_ABILITY_PC~ to activate Franklin's special ability.~s~
+	0xF0453C63 = Devin and his lawyer are at the garage.~n~The next car is owned by a music producer who's off the grid.~n~Look for him using the chip in his drivers licence.~n~Devin's police contact has chopper for chip signature scanning,~n~but someone needs to run the ground operation.~n~Trev takes chopper, Franklin ground.~n~Devin tells them no pay until all car steal missions are complete.~s~
+	S3_BLIPVEH = Vehicle
+	S3_COP = ~s~Pull over and take the ~b~cars.~s~
+	S3_DRIVE = ~s~Drive to the ~y~garage.~s~
+	S3_FAIL = ~s~Mission Failed~s~
+	S3_FBIKEABAN = ~s~The bike was abandoned.~s~
+	S3_FBIKEDAMT = ~s~Trevor's bike was damaged.
+	S3_FBIKEDEST = ~s~The bike was destroyed.
+	S3_FBIKEDESTT = ~s~Trevor's bike was destroyed.
+	S3_FCARABAN = ~s~The car was abandoned.~s~
+	S3_FDEVINCAR = ~s~Devin's car was destroyed.
+	S3_FDEVINDIED = ~s~Devin died.
+	S3_FDISRACE = ~s~You crashed the racer out.
+	S3_FDMGCAR = ~s~The car was damaged.
+	S3_FLOSTRACE = ~s~The racers got away.~s~
+	S3_FRACERDIED = ~s~A racer died.~s~
+	S3_FRACERLEFT = ~s~The racers left the gas station.
+	S3_FSHOTDEVCAR = ~s~Devin's car was damaged.
+	S3_FSHOTDEVIN = ~s~Devin was injured.
+	S3_FSHOTRACER = ~s~The racer was injured.
+	S3_FSHOTTREVOR = ~s~Trevor was injured.
+	S3_FSPKDRACER = ~s~The racers were spooked.
+	S3_FSTUCKCAR = ~s~The car got stuck.
+	S3_GOTO = ~s~Go to the ~y~gas station.~s~
+	S3_HELP1 = ~s~Hold ~INPUT_VEH_CIN_CAM~ for chase camera.~s~
+	S3_HELP2 = ~s~Press ~INPUT_VEH_CIN_CAM~ to toggle focus on the racers.~s~
+	S3_OVER = ~s~Press ~INPUT_SPECIAL_ABILITY~ + ~INPUT_SPECIAL_ABILITY_SECONDARY~ together to activate Franklin's special ability.~s~
+	S3_RACE = ~s~Race the ~b~cars.~s~
+	S3_RACEHOME = ~s~Use SWITCH to pick who to race back as.~s~
+	S3_STOP = ~s~Stop at the roadside behind the ~b~cars.~s~
+}

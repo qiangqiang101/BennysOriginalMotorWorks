@@ -1,0 +1,23 @@
+﻿Version 2 30
+{
+	0x0A7EF786 = ~s~MISSION PASSED~s~
+	0x6BBF4504 = The yellow bar indicates Trevor's special ability level. Press ~INPUT_SPECIAL_ABILITY_PC~ to put Trevor into a rage which will greatly reduce the damage he takes and allow him to inflict more damage on enemies.
+	0x58F69F5C = Mo Cap Cutscene of Trevor, Cheng, The Translator and Chef inside the meth lab.
+	METH_FAIL_0 = Cheng died.~s~
+	METH_FAIL_1 = The translator died.~s~
+	METH_FAIL_3 = Chef died.~s~
+	METH_FAIL_5 = Cheng and the translator were abandoned.~s~
+	METH_FAIL_6 = ~s~Cheng was abandoned.~s~
+	METH_FAIL_7 = ~s~The translator was abandoned.~s~
+	METH_GOD_0 = ~s~Take out ~r~Ortega's men.~s~
+	METH_GOD_1 = ~s~Follow ~b~Chef~s~ outside.
+	METH_GOD_3 = ~s~Follow ~b~Chef.~s~
+	METH_GOD_8 = ~s~Go to the ~y~meth lab.~s~
+	METH_GOD_12 = ~s~Return to ~b~Cheng.~s~
+	METH_GOD_13 = ~s~Return to the ~b~translator.~s~
+	METH_GOD_14 = ~s~Return to ~b~Cheng~s~ and the ~b~translator.~s~
+	METH_GOD_18 = ~s~Return to ~b~Chef.~s~
+	METH_GOD_18G = ~s~Approach ~b~Chef.~s~
+	METH_GOD_20 = ~s~Go to the ~y~ice box.~s~
+	METH_HELP_T = The yellow bar indicates Trevor's special ability level. Press ~INPUT_SPECIAL_ABILITY~ + ~INPUT_SPECIAL_ABILITY_SECONDARY~ together to put Trevor into a rage which will greatly reduce the damage he takes and allow him to inflict more damage on enemies.
+}

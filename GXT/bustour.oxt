@@ -1,0 +1,6 @@
+﻿Version 2 30
+{
+	ENTER_BUS = Press ~INPUT_ENTER~ to enter the tour bus as a passenger. The tour costs $40.
+	NO_BUS_MONEY = You do not have enough money to go on the bus tour. The tour costs $40.
+	TOUR_HELP = Press ~INPUT_ENTER~ to exit the tour. ~n~Press ~INPUT_SCRIPT_RDOWN~ to skip to the next destination. ~n~Press ~INPUT_SCRIPT_RRIGHT~ to toggle first person view.
+}

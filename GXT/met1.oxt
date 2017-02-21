@@ -1,0 +1,25 @@
+﻿Version 2 30
+{
+	0x935B42B5 = Tracey was injured.
+	MET1ABANDON = Tracey was abandoned.
+	MET1CHASE = Stop the stalker's ~r~car.~s~
+	MET1CPSTALK = The cops scared off the stalker.
+	MET1DLT = Return to ~b~Tracey.~s~
+	MET1ESCAPE = The stalker escaped.
+	MET1GETBKT = Get back in Tracey's ~b~car.~s~
+	MET1HOME = Take Tracey ~y~home.~s~
+	MET1HOTEL = Take Tracey to the ~y~hotel.~s~
+	MET1INITDRV = Go to ~b~Tracey.~s~
+	MET1KSTKBLU = Deal with the ~b~stalker.~s~
+	MET1KSTKRED = Deal with the ~r~stalker.~s~
+	MET1LBSTALK = Stalker
+	MET1LBTRAC = Tracey
+	MET1STUCK = Tracey's car got stuck.
+	MET1TCAR = Get in Tracey's ~b~car.~s~
+	MET1TOOLATE = Tracey was not met in time.
+	MET1TRAKILL = Tracey died.
+	MET1TRASCARE = Tracey was spooked.
+	MET1TWRECK = Tracey's car was destroyed.
+	MET1WAIT = Wait for ~b~Tracey.~s~
+	MET1WANT = Lose the Cops.
+}

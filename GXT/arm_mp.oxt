@@ -1,0 +1,43 @@
+﻿Version 2 30
+{
+	0x5C405D36 = Welcome to Arm Wrestling.
+	0x6DEFC0A6 = Rematch requested.
+	0x7E43D65F = Pin your opponent's arm by quickly tapping ~INPUT_SCRIPT_LEFT_AXIS_X~.
+	0x218C559F = You won the game
+	0x441B9CB7 = You lost the game
+	0x461E53CB = Rapidly tap ~INPUT_SCRIPT_LEFT_AXIS_X~ to arm wrestle.
+	0x60819E44 = Get ready to arm wrestle
+	0xA115C56E = Welcome back to Arm Wrestling.
+	0xAC71E7D8 = You lost this round of Arm Wrestling.
+	0xC0655159 = ~INPUT_SCRIPT_LEFT_AXIS_X~ or ~INPUT_SCRIPT_RIGHT_AXIS_X~ Wrestle~n~~INPUT_SCRIPT_SELECT~ Quit
+	0xC3D312CC = You won this round of Arm Wrestling.
+	0xDAC297B6 = Welcome to Arm Wrestling. You can wrestle with anyone in your gang here. Press ~INPUT_FRONTEND_ACCEPT~ to start.
+	0xE872E16B = Welcome to Arm Wrestling. You can wrestle with anyone in your GTA Online session here. Press ~INPUT_FRONTEND_ACCEPT~ to start.
+	ARMMP_END_QT = Quit
+	ARMMP_HOW_TO_1 = Welcome to Arm Wrestling, versus ~a~.
+	ARMMP_HOW_TO_2 = Win by pinning your opponent's arm to the table.
+	ARMMP_HOW_TO_3 = Pin your opponent's arm by quickly moving ~INPUT_SCRIPT_LEFT_AXIS_X~ or ~INPUT_SCRIPT_RIGHT_AXIS_X~ horizontally.
+	ARMMP_QUITUI_D = Are you sure you want to quit Arm Wrestling?
+	ARMMP_REGAME = Welcome back to Arm Wrestling, versus ~a~.
+	ARMMP_REMATCH = Rematch
+	ARMMP_REQ_RM = ~a~ has requested a rematch.
+	ARMMP_SC_LOSE = LOSER
+	ARMMP_SC_TSCORE = Their Wins
+	ARMMP_SC_USCORE = Your Wins
+	ARMMP_SC_WIN = WINNER
+	ARMMP_TABLE1 = VINEWOOD ARM WRESTLING
+	ARMMP_TABLE2 = EL BURRO ARM WRESTLING
+	ARMMP_TABLE3 = SAN ANDREAS ARM WRESTLING
+	ARMMP_TABLE4 = ELYSIAN ARM WRESTLING
+	ARMMP_TABLE5 = SENORA ARM WRESTLING
+	ARMMP_TABLE6 = SENORA ARM WRESTLING
+	ARMMP_TABLE7 = HARMONY ARM WRESTLING
+	ARMMP_TABLE8 = PALETO BAY ARM WRESTLING
+	ARMMP_TABLE9 = GRAPESEED ARM WRESTLING
+	ARMMP_TABLE10 = SENORA ARM WRESTLING
+	ARMMP_TUT_1 = Rapidly move ~INPUT_SCRIPT_LEFT_AXIS_X~ or ~INPUT_SCRIPT_RIGHT_AXIS_X~ left to right to arm wrestle.
+	ARMMP_WAIT_RD = Waiting for the other player to be ready...
+	ARMMP_WAIT_RM = Waiting for opponent...
+	ARMMP_WRESTLE = Wrestle
+	ARMMP_XPT = ~g~+~1~ ~a~:~s~ Arm wrestling match won.
+}

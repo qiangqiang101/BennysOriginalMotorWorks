@@ -1,0 +1,34 @@
+﻿Version 2 30
+{
+	0x02445E3C = ~s~Press ~PAD_B~ to throw him off.~s~
+	0x0D71AEF3 = ~s~Protect Michael from the ~r~kidnappers.~s~
+	0x2DEB808D = ~s~Michael has been kidnapped.~s~
+	0x4FA20E67 = ~s~Use SWITCH when outside the slaughterhouse to find a way to reach Michael.~s~
+	0x5A7AA8A4 = ~s~SWITCH to Michael to view his location.~s~
+	0x5F02FE1A = ~s~SWITCH to Franklin to scout ahead.~s~
+	0x7E56461C = ~s~Hold ~INPUT_AIM~ to aim. Press ~INPUT_ATTACK~ to fire a weapon.~s~
+	0x262FCAD5 = ~s~Go inside ~y~Michael's house.~s~
+	0x705E9D64 = ~s~Find a ~g~weapon.~s~
+	0x3886666B = ~s~Press ~INPUT_CONTEXT~ to free Michael from the hook.~s~
+	0xA3E83BCC = ~s~Shoot above ~b~Michael's ~s~feet to free him from the rail.~s~
+	0xA8D815CD = ~s~Rapidly tap ~INPUT_SPRINT~ to stand faster.~s~
+	0xBECB7DD3 = ~s~Get closer to ~b~Michael ~s~and throw him a weapon.~s~
+	0xC3C57C64 = ~s~Collect Michael's stashed weapons that were taken when he was captured.~s~
+	0xE97A70DC = ~s~SWITCH available between Michael and Franklin.~s~
+	0xE450732C = ~s~Trackify app received.~s~
+	MCH2_ABATTF = ~s~Find a way into the slaughterhouse.~s~
+	MCH2_BLIPVEH = Vehicle
+	MCH2_ESCABA = ~y~Escape~s~ from the slaughterhouse.~s~
+	MCH2_FAMMO = ~s~Out of ammo.~s~
+	MCH2_FCAR = ~s~The car was destroyed.~s~
+	MCH2_FFDED = ~s~Franklin died.~s~
+	MCH2_FMDED = ~s~Michael died.~s~
+	MCH2_GMCSH = ~s~Go to ~y~Michael's house.~s~
+	MCH2_INT3HLP2 = ~s~Launch Trackify from the bottom right of the phone app menu.~s~
+	MCH2_INT3HLP3 = ~s~Michael's location is marked as a red blip on the Trackify app.~s~
+	MCH2_INTRO2 = ~s~SWITCH to Franklin.~s~
+	MCH2_INTRO3 = ~s~Find Michael's location.~s~
+	MCH2_RESCUE = ~s~Rescue ~b~Michael.~s~
+	MCH2_THRWP = ~s~Press ~INPUT_CONTEXT~ to throw Michael a gun.~s~
+	MCH2_TIMER = ~s~TIME~s~
+}

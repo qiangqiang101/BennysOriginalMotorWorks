@@ -1,0 +1,16 @@
+﻿Version 2 30
+{
+	0xF16953A6 = CHECKPOINT
+	FAN2_F1 = The bike was destroyed.
+	FAN2_F2 = Mary-Ann got too far ahead.
+	FAN2_F3 = Mary-Ann died.
+	FAN2_F4 = Mary-Ann was injured.
+	FAN2_F5 = Mary-Ann was spooked.
+	FAN2_F6 = The bike was abandoned.
+	FAN2_F7 = Mary-Ann was pushed off course.
+	FAN2_F8 = The race was lost.
+	FAN2_F9 = The race was abandoned.
+	FAN2_F10 = A checkpoint was missed.
+	FAN2_OBJ = Race ~b~Mary-Ann.
+	FATIC2_1 = Get back on the ~b~bike.
+}

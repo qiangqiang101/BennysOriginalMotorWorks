@@ -1,0 +1,41 @@
+﻿Version 2 30
+{
+	0x0C03D7A5 = Press ~INPUT_CONTEXT~ to enter the Stock Car Race. ~n~The winner will get the Sprunk Buffalo.
+	0x0C4C24EB = Opponent
+	0x1DCC501B = Result
+	0x1E6E6947 = Race Abandoned
+	0x1F0B4810 = Time
+	0x2DA63EF9 = Quitting
+	0x3BA9822C = Stock Car Race - Redwood Gauntlet
+	0x3DA08355 = The Sprunk Buffalo is now yours.
+	0x4BED5ECD = 9th Place
+	0x4CF524C3 = Stock Car Race - Cheval Marshall
+	0x4FA92766 = The Cheval Marshall is now yours.
+	0x5E840486 = 2nd Place
+	0x7B1600F0 = Stock Car Race - Burger Shot Stallion
+	0x8AC4DD07 = 8th Place
+	0x9F45C967 = Stock Car Race - Sprunk Buffalo
+	0x10B7CDDA = Car Destroyed
+	0x12DAE077 = Failed
+	0x19F37384 = Press ~INPUT_CONTEXT~ to enter the Stock Car Race. ~n~The winner will get the Burger Shot Stallion.
+	0x62FD0596 = Press ~INPUT_CONTEXT~ to enter the Stock Car Race. ~n~The winner will get the Cheval Marshall.
+	0x64CACBEE = The race has been disrupted. Return later to start the Stock Car Race.
+	0x612D4A6E = The Redwood Gauntlet is now yours.
+	0x735EEED1 = The Pisswasser Dominator is now yours.
+	0x740F2F21 = Come back in a suitable car to enter the Stock Car Race.
+	0x787E387A = 1st Place
+	0x878A15EC = Best Time
+	0x1523B258 = The Burger Shot Stallion is now yours.
+	0x3070F564 = Retry
+	0x4210CBA0 = 5th Place
+	0x7980FDDA = Stock Car Race - Pisswasser Dominator
+	0x9593F2A5 = 7th Place
+	0x27489610 = 6th Place
+	0x28431023 = Press ~INPUT_CONTEXT~ to enter the Stock Car Race. ~n~The winner will get the Redwood Gauntlet.
+	0x99916270 = Continue
+	0xBE05C388 = 4th Place
+	0xCECD90A1 = Come back later to enter the Stock Car Race.
+	0xCFCB6713 = 3rd Place
+	0xF3B626F0 = Press and hold ~INPUT_VEH_EXIT~ to return to the race.
+	0xF57FAA9D = Press ~INPUT_CONTEXT~ to enter the Stock Car Race. ~n~The winner will get the Pisswasser Dominator.
+}

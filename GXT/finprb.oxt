@@ -1,0 +1,23 @@
+﻿Version 2 30
+{
+	0x097ED867 = ~s~Franklin abandoned the truck.
+	0x0C84C9E3 = ~s~Lose the ~r~workers.
+	0x0EB7E2D9 = ~s~Trevor abandoned the truck.
+	0xE5188F9B = ~s~Michael abandoned the truck.
+	FPB_FAIL1 = ~s~The driller was destroyed.
+	FPB_FAIL2 = ~s~The truck was destroyed.
+	FPB_FAIL3 = ~s~The trailer was destroyed.
+	FPB_FAIL7 = ~s~Michael abandoned the driller.
+	FPB_FAIL8 = ~s~Trevor abandoned the Driller.
+	FPB_FAIL9 = ~s~Franklin abandoned the Driller.
+	FPB_FAIL10 = ~s~The truck is stuck.
+	FPB_FAIL11 = ~s~Lester's contact was killed.
+	GOD_1 = ~s~Steal the ~b~driller.~s~
+	GOD_2 = ~s~Go to the ~y~parking lot.~s~
+	GOD_4 = ~s~Lose the Cops.~s~
+	GOD_5 = ~s~Get back in the ~b~truck.
+	GOD_6 = ~s~Re-attach the ~b~trailer.
+	GOD_7 = ~s~Get the driller out of the yard.
+	HELP_1 = ~s~Line up the back of the truck to the front of the trailer to re-attach.
+	HELP_2 = ~s~Mission was disrupted. Come back later to try again.
+}

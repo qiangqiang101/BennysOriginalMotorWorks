@@ -1,0 +1,10 @@
+﻿Version 2 30
+{
+	BK_PLANE = Get back in the ~b~plane.
+	FLY_DROP = Drop promotional leaflets in each ~y~promotional area.
+	GET_PLANE = Get in the ~b~plane.
+	LAND = Land and return the plane to the ~y~hangar.
+	LEAFLET = Use ~INPUT_VEH_FLY_ATTACK~ to toggle dropping leaflets.
+	START = Go to the ~y~airport.
+	TAKEOFF = Take off and head for one of the ~y~promotional areas.
+}

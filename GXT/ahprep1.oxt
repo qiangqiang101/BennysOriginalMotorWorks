@@ -1,0 +1,9 @@
+﻿Version 2 30
+{
+	AHP_DEADTRUCK = The fire truck was destroyed.
+	AHP_DROPOFF = Go to the ~y~garment factory. ~s~
+	AHP_GETBAKIN = Get back in the ~b~fire truck. ~s~
+	AHP_GETOUT = Get out of the fire truck.
+	AHP_LOSECOPS = Lose the Cops.
+	AHP_LOSTTRUCK = The fire truck was abandoned.
+}

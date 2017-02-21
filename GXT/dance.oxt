@@ -1,0 +1,15 @@
+﻿Version 2 30
+{
+	0x1B4BED6D = ~INPUT_FRONTEND_LEFT~
+	0x8C4FCF73 = ~INPUT_FRONTEND_RIGHT~
+	0x9AE36C9A = ~INPUT_FRONTEND_UP~
+	0x51E7DA98 = ~INPUT_FRONTEND_ACCEPT~
+	0x86E2B444 = Move missed!
+	0x88FCC8D1 = ~INPUT_FRONTEND_DOWN~
+	0x666C03AC = ~INPUT_FRONTEND_X~
+	0x772EA535 = ~INPUT_FRONTEND_CANCEL~
+	0xA710E554 = Press ~INPUT_CONTEXT~ to start dancing.
+	0xAE52937C = ~a~ + ~a~
+	0xBE8F5D54 = Tap the buttom prompts in time with the beat. The more in time with the music you are unlocks additional dance moves.
+	0xE478FFC4 = ~INPUT_FRONTEND_Y~
+}

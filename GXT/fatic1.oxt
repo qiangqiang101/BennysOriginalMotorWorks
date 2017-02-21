@@ -1,0 +1,14 @@
+﻿Version 2 30
+{
+	0x3E6B891C = CHECKPOINT
+	FATIC1_6 = Catch up with ~b~Mary-Ann.
+	FATIC1_7 = Return to the ~y~race.
+	FATIC1_F1 = Mary Ann was injured.
+	FATIC1_F2 = Mary-Ann was assaulted.
+	FATIC1_F3 = Mary-Ann got too far ahead.
+	FATIC1_F5 = A vehicle was used during the race.
+	FATIC1_F6 = The race was abandoned.
+	FATIC1_F7 = The race was lost.
+	FATIC1_F8 = Mary-Ann died.
+	FATIC1_H = Vehicles not allowed.
+}

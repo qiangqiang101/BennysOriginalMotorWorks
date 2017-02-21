@@ -1,0 +1,46 @@
+﻿Version 2 30
+{
+	0x1E5205FF = ~s~Return to ~b~Trevor.
+	0x7AF46E97 = ~s~Use ~INPUTGROUP_LOOK~ to move the reticle.~n~Use ~INPUTGROUP_SNIPER_ZOOM_SECONDARY~ to zoom in/out.~n~Press ~INPUT_ATTACK~ to fire the weapon.
+	0x7C988742 = ~s~Tanisha died.
+	0x9F10877E = ~s~Return to ~b~Michael.
+	0x43B39286 = ~s~Destroy the ~r~barricade.~s~
+	0x99E7EA7E = ~s~Use ~INPUTGROUP_LOOK~ to move the reticle.~n~Use ~INPUTGROUP_SNIPER_ZOOM_SECONDARY~ while holding ~INPUT_AIM~ to zoom in/out.~n~Press ~INPUT_ATTACK~ to fire the weapon.
+	0x1473E19F = ~s~Follow the ~b~bulldozer.~s~
+	0x6567ECD3 = ~s~Press ~INPUT_SPECIAL_ABILITY_PC~ to activate Michael's ability while sniping.
+	0x9940E474 = ~s~Get in the ~b~bulldozer.~s~
+	0x39649F46 = ~s~Get all the crew to the ~y~meet point.~s~
+	0x749114D6 = ~s~SWITCH to Franklin.
+	0xA05B3E76 = ~s~Protect ~b~Franklin and ~b~Trevor.
+	0xA67D04EC = ~s~Wait for Trevor and Michael to signal they're in position.
+	0xA84C19E5 = ~s~Return to ~b~Franklin.
+	0xAC3FD426 = ~s~Go to ~y~meet~s~ Trevor and Michael.~s~
+	0xAE8E2669 = ~s~Wait for everyone.
+	0xB8B22956 = ~s~Wait for Trevor and Franklin to signal they're in position.
+	0xB3579E91 = ~s~Wait for Franklin and Michael to signal they're in position.
+	0xE66F2381 = ~s~Call Trevor and Michael for extra muscle.
+	0xF5EBEC69 = ~s~Park the bulldozer in ~y~position.~s~
+	0xF8DF802E = ~s~Get to ~b~Trevor.~s~
+	0xFE943B6A = ~s~Wait for Trevor.~s~
+	0xFF3112EC = ~s~Take out the remaining ~r~guards.~s~
+	FRAN2_DRVL = ~s~Return to ~b~Lamar.
+	FRAN2_F01 = ~s~Lamar died.
+	FRAN2_F03 = ~s~The bulldozer was destroyed.
+	FRAN2_FCOPS = ~s~The Cops were led to the sawmill.
+	FRAN2_FEARLY = ~s~The Ballas were alerted.
+	FRAN2_FIND = ~s~Find Lamar.~s~
+	FRAN2_GETCAR = ~s~Get Lamar back to his ~y~house.
+	FRAN2_GETLAMAR = ~s~Get to ~b~Lamar.~s~
+	FRAN2_GETP = ~s~Get into an assault ~y~position.~s~
+	FRAN2_GOSAW = ~s~Go to the ~y~sawmill.~s~
+	FRAN2_LABAN = ~s~Lamar was abandoned.
+	FRAN2_LEADL = ~s~Lead Lamar to the ~y~sawmill exit.
+	FRAN2_POSHELP = ~s~Go to any marked position to choose your assault path.~s~
+	FRAN2_PROT = ~s~Protect ~b~Franklin, ~b~Trevor~s~ and ~b~Lamar.~s~
+	FRAN2_RETSAW = ~s~Return to the sawmill.
+	FRAN2_SIGHELP = ~s~Press ~INPUT_CONTEXT~ to give the signal.
+	FRAN2_SIGHELP2 = ~s~Press ~INPUT_CONTEXT~ to confirm Trevor's position.
+	FRAN2_SPECHELP = ~s~Press ~INPUT_SPECIAL_ABILITY~ + ~INPUT_SPECIAL_ABILITY_SECONDARY~ to activate Michael's ability while sniping.
+	FRAN2_SWFRANK = ~s~SWITCH to Franklin.~s~
+	FRAN2_SWITCH2 = ~s~SWITCH to ~b~Franklin ~s~or ~b~Trevor.~s~
+}

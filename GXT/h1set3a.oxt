@@ -1,0 +1,18 @@
+﻿Version 2 30
+{
+	0x668BA9BA = The architect was spooked. ~s~
+	S3A_ARCLABEL = Architect
+	S3A_BACKUP = ~s~Franklin is too close to the ~b~architect. ~s~
+	S3A_ESCAPE = ~s~Leave the construction site.
+	S3A_FOLLOW = ~s~Tail the ~b~architect ~s~and get the plans.
+	S3A_GETOUT = Get out of the car.
+	S3A_GOHOME = ~s~Go to the ~y~garment factory. ~s~
+	S3A_KILL = ~s~Get the ~r~architect ~s~to give up the briefcase.
+	S3A_LFTCASE = The blueprints were lost. ~s~
+	S3A_LFTHLP = ~s~Press ~INPUT_CONTEXT~ to activate the elevator. ~s~
+	S3A_LOSECOPS = ~s~Lose the Cops. ~s~
+	S3A_LOST = You lost the architect. ~s~
+	S3A_MUGHLP = Aim at the target to threaten him.
+	S3A_PARK = Park up in the ~y~parking space ~s~to avoid suspicion.
+	S3A_PICKUP = ~s~Pick up the ~g~blueprints. ~s~
+}

@@ -1,0 +1,25 @@
+﻿Version 2 30
+{
+	SOL1_ALARM = Take out the alerted workers before Rocco is warned.
+	SOL1_BEAT = Beat up ~r~Rocco.~s~
+	SOL1_ELS = Go to ~y~East Los Santos.~s~
+	SOL1_FAILABND = ~w~Milton and Anton were abandoned.~s~
+	SOL1_FAILACT = ~w~Milton died.~s~
+	SOL1_FAILALRM = ~w~Rocco was alerted.~s~
+	SOL1_FAILDD = ~w~Anton died.~s~
+	SOL1_FAILHE = ~w~The helicopter was destroyed.~s~
+	SOL1_FAILLF = ~w~Michael left the mission area.~s~
+	SOL1_FAILROC = ~w~Rocco died.~s~
+	SOL1_FAILSCRD = ~w~Milton and Anton were spooked.~s~
+	SOL1_FIGHTRT = ~s~Return to fight ~r~Rocco.~s~
+	SOL1_HELI = Reach the ~y~helipad~s~ without alerting Rocco.
+	SOL1_HELP1 = ~s~Increasing the strength stat will allow more damage to be inflicted when performing a melee attack, ladders to be climbed faster, more damage to be taken, and better sports performance.
+	SOL1_HELP2 = ~s~The strength stat can be increased by engaging in melee combat and playing sports.
+	SOL1_RTNANT = ~s~Return to ~b~Anton.~s~
+	SOL1_RTNM = ~s~Return to the mission area.~s~
+	SOL1_RTNMILT = ~s~Return to ~b~Milton.~s~
+	SOL1_SCARE = ~s~Change Milton and Anton's minds by flying erratically.~s~
+	SOL1_SCAREHLP = ~s~Scare Milton and Anton by flying at high speeds, under bridges or dangerously close to buildings.~s~
+	SOL1_SOLDIED = ~w~Solomon died.~s~
+	SOL1_STUDIO = Go back to the ~y~studio.~s~
+}

@@ -1,0 +1,23 @@
+﻿Version 2 30
+{
+	0x04300A02 = Press ~INPUT_VEH_CIN_CAM~ to toggle the helicopter camera.
+	0x8EB0A255 = Park near the ~b~helicopter.
+	0x228BC6B9 = Evade Epsilon's ~r~helicopter.
+	0xECD0DFB4 = Follow the ~b~Epsilonist.
+	EPS8_03 = Lose the Cops.
+	EPS8_05 = Follow Epsilon's ~b~security.
+	EPS8_06 = Get back in the ~b~car.
+	EPS8_11 = Steal the ~b~car.
+	EPS8_12 = Evade Epsilon's ~r~security.
+	EPS8_16 = Don't leave the ~b~cash~s~ behind.
+	EPS8_17 = The cash was abandoned.
+	EPS8_18 = The cash was destroyed.
+	EPS8_19 = The car was destroyed.
+	EPS8_20 = Get back in the ~b~helicopter.
+	EPS8_21 = Steal the ~g~cash bag.
+	EPS8_23 = Michael didn't deliver the cash in time.
+	EPS8_25 = Don't let the ~b~car~s~ escape.
+	EPS8_26 = The car escaped.
+	EPS8_27 = Exit the car.
+	EPS8_28 = Park the car at the ~y~drop off point.
+}

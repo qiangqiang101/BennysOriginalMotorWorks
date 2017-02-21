@@ -1,0 +1,22 @@
+﻿Version 2 30
+{
+	0xADC05D72 = Go to ~b~Jimmy Boston.
+	EPS6_01 = Meet ~b~Tom.
+	EPS6_02 = Deliver the plane to the ~y~airfield.
+	EPS6_03 = Get back in the ~b~plane.
+	EPS6_04 = The plane was abandoned.
+	EPS6_ATTACK = Jimmy Boston was attacked.
+	EPS6_BACKPL = Return to the ~b~plane.
+	EPS6_BUDDYDEAD = There was an incident of brother-on-brother violence.
+	EPS6_BUDDYHURT = There was an incident of brother-on-brother violence.
+	EPS6_BUDDYSPOOK = Tom was spooked.
+	EPS6_COPS = Lose the Cops.
+	EPS6_DEAD = Jimmy Boston died.
+	EPS6_FAIL = The plane was destroyed.
+	EPS6_GETIN = Get in the ~b~plane.
+	EPS6_GOBACK = Return to ~b~Jimmy Boston.
+	EPS6_LEAVE = Leave the plane and go to ~b~Jimmy Boston.
+	EPS6_LEFT = The airfield was abandoned.
+	EPS6_SPOOK = Jimmy Boston was spooked.
+	EPS6_STICKYB = An explosive was placed by the plane.
+}

@@ -1,0 +1,25 @@
+﻿Version 2 30
+{
+	FAM6_DHOUSE = Go back to ~y~Michael's house.
+	FAM6_FAILACD = ~w~Amanda's car was destroyed.
+	FAM6_FAILBMA = ~w~Amanda was scared off.
+	FAM6_FAILDB = ~w~Mission Failed.
+	FAM6_FAILFD = ~w~Fabien died.
+	FAM6_FAILLAZ = ~w~Lazlow died.
+	FAM6_FAM = ~s~Return to your ~b~Family. ~s~
+	FAM6_FBMSMASH = ~w~You smashed up Bean Machine.
+	FAM6_FFAMILY = ~w~Your Family was left behind.~s~
+	FAM6_PIERC0 = ~s~~INPUT_SCRIPT_RLEFT~ Pierce Lazlow's brow. ~n~~INPUT_SCRIPT_RRIGHT~ Pierce Lazlow's nose. ~n~~INPUT_SCRIPT_RDOWN~ Pierce Lazlow's ear.
+	FAM6_PIERC1 = ~s~~INPUT_SCRIPT_RLEFT~ Pierce Lazlow's brow. ~n~~INPUT_SCRIPT_RRIGHT~ Pierce Lazlow's nose.
+	FAM6_PIERC2 = ~s~~INPUT_SCRIPT_RLEFT~ Pierce Lazlow's brow. ~n~~INPUT_SCRIPT_RDOWN~ Pierce Lazlow's ear.
+	FAM6_PIERC3 = ~s~~INPUT_SCRIPT_RRIGHT~ Pierce Lazlow's nose. ~n~~INPUT_SCRIPT_RDOWN~ Pierce Lazlow's ear.
+	FAM6_PIERC4 = ~s~~INPUT_SCRIPT_RLEFT~ Pierce Lazlow's brow.
+	FAM6_PIERC5 = ~s~~INPUT_SCRIPT_RRIGHT~ Pierce Lazlow's nose.
+	FAM6_PIERC6 = ~s~~INPUT_SCRIPT_RDOWN~ Pierce Lazlow's ear.
+	FAM6_SCIS = ~s~~INPUT_SCRIPT_RDOWN~ Cut off Lazlow's ponytail.
+	FAM6_SHRINK = ~s~Go to ~y~Dr. Friedlander's office.~s~
+	FAM6_TAT = ~s~Hold ~INPUTGROUP_SCRIPT_RSTICK_ALL~ in the direction shown to draw the tattoo.
+	FAM6_TATCH = ~s~~INPUT_SCRIPT_RLEFT~ Tattoo Lazlow's chest. ~n~~INPUT_SCRIPT_RRIGHT~ Tattoo Lazlow's back.
+	FAM6_TATTOO = ~s~Go to the ~y~tattoo parlor.~s~
+	FAM6_YOGA = ~s~Go to ~y~Bean Machine.~s~
+}

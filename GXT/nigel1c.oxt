@@ -1,0 +1,14 @@
+﻿Version 2 30
+{
+	0xA48EE3C3 = Return to the ~y~stores.~s~
+	0xA162B84A = ~s~Trevor didn't go to the stores.
+	N1C_CATCH = Catch ~b~Dexie.
+	N1C_F_DOG = ~s~Dexie was injured.
+	N1C_F_EXDOG = ~s~Dexie died.
+	N1C_F_EXMOD = ~s~Kerry died.
+	N1C_F_LOST = ~s~Dexie escaped.
+	N1C_F_MOD = ~s~Trevor injured Kerry.
+	N1C_INIT = Go to ~b~Kerry.~s~
+	N1C_WRN_DOG = Catch up with ~b~Dexie.
+	N1_C_F_THREAT = ~s~Trevor scared Kerry.
+}

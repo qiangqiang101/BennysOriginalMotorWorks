@@ -1,0 +1,12 @@
+﻿Version 2 30
+{
+	0x3963A489 = The Cargobob got stuck.
+	0xF14470A7 = ~s~SWITCH to Michael.
+	DP_FAIL1 = The Cargobob was destroyed.
+	DP_FAIL2 = Trevor abandoned the Cargobob.
+	DP_GOD2 = ~s~Steal the ~b~Cargobob.
+	DP_GOD4 = ~s~Go to the ~y~hangar.
+	DP_GOD5 = ~s~Lose the ~r~military chopper.
+	DP_GOD6 = ~s~Get back in the ~b~Cargobob.
+	DP_HELP4 = Michael will be flying the Cargobob during the heist. Improve Michael's flying stat by going to Flight School.
+}

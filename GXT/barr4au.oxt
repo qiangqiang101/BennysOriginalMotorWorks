@@ -1,0 +1,37 @@
+﻿Version 2 30
+{
+	0x00F129D1 = ~z~The smoke-in. I'm at City Hall. I'm the only fool here.
+	0x1CC49286 = BARR4_AAAA
+	0x1CF8BE55 = 1100000
+	0x1DAABEA3 = SFX_PAUSE_310
+	0x1E4AF30E = SFX_PAUSE_120
+	0x4FDF8E9E = BARR4_ACAG
+	0x5C346056 = ~z~What?
+	0x6CA21EEF = BARR4_ACAI
+	0x7C717D6F = SFX_PAUSE_200
+	0x7DB62C3F = ~z~fight the power.
+	0x7FAB338D = SFX_PAUSE_090
+	0x8C40C06E = ~z~Ar, uh, uh yeah, hm hmm.
+	0x9A76E5C0 = ~z~Motherfucker.
+	0x23D46577 = ~z~Flakey motherfucker, I shoulda known.
+	0x86CB0478 = SFX_PAUSE_040
+	0x277F7FD7 = BARR4_ACAC
+	0x601C449D = BARR4_ACAH
+	0x869B2794 = 190
+	0x2316F2E1 = 110000011000001100000110000011000001100000110000011000001100000110000011000001100000110000011000001100000
+	0x2756EC78 = ~z~Smoke-in? Yeah, in his fucking bedroom.
+	0x133669D1 = BARR4_ACAF
+	0x30898901 = ~z~Oh, shit. Ah yeah, yeah, I'll be right there.
+	0xAAEA86DB = ~z~I, uuuh, I didn't forget, I was busy. Uh, busy, that's it...
+	0xAE9B16EF = 190010310010190010310010310010310010310010190
+	0xB15D6972 = BARR4_ACAJ
+	0xB2952DA0 = BARR4_ACAD
+	0xBEBEC443 = SFX_PAUSE_050
+	0xC9FFBBEF = ~z~Where you at, Mr. Revolutionary?
+	0xCFA7A88A = 100
+	0xD4A4DEA3 = BARR4_ACAE
+	0xE3EB0C5B = SFX_PAUSE_110
+	0xEC4241A0 = 100
+	0xF21681FC = ~z~Man this fucking fool don't even know what year it is.
+	0xF58208CF = ~z~Rule number one. Never trust a fucking stoner.
+}

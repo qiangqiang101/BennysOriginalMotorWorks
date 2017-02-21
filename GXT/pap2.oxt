@@ -1,0 +1,44 @@
+﻿Version 2 30
+{
+	0xD03AE8CA = The hotel staff were injured.
+	PAP2_00 = Get in Beverly's ~b~car.
+	PAP2_06 = Return to ~b~Beverly.
+	PAP2_08 = Go to ~b~Beverly.
+	PAP2_BADCAM = Franklin didn't get enough footage of Poppy.
+	PAP2_FAILATT = Franklin attracted attention.
+	PAP2_FAILBD = Beverly died.
+	PAP2_FAILBUD = Beverly was injured.
+	PAP2_FAILCAR = Beverly's car was destroyed.
+	PAP2_FAILFR = The footage was ruined.
+	PAP2_FAILHIND = Franklin didn't return to Beverly in time.
+	PAP2_FAILHLOV = Poppy's lover was injured.
+	PAP2_FAILKLOV = Poppy's lover died.
+	PAP2_FAILKPOP = Poppy died.
+	PAP2_FAILLEFT = Beverly was abandoned.
+	PAP2_FAILONG = Franklin didn't reach the car in time.
+	PAP2_FAILPAT = Poppy was spooked before Franklin got any footage.
+	PAP2_FAILPOP = Poppy was injured.
+	PAP2_FAILTHR = Beverly was spooked.
+	PAP2_FAILWANT = The Cops were alerted.
+	PAP2_HELP1 = Zoom in and out with ~INPUT_SNIPER_ZOOM~
+	PAP2_HELP2 = Use ~INPUTGROUP_LOOK~ to point the camera.
+	PAP2_HELP3 = Zoom in on Poppy's face until the facial recognition box turns green.
+	PAP2_REC = REC
+	PAP2_SEX1 = Is that good, babe?
+	PAP2_SEX2 = Ooh, ooh, it's fantastic.
+	PAP2_SEX3 = Really?
+	PAP2_SEX4 = Yes... ooh, you're so big.
+	PAP2_SEX5 = I know... I must say, for a virgin, you're really not that into this.
+	PAP2_SEX6 = I'm only a virgin for TV.
+	PAP2_SEX7 = Really?
+	PAP2_SEX8 = I mean, I always wash afterwards and jump up and down so it doesn't count.
+	PAP2_SEX9 = What?
+	PAP2_SEX10 = I'm not releasing a sex tape for at least three years, unless my agent tells me to.
+	PAP2_SEX11 = What? I thought this... I love you Poppy.
+	PAP2_SEX12 = I really want us to go places... I thought we could be the cutest teen couple.
+	PAP2_SEX13 = But Justin, you're 21 and I'm 24.
+	PAP2_SEX14 = We only say we're teens for marketing purposes.
+	PAP2_SEX15 = That's not true.
+	PAP2_SEX16 = Okay... just get on with it will you? I'm hungry.
+	PAP2_SEX17 = There's someone watching!
+}

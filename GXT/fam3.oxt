@@ -1,0 +1,23 @@
+﻿Version 2 30
+{
+	0x3BBA3639 = Select another weapon while in a vehicle by using ~INPUT_VEH_SELECT_NEXT_WEAPON~.~s~
+	FAM3_CATTA = ~s~The tennis coach was attacked.
+	FAM3_CDEAD = ~s~The tennis coach died.
+	FAM3_CSPOOK = ~s~The tennis coach got spooked.
+	FAM3_DCAN = Drive to the ~y~canyon.
+	FAM3_DHOUSE = Go back to ~y~Michael's house.
+	FAM3_FAIL = ~s~Mission Failed
+	FAM3_FTC = Follow the ~r~tennis coach.
+	FAM3_GBIT = Get back in the ~b~truck.
+	FAM3_GIT = Get in the ~b~truck.
+	FAM3_HCAM = Press ~INPUT_VEH_CIN_CAM~ to toggle focus onto the tennis coach.~s~
+	FAM3_HPASS1 = As a passenger hold ~INPUT_VEH_PASSENGER_AIM~ to aim and press ~INPUT_VEH_PASSENGER_ATTACK~ to shoot from a vehicle.~s~
+	FAM3_HPASS2 = Select another weapon while in a vehicle by using ~INPUT_VEH_SELECT_NEXT_WEAPON~.~s~
+	FAM3_HPULL = Hold ~INPUT_VEH_ACCELERATE~ to accelerate.~s~
+	FAM3_HSTAT1 = Weapon accuracy, max ammo capacity, reload speed and crosshair movement will improve as the Shooting Stat increases.~s~
+	FAM3_HSTAT2 = The Shooting Stat will increase with successful hits on enemies. Increase this quicker by going to the Shooting Range or performing headshots.~s~
+	FAM3_HSWITCH = SWITCH available between Michael and Franklin.~s~
+	FAM3_LGOONS = Lose ~r~Madrazo's men.
+	FAM3_TDEST = ~s~The truck was destroyed.
+	FAM3_TUND = ~s~The truck got stuck.
+}

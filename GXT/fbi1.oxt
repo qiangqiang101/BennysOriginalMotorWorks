@@ -1,0 +1,30 @@
+﻿Version 2 30
+{
+	0x07B328F9 = Mission Failed
+	0x4F802CD1 = Mission Passed
+	0x5C7E43FD = ~s~Press ~input_jump~ to jump.~s~
+	0x7EE0373C = ~s~Jump into the ~y~laundry truck.~s~
+	0x8DD1CD38 = ~s~Get the ~r~agent's~s~ weapon.~s~
+	0x96A466C4 = ~s~Get to the ~y~top floor.~s~
+	0x555CB5BA = ~s~The elevator is out of service.~s~
+	0x975EE052 = ~s~Collect your possessions from the ~y~bag.~s~
+	0x253503E7 = ~s~Take down the ~r~IAA officers.~s~
+	0xA4758266 = ~s~Leave the vehicle.~s~
+	0xB43721E9 = ~s~Escape from the ~y~building.~s~
+	0xE94C1343 = ~s~The yellow bar indicates Michael's special ability level. Press ~INPUT_SPECIAL_ABILITY_PC~ to slow down time.~s~
+	FBI1_FAIL_0 = ~s~Franklin died.~s~
+	FBI1_FAIL_1 = Too much heat to carry out the job.~s~
+	FBI1_FAIL_2 = ~s~Michael's cover was blown.~s~
+	FBI1_FAIL_3 = ~s~Michael died.~s~
+	FBI1_GOD_1 = ~s~Search the morgue for the ~g~body.~s~
+	FBI1_GOD_4 = ~s~Escape through the ~y~window.~s~
+	FBI1_GOD_6 = ~s~Go to the ~y~oil derricks.~s~
+	FBI1_GOD_7 = ~s~Escape from the ~y~building.~s~
+	FBI1_GOD_12 = ~s~Shoot out the ~y~window~s~ and escape.~s~
+	FBI1_GOD_13 = Dead Body
+	FBI1_GOD_14 = Climb out of the ~y~window.~s~
+	FBI1_HELP1 = ~s~Press ~INPUT_SKIP_CUTSCENE~ to wake up.~s~
+	FBI1_HELP4 = ~s~The yellow bar indicates Michael's special ability level. Press ~INPUT_SPECIAL_ABILITY~ + ~INPUT_SPECIAL_ABILITY_SECONDARY~ together to slow down time.~s~
+	FBI1_HELP5 = ~s~Michael's special ability bar will fill when Michael performs lethal moves such as headshots and stealth takedowns.
+	FBI1_HELP6 = ~s~Press ~input_jump~ to climb out the window.~s~
+}

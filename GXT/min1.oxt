@@ -1,0 +1,24 @@
+﻿Version 2 30
+{
+	MIN1_01 = Get in the ~b~patrol vehicle.
+	MIN1_02 = Lose the Cops.
+	MIN1_03 = Go to the ~y~suspects.
+	MIN1_05 = Press ~INPUT_VEH_CIN_CAM~ to toggle focus on the mariachi car.
+	MIN1_06 = Stop the ~r~band's car.
+	MIN1_07 = Use the stun gun on the ~r~mariachi.
+	MIN1_08 = Get back in the ~b~patrol vehicle.
+	MIN1_10 = Park near ~b~Joe ~s~and exit the vehicle.
+	MIN1_F1 = ~s~Joe died.
+	MIN1_F2 = ~s~Josef died.
+	MIN1_F3 = ~s~Trevor threw explosives at the patrol vehicle.
+	MIN1_F4 = ~s~The patrol vehicle was destroyed.
+	MIN1_F5 = ~s~A mariachi died.
+	MIN1_F6 = ~s~A mariachi was injured.
+	MIN1_F7 = ~s~Trevor abandoned Joe and Josef.
+	MIN1_F8 = ~s~The mariachi escaped.
+	MIN1_F9 = ~s~Joe was injured.
+	MIN1_F10 = ~s~Josef was injured.
+	MIN1_F11 = ~s~The patrol vehicle was damaged.
+	MIN1_F12 = ~s~Trevor alerted the cops.
+	MIN1_F15 = ~s~Trevor abandoned Joe.
+}

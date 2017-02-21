@@ -1,0 +1,4 @@
+﻿Version 2 30
+{
+	0x3A8CACB7 = Use ~PAD_LSTICK_ALL~ to move the crane.~n~Use ~PAD_RSTICK_UPDOWN~ to raise and lower.~n~Press ~PAD_A~ to pick up and release containers.~n~Press ~PAD_LB~ to exit.
+}

@@ -1,0 +1,24 @@
+﻿Version 2 30
+{
+	0x1FB7490F = Get to the ~y~helipad.~s~
+	0x4A3E3A61 = SWITCH to Trevor.
+	0x7CD31F96 = SWITCH to Michael.
+	0xE933345D = Mission Failed
+	0xF68713A6 = Get to the ~y~exit.~s~
+	M3_02 = Get downstairs to the ~y~courtyard~s~.
+	M3_04 = Escape to ~y~Morningwood.
+	M3_04A = Proceed to ~y~Morningwood.
+	M3_05 = Lose the ~r~enemy helicopter.
+	M3_DVABDN = Dave was abandoned.
+	M3_DVDEAD = Dave died.
+	M3_DVWARN = Return to ~b~Dave.~s~
+	M3_FMDEAD = Michael died.
+	M3_FTDEAD = Trevor died.
+	M3_OBJCYKIL = Defend ~b~Dave.~s~
+	M3_OBJFRSTA = Escape the Kortz Center via the ~y~balcony.~s~
+	M3_OBJHELI = Shoot the ~r~pilot.~s~
+	M3_OBJHELPD = Clear the stairs for ~b~Dave.~s~
+	M3_OBJPLOT = Go to the ~y~parking lot.
+	M3_OBJSVDV = Take out the ~r~FIB Agents~s~.
+	M3_WLKDV = Meet with ~b~Dave.~s~
+}

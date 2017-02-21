@@ -1,0 +1,43 @@
+﻿Version 2 30
+{
+	0x16B39CE9 = Use ~INPUTGROUP_SCRIPT_LSTICK_ALL~ and ~INPUT_SCRIPT_RDOWN~ to pick a torture weapon.
+	0x102BCFE3 = Hold ~INPUT_SCRIPT_RT~ to pour water.
+	0xD1E4F18A = Hold ~INPUT_AIM~ to use scope, ~INPUT_SNIPER_ZOOM~ to zoom in.
+	0xE3A6C2C5 = Rotate ~INPUTGROUP_SCRIPT_RSTICK_ALL~ clockwise to pull it out.
+	F_ABAN_D = Dave was abandoned.
+	F_ABAN_MRK = Mr. K was abandoned.
+	F_COPS = The Cops discovered the warehouse.
+	F_DDEAD = Dave died.
+	F_KDEAD = Mr. K died.
+	F_MDEAD = Michael died.
+	F_PHOTO_INN = A innocent person was killed.
+	F_PHOTO_SPOOK = The target was spooked before an ID was made.
+	F_PRTY_INN = An innocent party guest was killed.
+	F_PRTY_INN_ID = A party guest was killed before an ID was made.
+	F_PRTY_SEEN = Michael was seen at the party.
+	F_PRTY_SPOOK = The party was spooked and the target escaped.
+	F_TDEAD = Trevor died.
+	F_TRUCKDEAD_M = Trevor's truck is undrivable.
+	F_TRUCKDEAD_T = The truck was destroyed.
+	F_TRUCKSTUCK_M = Trevor's truck got stuck.
+	F_TRUCKSTUCK_T = Your truck got stuck.
+	HLP_BATTERY = Hold ~INPUT_SCRIPT_LT~ to grip with the left clip and ~INPUT_SCRIPT_RT~ to grip with the right clip. Press ~INPUT_SCRIPT_RDOWN~ to spark the clips.
+	HLP_CHAIR = Press ~INPUT_SCRIPT_RT~ to flip the chair.
+	HLP_MENU = Use ~INPUTGROUP_SCRIPT_LSTICK_ALL~/~INPUTGROUP_SCRIPT_DPAD_ALL~ and ~INPUT_SCRIPT_RDOWN~ to pick a torture weapon.
+	HLP_PLIER1 = Hold ~INPUT_SCRIPT_RT~ to grip a tooth.
+	HLP_PLIER2 = Rotate ~PAD_RSTICK_ROTATE~ to pull it out.
+	HLP_POUR = Hold ~INPUT_MOVE_UP_ONLY~ to pour water.
+	HLP_SYRINGE = Press ~INPUT_SCRIPT_RT~ to use the syringe.
+	HLP_TOR1 = To find the target, torture Mr. K.
+	HLP_TOR2 = Pick a weapon from the cart.
+	HLP_TOR3 = Between torturing sessions use ~INPUT_SCRIPT_RRIGHT~ to view Mr. K's health and heart rate on the ECG monitor.
+	HLP_TOR4 = If Mr. K is pushed too far, he may need an adrenaline shot.
+	HLP_WRENCH = Press ~INPUT_SCRIPT_RT~ to swing the wrench.
+	TFT_DRIVE1 = ~s~Go to the ~y~house.~s~
+	TFT_DRIVE2 = ~s~Go to ~y~Chumash.~s~
+	TFT_DRIVE3 = ~s~Go to the ~y~airport.~s~
+	TFT_GOTOW = ~s~Go to the ~y~warehouse.~s~
+	TFT_HTSWPTREV = ~s~SWITCH to Trevor.~s~
+	TFT_RTNDAV = ~s~Return to ~b~Dave.~s~
+	TFT_SHOOT = ~s~Find the target.~s~
+}

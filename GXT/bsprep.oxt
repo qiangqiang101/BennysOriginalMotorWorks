@@ -1,0 +1,28 @@
+﻿Version 2 30
+{
+	0x39A43C78 = ~s~Lower the flatbed onto the ~b~trailer.
+	0x627CFF0C = ~s~Wait until Franklin uncouples the ~b~freight engine.
+	0x98536ABC = ~s~Wait until Trevor uncouples the ~b~freight engine.
+	0xA97491A0 = ~s~Wait until Michael uncouples the ~b~freight engine.
+	BSD_GETINCHOP = ~s~Get in the ~b~Skylift.
+	BSPD_ABANDON = The train was not stolen.
+	BSPD_CREWDEAD = One of the crew was killed.
+	BSPD_SW_M = SWITCH to Michael.
+	BSPD_SW_T = SWITCH to Trevor.
+	BSPD_TRUCKDEAD = The truck was destroyed.
+	BSPD_WAIT = Wait for a train to stop in the sidings.
+	FAILGUARD = ~s~The cops were alerted.
+	FAILHELI = ~s~The helicopter was destroyed.
+	FAILTRAIN = ~s~The train was destroyed.
+	FLIPSWITCH = ~s~Press ~INPUT_CONTEXT~ to change the sidings.
+	GETCARRIAGE = ~s~Pick up a ~b~flatbed carriage.
+	GETENGINE = ~s~Pick up the ~b~freight engine.
+	GOTOBOX = ~s~Get to the ~y~signal box.
+	KILLGUARDS = ~s~Incapacitate the ~r~railway workers.
+	MAGNETOFF = ~s~Press ~INPUT_VEH_GRAPPLING_HOOK~ to deactivate the electromagnet.
+	MAGNETON = ~s~Press ~INPUT_VEH_GRAPPLING_HOOK~ to activate the electromagnet.
+	NOFLIP = ~s~The sidings cannot be activated when a train is present.
+	TAKEENGINE = ~s~Take the freight engine to ~y~Trevor's airstrip.
+	TAKEENGINE2 = ~s~Lower the engine onto the ~b~trailer.
+	TAKEFLATBED = ~s~Take the flatbed to ~y~Trevor's airstrip.
+}

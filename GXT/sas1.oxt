@@ -1,0 +1,12 @@
+﻿Version 2 30
+{
+	SAS1_A0 = Return to the ~y~valley.
+	SAS1_B1 = Investigate the ~y~scat site.
+	SAS1_C1 = Kill the ~r~Last One.
+	SAS1_C2 = Return to the ~r~Last One.
+	SAS1_CAR = Leave your vehicle.
+	SAS1_H0 = Listen for the Last One's howl to find his location.
+	SAS1_X0 = ~s~The hunter died.
+	SAS1_X1 = ~s~The hunter was threatened.
+	SAS1_X6 = ~s~The Last One escaped.
+}

@@ -1,0 +1,22 @@
+﻿Version 2 30
+{
+	0x77535E52 = ~s~The job was blown.
+	CAR4_CDOOR = Get inside.
+	CAR4_CGAR = ~s~The Cops learned the location of the garage.
+	CAR4_CLEFT = ~s~The car was abandoned.
+	CAR4_CUND = ~s~The car got stuck.
+	CAR4_DATTA = ~s~Devin was attacked.
+	CAR4_DCAR = Deliver the car to the ~y~garage.
+	CAR4_DDEAD = ~s~Devin died.
+	CAR4_EGIRL = Get rid of the actress.
+	CAR4_FAIL = ~s~Mission Failed
+	CAR4_GGAR = ~s~The actress learned the location of the garage.
+	CAR4_HALERT = Studio security was alerted.~s~
+	CAR4_HCARE = Press ~INPUT_SCRIPT_RLEFT~ to see what the red button does.~s~
+	CAR4_HCARS = Press ~INPUT_SCRIPT_LS~ to drop spikes.
+	CAR4_HKO = You can knock out the actor to get his clothes.~s~
+	CAR4_LCAR = Locate the car.
+	CAR4_LSEC = Lose the ~r~security.
+	CAR4_SGAR = ~s~The security learned the location of the garage.
+	CAR4_TMSTA = Find the ~r~actor.~s~
+}

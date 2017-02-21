@@ -1,0 +1,35 @@
+﻿Version 2 30
+{
+	0x42DBE328 = ~s~More ~r~Merryweather~s~ are arriving around at the front of the house.
+	0x62DC6EEF = ~s~Go inside the ~y~house.
+	0x547B1F2C = ~s~Find ~b~Tracey.
+	0x922EAA9D = Lazlow Jones
+	0xA06FC71F = Red Carpet Laz-lowdown
+	0xC278A014 = ~s~Press ~INPUT_SCRIPT_PAD_RIGHT~ to toggle the limo-cam.
+	0xEA25E030 = Try using Michael's special ability to help you during combat.  Press ~INPUT_SPECIAL_ABILITY_PC~ when the special ability bar has some charge.~s~
+	MIC4_COPS = You led the cops to Michael's home.
+	MIC4_DISRUPT = The movie premiere was ruined.
+	MIC4_DRIVERDEAD = The limo driver died.
+	MIC4_LIMOCAM = ~s~Press ~INPUT_VEH_CIN_CAM~ to toggle the limo-cam.
+	MIC4_LIMODEAD = The limo was destroyed.
+	MIC4_SA = Try using Michael's special ability to help you during combat.  Press ~INPUT_SPECIAL_ABILITY~ and ~INPUT_SPECIAL_ABILITY_SECONDARY~ simultaneously when the special ability bar has some charge.~s~
+	SOL5_ADIED = ~s~Amanda died.
+	SOL5_DEVTXT = You got 2 minutes to sacrifice yourself for your family, dickhead!
+	SOL5_FAILTUX = Ponsonbys closed.
+	SOL5_GET2HSE = ~s~Save your ~b~family.
+	SOL5_INLIMO = Get in the ~b~limousine.
+	SOL5_JDIED = ~s~Jimmy died.
+	SOL5_KILLBAD = ~s~Clear the house of ~r~Merryweather.
+	SOL5_KILLBAD2 = ~s~Clear the outside of ~r~Merryweather.
+	SOL5_LEAVE = ~s~Michael's family were abandoned.
+	SOL5_MISSED = You missed the premiere.
+	SOL5_MTJIM = Meet ~b~Jimmy.
+	SOL5_NOLIMO = You left the limo.
+	SOL5_REDCARPET = Go to the ~y~red carpet.
+	SOL5_RENDEZV = ~s~Go to your ~b~family.
+	SOL5_SAVEAM = ~s~Take out the ~r~hostage taker.
+	SOL5_TDIED = ~s~Tracey died.
+	SOL5_TIMEUP = ~s~Michael's family were not saved in time.
+	SOL5_TUX1 = Change into your tuxedo in ~y~Ponsonbys~s~ to attend the Meltdown premiere.
+	SOL5_TUX2 = Buy a tuxedo in ~y~Ponsonbys~s~ to attend the Meltdown premiere.
+}

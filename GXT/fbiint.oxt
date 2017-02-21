@@ -1,0 +1,5 @@
+﻿Version 2 30
+{
+	INT_LEAVE = Leave the area.
+	INT_THREAT = Michael was threatened.
+}

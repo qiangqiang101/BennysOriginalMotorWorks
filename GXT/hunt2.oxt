@@ -1,0 +1,38 @@
+﻿Version 2 30
+{
+	0x7A38C9CE = Hunt the ~r~elk. ~w~Don't kill the doe.
+	0xCC845F77 = Return to the ~y~woods.
+	0xE39FD07E = Go to ~b~Cletus.
+	0xE42F6E77 = When hunting, stay downwind of the elk.
+	HH_FAIL6 = Trevor left the woods.
+	HH_FAIL6A = Trevor disobeyed Cletus.
+	HH_FAILCAR = The hunter's car was destroyed.
+	HH_FAILCARA = The elk were scared off by the vehicle.
+	HT_APP = Approach the elk's ~r~corpse.
+	HT_BAC = Return to ~b~Cletus.
+	HT_BADREC = The picture was sent to the wrong person. Try again.
+	HT_CALL = Use ~INPUT_SCRIPT_PAD_LEFT~ to call. This will highlight any elk in the area.
+	HT_CHANGE = Keep an eye on the wind direction as it will change over time.
+	HT_CROUCH = The elk spotted Trevor. Stay out of its line of sight.
+	HT_DOE = Trevor shot the doe.
+	HT_DUCK = Press ~INPUT_DUCK~ to enter stealth mode. This reduces noise when moving.
+	HT_FAIL1A = The elk picked up Trevor's scent.
+	HT_FAIL2 = The elk spotted Trevor.
+	HT_FAIL3 = The elk heard Trevor.
+	HT_FAIL4 = Cletus died.
+	HT_FAIL4A = Trevor injured Cletus.
+	HT_FAIL5 = Trevor abandoned Cletus.
+	HT_FOLLOW = Follow ~b~Cletus.
+	HT_HEARD = The elk heard Trevor. When close, use stealth to remain undetected.
+	HT_INNOCENT = Trevor killed innocent people.
+	HT_MALE = Only shoot the male elk, the ones with antlers.
+	HT_MISS = Trevor missed and frightened the elk.
+	HT_NOGOOD = This photo isn't good enough. Try again.
+	HT_OBJ = Hunt the ~r~elk.
+	HT_PHOTO = Photograph the ~r~corpse.
+	HT_RETURN = Return to the ~r~corpse.
+	HT_SCENT = The elk picked up Trevor's scent. Always try to stay downwind from the quarry.
+	HT_SENDPIC = Send this picture to Cletus.
+	HT_WGUN = Trevor used the wrong gun.
+	HT_WIND = The arrow shows which direction the wind is blowing.
+}

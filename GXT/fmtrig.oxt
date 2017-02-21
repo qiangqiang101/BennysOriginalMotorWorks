@@ -1,0 +1,5 @@
+﻿Version 2 30
+{
+	0x0A733DA5 = ~s~The Job will start when enough players stand inside the trigger and press ~INPUT_SPRINT~ to vote.
+	0xC0D72980 = Trigger tutorial is running.
+}

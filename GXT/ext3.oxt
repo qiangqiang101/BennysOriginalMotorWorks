@@ -1,0 +1,14 @@
+﻿Version 2 30
+{
+	EXT3_01 = Parachute onto the ~b~truck.
+	EXT3_02 = Leaving the mission area. Parachute onto the ~b~truck.
+	EXT3_03 = Press ~INPUT_PARACHUTE_DEPLOY~ to open the parachute.
+	EXT3_04 = Press ~INPUT_VEH_CIN_CAM~ to toggle focus on the truck.
+	EXT3_05 = Use ~INPUTGROUP_LOOK~ to look and press ~INPUT_JUMP~ to jump.
+	EXT3_F1 = ~s~Dom died.
+	EXT3_F2 = ~s~Franklin did not successfully land on the truck.
+	EXT3_F3 = ~s~The truck was destroyed.
+	EXT3_F4 = ~s~Franklin didn't attempt the jump.
+	EXT3_F5 = ~s~Dom was spooked.
+	EXT3_F6 = ~s~Franklin jumped off the building without a parachute.
+}

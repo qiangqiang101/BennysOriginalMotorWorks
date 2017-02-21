@@ -1,0 +1,10 @@
+﻿Version 2 30
+{
+	MIN3_06 = Kill ~r~Joe ~s~and ~r~Josef.
+	MIN3_FAIL1 = ~s~Manuel died.
+	MIN3_FAIL2 = ~s~Trevor killed a hostage.
+	MIN3_FAIL3 = ~s~Trevor threatened Manuel.
+	MIN3_FAIL4 = ~s~Trevor injured a hostage.
+	MIN3_FAIL5 = ~s~Joe escaped.
+	MIN3_FAIL8 = ~s~A suspect died.
+}

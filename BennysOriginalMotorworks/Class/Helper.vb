@@ -1,4 +1,5 @@
 ﻿Imports System.Runtime.InteropServices
+Imports System.Text
 Imports GTA
 Imports GTA.Math
 Imports GTA.Native
@@ -267,16 +268,6 @@ Public Class Helper
         Native.Function.Call(Hash._START_SCREEN_EFFECT, New InputArgument() {[Enum].GetName(GetType(ScreenEffect), effectName), duration, looped})
     End Sub
 
-    Public Shared Function GetAccentColor(vehicle As Vehicle) As VehicleColor
-        Dim arg As New OutputArgument()
-        Native.Function.Call(&HB7635E80A5C31BFFUL, vehicle, arg)
-        Return arg.GetResult(Of VehicleColor)()
-    End Function
-
-    Public Shared Sub SetAccentColor(vehicle As Vehicle, color As VehicleColor)
-        Native.Function.Call(&H6089CDF6A57F326C, vehicle, color)
-    End Sub
-
     Public Shared Function LocalizedModTypeName(modType As VehicleMod) As String
         If Not Native.Function.Call(Of Boolean)(Hash.HAS_THIS_ADDITIONAL_TEXT_LOADED, "mod_mnu", 10) Then
             Native.Function.Call(Hash.CLEAR_ADDITIONAL_TEXT, 10, True)
@@ -455,6 +446,18 @@ Public Class Helper
                     cur = Game.GetGXTEntry("CMOD_MOD_CHA")
                 End If
                 Exit Select
+            Case VehicleMod.Exhaust
+                cur = Game.GetGXTEntry("CMOD_MOD_MUF")
+                Exit Select
+            Case VehicleMod.Grille
+                cur = Game.GetGXTEntry("CMOD_MOD_GRL")
+                Exit Select
+            Case VehicleMod.Hood
+                cur = Game.GetGXTEntry("CMOD_MOD_HOD")
+                Exit Select
+            Case VehicleMod.Roof
+                cur = Game.GetGXTEntry("CMOD_MOD_ROF")
+                Exit Select
             Case Else
 
                 cur = Native.Function.Call(Of String)(Hash.GET_MOD_SLOT_NAME, Bennys.veh.Handle, modType)
@@ -471,6 +474,11 @@ Public Class Helper
         Return cur
     End Function
 
+    Public Shared Function LocalizeModTitleName(title As String) As String
+        Dim langConf As ScriptSettings = ScriptSettings.Load("scripts\bennyslang.ini")
+        Return langConf.GetValue("TITLE", title, "NULL")
+    End Function
+
     Enum GroupName
         NeonKits
         NeonLayout
@@ -484,6 +492,7 @@ Public Class Helper
         License
         Tires
         WheelColor
+        WheelType
         Turbo
         Wheels
         Windows
@@ -493,6 +502,14 @@ Public Class Helper
         Interior
         Plates
         Engine
+        PrimaryColor
+        SecondaryColor
+        LightColor
+        TertiaryColor
+        TrimColor
+        AccentColor
+        Repair
+        Livery
     End Enum
 
     Public Shared Function LocalizedModGroupName(groupName As GroupName) As String
@@ -533,7 +550,7 @@ Public Class Helper
                 cur = Game.GetGXTEntry("CMOD_MOD_WCL")
                 Exit Select
             Case GroupName.Turbo
-                cur = Game.GetGXTEntry("CMOD_MOD_TRN")
+                cur = Game.GetGXTEntry("CMOD_MOD_TUR")
                 Exit Select
             Case GroupName.Wheels
                 cur = Game.GetGXTEntry("CMOD_MOD_WHEM")
@@ -565,8 +582,77 @@ Public Class Helper
             Case GroupName.Engine
                 cur = Game.GetGXTEntry("CMM_MOD_G3")
                 Exit Select
+            Case GroupName.PrimaryColor
+                cur = Game.GetGXTEntry("CMOD_COL0_0")
+                Exit Select
+            Case GroupName.SecondaryColor
+                cur = Game.GetGXTEntry("CMOD_COL0_1")
+                Exit Select
+            Case GroupName.LightColor
+                cur = Game.GetGXTEntry("CMM_MOD_S26")
+                Exit Select
+            Case GroupName.Repair
+                cur = Game.GetGXTEntry("CMOD_MOD_MNT")
+                Exit Select
+            Case GroupName.TertiaryColor
+                cur = Game.GetGXTEntry("CMOD_COL0_5")
+                Exit Select
+            Case GroupName.TrimColor
+                cur = Game.GetGXTEntry("CMOD_MOD_TRIM2")
+                Exit Select
+            Case GroupName.AccentColor
+                cur = Game.GetGXTEntry("CMOD_MOD_TRIM3")
+                Exit Select
+            Case GroupName.WheelType
+                cur = Game.GetGXTEntry("CMOD_MOD_WHE")
+                Exit Select
+            Case GroupName.Livery
+                cur = Game.GetGXTEntry("CMM_MOD_S23")
+                Exit Select
         End Select
 
+        Return cur
+    End Function
+
+    Enum ColorType
+        Chrome
+        Classic
+        Metallic
+        Metals
+        Matte
+        Pearlescent
+        Crew
+    End Enum
+
+    Public Shared Function LocalizedColorGroupName(colorTypeName As ColorType) As String
+        If Not Native.Function.Call(Of Boolean)(Hash.HAS_THIS_ADDITIONAL_TEXT_LOADED, "mod_mnu", 10) Then
+            Native.Function.Call(Hash.CLEAR_ADDITIONAL_TEXT, 10, True)
+            Native.Function.Call(Hash.REQUEST_ADDITIONAL_TEXT, "mod_mnu", 10)
+        End If
+        Dim cur As String = Nothing
+        Select Case colorTypeName
+            Case ColorType.Chrome
+                cur = Game.GetGXTEntry("CMOD_COL1_0")
+                Exit Select
+            Case ColorType.Classic
+                cur = Game.GetGXTEntry("CMOD_COL1_1")
+                Exit Select
+            Case ColorType.Crew
+                cur = Game.GetGXTEntry("CMOD_COL1_2")
+                Exit Select
+            Case ColorType.Metallic
+                cur = Game.GetGXTEntry("CMOD_COL1_3")
+                Exit Select
+            Case ColorType.Metals
+                cur = Game.GetGXTEntry("CMOD_COL1_4")
+                Exit Select
+            Case ColorType.Matte
+                cur = Game.GetGXTEntry("CMOD_COL1_5")
+                Exit Select
+            Case ColorType.Pearlescent
+                cur = Game.GetGXTEntry("CMOD_COL1_6")
+                Exit Select
+        End Select
         Return cur
     End Function
 
@@ -578,13 +664,13 @@ Public Class Helper
             'result = Native.Function.Call(Of String)(Hash.GET_MOD_SLOT_NAME, Bennys.veh.Handle, toggleModType)
             Select Case toggleModType
                 Case VehicleToggleMod.Turbo
-                    result = Game.GetGXTEntry("CMOD_MOD_TRN")
+                    result = Game.GetGXTEntry("CMOD_MOD_TUR")
                     Exit Select
                 Case VehicleToggleMod.XenonHeadlights
                     result = Game.GetGXTEntry("CMOD_MOD_LGT_H")
                     Exit Select
                 Case VehicleToggleMod.TireSmoke
-                    result = Game.GetGXTEntry("CMOD_MOD_LGT_H")
+                    result = Game.GetGXTEntry("CMOD_MOD_TYR3")
                     Exit Select
             End Select
             If result = "" Then
@@ -760,10 +846,17 @@ Public Class Helper
             If DoesGXTEntryExist(_colorNames(vehColor).Item1) Then
                 Return Game.GetGXTEntry(_colorNames(vehColor).Item1)
             End If
-            Return _colorNames(vehColor).Item2
+            Return Trim(RegularExpressions.Regex.Replace(_colorNames(vehColor).Item2, "[A-Z]", " ${0}"))
         End If
         Throw New ArgumentException("Vehicle Color Is undefined", "Vehicle Color")
     End Function
+
+    Public Shared ClassicColor As List(Of VehicleColor) = New List(Of VehicleColor) From {0, 147, 1, 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 27, 28, 29, 150, 30, 31, 32, 33, 34, 143, 35, 135, 137, 136, 36, 38, 138, 99, 90, 88, 89,
+        91, 49, 50, 51, 52, 53, 54, 92, 141, 61, 62, 63, 64, 65, 66, 67, 68, 69, 73, 70, 74, 96, 101, 95, 94, 97, 103, 104, 98, 100, 102, 99, 105, 106, 71, 72, 142, 145, 107, 111, 112}
+    Public Shared MatteColor As List(Of VehicleColor) = New List(Of VehicleColor) From {12, 13, 14, 131, 83, 82, 84, 149, 148, 39, 40, 41, 42, 55, 128, 151, 155, 152, 153, 154}
+    Public Shared MetalColor As List(Of VehicleColor) = New List(Of VehicleColor) From {117, 118, 119, 158, 159, 160}
+    Public Shared ChromeColor As List(Of VehicleColor) = New List(Of VehicleColor) From {120}
+    Public Shared PearlescentColor As List(Of VehicleColor) = New List(Of VehicleColor) From {0, 147, 1, 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 27, 28, 29, 150, 30, 31, 32, 33, 34, 143, 35, 135, 137, 136, 36, 38, 138, 99, 90, 88, 89, 91, 49, 50, 51, 52, 53, 54, 92, 141, 61, 62, 63, 64, 65, 66, 67, 68, 69, 73, 70, 74, 96, 101, 95, 94, 97, 103, 104, 98, 100, 102, 99, 105, 106, 71, 72, 142, 145, 107, 111, 112, 117, 118, 119, 158, 159, 160}
 
     Private Shared ReadOnly _colorNames As New Dictionary(Of Integer, Tuple(Of String, String))(New Dictionary(Of Integer, Tuple(Of String, String))() From {
     {0, New Tuple(Of String, String)("BLACK", "MetallicBlack")},

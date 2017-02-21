@@ -1,0 +1,38 @@
+﻿Version 2 30
+{
+	PROPR_HELP_BARHE = You have purchased The Hen House.~n~The business will provide drinks to the people of San Andreas.
+	PROPR_HELP_BARHE2 = The weekly profit will be $920.
+	PROPR_HELP_BARHO = You have purchased Hookies.~n~The business will provide drinks to the people of San Andreas.
+	PROPR_HELP_BARHO2 = The weekly profit will be $4,700.
+	PROPR_HELP_BARPI = You have purchased Pitchers.~n~The business will provide drinks to the people of San Andreas.
+	PROPR_HELP_BARPI2 = The weekly profit will be $7,100.
+	PROPR_HELP_BARTE = You have purchased Tequi-la-la.~n~The business will provide drinks to the people of San Andreas.
+	PROPR_HELP_BARTE2 = The weekly profit will be $16,500.
+	PROPR_HELP_CIND = You have purchased the Ten Cent Theater.~n~The business will provide movies to the people of San Andreas.
+	PROPR_HELP_CIND2 = The weekly profit will be $264,000.
+	PROPR_HELP_CINM = You have purchased the Tivoli Cinema.~n~The business will provide movies to the people of San Andreas.
+	PROPR_HELP_CINM2 = The weekly profit will be $142,300.
+	PROPR_HELP_CINV = You have purchased Cinema Doppler.~n~The business will provide movies to the people of San Andreas.
+	PROPR_HELP_CINV2 = The weekly profit will be $132,200.
+	PROPR_HELP_CMSH = You have purchased Los Santos Customs.~n~The business will mod vehicles.
+	PROPR_HELP_CMSH2 = The weekly profit will be $1,600.
+	PROPR_HELP_CMSH3 = You will now receive car modifications for free.
+	PROPR_HELP_CSCR = You have purchased the Car Scrapyard.~n~The business will recycle old car components and parts.
+	PROPR_HELP_CSCR2 = The weekly profit will be variable dependent upon how many cars have been destroyed in San Andreas.
+	PROPR_HELP_GOLF = You have purchased Los Santos Golf Club.~n~The business will provide golf to the people of San Andreas.
+	PROPR_HELP_GOLF2 = The weekly profit will be $264,500.~n~You can now play golf for free, and wear any clothing while playing.
+	PROPR_HELP_MANH = Occasionally the manager may contact you for help with the running of the business.
+	PROPR_HELP_SOCO = You have purchased the Sonar Collections Dock.~n~The business will assist searching the ocean around San Andreas for nuclear waste.
+	PROPR_HELP_SOCO2 = You will receive $23,000 per nuclear waste found.
+	PROPR_HELP_SOCO3 = Use the submersible to search for nuclear waste.
+	PROPR_HELP_TAXI = You have purchased Downtown Cab Co.~n~The business will provide taxi rides to the people of San Andreas.
+	PROPR_HELP_TAXI2 = The weekly profit will be $2,000.~n~You will now receive taxi rides for free.
+	PROPR_HELP_TOWI = You have purchased the Towing Impound.~n~The business will provide tows to people in need.
+	PROPR_HELP_TOWI2 = You will receive $500 per vehicle towed, with a penalty deducted for damaging the vehicle.
+	PROPR_HELP_TOWI3 = Use the tow truck to provide tows.
+	PROPR_HELP_TRAF = You have purchased McKenzie Field Hangar.~n~The business will transport and collect weapons in and out of San Andreas.
+	PROPR_HELP_TRAF2 = You will receive $5,000 per ground shipment, and $7,000 per air shipment, plus a bonus for good work.
+	PROPR_HELP_TRAF3 = Enter the plane ~BLIP_ARMS_DEALING_AIR~ or the buggy ~BLIP_ARMS_DEALING~ to deliver a shipment.
+	PROPR_HELP_WEED = You have purchased Smoke on the Water.~n~The business will sell medical grade cannabis to prescribed patients.
+	PROPR_HELP_WEED2 = The weekly profit will be $9,300.
+}

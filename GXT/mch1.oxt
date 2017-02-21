@@ -1,0 +1,41 @@
+﻿Version 2 30
+{
+	0xE0288054 = ~s~Fly back to ~y~San Andreas.
+	MCH1_CLEFT = ~s~The car was abandoned.
+	MCH1_CUND = ~s~The car got stuck.
+	MCH1_FAIL = ~s~Mission Failed
+	MCH1_FLASH1 = Listen, Amanda. We're going to move to Los Santos. Start over. I made a deal. The slate will be totally wiped clean.
+	MCH1_FLASH2 = Alright, everybody pays attention, no one gets hurt!
+	MCH1_FLASH3 = Trust me, darling, look at me, Amanda. It was the only thing I could do. Either everyone dies, or one guy gets out. I'm that guy!
+	MCH1_FLASH4 = Slow and steady, T, slow and steady.
+	MCH1_FLASH5 = His name is Dave Norton, nice guy - realist. He gets the glory, I get out. It's not even a decision. Amanda, I don't have a choice.
+	MCH1_FLASH6 = Do you wanna die here where it's always snowing? Or do you wanna go and live where it's always sunny?
+	MCH1_FLASH7 = Alright, you wanna live? Tell me you wanna live. Work this out.
+	MCH1_FLASH8 = Some depot out of town, you don't need to know. Trust me, nothing is gonna go wrong. Nothing.
+	MCH1_FLASH9 = Yeah, I hear ya! We gotta follow the plan - everything'll work out.
+	MCH1_FLASH10 = I did the deal, Amanda. It's over. Baby, we get out. Be happy. Be normal!
+	MCH1_FLASH11 = It ain't supposed to go down like this.
+	MCH1_FLASH12 = We did it. Baby, we are home free. It's over.
+	MCH1_FLASH13 = This is fucked, man! The thing is blown!
+	MCH1_FLASH14 = Just this one job, and everything is done.
+	MCH1_FTRC = ~s~Michael failed to reach the cemetery.
+	MCH1_FTRG = ~s~Michael failed to reach the grave.
+	MCH1_GBRLC = ~s~Get back en route to ~y~Ludendorff Cemetery.
+	MCH1_GBTLC = ~s~Get back to ~y~Ludendorff Cemetery.
+	MCH1_GRAVE = ~s~Go to ~y~your grave.
+	MCH1_GTLC = ~s~Go to ~y~Ludendorff Cemetery.
+	MCH1_GTLSIA = ~s~Go to ~y~Los Santos International Airport.
+	MCH1_GTTE = ~s~Go to the ~y~second level terminal entrance.
+	MCH1_GT_T1 = ~s~Go to the ~y~Sandy Shores Airfield.
+	MCH1_GT_T3 = ~s~Fly to ~y~North Yankton.
+	MCH1_GT_T8 = ~s~Fly back to the ~y~Sandy Shores Airfield.
+	MCH1_HWEAP = Your weapons were removed when boarding the plane.~s~
+	MCH1_MCLEFT = ~s~Michael's car was abandoned.
+	MCH1_MCUND = ~s~Michael's car got stuck.
+	MCH1_PDEAD = ~s~The plane was destroyed.
+	MCH1_PUND = ~s~The plane got stuck.
+	MCH1_RTC = ~s~Return to the ~b~car.~s~
+	MCH1_TCLEFT = ~s~Trevor's truck was abandoned.
+	MCH1_TCUND = ~s~Trevor's truck got stuck.
+	MH1_SETTING = ~s~Ludendorff, North Yankton.
+}

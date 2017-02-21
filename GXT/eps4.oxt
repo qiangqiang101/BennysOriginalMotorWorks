@@ -1,0 +1,17 @@
+﻿Version 2 30
+{
+	0x0FF672C4 = Proximity
+	0xABD6A706 = Examine the ~g~artifact.
+	EPS4_A1 = Return to the ~y~search area.
+	EPS4_A2 = Find the alien artifact.
+	EPS4_T0 = Hold ~INPUT_AIM~ to use the detector.
+	EPS4_T1 = The detector's proximity meter shows how far away the artifact is.
+	EPS4_T2 = When facing toward the artifact, the detector's screen will turn blue.
+	EPS4_X1 = The area was abandoned.
+	EPS4_X2 = Marnie died.
+	EPS4_X3 = Jimmy Boston died.
+	EPS4_X4 = Marnie was injured.
+	EPS4_X5 = Jimmy Boston was injured.
+	EPS4_X7 = Marnie was spooked.
+	EPS4_X8 = Jimmy Boston was spooked.
+}

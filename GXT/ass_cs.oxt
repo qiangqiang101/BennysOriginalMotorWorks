@@ -1,0 +1,31 @@
+﻿Version 2 30
+{
+	0x8BAC4118 = ~s~Use ~INPUTGROUP_LOOK~ to look around, and use ~INPUTGROUP_MOVE~ to zoom in and out.
+	0x2183A3A8 = ~s~The mission was abandoned.~s~
+	0x824348C7 = ~s~Franklin died.~s~
+	0xC5A56E2E = Construction Site
+	0xFF58CB3A = Completion
+	ASS_CS_BASE = Base Reward
+	ASS_CS_BDESC = No Fly Zone Bonus
+	ASS_CS_CASH = Money Earned
+	ASS_CS_COMPB = Completion - Bronze
+	ASS_CS_COMPG = Completion - Gold
+	ASS_CS_COMPN = Completion - No Medal
+	ASS_CS_COMPS = Completion - Silver
+	ASS_CS_CONT = Continue
+	ASS_CS_EHELP1 = ~s~Search for elevators to go up to the roof.~s~
+	ASS_CS_ELEHELP = ~s~Press ~INPUT_CONTEXT~ to activate the elevator.~s~
+	ASS_CS_ESCAPED = ~s~The target escaped.~s~
+	ASS_CS_GOSITE = ~s~Go to the ~y~construction site.~s~
+	ASS_CS_KILL = ~s~Assassinate the ~r~target.~s~
+	ASS_CS_PARA = ~s~Leave the area.~s~
+	ASS_CS_PARA2 = ~s~Press ~INPUT_PARACHUTE_DEPLOY~ while airborne to deploy your parachute.~s~
+	ASS_CS_PASSED = Mission Passed
+	ASS_CS_REMIND = ~s~You've assassinated the target. Leave the area by any means necessary.~s~
+	ASS_CS_ROOF = ~s~Get to the ~y~rooftop.~s~
+	ASS_CS_RTNR = ~s~Return and search for the target.~s~
+	ASS_CS_RTNY = ~s~Return to the ~y~construction site.~s~
+	ASS_CS_STATION = Construction Site
+	ASS_CS_TARGET = Target
+	ASS_CS_TIMER = Time Taken
+}

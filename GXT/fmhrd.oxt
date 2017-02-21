@@ -1,0 +1,35 @@
+﻿Version 2 30
+{
+	0x6FB962ED = +~1~ RP
+	0x9562BBEB = LEAVE WAVE
+	0xD9720097 = ~a~ ~s~has not contributed to the Survival for over 2 minutes. Remember you can vote to kick players in the Pause Menu.
+	0xDADB5BCF = Kills (~a~):
+	0xFF1AA119 = ~1~
+	HRD_CASHGIVEN = Cash Awarded
+	HRD_DEADMSG1 = SPECTATING
+	HRD_DEADMSG2 = You will respawn at the start of the next wave if your team survives.
+	HRD_FIRST = START
+	HRD_GOSHT = Go to the ~y~shootout.
+	HRD_KILLSTEAM = Kills (Team):
+	HRD_LIVESEXP = If you die, the remaining members of your team will need to survive the wave before you can respawn. If everyone dies on the same wave, the Survival is over.
+	HRD_LVHRD = LEAVE SURVIVAL
+	HRD_NEXT = PREPARE
+	HRD_NOJACK = You cannot use vehicles during a Survival.
+	HRD_OBJ = Take out the ~r~enemies.
+	HRD_OBJSING = Take out the remaining ~r~enemy.
+	HRD_PREP0 = Prepare for the first wave.
+	HRD_PREP1 = Prepare for the next wave.
+	HRD_WAVE1PROG = WAVE 1
+	HRD_WAVE2PROG = WAVE 2
+	HRD_WAVE3PROG = WAVE 3
+	HRD_WAVE4PROG = WAVE 4
+	HRD_WAVE5PROG = WAVE 5
+	HRD_WAVE6PROG = WAVE 6
+	HRD_WAVE7PROG = WAVE 7
+	HRD_WAVE8PROG = WAVE 8
+	HRD_WAVE9PROG = WAVE 9
+	HRD_WAVE10PROG = WAVE 10
+	HRD_WAVEOUT = Wave ~1~ of ~1~ Complete
+	HRD_WVRCHED = Wave Reached:
+	MH_CUT_3 = SURVIVAL
+}

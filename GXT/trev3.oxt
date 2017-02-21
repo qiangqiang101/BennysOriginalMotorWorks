@@ -1,0 +1,28 @@
+﻿Version 2 30
+{
+	TRV3_1 = ~s~Go to the ~y~trailer park.
+	TRV3_2 = ~s~Go to ~y~Wade's cousin's apartment.
+	TRV3_3 = Plant the sticky bombs on the ~y~trailers.
+	TRV3_4 = ~s~Trigger the sticky bombs with ~INPUT_DETONATE~
+	TRV3_4B = ~s~Once the sticky bombs are planted they can be detonated with ~INPUT_DETONATE~.
+	TRV3_5A = Hold ~INPUT_SELECT_WEAPON~ and use ~INPUTGROUP_WHEEL~ to select sticky bombs.
+	TRV3_5B = Get close to the trailer and aim with ~INPUT_AIM~ then press ~INPUT_ATTACK~ to throw the bomb.
+	TRV3_7 = Press ~INPUT_ATTACK~ to plant a bomb on the ground or a vertical surface.
+	TRV3_8 = Mission Passed (mocap soon)
+	TRV3_9 = ~s~Go to ~y~Los Santos.
+	TRV3_12 = Detonate the bombs before leaving the trailer park.
+	TRV3_13 = Wade was abandoned.
+	TRV3_15 = Wade died.
+	TRV3_16 = The sticky bombs were depleted.
+	TRV3_19 = Return to ~b~Wade.
+	TRV3_20 = Follow ~b~Wade.
+	TRV3_21 = Return to the trailer park.
+	TRV3_BDY1 = ~s~Get back to ~b~Wade.
+	TRV3_END1 = ~s~Floyd's apartment can now be used as a safehouse. You can save vehicles by parking them in the driveway.
+	TRV3_F01 = No fail reason given.
+	TRV3_F04 = The trailer park was abandoned.
+	TRV3_F05 = Wade was abandoned.
+	TRV3_F06 = Not enough sticky bombs remaining.
+	TRV3_F07 = The lost were alerted too early.
+	TRV3_FAR = The trailer park was abandoned.
+}

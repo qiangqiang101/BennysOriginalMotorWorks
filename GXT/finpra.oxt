@@ -1,0 +1,14 @@
+﻿Version 2 30
+{
+	0x42C842F0 = The car with the stingers in it is being used to respond to a 911 call. Distract the cops to force them to leave the vehicle.
+	PR_AREAWARN = Return to steal the ~b~police van.
+	PR_FLEFT = The police compound was abandoned.
+	PR_FLEFTV = The police van was abandoned.
+	PR_FSTUCK = The police van got stuck.
+	PR_FWRECK = The police van was destroyed.
+	PR_GOVEH = Steal the ~b~police van.
+	PR_LEVVEH = Leave the police van.
+	PR_RETVEH = Return to the ~b~police van.
+	PR_TAKBACK = Take the police van to the ~y~hiding place.
+	PR_VANWARN = Get back in the ~b~police van.
+}

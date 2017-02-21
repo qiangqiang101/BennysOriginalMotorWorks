@@ -1,0 +1,11 @@
+﻿Version 2 30
+{
+	JHP1A_ABAN = Michael abandoned the mission.
+	JHP1A_BKIN = Get back in the ~b~Bugstars van.
+	JHP1A_BKINANY = Get back in one of the ~b~Bugstars vans.
+	JHP1A_STEAL_BSV = Steal and deliver a ~b~Bugstars van.
+	JHP1A_VANS_DEAD = The Bugstars vans were undrivable.
+	JHP1A_VAN_ABAN = Michael abandoned the Bugstars van.
+	JHP1A_VAN_DEAD = The Bugstars van was destroyed.
+	JHP1A_VAN_STUCK = The Bugstars van got stuck.
+}

@@ -1,0 +1,15 @@
+﻿Version 2 30
+{
+	0x7598BAC1 = ~s~The car is undriveable.
+	FAM5_FAIL = ~s~Mission Failed
+	FAM5_F_B1 = ~s~Fabien died.
+	FAM5_F_CLB = ~s~Michael's car was left behind.
+	FAM5_F_E0 = ~s~Jimmy's friend was attacked.
+	FAM5_F_E1 = ~s~Jimmy's friend was spooked.
+	FAM5_F_E2 = ~s~Jimmy's friend died.
+	FAM5_F_Y1 = ~s~Michael did not reach enlightenment.
+	FAM5_GT2 = ~s~Go to ~y~Jimmy's room.~s~
+	FAM5_GT3 = ~s~Go to ~y~Burger Shot.~s~
+	FAM5_GT4 = ~s~Go back to ~y~Michael's house.~s~
+	FAM5_HCAM = Press ~INPUT_VEH_CIN_CAM~ to toggle cinematic camera.
+}

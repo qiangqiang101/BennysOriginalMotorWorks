@@ -1,0 +1,40 @@
+﻿Version 2 30
+{
+	0x022709F2 = SFX_PAUSE_280
+	0x03A41BBB = ~z~Why haven't you called about that new opportunity? If you've fucked things up for TP Industries...
+	0x0F7520A2 = ~z~Speak.
+	0x1E18D0A4 = ~z~Trevor... hi.
+	0x3CCA33FF = 100
+	0x3FAB0411 = CHFL_ABAB
+	0x4C79AD41 = ~z~Mr. Cheng's ready to...
+	0x7BBE2A93 = 230010322010230010322010230010230
+	0x8C2C55EA = 11000001100000110000011000001100000110000011000001100000110000011000001100000
+	0x8E81FB2F = CHFL_AAAF
+	0x9CF0C883 = SFX_PAUSE_380
+	0x16D92EDA = SFX_PAUSE_220
+	0x22F3590E = SFX_PAUSE_310
+	0x32F06798 = ~z~You know I don't like using these things. They're listening.
+	0x63F15849 = ~z~Now I'm going to have to discipline you, and you know how I feel about that!!!
+	0x67D42F1C = SFX_PAUSE_130
+	0x70B1D6BA = CHFL_AAAE
+	0x84C61B4E = CHFL_AAAB
+	0x94F3B4E9 = CHFL_AAAC
+	0x95F3AAD5 = SFX_PAUSE_180
+	0x96FC3235 = 100
+	0x2090B78D = SFX_PAUSE_290
+	0x2156F195 = SFX_OVERLAP_040
+	0x4814C014 = CHFL_ABAD
+	0x36706F5C = CHFL_ABAA
+	0x685464F6 = ~z~No, no. I just thought with everything that's happening... just say the word...
+	0x5098216F = CHFL_ABAE
+	0x72447247 = CHFL_AAAD
+	0xA0F04396 = ~z~You said that on the phone? What the fuck is wrong with you?!? Damnit, Ron!!!
+	0xB0CA711A = CHFL_AAAA
+	0xB54E7EE9 = ~z~The word. I've said it. I'm on my way.
+	0xC5AD92D3 = 110000011000001100000110000011000001100000110000011000001100000
+	0xD99030E5 = CHFL_ABAC
+	0xDA0A4075 = SFX_PAUSE_310
+	0xDD3A3C2D = ~z~Then make it quick.
+	0xF99025A3 = 322010230010322010302010230
+	0xFA1EF5F6 = ~z~That business thing's been set up. The Chinese guy, Mr. Cheng is at the inn.
+}

@@ -1,0 +1,16 @@
+﻿Version 2 30
+{
+	0xFAD908D1 = Enter the gun shop.
+	PRE_BLIP = Boiler Suits
+	PRE_BUYF = Buy a boiler suit for Franklin.
+	PRE_BUYM = Buy a boiler suit for Michael.
+	PRE_BUYT = Buy a boiler suit for Trevor.
+	PRE_CASH = The required boiler suits were not purchased due to insufficient funds.
+	PRE_COPS = The Cops were alerted.
+	PRE_FKICKOFF = Unable to purchase the required boiler suits.
+	PRE_FLEFT = Ammu-Nation was abandoned.
+	PRE_GCLOTH = Buy three ~g~boiler suits.
+	PRE_LEAVE = Leave Ammu-Nation.
+	PRE_RETSHOP = Return to the ~y~shop.
+	PRE_SHOP = Shop
+}

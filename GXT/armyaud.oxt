@@ -1,0 +1,33 @@
+﻿Version 2 30
+{
+	0x1AA0E501 = ARMY_AAAA
+	0x2EA48067 = ~z~Sir, leave the area now. This is for authorized personnel only!
+	0x3B1A7EAE = 400
+	0x3B2DC97C = ARMY_AEAA
+	0x3CF8AC71 = 302
+	0x5D36F133 = 1100000
+	0x6AE21948 = 302
+	0x7CDC3515 = 100
+	0x7E433482 = 100
+	0x7F035944 = 100
+	0x8BB60F12 = ARMY_ABAA
+	0x32EEFEA2 = ARMY_ACAA
+	0x67DDFCE6 = ARMY_ADAA
+	0x528A9C4D = ~z~This is US Army air space. Divert or face the consequences.
+	0x915B9022 = 302
+	0x7905AE62 = 1100001
+	0x22410FFA = 100
+	0x231426C0 = ~z~This is a no fly zone. Divert your course.
+	0x4912803A = 1100000
+	0x80326316 = 302
+	0xA1CC94DC = ARMY_AGAA
+	0xA4522D86 = ~z~You are in the Fort Zancudo no fly zone. Divert or you will be shot down.
+	0xA6168C68 = 1100001
+	0xA36887D5 = 400
+	0xBBB86264 = 100
+	0xBCA6EA0E = 1100001
+	0xBFBF7821 = 100
+	0xC7FCEEBA = ~z~You have entered Fort Zancudo Air Space. Divert immediately.
+	0xF11A6ED0 = ~z~I'm not going to say this again. Leave now!
+	0xFF336D9B = 1100001
+}

@@ -1,0 +1,12 @@
+﻿Version 2 30
+{
+	PRB_FFAR = The tow truck was abandoned.
+	PRB_FSTUCK = The tow truck is stuck.
+	PRB_FWRECK = The tow truck was wrecked.
+	PRB_GOVAN = Steal the ~b~tow truck.
+	PRB_LEVAREA = Leave the area.
+	PRB_LEVVEH = Leave the tow truck.
+	PRB_LOSETOW = Lose the ~r~mechanic.
+	PRB_RETVEH = Get back in the ~b~tow truck.
+	PRB_TAKBACK = Take the tow truck to the ~y~FIB lot.
+}

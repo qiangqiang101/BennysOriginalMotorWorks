@@ -1,0 +1,30 @@
+﻿Version 2 30
+{
+	0x00ABB9E9 = ~s~Michael and the gang abseil down the lift shaft to safety. Then ditch the fire truck and seperate.
+	0x03389B7E = ~s~Escape and lose the Cops.
+	0x0B21848C = ~s~Enter the ~y~FIB Headquarters.
+	0x3AA9AE07 = ~s~A ~b~crew member~s~ was abandoned.
+	0x6EDF4773 = ~s~Escape the building. Get to the ~y~elevators.
+	0x7C697DC1 = ~s~Press ~INPUT_VEH_ATTACK~ to use the lift.
+	0x54FB1D55 = ~r~One of your crew died.
+	0x79ABA3D8 = ~s~The ~b~crew~s~ was abandoned.
+	0x82F2A477 = ~s~Escape the building. Get back to the ~y~staircase.
+	0x94C9AFBC = ~s~Get back in the ~b~fire truck.~s~
+	0x130F4E90 = ~s~Get into the ~b~fire truck.
+	0x796B4432 = ~s~Enter the ~y~elevator.
+	0x9297E08A = ~s~Press ~PAD_LSTICK_NONE~ to turn on the siren.
+	0x651880A1 = ~s~Steal the ~g~documents.~s~
+	0x6665525E = ~r~Fire truck destroyed.
+	0xA5C7D07D = Hotswap to Michael. Press and hold ~INPUT_VEH_ATTACK~ then select ~input_whistle~.
+	0xA76E4CAF = ~s~Ditch the fire truck at the ~y~underpass.
+	0xAC9975D1 = ~s~Assemble with the crew and get the ~b~fire truck.
+	0xC95D063F = ~s~Get to the ~y~FIB Headquarters.~s~
+	0xD0BB57E5 = ~s~Michael, the documents are stored on a laptop on the 53rd floor. Let's go...
+	0xD6AFBD3A = ~s~Get near to the ~y~FIB Headquarters.~s~
+	0xD2416D83 = ~s~MISSION PASSED
+	0xDB9E6DAB = ~s~Follow ~b~Trevor and the crew~s~ and find an ~y~escape route.
+	0xE9BC46D5 = ~r~The crew was abandoned.
+	0xE79B0598 = ~s~Follow ~b~Trevor and the crew~s~ to the ~y~53rd floor.
+	0xF13C8550 = ~s~Use the phone to trigger the explosive charge.~s~
+	0xF5698CE6 = ~s~The meter around the radar represents the oxygen level available. Escape before it runs out.
+}

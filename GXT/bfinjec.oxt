@@ -1,0 +1,38 @@
+﻿Version 2 30
+{
+	0x0025FD51 = Press ~INPUT_PHONE~ to bring up the phone.
+	0x1B0F0E7A = Access the Sniper app.
+	0x3A97D6FB = Targets need distance compensation to hit. Zoom in on the target to calculate distance compensation.
+	0x8E3AB981 = Call Franklin.
+	0x9A734AE7 = Get a vehicle or get back on the ~b~bike.
+	0x22C79DEF = The remote sniper was not activated in time and the plane got away.
+	0x87B04037 = Go to the ~y~viewpoint.~s~
+	0x451B14DB = Take out the ~r~target.~s~
+	0xD7570707 = ~s~Take the sniper to the ~y~locker.
+	2SLOW = The plane got too close to the airport.
+	BFCHASE = Follow the plane and get the package.
+	BFDAMAGE = Shoot the ~r~plane's engine.
+	BFDRIVE = Go to the ~y~observatory.
+	BFFLOST = Trevor lost the plane.
+	BFHELPTXT2 = Press ~INPUT_VEH_CIN_CAM~ to toggle focus onto the plane.
+	BFHELPTXT4 = Aim for the red target calculated to compensate for the distance.
+	M1_FAIL1 = ~s~The remote sniper was destroyed.
+	M1_FAIL2 = ~s~Michael abandoned the van.
+	M1_FAIL3 = ~s~Trevor died.
+	M1_FAIL4 = ~s~Michael died.
+	M1_FAIL5 = ~s~Trevor's car was destroyed.
+	M1_FAIL6 = ~s~Michael destroyed the van too close to the observatory.
+	M1_GOD1 = ~s~Go inside the ~b~plane.
+	M1_GOD2 = ~s~Silence ~r~Javier.
+	M1_GOD3 = ~s~Lose the Cops.
+	M1_GOD4 = ~s~Destroy the ~r~van.
+	M1_GOD5 = ~s~Leave the area.
+	M1_HELP1 = ~s~Zoom in and out with ~INPUT_SNIPER_ZOOM~
+	M1_HELP2 = ~s~Move the rifle with ~INPUTGROUP_LOOK~
+	M1_HELP3 = ~s~The plane will need multiple shots to be taken down.
+	SNIPE4 = Take the plane out before it's too late.
+	SNIPE5 = ~s~Go to ~y~Martin's house.
+	SNIPE7 = ~s~Meet Trevor at the ~y~cement works.
+	SNIPE8 = ~s~Get in the ~b~van.
+	SNIPE9 = ~s~Get back in the ~b~van.
+}

@@ -1,0 +1,20 @@
+﻿Version 2 30
+{
+	0xAE66BC86 = The race was lost.
+	0xEFB708C1 = CHECKPOINT
+	FATIC3_1 = Swim across the ~y~bay.
+	FATIC3_2 = Get on a ~b~bike.
+	FATIC3_3 = Cycle around the ~y~trail.
+	FATIC3_6 = Run along the ~y~route.
+	FATIC3_7 = Mary-Ann died.
+	FATIC3_8 = The race was lost.
+	FATIC3_10 = Mary-Ann was injured.
+	FATIC3_11 = One of the bikes was destroyed.
+	FATIC3_12 = Get on the ~b~bike.
+	FATIC3_13 = Mary-Ann was spooked.
+	FATIC3_14 = The race was abandoned.
+	FATIC3_15 = Return to the ~y~race.
+	FATIC3_16 = Mary-Ann got too far ahead.
+	FATIC3_BACKON = Get back on the ~b~bike.
+	FATIC3_YOURBIKE = A bike was destroyed.
+}

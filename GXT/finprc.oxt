@@ -1,0 +1,14 @@
+﻿Version 2 30
+{
+	PRF_BUYPREP = Purchase the vehicle mods required for the job.
+	PRF_CASH = The required mods cannot be purchased due to insufficient funds.
+	PRF_FFAR = The getaway vehicle was abandoned.
+	PRF_FKICKOFF = Unable to purchase the required mods.
+	PRF_FSTUCK = The getaway vehicle is stuck.
+	PRF_FWRECK = The getaway vehicle was wrecked.
+	PRF_GARAGE = Take the getaway vehicle to the ~y~lock up.
+	PRF_LEAVE = Leave the vehicle in the lock up.
+	PRF_LEV = Leave Los Santos Customs.
+	PRF_RETVEH = Get back in the ~b~getaway vehicle.
+	PRF_TAKBACK = Take the getaway vehicle to ~y~Los Santos Customs.
+}

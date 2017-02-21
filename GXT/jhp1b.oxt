@@ -1,0 +1,16 @@
+﻿Version 2 30
+{
+	0x02D00C89 = ~w~The truck got stuck.~s~
+	0x9A2B83AC = ~s~Get out of the truck.~s~
+	0x3358EA95 = ~s~The yellow bar indicates Michael's special ability level. Press ~INPUT_SPECIAL_ABILITY_PC~ to slow down time.~s~
+	JHP1B_ABAN = Michael failed to retrieve the truck.
+	JHP1B_BACK_VAN = ~s~Get back in the ~b~truck.~s~
+	JHP1B_HLP_SPCL1 = ~s~The yellow bar indicates Michael's special ability level. Press ~INPUT_SPECIAL_ABILITY~ + ~INPUT_SPECIAL_ABILITY_SECONDARY~ together to slow down time.~s~
+	JHP1B_HLP_SPCL2 = ~s~Michael's special ability bar will fill when Michael performs lethal moves such as headshots and stealth takedowns.
+	JHP1B_RTNVAN = ~s~Go to the ~y~garment factory.~s~
+	JHP1B_STAT = ~w~The truck reached the station.
+	JHP1B_STEAL_VAN = ~s~Steal the ~b~LSPD tactical team truck.~s~
+	JHP1B_VAN_DEAD = ~w~The truck was destroyed.~s~
+	JHP1B_WARN_ESC = ~s~Don't let the ~b~truck~s~ escape.
+	JHP1B_WARN_LVE = ~s~Don't leave the ~b~truck~s~ behind.
+}

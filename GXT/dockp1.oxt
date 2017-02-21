@@ -1,0 +1,30 @@
+﻿Version 2 30
+{
+	0x357C61C9 = ~s~Shoot the ropes or press the ~g~button~s~ to release the sub.
+	0xCE51A587 = Hold ~INPUT_VEH_SUB_DESCEND~ to dive or hold ~INPUT_VEH_SUB_ASCEND~ to surface.
+	DKP1_ABFLD = ~s~Return to ~b~Floyd.~s~
+	DKP1_ABSUB = ~s~Don't leave the sub behind.~s~
+	DKP1_ATTACH = ~s~Re-attach the ~b~trailer.~s~
+	DKP1_BTN = ~s~Press ~INPUT_CONTEXT~ to release the sub.
+	DKP1_CLIMB = ~s~Climb onto the sub to enter it.
+	DKP1_EXIT = ~s~Get out of the truck.
+	DKP1_FABD = ~w~Trevor left the mission area.~s~
+	DKP1_FABF = ~w~Floyd was abandoned.~s~
+	DKP1_FABS = ~w~The sub was abandoned.~s~
+	DKP1_FDES1 = ~w~The sub was wrecked.~s~
+	DKP1_FDES2 = ~w~The truck was wrecked.~s~
+	DKP1_FFCAR = ~w~Floyd's pickup was wrecked.~s~
+	DKP1_FFLOYD = ~w~Floyd died.~s~
+	DKP1_FLOST1 = ~w~The sub was lost.~s~
+	DKP1_FSTUCK1 = ~w~The sub is stuck.~s~
+	DKP1_FSTUCK2 = ~w~The truck is stuck.~s~
+	DKP1_SUB = ~s~Retrieve the ~b~sub.~s~
+	DKP1_SUBBK = ~s~Get back in the ~b~sub.~s~
+	DKP1_SUBTURN = Hold ~INPUT_VEH_SUB_TURN_HARD_LEFT~/~INPUT_VEH_SUB_TURN_HARD_RIGHT~ to turn on the spot.
+	DKP1_TK1 = ~s~Go to the ~y~extraction point.~s~
+	DKP1_TK2 = ~s~Drop the sub off at the ~y~warehouse.~s~
+	DKP1_TRUCK = ~s~Get in the ~b~truck.~s~
+	DKP1_TRUCKBK = ~s~Get back in the ~b~truck.~s~
+	SUBBTN_LABEL = Sub Release
+	SUB_HELP = While in the submersible use ~INPUT_VEH_SUB_ASCEND~ to ascend and ~INPUT_VEH_SUB_DESCEND~ to descend.
+}

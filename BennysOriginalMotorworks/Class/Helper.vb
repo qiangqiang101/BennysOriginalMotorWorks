@@ -667,7 +667,7 @@ Public Class Helper
                     result = Game.GetGXTEntry("CMOD_MOD_TUR")
                     Exit Select
                 Case VehicleToggleMod.XenonHeadlights
-                    result = Game.GetGXTEntry("CMOD_MOD_LGT_H")
+                    result = Game.GetGXTEntry("CMOD_LGT_1")
                     Exit Select
                 Case VehicleToggleMod.TireSmoke
                     result = Game.GetGXTEntry("CMOD_MOD_TYR3")

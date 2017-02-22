@@ -7,7 +7,7 @@
     <ProjectGuid>{9E3E5577-CA9A-48C1-8FD1-D2B530D1108C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>BennysOriginalMotorworks</RootNamespace>
-    <AssemblyName>BennysOriginalMotorworks</AssemblyName>
+    <AssemblyName>BennysOriginalMotorWorks</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
@@ -18,7 +18,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>BennysOriginalMotorworks.xml</DocumentationFile>
+    <DocumentationFile>BennysOriginalMotorWorks.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -27,7 +27,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>BennysOriginalMotorworks.xml</DocumentationFile>
+    <DocumentationFile>BennysOriginalMotorWorks.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -77,6 +77,7 @@
     <Compile Include="Class\CutsceneManager.vb" />
     <Compile Include="Class\Helper.vb" />
     <Compile Include="Class\Logger.vb" />
+    <Compile Include="Class\ScriptedCamera.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

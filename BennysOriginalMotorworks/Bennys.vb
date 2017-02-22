@@ -15,6 +15,9 @@ Public Class Bennys
     Public Shared isExiting As Boolean = False
     Public Shared lastVehMemory As Memory
     Public Shared BennysBlip As Blip
+    Public Shared bennyPed As Ped
+    Public Shared isCutscene As Boolean = False
+    Public Shared scriptCam As ScriptedCamera
 
     Public Sub New()
         LoadSettings()
@@ -24,7 +27,7 @@ Public Class Bennys
     End Sub
 
     Public Sub LoadSettings()
-        Dim config As ScriptSettings = ScriptSettings.Load("scripts\BennysOriginalMotorworks.ini")
+        Dim config As ScriptSettings = ScriptSettings.Load("scripts\BennysOriginalMotorWorks.ini")
         onlineMap = config.GetValue(Of Integer)("SETTINGS", "OnlineMap", 1)
         fixDoor = config.GetValue(Of Integer)("SETTINGS", "FixDoor", 1)
 
@@ -38,14 +41,21 @@ Public Class Bennys
             veh = Game.Player.Character.LastVehicle
             ply = Game.Player.Character
 
-            If Game.IsControlPressed(0, Control.Jump) AndAlso Game.IsControlPressed(0, Control.Reload) Then
-                Dim s As String = Game.GetUserInput(System.Windows.Forms.Clipboard.GetText(), 99)
-                UI.Notify(Game.GetGXTEntry(s))
+            'If Game.IsControlPressed(0, Control.Jump) AndAlso Game.IsControlPressed(0, Control.Reload) Then
+            '    Dim s As String = Game.GetUserInput(System.Windows.Forms.Clipboard.GetText(), 99)
+            '    UI.Notify(Game.GetGXTEntry(s))
 
-                'For Each line As String In IO.File.ReadLines("C:\New.txt")
-                '    Logger.Log(Game.GetGXTEntry(line) & ", " & line)
-                'Next
-            End If
+            '    'For Each line As String In IO.File.ReadLines("C:\New.txt")
+            '    '    Logger.Log(Game.GetGXTEntry(line) & ", " & line)
+            '    'Next
+
+            '    'For i As Integer = 0 To 500
+            '    '    Logger.Write("CMOD_MOD_" & i & "_D = " & Game.GetGXTEntry("CMOD_MOD_" & i & "_D"))
+            '    'Next
+            '    'For i As Integer = 0 To 500
+            '    '    Logger.Write("CMOD_SMOD_" & i & "_D = " & Game.GetGXTEntry("CMOD_SMOD_" & i & "_D"))
+            '    'Next
+            'End If
 
             If fixDoor = 1 Then
                 If veh.Position.DistanceTo(New Vector3(-205.6828, -1310.683, 30.29572)) <= 10 Then
@@ -59,6 +69,7 @@ Public Class Bennys
                 If Not isExiting Then
                     If veh.Position.DistanceTo(New Vector3(-205.6165, -1312.976, 31.1331)) <= 5 Then
                         SaveTitleNames()
+                        PlayCutScene()
                         PutVehIntoShop()
                     Else
                         If veh.Position.DistanceTo(New Vector3(-211.798, -1324.292, 30.37535)) <= 5 Then
@@ -67,6 +78,7 @@ Public Class Bennys
                         End If
                     End If
                 End If
+                If isExiting Then Native.Function.Call(Hash.HIDE_HUD_AND_RADAR_THIS_FRAME)
             End If
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
@@ -82,7 +94,7 @@ Public Class Bennys
     End Sub
 
     Public Shared Sub SaveTitleNames()
-        Dim langConf As ScriptSettings = ScriptSettings.Load("scripts\bennyslang.ini")
+        Dim langConf As ScriptSettings = ScriptSettings.Load("scripts\BennysLang.ini")
         If langConf.GetValue("TITLE", "AERIALS") = "NULL" Then langConf.SetValue("TITLE", "AERIALS", Game.GetGXTEntry("CMM_MOD_ST18"))
         If langConf.GetValue("TITLE", "BODYWORK") = "NULL" Then langConf.SetValue("TITLE", "BODYWORK", Game.GetGXTEntry("CMOD_BW_T"))
         If langConf.GetValue("TITLE", "DOORS") = "NULL" Then langConf.SetValue("TITLE", "DOORS", Game.GetGXTEntry("CMM_MOD_ST6"))
@@ -165,7 +177,7 @@ Public Class Bennys
     End Sub
 
     Public Shared Sub CreateTitleNames()
-        Dim langConf As ScriptSettings = ScriptSettings.Load("scripts\bennyslang.ini")
+        Dim langConf As ScriptSettings = ScriptSettings.Load("scripts\BennysLang.ini")
         langConf.SetValue("TITLE", "AERIALS", Game.GetGXTEntry("CMM_MOD_ST18"))
         langConf.SetValue("TITLE", "BODYWORK", Game.GetGXTEntry("CMOD_BW_T"))
         langConf.SetValue("TITLE", "DOORS", Game.GetGXTEntry("CMM_MOD_ST6"))
@@ -245,10 +257,49 @@ Public Class Bennys
         langConf.Save()
     End Sub
 
-    Public Shared Sub PutVehIntoShop()
+    Public Shared Sub PlayCutScene()
         Try
             Game.FadeScreenOut(500)
             Wait(500)
+            isExiting = True
+            isCutscene = True
+            Native.Function.Call(Hash._0x260BE8F09E326A20, veh, 3.0, 0, False)
+            If bennyPed = Nothing Then
+                bennyPed = World.CreatePed(PedHash.Benny, New Vector3(-216.0945, -1319.185, 30.89038), 219.5891)
+            Else
+                bennyPed.Delete()
+                bennyPed = World.CreatePed(PedHash.Benny, New Vector3(-216.0945, -1319.185, 30.89038), 219.5891)
+            End If
+            bennyPed.Task.LookAt(veh)
+            bennyPed.AlwaysKeepTask = True
+            veh.Position = New Vector3(-205.4903, -1313.958, 31.02291)
+            veh.Heading = 180.3224
+            Wait(500)
+            Game.FadeScreenIn(500)
+            scriptCam = New ScriptedCamera()
+            ScriptedCamera.EnableCamera()
+            ScriptedCamera.prevPos = New Vector4(New Vector3(-201.1808, -1321.512, 32.20821))
+            ScriptedCamera.TransitionToPoint(New Vector4(New Vector3(-200.7804, -1316.474, 32.08001)), 5000)
+            ScriptedCamera.CameraShake(CameraShake.Hand, 0.4)
+            ScriptedCamera.PointAt(veh)
+            ply.Task.DriveTo(veh, New Vector3(-211.798, -1324.292, 30.37535), 0.1, 2)
+            Wait(7000)
+            ply.Task.ClearAll()
+            Game.FadeScreenOut(500)
+            Wait(500)
+            World.DestroyAllCameras()
+            ScriptedCamera.DisableCamera()
+            isExiting = False
+            isCutscene = False
+        Catch ex As Exception
+            Logger.Log(ex.Message & " " & ex.StackTrace)
+        End Try
+    End Sub
+
+
+    Public Shared Sub PutVehIntoShop()
+        Try
+
             veh.InstallModKit()
             RefreshMenus()
             lastVehMemory = New Memory() With {
@@ -309,7 +360,6 @@ Public Class Bennys
                 .PrimaryColor = veh.PrimaryColor,
                 .RimColor = veh.RimColor,
                 .SecondaryColor = veh.SecondaryColor,
-                .Livery2 = veh.Livery,
                 .TireSmokeColor = veh.TireSmokeColor,
                 .NeonLightsColor = veh.NeonLightsColor,
                 .PlateNumbers = veh.NumberPlate,
@@ -328,5 +378,6 @@ Public Class Bennys
     Public Sub OnAborted() Handles MyBase.Aborted
         BennysBlip.Remove()
         Game.FadeScreenIn(500)
+        If Not bennyPed = Nothing Then bennyPed.Delete()
     End Sub
 End Class

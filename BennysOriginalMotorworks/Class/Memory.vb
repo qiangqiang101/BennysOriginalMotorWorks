@@ -453,16 +453,6 @@
         End Set
     End Property
 
-    Private _livery2 As Integer
-    Public Property Livery2() As Integer
-        Get
-            Return _livery2
-        End Get
-        Set(value As Integer)
-            _livery2 = value
-        End Set
-    End Property
-
     Private _plaques As Integer
     Public Property Plaques() As Integer
         Get

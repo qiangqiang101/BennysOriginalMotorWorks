@@ -10,7 +10,7 @@ Public Class BennysMenu
 
     Public Shared lowriders As List(Of Model) = New List(Of Model) From {"banshee", "Buccaneer", "chino", "diabolus", "comet2", "faction", "faction2", "fcr", "italigtb", "minivan", "moonbeam", "nero", "primo", "sabregt",
         "slamvan", "specter", "sultan", "tornado", "tornado2", "tornado3", "virgo3", "voodoo2", "elegy2"}
-    Public Shared bennysvehicle As List(Of Model) = New List(Of Model) From {"banshee2", "buccaneer2", "chino2", "diabolus2", "comet", "faction2", "faction3", "fcr2", "italigtb2", "minivan2", "moonbeam2", "nero2", "primo2",
+    Public Shared bennysvehicle As List(Of Model) = New List(Of Model) From {"banshee2", "buccaneer2", "chino2", "diabolus2", "comet3", "faction2", "faction3", "fcr2", "italigtb2", "minivan2", "moonbeam2", "nero2", "primo2",
         "sabregt2", "specter2", "sultanrs", "tornado5", "virgo2", "voodoo", "elegy"}
     Public Shared tyres As String() = New String() {"Stock", "Thin White", "White", "Fat White", "Red", "Blue", "Atomic"}
     Public Shared MainMenu, gmBodywork, gmEngine, gmInterior, gmPlate, gmLights, gmRespray, gmWheels, gmBumper, gmWheelType, gmNeonKits, gmDoor As UIMenu
@@ -185,13 +185,15 @@ Public Class BennysMenu
                 iTurbo = New UIMenuItem(Helper.LocalizedModTypeName(VehicleToggleMod.Turbo), Game.GetGXTEntry("CMOD_MOD_27_D"))
                 MainMenu.AddItem(iTurbo)
                 MainMenu.BindMenuToItem(mTurbo, iTurbo)
-                iTint = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.Windows), Game.GetGXTEntry("CMOD_MOD_29_D"))
-                MainMenu.AddItem(iTint)
-                MainMenu.BindMenuToItem(mTint, iTint)
+                If Not Bennys.veh.ClassType = VehicleClass.Motorcycles Then
+                    iTint = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.Windows), Game.GetGXTEntry("CMOD_MOD_29_D"))
+                    MainMenu.AddItem(iTint)
+                    MainMenu.BindMenuToItem(mTint, iTint)
+                End If
                 MainMenu.RefreshIndex()
-            End If
+                End If
 
-            MainMenu.RefreshIndex()
+                MainMenu.RefreshIndex()
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
         End Try
@@ -294,49 +296,70 @@ Public Class BennysMenu
                     Game.FadeScreenIn(500)
                     Helper.ScreenEffectStart(Helper.ScreenEffect.RaceTurbo, 1000)
                 ElseIf selectedItem Is giEngine Then
-                    Bennys.veh.OpenDoor(VehicleDoor.Hood, False, False)
-                    camera.MainCameraPosition = CameraPosition.Engine
+                    Select Case Bennys.veh.Model
+                        Case "comet2"
+                            Bennys.veh.OpenDoor(VehicleDoor.Trunk, False, False)
+                            camera.MainCameraPosition = CameraPosition.Engine
+                        Case "comet3"
+                            Bennys.veh.OpenDoor(VehicleDoor.Hood, False, False)
+                            camera.MainCameraPosition = CameraPosition.RearBumper
+                        Case Else
+                            Bennys.veh.OpenDoor(VehicleDoor.Hood, False, False)
+                            camera.MainCameraPosition = CameraPosition.Engine
+                    End Select
                 ElseIf selectedItem Is giInterior Then
-                    camera.MainCameraPosition = CameraPosition.Interior
+                    If Bennys.veh.ClassType = VehicleClass.Motorcycles Then
+                        camera.MainCameraPosition = CameraPosition.Car
+                    Else
+                        camera.MainCameraPosition = CameraPosition.Interior
+                    End If
                 ElseIf selectedItem Is giWheels Then
                     camera.MainCameraPosition = CameraPosition.Wheels
                 ElseIf selectedItem Is giLights Then
                     Bennys.veh.HighBeamsOn = True
                 ElseIf selectedItem Is giExhaust Then
                     Select Case Bennys.veh.Model
-                        Case VehicleHash.SultanRS
+                        Case "sultanrs", "guardian"
                             camera.MainCameraPosition = CameraPosition.Wheels
+                        Case "police3"
+                            camera.MainCameraPosition = CameraPosition.Trunk
                         Case Else
-                            camera.MainCameraPosition = CameraPosition.RearBumper
+                            If Bennys.veh.ClassType = VehicleClass.Motorcycles Then
+                                camera.MainCameraPosition = CameraPosition.BikeExhaust
+                            Else
+                                camera.MainCameraPosition = CameraPosition.RearBumper
+                            End If
                     End Select
                 ElseIf selectedItem Is giBrakes Then
                     camera.MainCameraPosition = CameraPosition.Wheels
                 ElseIf selectedItem Is giGrille Then
                     camera.MainCameraPosition = CameraPosition.Grille
                 ElseIf selectedItem Is giHood Then
-                    camera.MainCameraPosition = CameraPosition.Engine
+                    Select Case Bennys.veh.Model
+                        Case "comet3"
+                            camera.MainCameraPosition = CameraPosition.FrontBumper
+                        Case Else
+                            camera.MainCameraPosition = CameraPosition.Hood
+                    End Select
                 ElseIf selectedItem Is giHydraulics Then
                     Bennys.veh.OpenDoor(VehicleDoor.Trunk, False, False)
                     camera.MainCameraPosition = CameraPosition.Trunk
                 ElseIf selectedItem Is giPlaques Then
-                    Select Case Bennys.veh.Model
-                        Case VehicleHash.SlamVan3, VehicleHash.Buccaneer2
-                            camera.MainCameraPosition = CameraPosition.Trunk
-                        Case Else
-                            camera.MainCameraPosition = CameraPosition.Plaque
-                    End Select
+                    camera.MainCameraPosition = CameraPosition.Plaque
                 ElseIf selectedItem Is giSpoilers Then
                     Select Case Bennys.veh.Model
-                        Case Game.GenerateHash("prototipo")
+                        Case "prototipo"
                             camera.MainCameraPosition = CameraPosition.RearBumper
+                        Case "comet3"
+                            camera.MainCameraPosition = CameraPosition.RearWindscreen
                         Case Else
                             camera.MainCameraPosition = CameraPosition.Trunk
                     End Select
                 ElseIf selectedItem Is giTank Then
                     Select Case Bennys.veh.Model
-                        Case VehicleHash.SlamVan3
+                        Case "slamvan3"
                             camera.MainCameraPosition = CameraPosition.Trunk
-                        Case Game.GenerateHash("elegy")
+                        Case "elegy"
                             camera.MainCameraPosition = CameraPosition.FrontPlate
                         Case Else
                             camera.MainCameraPosition = CameraPosition.Tank
@@ -922,10 +945,11 @@ Public Class BennysMenu
             iNeon = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.NeonLayout))
             gmNeonKits.AddItem(iNeon)
             gmNeonKits.BindMenuToItem(mNeon, iNeon)
-            iNeonColor = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.NeonColor), Game.GetGXTEntry("CMOD_MOD_6_D"))
-            gmNeonKits.AddItem(iNeonColor)
-            gmNeonKits.BindMenuToItem(mNeonColor, iNeonColor)
-            'gmNeonKits.BindMenuToItem(mNeonColor, iNeonColor)
+            If Not Bennys.veh.ClassType = VehicleClass.Motorcycles Then
+                iNeonColor = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.NeonColor), Game.GetGXTEntry("CMOD_MOD_6_D"))
+                gmNeonKits.AddItem(iNeonColor)
+                gmNeonKits.BindMenuToItem(mNeonColor, iNeonColor)
+            End If
             gmNeonKits.RefreshIndex()
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
@@ -1313,7 +1337,13 @@ Public Class BennysMenu
             Bennys.veh.TireSmokeColor = Bennys.lastVehMemory.TireSmokeColor
 
             'Close Doors
-            If sender Is gmEngine Then Bennys.veh.CloseDoor(VehicleDoor.Hood, False)
+            If sender Is gmEngine Then
+                If Bennys.veh.Model = "comet2" Then
+                    Bennys.veh.CloseDoor(VehicleDoor.Trunk, False)
+                Else
+                    Bennys.veh.CloseDoor(VehicleDoor.Hood, False)
+                End If
+            End If
             If sender Is mDoor Then
                 Bennys.veh.CloseDoor(VehicleDoor.FrontLeftDoor, False)
                 Bennys.veh.CloseDoor(VehicleDoor.FrontRightDoor, False)
@@ -1849,18 +1879,37 @@ Public Class BennysMenu
             'Camera
             If sender Is gmBumper Then
                 If selectedItem Is giFBumper Then
-                    camera.MainCameraPosition = CameraPosition.FrontBumper
+                    Select Case Bennys.veh.Model
+                        Case "police3"
+                            camera.MainCameraPosition = CameraPosition.Hood
+                        Case Else
+                            camera.MainCameraPosition = CameraPosition.FrontBumper
+                    End Select
                 ElseIf selectedItem Is giRBumper Then
-                    camera.MainCameraPosition = CameraPosition.RearBumper
+                    Select Case Bennys.veh.Model
+                        Case "police3"
+                            camera.MainCameraPosition = CameraPosition.Trunk
+                        Case Else
+                            camera.MainCameraPosition = CameraPosition.RearBumper
+                    End Select
                 ElseIf selectedItem Is giSSkirt
                     camera.MainCameraPosition = CameraPosition.Wheels
                 End If
             ElseIf sender Is gmPlate Then
                 If selectedItem Is giNumberPlate Then
-                    camera.MainCameraPosition = CameraPosition.BackPlate
+                    Select Case Bennys.veh.Model
+                        Case "police"
+                            camera.MainCameraPosition = CameraPosition.Car
+                        Case Else
+                            If Bennys.veh.ClassType = VehicleClass.Motorcycles Then
+                                camera.MainCameraPosition = CameraPosition.Car
+                            Else
+                                camera.MainCameraPosition = CameraPosition.BackPlate
+                            End If
+                    End Select
                 ElseIf selectedItem Is giPlateHolder Then
                     Select Case Bennys.veh.Model
-                        Case VehicleHash.SlamVan3
+                        Case "slamvan3"
                             camera.MainCameraPosition = CameraPosition.RearBumper
                         Case Else
                             camera.MainCameraPosition = CameraPosition.FrontBumper

@@ -18,6 +18,8 @@ Public Class Bennys
     Public Shared bennyPed As Ped
     Public Shared isCutscene As Boolean = False
     Public Shared scriptCam As ScriptedCamera
+    Public Shared unWelcome As List(Of VehicleClass) = New List(Of VehicleClass) From {VehicleClass.Commercial, VehicleClass.Boats, VehicleClass.Cycles, VehicleClass.Helicopters, VehicleClass.Military}
+    Public Shared unWelcomeV As List(Of Model) = New List(Of Model) From {"firetruck", "pbus", "policeb", "riot", "dump", "cutter", "bulldozer", "flatbed", "handler", "mixer", "mixer2", "rubble", "tiptruck", "tiptruck2"}
 
     Public Sub New()
         LoadSettings()
@@ -41,31 +43,33 @@ Public Class Bennys
             veh = Game.Player.Character.LastVehicle
             ply = Game.Player.Character
 
-            'If Game.IsControlPressed(0, Control.Jump) AndAlso Game.IsControlPressed(0, Control.Reload) Then
-            '    Dim s As String = Game.GetUserInput(System.Windows.Forms.Clipboard.GetText(), 99)
-            '    UI.Notify(Game.GetGXTEntry(s))
+            If Game.IsControlPressed(0, Control.Jump) AndAlso Game.IsControlPressed(0, Control.Reload) Then
+                Dim s As String = Game.GetUserInput(System.Windows.Forms.Clipboard.GetText(), 99)
+                UI.Notify(Game.GetGXTEntry(s))
 
-            '    'For Each line As String In IO.File.ReadLines("C:\New.txt")
-            '    '    Logger.Log(Game.GetGXTEntry(line) & ", " & line)
-            '    'Next
+                'For Each line As String In IO.File.ReadLines("C:\New.txt")
+                '    Logger.Log(Game.GetGXTEntry(line) & ", " & line)
+                'Next
 
-            '    'For i As Integer = 0 To 500
-            '    '    Logger.Write("CMOD_MOD_" & i & "_D = " & Game.GetGXTEntry("CMOD_MOD_" & i & "_D"))
-            '    'Next
-            '    'For i As Integer = 0 To 500
-            '    '    Logger.Write("CMOD_SMOD_" & i & "_D = " & Game.GetGXTEntry("CMOD_SMOD_" & i & "_D"))
-            '    'Next
-            'End If
+                'For i As Integer = 0 To 500
+                '    Logger.Write("CMOD_MOD_" & i & "_D = " & Game.GetGXTEntry("CMOD_MOD_" & i & "_D"))
+                'Next
+                'For i As Integer = 0 To 500
+                '    Logger.Write("CMOD_SMOD_" & i & "_D = " & Game.GetGXTEntry("CMOD_SMOD_" & i & "_D"))
+                'Next
+            End If
 
             If fixDoor = 1 Then
-                If veh.Position.DistanceTo(New Vector3(-205.6828, -1310.683, 30.29572)) <= 10 Then
-                    Native.Function.Call(Hash._DOOR_CONTROL, -427498890, -205.6828, -1310.683, 30.29572, 0, 0.0, 50.0, 0)
-                Else
-                    Native.Function.Call(Hash._DOOR_CONTROL, -427498890, -205.6828, -1310.683, 30.29572, 1, 0.0, 50.0, 0)
+                If Not unWelcome.Contains(veh.ClassType) AndAlso Not unWelcomeV.Contains(veh.Model) Then
+                    If veh.Position.DistanceTo(New Vector3(-205.6828, -1310.683, 30.29572)) <= 10 Then
+                        Native.Function.Call(Hash._DOOR_CONTROL, -427498890, -205.6828, -1310.683, 30.29572, 0, 0.0, 50.0, 0)
+                    Else
+                        Native.Function.Call(Hash._DOOR_CONTROL, -427498890, -205.6828, -1310.683, 30.29572, 1, 0.0, 50.0, 0)
+                    End If
                 End If
             End If
 
-            If Helper.GetInteriorID(ply.Position) = bennyIntID Then
+            If Helper.GetInteriorID(ply.Position) = bennyIntID AndAlso (Not unWelcome.Contains(veh.ClassType) AndAlso Not unWelcomeV.Contains(veh.Model)) Then
                 If Not isExiting Then
                     If veh.Position.DistanceTo(New Vector3(-205.6165, -1312.976, 31.1331)) <= 5 Then
                         SaveTitleNames()
@@ -282,8 +286,10 @@ Public Class Bennys
             ScriptedCamera.TransitionToPoint(New Vector4(New Vector3(-200.7804, -1316.474, 32.08001)), 5000)
             ScriptedCamera.CameraShake(CameraShake.Hand, 0.4)
             ScriptedCamera.PointAt(veh)
+            ply.Task.DriveTo(veh, New Vector3(-207.155, -1320.521, 30.8904), 0.1, 2.3)
+            Wait(2000)
             ply.Task.DriveTo(veh, New Vector3(-211.798, -1324.292, 30.37535), 0.1, 2)
-            Wait(7000)
+            Wait(4000)
             ply.Task.ClearAll()
             Game.FadeScreenOut(500)
             Wait(500)

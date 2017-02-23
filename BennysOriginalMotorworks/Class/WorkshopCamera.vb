@@ -19,6 +19,9 @@ Public Enum CameraPosition
     BackPlate
     FrontPlate
     Wheels
+    Hood
+    RearWindscreen
+    BikeExhaust
 End Enum
 
 Public Enum CameraRotationMode
@@ -186,11 +189,69 @@ Public Class WorkshopCamera
                     _justSwitched = True
                 End If
                 Exit Select
+            Case CameraPosition.Hood
+                If True Then
+                    Game.Player.Character.Alpha = 255
+                    RotationMode = CameraRotationMode.Around
+                    _targetPos = GetBonePosition(_target, "bonnet")
+                    _cameraZoom = 3.0
+
+                    startValueRotation = _mainCamera.Rotation
+                    startValuePosition = _mainCamera.Position
+                    duration = 1000.0
+                    IsLerping = True
+                    startTime = DateTime.Now
+
+                    endValuePosition = _targetPos + _target.ForwardVector * 3.0 + _target.UpVector
+                    endValueRotation = New Vector3(0, 0, -_target.Heading)
+                    _mainCamera.StopPointing()
+                    _mainCamera.PointAt(_targetPos)
+
+
+                    CameraClamp = New CameraClamp() With {
+                        .MaxVerticalValue = -40.0,
+                        .MinVerticalValue = -3.0,
+                        .LeftHorizontalValue = _target.Heading - 250.6141,
+                        .RightHorizontalValue = _target.Heading - 470.79
+                    }
+                    _justSwitched = True
+                End If
+                Exit Select
             Case CameraPosition.Trunk
                 If True Then
                     Game.Player.Character.Alpha = 255
                     RotationMode = CameraRotationMode.Around
-                    _targetPos = GetBonePosition(_target, "boot")
+                    If _target.HasBone("boot") Then
+                        _targetPos = GetBonePosition(_target, "boot")
+                    Else
+                        _targetPos = GetBonePosition(_target, "bumper_r")
+                    End If
+                    _cameraZoom = 3.0
+
+                    startValueRotation = _mainCamera.Rotation
+                        startValuePosition = _mainCamera.Position
+                        duration = 1000.0
+                        IsLerping = True
+                        startTime = DateTime.Now
+
+                        endValuePosition = _targetPos + _target.ForwardVector * -3.0 + _target.UpVector
+                        endValueRotation = New Vector3(0, 0, _target.Heading)
+                        _mainCamera.StopPointing()
+                        _mainCamera.PointAt(_targetPos)
+                        CameraClamp = New CameraClamp() With {
+                        .MaxVerticalValue = -40.0,
+                        .MinVerticalValue = -3.0,
+                        .LeftHorizontalValue = _target.Heading - 410.0,
+                        .RightHorizontalValue = _target.Heading - 300.0
+                    }
+                        _justSwitched = True
+                    End If
+                Exit Select
+            Case CameraPosition.BikeExhaust
+                If True Then
+                    Game.Player.Character.Alpha = 255
+                    RotationMode = CameraRotationMode.Around
+                    _targetPos = GetBonePosition(_target, "exhaust")
                     _cameraZoom = 3.0
 
                     startValueRotation = _mainCamera.Rotation
@@ -204,11 +265,41 @@ Public Class WorkshopCamera
                     _mainCamera.StopPointing()
                     _mainCamera.PointAt(_targetPos)
                     CameraClamp = New CameraClamp() With {
-                        .MaxVerticalValue = -40.0,
-                        .MinVerticalValue = -3.0,
-                        .LeftHorizontalValue = _target.Heading - 410.0,
-                        .RightHorizontalValue = _target.Heading - 300.0
-                    }
+                    .MaxVerticalValue = -40.0,
+                    .MinVerticalValue = -3.0,
+                    .LeftHorizontalValue = _target.Heading - 410.0,
+                    .RightHorizontalValue = _target.Heading - 300.0
+                }
+                    _justSwitched = True
+                End If
+                Exit Select
+            Case CameraPosition.RearWindscreen
+                If True Then
+                    Game.Player.Character.Alpha = 255
+                    RotationMode = CameraRotationMode.Around
+                    If _target.HasBone("windscreen_r") Then
+                        _targetPos = GetBonePosition(_target, "windscreen_r")
+                    Else
+                        _targetPos = GetBonePosition(_target, "bumper_r")
+                    End If
+                    _cameraZoom = 3.0
+
+                    startValueRotation = _mainCamera.Rotation
+                    startValuePosition = _mainCamera.Position
+                    duration = 1000.0
+                    IsLerping = True
+                    startTime = DateTime.Now
+
+                    endValuePosition = _targetPos + _target.ForwardVector * -3.0 + _target.UpVector
+                    endValueRotation = New Vector3(0, 0, _target.Heading)
+                    _mainCamera.StopPointing()
+                    _mainCamera.PointAt(_targetPos)
+                    CameraClamp = New CameraClamp() With {
+                    .MaxVerticalValue = -40.0,
+                    .MinVerticalValue = -3.0,
+                    .LeftHorizontalValue = _target.Heading - 410.0,
+                    .RightHorizontalValue = _target.Heading - 300.0
+                }
                     _justSwitched = True
                 End If
                 Exit Select
@@ -324,23 +415,30 @@ Public Class WorkshopCamera
                 If True Then
                     Game.Player.Character.Alpha = 255
                     RotationMode = CameraRotationMode.Around
-                    Select Case _target.Model.Hash
-                        Case -1013450936, -1361687965
-                            _targetPos = GetBonePosition(_target, 28)
-                            Exit Select
-                        Case -1790546981
-                            _targetPos = GetBonePosition(_target, 30)
-                            Exit Select
-                        Case -2040426790
-                            _targetPos = GetBonePosition(_target, 60)
-                            Exit Select
-                        Case 1896491931
-                            _targetPos = GetBonePosition(_target, 33)
-                            Exit Select
-                        Case 2006667053
-                            _targetPos = GetBonePosition(_target, 41)
-                            Exit Select
-                    End Select
+
+                    If _target.HasBone("misc_h") Then
+                        _targetPos = GetBonePosition(_target, "misc_h")
+                    Else
+                        _targetPos = GetBonePosition(_target, "windscreen_r")
+                    End If
+
+                    'Select Case _target.Model.Hash
+                    '    Case -1013450936, -1361687965
+                    '        _targetPos = GetBonePosition(_target, 28)
+                    '        Exit Select
+                    '    Case -1790546981
+                    '        _targetPos = GetBonePosition(_target, 30)
+                    '        Exit Select
+                    '    Case -2040426790
+                    '        _targetPos = GetBonePosition(_target, 60)
+                    '        Exit Select
+                    '    Case 1896491931
+                    '        _targetPos = GetBonePosition(_target, 33)
+                    '        Exit Select
+                    '    Case 2006667053
+                    '        _targetPos = GetBonePosition(_target, 41)
+                    '        Exit Select
+                    'End Select
 
 
                     _cameraZoom = 0.5
@@ -371,28 +469,32 @@ Public Class WorkshopCamera
                 If True Then
                     Game.Player.Character.Alpha = 255
                     RotationMode = CameraRotationMode.Around
-                    _targetPos = GetBonePosition(_target, "platelight")
+                    If _target.HasBone("platelight") Then
+                        _targetPos = GetBonePosition(_target, "platelight")
+                    Else
+                        _targetPos = GetBonePosition(_target, "neon_b")
+                    End If
                     _cameraZoom = 1.0
 
                     startValueRotation = _mainCamera.Rotation
                     startValuePosition = _mainCamera.Position
-                    duration = 1000.0
-                    IsLerping = True
-                    startTime = DateTime.Now
+                        duration = 1000.0
+                        IsLerping = True
+                        startTime = DateTime.Now
 
-                    endValuePosition = _targetPos + _target.ForwardVector * -1.0 + _target.UpVector
-                    endValueRotation = New Vector3(0, 0, _target.Heading)
-                    _mainCamera.StopPointing()
-                    _mainCamera.PointAt(_targetPos)
-                    CameraClamp = New CameraClamp() With {
+                        endValuePosition = _targetPos + _target.ForwardVector * -1.0 + _target.UpVector
+                        endValueRotation = New Vector3(0, 0, _target.Heading)
+                        _mainCamera.StopPointing()
+                        _mainCamera.PointAt(_targetPos)
+                        CameraClamp = New CameraClamp() With {
                         .MaxVerticalValue = -40.0,
                         .MinVerticalValue = -3.0,
                         .LeftHorizontalValue = _target.Heading - 410.0,
                         .RightHorizontalValue = _target.Heading - 300.0
                     }
-                    _justSwitched = True
-                End If
-                Exit Select
+                        _justSwitched = True
+                    End If
+                    Exit Select
             Case CameraPosition.FrontPlate
                 If True Then
                     Game.Player.Character.Alpha = 255

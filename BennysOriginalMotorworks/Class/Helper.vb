@@ -1229,4 +1229,8 @@ Public Class Helper
     Public Shared Function GetClassDisplayName(vehicleClass As VehicleClass) As String
         Return Game.GetGXTEntry("VEH_CLASS_" + CInt(vehicleClass).ToString())
     End Function
+
+    Public Shared Function GetPrice(itemhash As Integer, vehhash As Integer) As Integer
+        Return Native.Function.Call(Of Integer)(Hash._NETWORK_SHOP_GET_PRICE, vehhash, itemhash, True)
+    End Function
 End Class

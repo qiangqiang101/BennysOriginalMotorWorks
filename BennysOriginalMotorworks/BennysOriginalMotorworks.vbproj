@@ -44,10 +44,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="INMNativeUI">
-      <HintPath>F:\Program Files\Steam\SteamApps\common\Grand Theft Auto V\scripts\INMNativeUI.dll</HintPath>
+      <HintPath>References\INMNativeUI.dll</HintPath>
     </Reference>
     <Reference Include="ScriptHookVDotNet2">
-      <HintPath>..\..\..\..\..\..\Program Files\Steam\SteamApps\common\Grand Theft Auto V\ScriptHookVDotNet2.dll</HintPath>
+      <HintPath>References\ScriptHookVDotNet2.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -117,7 +117,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
-    <PostBuildEvent>COPY "$(TargetDir)$(TargetFileName)" "F:\Program Files\Steam\SteamApps\common\Grand Theft Auto V\scripts"</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

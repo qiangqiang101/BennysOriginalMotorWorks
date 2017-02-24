@@ -138,8 +138,8 @@ Public Class Helper
                 result = "buccaneer2"
             Case "chino"
                 result = "chino2"
-            Case "diabolus"
-                result = "diabolus2"
+            Case "diablous"
+                result = "diablous2"
             Case "comet2"
                 result = "comet3"
             Case "faction"
@@ -312,14 +312,14 @@ Public Class Helper
                 cur = Game.GetGXTEntry("CMM_MOD_S0")
                 Exit Select
             Case VehicleMod.VanityPlates
-                If Bennys.veh.Model = Game.GenerateHash("elegy") Then
+                If Bennys.veh.Model = "elegy" Then
                     cur = Game.GetGXTEntry("CMM_MOD_S40")
                 Else
                     cur = Game.GetGXTEntry("CMM_MOD_S1")
                 End If
                 Exit Select
             Case VehicleMod.TrimDesign
-                If Bennys.veh.Model = VehicleHash.SultanRS Then
+                If Bennys.veh.Model = "sultanrs" Then
                     cur = Game.GetGXTEntry("CMM_MOD_S2b")
                 Else
                     cur = Game.GetGXTEntry("CMM_MOD_S2")
@@ -362,48 +362,50 @@ Public Class Helper
                 cur = Game.GetGXTEntry("CMM_MOD_S14")
                 Exit Select
             Case VehicleMod.AirFilter
-                If Bennys.veh.Model = VehicleHash.SultanRS OrElse Game.GenerateHash("elegy") Then
-                    cur = Game.GetGXTEntry("CMM_MOD_S15b")
-                Else
-                    cur = Game.GetGXTEntry("CMM_MOD_S15")
-                End If
+                Select Case Bennys.veh.Model
+                    Case "sultanrs", "elegy"
+                        cur = Game.GetGXTEntry("CMM_MOD_S15b")
+                    Case Else
+                        cur = Game.GetGXTEntry("CMM_MOD_S15")
+                End Select
                 Exit Select
             Case VehicleMod.Struts
-                If Bennys.veh.Model = VehicleHash.SultanRS OrElse Bennys.veh.Model = VehicleHash.Banshee2 Then
-                    cur = Game.GetGXTEntry("CMM_MOD_S16b")
-                Else
-                    cur = Game.GetGXTEntry("CMM_MOD_S16")
-                End If
+                Select Case Bennys.veh.Model
+                    Case "sultanrs", "banshee2"
+                        cur = Game.GetGXTEntry("CMM_MOD_S16b")
+                    Case Else
+                        cur = Game.GetGXTEntry("CMM_MOD_S16")
+                End Select
                 Exit Select
             Case VehicleMod.ArchCover
-                If Bennys.veh.Model = VehicleHash.SultanRS Then
+                If Bennys.veh.Model = "sultanrs" Then
                     cur = Game.GetGXTEntry("CMM_MOD_S17b")
                 Else
                     cur = Game.GetGXTEntry("CMM_MOD_S17")
                 End If
                 Exit Select
             Case VehicleMod.Aerials
-                If Bennys.veh.Model = VehicleHash.SultanRS Then
+                If Bennys.veh.Model = "sultanrs" Then
                     cur = Game.GetGXTEntry("CMM_MOD_S18b")
-                ElseIf Bennys.veh.Model = VehicleHash.BType3 Then
+                ElseIf Bennys.veh.Model = "btype3" Then
                     cur = Game.GetGXTEntry("CMM_MOD_S18c")
                 Else
                     cur = Game.GetGXTEntry("CMM_MOD_S18")
                 End If
                 Exit Select
             Case VehicleMod.Trim
-                If Bennys.veh.Model = VehicleHash.SultanRS Then
+                If Bennys.veh.Model = "sultanrs" Then
                     cur = Game.GetGXTEntry("CMM_MOD_S19b")
-                ElseIf Bennys.veh.Model = VehicleHash.BType3 Then
+                ElseIf Bennys.veh.Model = "btype3" Then
                     cur = Game.GetGXTEntry("CMM_MOD_S19c")
-                ElseIf Bennys.veh.Model = VehicleHash.Virgo2 Then
+                ElseIf Bennys.veh.Model = "virgo2" Then
                     cur = Game.GetGXTEntry("CMM_MOD_S19d")
                 Else
                     cur = Game.GetGXTEntry("CMM_MOD_S19")
                 End If
                 Exit Select
             Case VehicleMod.Tank
-                If Bennys.veh.Model = VehicleHash.SlamVan3 Then
+                If Bennys.veh.Model = "slamvan3" Then
                     cur = Game.GetGXTEntry("CMM_MOD_S27")
                 Else
                     cur = Game.GetGXTEntry("CMM_MOD_S20")
@@ -411,14 +413,14 @@ Public Class Helper
                 Exit Select
 
             Case VehicleMod.Windows
-                If Bennys.veh.Model = VehicleHash.BType3 Then
+                If Bennys.veh.Model = "btype3" Then
                     cur = Game.GetGXTEntry("CMM_MOD_S21b")
                 Else
                     cur = Game.GetGXTEntry("CMM_MOD_S21")
                 End If
                 Exit Select
             Case DirectCast(47, VehicleMod)
-                If Bennys.veh.Model = VehicleHash.SlamVan3 Then
+                If Bennys.veh.Model = "slamvan3" Then
                     cur = Game.GetGXTEntry("SLVAN3_RDOOR")
                 Else
                     cur = Game.GetGXTEntry("CMM_MOD_S22")
@@ -430,33 +432,71 @@ Public Class Helper
 
             'I'm Not MentaL
             Case VehicleMod.Fender
-                cur = Game.GetGXTEntry("CMOD_MOD_FEN")
+                If Bennys.veh.ClassType = VehicleClass.Motorcycles Then
+                    cur = Game.GetGXTEntry("CMOD_SHIFTER_0")
+                Else
+                    cur = Game.GetGXTEntry("CMOD_MOD_FEN")
+                End If
                 Exit Select
             Case VehicleMod.Spoilers
-                If Bennys.veh.Model = VehicleHash.BType3 Then
-                    cur = Game.GetGXTEntry("BT_SPARE2")
+                If Bennys.veh.ClassType = VehicleClass.Motorcycles Then
+                    If Bennys.veh.Model = "faggio3" Then
+                        cur = Game.GetGXTEntry("TOP_ANTENNA")
+                    Else
+                        cur = Game.GetGXTEntry("CMOD_MOD_BLT")
+                    End If
                 Else
-                    cur = Game.GetGXTEntry("CMOD_MOD_SPO")
+                    If Bennys.veh.Model = "btype3" Then
+                        cur = Game.GetGXTEntry("BT_SPARE2")
+                    Else
+                        cur = Game.GetGXTEntry("CMOD_MOD_SPO")
+                    End If
                 End If
                 Exit Select
             Case VehicleMod.Frame
-                If Bennys.veh.Model = VehicleHash.SultanRS Then
-                    cur = Game.GetGXTEntry("TOP_CAGE")
+                If Bennys.veh.ClassType = VehicleClass.Motorcycles Then
+                    cur = Game.GetGXTEntry("CMM_MOD_S14")
                 Else
-                    cur = Game.GetGXTEntry("CMOD_MOD_CHA")
+                    If Bennys.veh.Model = "sultanrs" Then
+                        cur = Game.GetGXTEntry("TOP_CAGE")
+                    Else
+                        cur = Game.GetGXTEntry("CMOD_MOD_CHA")
+                    End If
                 End If
                 Exit Select
             Case VehicleMod.Exhaust
                 cur = Game.GetGXTEntry("CMOD_MOD_MUF")
                 Exit Select
             Case VehicleMod.Grille
-                cur = Game.GetGXTEntry("CMOD_MOD_GRL")
+                Select Case Bennys.veh.Model
+                    Case "avarus"
+                        cur = Game.GetGXTEntry("TOP_OIL")
+                    Case Else
+                        cur = Game.GetGXTEntry("CMOD_MOD_GRL")
+                End Select
+
                 Exit Select
             Case VehicleMod.Hood
-                cur = Game.GetGXTEntry("CMOD_MOD_HOD")
+                If Bennys.veh.ClassType = VehicleClass.Motorcycles Then
+                    cur = Game.GetGXTEntry("CMM_MOD_S7")
+                Else
+                    cur = Game.GetGXTEntry("CMOD_MOD_HOD")
+                End If
                 Exit Select
             Case VehicleMod.Roof
-                cur = Game.GetGXTEntry("CMOD_MOD_ROF")
+                If Bennys.veh.ClassType = VehicleClass.Motorcycles Then
+                    If Bennys.veh.Model = "penetrator" Then
+                        cur = Game.GetGXTEntry("CMM_MOD_S43")
+                    ElseIf Bennys.veh.Model = "blazer4" Then
+                        cur = Game.GetGXTEntry("CMM_MOD_S17")
+                    ElseIf Bennys.veh.Model = "faggio3" Then
+                        cur = Game.GetGXTEntry("TOP_ANTENNAR")
+                    Else
+                        cur = Game.GetGXTEntry("CMOD_MOD_TNK")
+                    End If
+                Else
+                    cur = Game.GetGXTEntry("CMOD_MOD_ROF")
+                End If
                 Exit Select
             Case Else
 
@@ -529,7 +569,11 @@ Public Class Helper
                 cur = Game.GetGXTEntry("CMOD_MOD_LGT")
                 Exit Select
             Case GroupName.Bumpers
-                cur = Game.GetGXTEntry("CMOD_MOD_BUM")
+                If Bennys.veh.Model = "blazer4" Then
+                    cur = Game.GetGXTEntry("TOP_MUDFR")
+                Else
+                    cur = Game.GetGXTEntry("CMOD_MOD_BUM")
+                End If
                 Exit Select
             Case GroupName.Respray
                 cur = Game.GetGXTEntry("CMOD_MOD_COL")
@@ -1233,4 +1277,186 @@ Public Class Helper
     Public Shared Function GetPrice(itemhash As Integer, vehhash As Integer) As Integer
         Return Native.Function.Call(Of Integer)(Hash._NETWORK_SHOP_GET_PRICE, vehhash, itemhash, True)
     End Function
+
+    Public Shared Sub CreateTitleNames()
+        Try
+            Dim langConf As ScriptSettings = ScriptSettings.Load("scripts\BennysLang.ini")
+            langConf.SetValue(Of String)("TITLE", "AERIALS", Game.GetGXTEntry("CMM_MOD_ST18"))
+            langConf.SetValue(Of String)("TITLE", "BODYWORK", Game.GetGXTEntry("CMOD_BW_T"))
+            langConf.SetValue(Of String)("TITLE", "DOORS", Game.GetGXTEntry("CMM_MOD_ST6"))
+            langConf.SetValue(Of String)("TITLE", "ENGINE", Game.GetGXTEntry("CMM_MOD_GT3"))
+            langConf.SetValue(Of String)("TITLE", "INTERIOR", Game.GetGXTEntry("CMM_MOD_GT1"))
+            langConf.SetValue(Of String)("TITLE", "BUMPERS", Game.GetGXTEntry("CMOD_BUM_T"))
+            langConf.SetValue(Of String)("TITLE", "WHEELS", Game.GetGXTEntry("CMOD_WHE0_T"))
+            langConf.SetValue(Of String)("TITLE", "WHEELTYPE", Game.GetGXTEntry("CMOD_WHE1_T"))
+            langConf.SetValue(Of String)("TITLE", "TIRES", Game.GetGXTEntry("CMOD_TYR_T"))
+            langConf.SetValue(Of String)("TITLE", "PLATES", Game.GetGXTEntry("CMM_MOD_GT2"))
+            langConf.SetValue(Of String)("TITLE", "TRIM", Game.GetGXTEntry("CMM_MOD_ST19"))
+            langConf.SetValue(Of String)("TITLE", "LIGHTS", Game.GetGXTEntry("CMOD_LGT_T"))
+            langConf.SetValue(Of String)("TITLE", "ENGINEBLOCK", Game.GetGXTEntry("CMOD_EB_T"))
+            langConf.SetValue(Of String)("TITLE", "AIRFILTER", Game.GetGXTEntry("CMM_MOD_ST15"))
+            langConf.SetValue(Of String)("TITLE", "RESPRAY", Game.GetGXTEntry("CMOD_COL0_T"))
+            langConf.SetValue(Of String)("TITLE", "STRUTS", Game.GetGXTEntry("CMM_MOD_ST16"))
+            langConf.SetValue(Of String)("TITLE", "COLUMNSHIFTERLEVERS", Game.GetGXTEntry("CMM_MOD_ST9"))
+            langConf.SetValue(Of String)("TITLE", "DASHBOARD", Game.GetGXTEntry("CMM_MOD_ST4"))
+            langConf.SetValue(Of String)("TITLE", "DIALDESIGN", Game.GetGXTEntry("CMM_MOD_ST5"))
+            langConf.SetValue(Of String)("TITLE", "ORNAMENTS", Game.GetGXTEntry("CMM_MOD_ST3"))
+            langConf.SetValue(Of String)("TITLE", "SEATS", Game.GetGXTEntry("CMM_MOD_ST7"))
+            langConf.SetValue(Of String)("TITLE", "STEERINGWHEELS", Game.GetGXTEntry("CMM_MOD_ST8"))
+            langConf.SetValue(Of String)("TITLE", "TRIMDESIGN", Game.GetGXTEntry("CMM_MOD_ST2"))
+            langConf.SetValue(Of String)("TITLE", "DOORS2", Game.GetGXTEntry("CMM_MOD_ST6"))
+            langConf.SetValue(Of String)("TITLE", "WINDOWS", Game.GetGXTEntry("CMM_MOD_ST21"))
+            langConf.SetValue(Of String)("TITLE", "FRONTBUMPERS", Game.GetGXTEntry("CMOD_BUMF_T"))
+            langConf.SetValue(Of String)("TITLE", "REARBUMPERS", Game.GetGXTEntry("CMOD_BUMR_T"))
+            langConf.SetValue(Of String)("TITLE", "SIDESKIRT", Game.GetGXTEntry("CMOD_SS_T"))
+            langConf.SetValue(Of String)("TITLE", "PLATEHOLDERS", Game.GetGXTEntry("CMOD_PLH_T"))
+            langConf.SetValue(Of String)("TITLE", "VANITYPLATES", Game.GetGXTEntry("CMM_MOD_ST1"))
+            langConf.SetValue(Of String)("TITLE", "HEADLIGHTS", Game.GetGXTEntry("CMOD_HED_T"))
+            langConf.SetValue(Of String)("TITLE", "ARCHCOVERS", Game.GetGXTEntry("CMM_MOD_ST17"))
+            langConf.SetValue(Of String)("TITLE", "EXHAUST", Game.GetGXTEntry("CMOD_EXH_T"))
+            langConf.SetValue(Of String)("TITLE", "FENDER", Game.GetGXTEntry("CMOD_WNG_T"))
+            langConf.SetValue(Of String)("TITLE", "RIGHTFENDER", Game.GetGXTEntry("CMOD_WNG_T"))
+            langConf.SetValue(Of String)("TITLE", "ROLLCAGE", Game.GetGXTEntry("CMOD_RC_T"))
+            langConf.SetValue(Of String)("TITLE", "GRILLES", Game.GetGXTEntry("CMOD_GRL_T"))
+            langConf.SetValue(Of String)("TITLE", "HOOD", Game.GetGXTEntry("CMOD_BON_T"))
+            langConf.SetValue(Of String)("TITLE", "HORN", Game.GetGXTEntry("CMOD_HRN_T"))
+            langConf.SetValue(Of String)("TITLE", "HYDRAULICS", Game.GetGXTEntry("CMM_MOD_ST13"))
+            langConf.SetValue(Of String)("TITLE", "LIVERY", Game.GetGXTEntry("CMM_MOD_ST23"))
+            langConf.SetValue(Of String)("TITLE", "PLAQUES", Game.GetGXTEntry("CMM_MOD_ST10"))
+            langConf.SetValue(Of String)("TITLE", "ROOF", Game.GetGXTEntry("CMOD_ROF_T"))
+            langConf.SetValue(Of String)("TITLE", "SPEAKERS", Game.GetGXTEntry("CMM_MOD_S11"))
+            langConf.SetValue(Of String)("TITLE", "SPOILER", Game.GetGXTEntry("CMOD_SPO_T"))
+            langConf.SetValue(Of String)("TITLE", "TANK", Game.GetGXTEntry("CMM_MOD_ST20"))
+            langConf.SetValue(Of String)("TITLE", "TRUNKS", Game.GetGXTEntry("CMOD_TR_T"))
+            langConf.SetValue(Of String)("TITLE", "TURBO", Game.GetGXTEntry("CMOD_TUR_T"))
+            langConf.SetValue(Of String)("TITLE", "SUSPENSIONS", Game.GetGXTEntry("CMOD_SUS_T"))
+            langConf.SetValue(Of String)("TITLE", "ARMOR", Game.GetGXTEntry("CMOD_ARM_T"))
+            langConf.SetValue(Of String)("TITLE", "BRAKES", Game.GetGXTEntry("CMOD_BRA_T"))
+            langConf.SetValue(Of String)("TITLE", "TRANSMISSION", Game.GetGXTEntry("CMOD_GBX_T"))
+            langConf.SetValue(Of String)("TITLE", "LICENSE", Game.GetGXTEntry("CMOD_MOD_PLA2").ToUpper)
+            langConf.SetValue(Of String)("TITLE", "NEONKITS", Game.GetGXTEntry("CMOD_MOD_LGT_N").ToUpper)
+            langConf.SetValue(Of String)("TITLE", "NEONLAYOUT", Game.GetGXTEntry("CMOD_NEON_0").ToUpper)
+            langConf.SetValue(Of String)("TITLE", "BIKEWHEELS", Helper.GetLocalizedWheelTypeName(VehicleWheelType.BikeWheels).ToUpper)
+            langConf.SetValue(Of String)("TITLE", "HIGHEND", Helper.GetLocalizedWheelTypeName(VehicleWheelType.HighEnd).ToUpper)
+            langConf.SetValue(Of String)("TITLE", "LOWRIDER", Helper.GetLocalizedWheelTypeName(VehicleWheelType.Lowrider).ToUpper)
+            langConf.SetValue(Of String)("TITLE", "MUSCLE", Helper.GetLocalizedWheelTypeName(VehicleWheelType.Muscle).ToUpper)
+            langConf.SetValue(Of String)("TITLE", "OFFROAD", Helper.GetLocalizedWheelTypeName(VehicleWheelType.Offroad).ToUpper)
+            langConf.SetValue(Of String)("TITLE", "SPORT", Helper.GetLocalizedWheelTypeName(VehicleWheelType.Sport).ToUpper)
+            langConf.SetValue(Of String)("TITLE", "SUV", Helper.GetLocalizedWheelTypeName(VehicleWheelType.SUV).ToUpper)
+            langConf.SetValue(Of String)("TITLE", "TUNER", Helper.GetLocalizedWheelTypeName(VehicleWheelType.Tuner).ToUpper)
+            langConf.SetValue(Of String)("TITLE", "BENNYS", Helper.GetLocalizedWheelTypeName(8).ToUpper)
+            langConf.SetValue(Of String)("TITLE", "BESPOKE", Helper.GetLocalizedWheelTypeName(9).ToUpper)
+            langConf.SetValue(Of String)("TITLE", "LIGHTCOLOR", Game.GetGXTEntry("CMM_MOD_ST26").ToUpper)
+            langConf.SetValue(Of String)("TITLE", "PRIMARYCOLOR", Game.GetGXTEntry("CMOD_COL0_0").ToUpper)
+            langConf.SetValue(Of String)("TITLE", "SECONDARYCOLOR", Game.GetGXTEntry("CMOD_COL0_1").ToUpper)
+            langConf.SetValue(Of String)("TITLE", "LIVERYCOLOR", Game.GetGXTEntry("CMOD_COL0_4").ToUpper)
+            langConf.SetValue(Of String)("TITLE", "COLORGROUPS", Game.GetGXTEntry("CMOD_COL1_T"))
+            langConf.SetValue(Of String)("TITLE", "WHEELCOLORS", Game.GetGXTEntry("CMOD_COL5_T"))
+            langConf.SetValue(Of String)("TITLE", "TINTS", Game.GetGXTEntry("CMOD_WIN_T"))
+            langConf.SetValue(Of String)("TITLE", "TRIMCOLOR", Game.GetGXTEntry("CMOD_MOD_TRIM2").ToUpper)
+            langConf.SetValue(Of String)("TITLE", "NEONCOLOR", Game.GetGXTEntry("CMOD_NEON_1").ToUpper)
+            langConf.SetValue(Of String)("TITLE", "TIRESMOKE", Game.GetGXTEntry("CMOD_MOD_TYR3").ToUpper)
+            langConf.SetValue(Of String)("TITLE", "CATEGORIES", Game.GetGXTEntry("CMOD_MOD_T"))
+            'Biker
+            langConf.SetValue(Of String)("TITLE", "SHIFTER", Game.GetGXTEntry("CMOD_SHIFTER_T"))
+            langConf.SetValue(Of String)("TITLE", "FRONTMUDGUARD", Game.GetGXTEntry("CMOD_FMUD_T"))
+            langConf.SetValue(Of String)("TITLE", "REARMUDGUARD", Game.GetGXTEntry("CMOD_RMUD_T"))
+            langConf.SetValue(Of String)("TITLE", "OILTANK", Game.GetGXTEntry("CMM_MOD_ST29"))
+            langConf.SetValue(Of String)("TITLE", "FUELTANK", Game.GetGXTEntry("CMOD_FUL_T"))
+            langConf.SetValue(Of String)("TITLE", "BELTDRIVECOVER", Game.GetGXTEntry("CMOD_MOD_BLT").ToUpper)
+            langConf.Save()
+        Catch ex As Exception
+            Logger.Log(ex.Message & " " & ex.StackTrace)
+        End Try
+    End Sub
+
+    Public Shared Sub SaveTitleNames()
+        Dim langConf As ScriptSettings = ScriptSettings.Load("scripts\BennysLang.ini")
+        If langConf.GetValue("TITLE", "AERIALS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "AERIALS", Game.GetGXTEntry("CMM_MOD_ST18"))
+        If langConf.GetValue("TITLE", "BODYWORK") = "NULL" Then langConf.SetValue(Of String)("TITLE", "BODYWORK", Game.GetGXTEntry("CMOD_BW_T"))
+        If langConf.GetValue("TITLE", "DOORS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "DOORS", Game.GetGXTEntry("CMM_MOD_ST6"))
+        If langConf.GetValue("TITLE", "ENGINE") = "NULL" Then langConf.SetValue(Of String)("TITLE", "ENGINE", Game.GetGXTEntry("CMM_MOD_GT3"))
+        If langConf.GetValue("TITLE", "INTERIOR") = "NULL" Then langConf.SetValue(Of String)("TITLE", "INTERIOR", Game.GetGXTEntry("CMM_MOD_GT1"))
+        If langConf.GetValue("TITLE", "BUMPERS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "BUMPERS", Game.GetGXTEntry("CMOD_BUM_T"))
+        If langConf.GetValue("TITLE", "WHEELS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "WHEELS", Game.GetGXTEntry("CMOD_WHE0_T"))
+        If langConf.GetValue("TITLE", "WHEELTYPE") = "NULL" Then langConf.SetValue(Of String)("TITLE", "WHEELTYPE", Game.GetGXTEntry("CMOD_WHE1_T"))
+        If langConf.GetValue("TITLE", "TIRES") = "NULL" Then langConf.SetValue(Of String)("TITLE", "TIRES", Game.GetGXTEntry("CMOD_TYR_T"))
+        If langConf.GetValue("TITLE", "PLATES") = "NULL" Then langConf.SetValue(Of String)("TITLE", "PLATES", Game.GetGXTEntry("CMM_MOD_GT2"))
+        If langConf.GetValue("TITLE", "TRIM") = "NULL" Then langConf.SetValue(Of String)("TITLE", "TRIM", Game.GetGXTEntry("CMM_MOD_ST19"))
+        If langConf.GetValue("TITLE", "LIGHTS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "LIGHTS", Game.GetGXTEntry("CMOD_LGT_T"))
+        If langConf.GetValue("TITLE", "ENGINEBLOCK") = "NULL" Then langConf.SetValue(Of String)("TITLE", "ENGINEBLOCK", Game.GetGXTEntry("CMOD_EB_T"))
+        If langConf.GetValue("TITLE", "AIRFILTER") = "NULL" Then langConf.SetValue(Of String)("TITLE", "AIRFILTER", Game.GetGXTEntry("CMM_MOD_ST15"))
+        If langConf.GetValue("TITLE", "RESPRAY") = "NULL" Then langConf.SetValue(Of String)("TITLE", "RESPRAY", Game.GetGXTEntry("CMOD_COL0_T"))
+        If langConf.GetValue("TITLE", "STRUTS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "STRUTS", Game.GetGXTEntry("CMM_MOD_ST16"))
+        If langConf.GetValue("TITLE", "COLUMNSHIFTERLEVERS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "COLUMNSHIFTERLEVERS", Game.GetGXTEntry("CMM_MOD_ST9"))
+        If langConf.GetValue("TITLE", "DASHBOARD") = "NULL" Then langConf.SetValue(Of String)("TITLE", "DASHBOARD", Game.GetGXTEntry("CMM_MOD_ST4"))
+        If langConf.GetValue("TITLE", "DIALDESIGN") = "NULL" Then langConf.SetValue(Of String)("TITLE", "DIALDESIGN", Game.GetGXTEntry("CMM_MOD_ST5"))
+        If langConf.GetValue("TITLE", "ORNAMENTS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "ORNAMENTS", Game.GetGXTEntry("CMM_MOD_ST3"))
+        If langConf.GetValue("TITLE", "SEATS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "SEATS", Game.GetGXTEntry("CMM_MOD_ST7"))
+        If langConf.GetValue("TITLE", "STEERINGWHEELS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "STEERINGWHEELS", Game.GetGXTEntry("CMM_MOD_ST8"))
+        If langConf.GetValue("TITLE", "TRIMDESIGN") = "NULL" Then langConf.SetValue(Of String)("TITLE", "TRIMDESIGN", Game.GetGXTEntry("CMM_MOD_ST2"))
+        If langConf.GetValue("TITLE", "DOORS2") = "NULL" Then langConf.SetValue(Of String)("TITLE", "DOORS2", Game.GetGXTEntry("CMM_MOD_ST6"))
+        If langConf.GetValue("TITLE", "WINDOWS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "WINDOWS", Game.GetGXTEntry("CMM_MOD_ST21"))
+        If langConf.GetValue("TITLE", "FRONTBUMPERS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "FRONTBUMPERS", Game.GetGXTEntry("CMOD_BUMF_T"))
+        If langConf.GetValue("TITLE", "REARBUMPERS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "REARBUMPERS", Game.GetGXTEntry("CMOD_BUMR_T"))
+        If langConf.GetValue("TITLE", "SIDESKIRT") = "NULL" Then langConf.SetValue(Of String)("TITLE", "SIDESKIRT", Game.GetGXTEntry("CMOD_SS_T"))
+        If langConf.GetValue("TITLE", "PLATEHOLDERS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "PLATEHOLDERS", Game.GetGXTEntry("CMOD_PLH_T"))
+        If langConf.GetValue("TITLE", "VANITYPLATES") = "NULL" Then langConf.SetValue(Of String)("TITLE", "VANITYPLATES", Game.GetGXTEntry("CMM_MOD_ST1"))
+        If langConf.GetValue("TITLE", "HEADLIGHTS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "HEADLIGHTS", Game.GetGXTEntry("CMOD_HED_T"))
+        If langConf.GetValue("TITLE", "ARCHCOVERS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "ARCHCOVERS", Game.GetGXTEntry("CMM_MOD_ST17"))
+        If langConf.GetValue("TITLE", "EXHAUST") = "NULL" Then langConf.SetValue(Of String)("TITLE", "EXHAUST", Game.GetGXTEntry("CMOD_EXH_T"))
+        If langConf.GetValue("TITLE", "FENDER") = "NULL" Then langConf.SetValue(Of String)("TITLE", "FENDER", Game.GetGXTEntry("CMOD_WNG_T"))
+        If langConf.GetValue("TITLE", "RIGHTFENDER") = "NULL" Then langConf.SetValue(Of String)("TITLE", "RIGHTFENDER", Game.GetGXTEntry("CMOD_WNG_T"))
+        If langConf.GetValue("TITLE", "ROLLCAGE") = "NULL" Then langConf.SetValue(Of String)("TITLE", "ROLLCAGE", Game.GetGXTEntry("CMOD_RC_T"))
+        If langConf.GetValue("TITLE", "GRILLES") = "NULL" Then langConf.SetValue(Of String)("TITLE", "GRILLES", Game.GetGXTEntry("CMOD_GRL_T"))
+        If langConf.GetValue("TITLE", "HOOD") = "NULL" Then langConf.SetValue(Of String)("TITLE", "HOOD", Game.GetGXTEntry("CMOD_BON_T"))
+        If langConf.GetValue("TITLE", "HORN") = "NULL" Then langConf.SetValue(Of String)("TITLE", "HORN", Game.GetGXTEntry("CMOD_HRN_T"))
+        If langConf.GetValue("TITLE", "HYDRAULICS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "HYDRAULICS", Game.GetGXTEntry("CMM_MOD_ST13"))
+        If langConf.GetValue("TITLE", "LIVERY") = "NULL" Then langConf.SetValue(Of String)("TITLE", "LIVERY", Game.GetGXTEntry("CMM_MOD_ST23"))
+        If langConf.GetValue("TITLE", "PLAQUES") = "NULL" Then langConf.SetValue(Of String)("TITLE", "PLAQUES", Game.GetGXTEntry("CMM_MOD_ST10"))
+        If langConf.GetValue("TITLE", "ROOF") = "NULL" Then langConf.SetValue(Of String)("TITLE", "ROOF", Game.GetGXTEntry("CMOD_ROF_T"))
+        If langConf.GetValue("TITLE", "SPEAKERS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "SPEAKERS", Game.GetGXTEntry("CMM_MOD_S11"))
+        If langConf.GetValue("TITLE", "SPOILER") = "NULL" Then langConf.SetValue(Of String)("TITLE", "SPOILER", Game.GetGXTEntry("CMOD_SPO_T"))
+        If langConf.GetValue("TITLE", "TANK") = "NULL" Then langConf.SetValue(Of String)("TITLE", "TANK", Game.GetGXTEntry("CMM_MOD_ST20"))
+        If langConf.GetValue("TITLE", "TRUNKS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "TRUNKS", Game.GetGXTEntry("CMOD_TR_T"))
+        If langConf.GetValue("TITLE", "TURBO") = "NULL" Then langConf.SetValue(Of String)("TITLE", "TURBO", Game.GetGXTEntry("CMOD_TUR_T"))
+        If langConf.GetValue("TITLE", "SUSPENSIONS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "SUSPENSIONS", Game.GetGXTEntry("CMOD_SUS_T"))
+        If langConf.GetValue("TITLE", "ARMOR") = "NULL" Then langConf.SetValue(Of String)("TITLE", "ARMOR", Game.GetGXTEntry("CMOD_ARM_T"))
+        If langConf.GetValue("TITLE", "BRAKES") = "NULL" Then langConf.SetValue(Of String)("TITLE", "BRAKES", Game.GetGXTEntry("CMOD_BRA_T"))
+        If langConf.GetValue("TITLE", "TRANSMISSION") = "NULL" Then langConf.SetValue(Of String)("TITLE", "TRANSMISSION", Game.GetGXTEntry("CMOD_GBX_T"))
+        If langConf.GetValue("TITLE", "LICENSE") = "NULL" Then langConf.SetValue(Of String)("TITLE", "LICENSE", Game.GetGXTEntry("CMOD_MOD_PLA2").ToUpper)
+        If langConf.GetValue("TITLE", "NEONKITS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "NEONKITS", Game.GetGXTEntry("CMOD_MOD_LGT_N").ToUpper)
+        If langConf.GetValue("TITLE", "NEONLAYOUT") = "NULL" Then langConf.SetValue(Of String)("TITLE", "NEONLAYOUT", Game.GetGXTEntry("CMOD_NEON_0").ToUpper)
+        If langConf.GetValue("TITLE", "BIKEWHEELS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "BIKEWHEELS", Helper.GetLocalizedWheelTypeName(VehicleWheelType.BikeWheels).ToUpper)
+        If langConf.GetValue("TITLE", "HIGHEND") = "NULL" Then langConf.SetValue(Of String)("TITLE", "HIGHEND", Helper.GetLocalizedWheelTypeName(VehicleWheelType.HighEnd).ToUpper)
+        If langConf.GetValue("TITLE", "LOWRIDER") = "NULL" Then langConf.SetValue(Of String)("TITLE", "LOWRIDER", Helper.GetLocalizedWheelTypeName(VehicleWheelType.Lowrider).ToUpper)
+        If langConf.GetValue("TITLE", "MUSCLE") = "NULL" Then langConf.SetValue(Of String)("TITLE", "MUSCLE", Helper.GetLocalizedWheelTypeName(VehicleWheelType.Muscle).ToUpper)
+        If langConf.GetValue("TITLE", "OFFROAD") = "NULL" Then langConf.SetValue(Of String)("TITLE", "OFFROAD", Helper.GetLocalizedWheelTypeName(VehicleWheelType.Offroad).ToUpper)
+        If langConf.GetValue("TITLE", "SPORT") = "NULL" Then langConf.SetValue(Of String)("TITLE", "SPORT", Helper.GetLocalizedWheelTypeName(VehicleWheelType.Sport).ToUpper)
+        If langConf.GetValue("TITLE", "SUV") = "NULL" Then langConf.SetValue(Of String)("TITLE", "SUV", Helper.GetLocalizedWheelTypeName(VehicleWheelType.SUV).ToUpper)
+        If langConf.GetValue("TITLE", "TUNER") = "NULL" Then langConf.SetValue(Of String)("TITLE", "TUNER", Helper.GetLocalizedWheelTypeName(VehicleWheelType.Tuner).ToUpper)
+        If langConf.GetValue("TITLE", "BENNYS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "BENNYS", Helper.GetLocalizedWheelTypeName(8).ToUpper)
+        If langConf.GetValue("TITLE", "BESPOKE") = "NULL" Then langConf.SetValue(Of String)("TITLE", "BESPOKE", Helper.GetLocalizedWheelTypeName(9).ToUpper)
+        If langConf.GetValue("TITLE", "LIGHTCOLOR") = "NULL" Then langConf.SetValue(Of String)("TITLE", "LIGHTCOLOR", Game.GetGXTEntry("CMM_MOD_ST26").ToUpper)
+        If langConf.GetValue("TITLE", "PRIMARYCOLOR") = "NULL" Then langConf.SetValue(Of String)("TITLE", "PRIMARYCOLOR", Game.GetGXTEntry("CMOD_COL0_0").ToUpper)
+        If langConf.GetValue("TITLE", "SECONDARYCOLOR") = "NULL" Then langConf.SetValue(Of String)("TITLE", "SECONDARYCOLOR", Game.GetGXTEntry("CMOD_COL0_1").ToUpper)
+        If langConf.GetValue("TITLE", "LIVERYCOLOR") = "NULL" Then langConf.SetValue(Of String)("TITLE", "LIVERYCOLOR", Game.GetGXTEntry("CMOD_COL0_4").ToUpper)
+        If langConf.GetValue("TITLE", "COLORGROUPS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "COLORGROUPS", Game.GetGXTEntry("CMOD_COL1_T"))
+        If langConf.GetValue("TITLE", "WHEELCOLORS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "WHEELCOLORS", Game.GetGXTEntry("CMOD_COL5_T"))
+        If langConf.GetValue("TITLE", "TINTS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "TINTS", Game.GetGXTEntry("CMOD_WIN_T"))
+        If langConf.GetValue("TITLE", "TRIMCOLOR") = "NULL" Then langConf.SetValue(Of String)("TITLE", "TRIMCOLOR", Game.GetGXTEntry("CMOD_MOD_TRIM2").ToUpper)
+        If langConf.GetValue("TITLE", "NEONCOLOR") = "NULL" Then langConf.SetValue(Of String)("TITLE", "NEONCOLOR", Game.GetGXTEntry("CMOD_NEON_1").ToUpper)
+        If langConf.GetValue("TITLE", "TIRESMOKE") = "NULL" Then langConf.SetValue(Of String)("TITLE", "TIRESMOKE", Game.GetGXTEntry("CMOD_MOD_TYR3").ToUpper)
+        If langConf.GetValue("TITLE", "CATEGORIES") = "NULL" Then langConf.SetValue(Of String)("TITLE", "CATEGORIES", Game.GetGXTEntry("CMOD_MOD_T"))
+        'Bikers
+        If langConf.GetValue("TITLE", "SHIFTER") = "NULL" Then langConf.SetValue(Of String)("TITLE", "SHIFTER", Game.GetGXTEntry("CMOD_SHIFTER_T"))
+        If langConf.GetValue("TITLE", "FRONTMUDGUARD") = "NULL" Then langConf.SetValue(Of String)("TITLE", "FRONTMUDGUARD", Game.GetGXTEntry("CMOD_FMUD_T"))
+        If langConf.GetValue("TITLE", "REARMUDGUARD") = "NULL" Then langConf.SetValue(Of String)("TITLE", "REARMUDGUARD", Game.GetGXTEntry("CMOD_RMUD_T"))
+        If langConf.GetValue("TITLE", "OILTANK") = "NULL" Then langConf.SetValue(Of String)("TITLE", "OILTANK", Game.GetGXTEntry("CMM_MOD_ST29"))
+        If langConf.GetValue("TITLE", "FUELTANK") = "NULL" Then langConf.SetValue(Of String)("TITLE", "FUELTANK", Game.GetGXTEntry("CMOD_FUL_T"))
+        If langConf.GetValue("TITLE", "BELTDRIVECOVER") = "NULL" Then langConf.SetValue(Of String)("TITLE", "BELTDRIVECOVER", Game.GetGXTEntry("CMOD_MOD_BLT").ToUpper)
+        'If langConf.GetValue("TITLE", "") = "NULL"  Then langConf.SetValue(Of String)("TITLE", "", Game.GetGXTEntry(""))
+        'If langConf.GetValue("TITLE", "") = "NULL"  Then langConf.SetValue(Of String)("TITLE", "", Game.GetGXTEntry(""))
+        langConf.Save()
+    End Sub
 End Class

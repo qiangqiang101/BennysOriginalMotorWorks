@@ -22,6 +22,8 @@ Public Enum CameraPosition
     Hood
     RearWindscreen
     BikeExhaust
+    FrontMuguard
+    RearMuguard
 End Enum
 
 Public Enum CameraRotationMode
@@ -217,6 +219,39 @@ Public Class WorkshopCamera
                     _justSwitched = True
                 End If
                 Exit Select
+            Case CameraPosition.FrontMuguard
+                If True Then
+                    Game.Player.Character.Alpha = 255
+                    RotationMode = CameraRotationMode.Around
+                    If _target.HasBone("misc_i") Then
+                        _targetPos = GetBonePosition(_target, "misc_i")
+                    Else
+                        _targetPos = GetBonePosition(_target, "forks_l")
+                    End If
+
+                    _cameraZoom = 3.0
+
+                    startValueRotation = _mainCamera.Rotation
+                    startValuePosition = _mainCamera.Position
+                    duration = 1000.0
+                    IsLerping = True
+                    startTime = DateTime.Now
+
+                    endValuePosition = _targetPos + _target.ForwardVector * 3.0 + _target.UpVector
+                    endValueRotation = New Vector3(0, 0, -_target.Heading)
+                    _mainCamera.StopPointing()
+                    _mainCamera.PointAt(_targetPos)
+
+
+                    CameraClamp = New CameraClamp() With {
+                        .MaxVerticalValue = -40.0,
+                        .MinVerticalValue = -3.0,
+                        .LeftHorizontalValue = _target.Heading - 250.6141,
+                        .RightHorizontalValue = _target.Heading - 470.79
+                    }
+                    _justSwitched = True
+                End If
+                Exit Select
             Case CameraPosition.Trunk
                 If True Then
                     Game.Player.Character.Alpha = 255
@@ -252,6 +287,32 @@ Public Class WorkshopCamera
                     Game.Player.Character.Alpha = 255
                     RotationMode = CameraRotationMode.Around
                     _targetPos = GetBonePosition(_target, "exhaust")
+                    _cameraZoom = 3.0
+
+                    startValueRotation = _mainCamera.Rotation
+                    startValuePosition = _mainCamera.Position
+                    duration = 1000.0
+                    IsLerping = True
+                    startTime = DateTime.Now
+
+                    endValuePosition = _targetPos + _target.ForwardVector * -3.0 + _target.UpVector
+                    endValueRotation = New Vector3(0, 0, _target.Heading)
+                    _mainCamera.StopPointing()
+                    _mainCamera.PointAt(_targetPos)
+                    CameraClamp = New CameraClamp() With {
+                    .MaxVerticalValue = -40.0,
+                    .MinVerticalValue = -3.0,
+                    .LeftHorizontalValue = _target.Heading - 410.0,
+                    .RightHorizontalValue = _target.Heading - 300.0
+                }
+                    _justSwitched = True
+                End If
+                Exit Select
+            Case CameraPosition.RearMuguard
+                If True Then
+                    Game.Player.Character.Alpha = 255
+                    RotationMode = CameraRotationMode.Around
+                    _targetPos = GetBonePosition(_target, "misc_d")
                     _cameraZoom = 3.0
 
                     startValueRotation = _mainCamera.Rotation
@@ -416,32 +477,24 @@ Public Class WorkshopCamera
                     Game.Player.Character.Alpha = 255
                     RotationMode = CameraRotationMode.Around
 
-                    If _target.HasBone("misc_h") Then
-                        _targetPos = GetBonePosition(_target, "misc_h")
-                    Else
-                        _targetPos = GetBonePosition(_target, "windscreen_r")
-                    End If
+                    Select Case Bennys.veh.Model
+                        Case "buccaneer2", "faction2", "moonbeam2", "slamvan3", "faction3"
+                            _targetPos = GetBonePosition(_target, "misc_h")
+                        Case "voodoo", "chino2"
+                            _targetPos = GetBonePosition(_target, "misc_j")
+                        Case "primo2"
+                            _targetPos = GetBonePosition(_target, "misc_d")
+                        Case "sabregt2", "virgo2"
+                            _targetPos = GetBonePosition(_target, "misc_n")
+                        Case "tornado5"
+                            _targetPos = GetBonePosition(_target, "misc_o")
+                        Case "minivan2"
+                            _targetPos = GetBonePosition(_target, "misc_c")
+                        Case Else
+                            _targetPos = GetBonePosition(_target, "windscreen_r")
+                    End Select
 
-                    'Select Case _target.Model.Hash
-                    '    Case -1013450936, -1361687965
-                    '        _targetPos = GetBonePosition(_target, 28)
-                    '        Exit Select
-                    '    Case -1790546981
-                    '        _targetPos = GetBonePosition(_target, 30)
-                    '        Exit Select
-                    '    Case -2040426790
-                    '        _targetPos = GetBonePosition(_target, 60)
-                    '        Exit Select
-                    '    Case 1896491931
-                    '        _targetPos = GetBonePosition(_target, 33)
-                    '        Exit Select
-                    '    Case 2006667053
-                    '        _targetPos = GetBonePosition(_target, 41)
-                    '        Exit Select
-                    'End Select
-
-
-                    _cameraZoom = 0.5
+                    _cameraZoom = 0
 
                     startValueRotation = _mainCamera.Rotation
                     startValuePosition = _mainCamera.Position
@@ -449,7 +502,7 @@ Public Class WorkshopCamera
                     IsLerping = True
                     startTime = DateTime.Now
 
-                    endValuePosition = _targetPos + _target.ForwardVector * -0.5 + _target.UpVector * 0.1
+                    endValuePosition = _targetPos + _target.ForwardVector * -0.8 + _target.UpVector * 0.2
                     Dim tRot = _target.Heading
                     If tRot > 180.0 Then
                         tRot -= 360.0

@@ -65,11 +65,12 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="INMNativeUI">
-      <HintPath>References\INMNativeUI.dll</HintPath>
+    <Reference Include="INMNativeUI, Version=1.6.2.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files\Steam\SteamApps\common\Grand Theft Auto V\scripts\INMNativeUI.dll</HintPath>
     </Reference>
-    <Reference Include="ScriptHookVDotNet2">
-      <HintPath>References\ScriptHookVDotNet2.dll</HintPath>
+    <Reference Include="ScriptHookVDotNet">
+      <HintPath>..\..\..\..\..\..\Program Files\Steam\SteamApps\common\Grand Theft Auto V\ScriptHookVDotNet.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

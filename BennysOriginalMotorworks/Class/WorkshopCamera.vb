@@ -10,6 +10,7 @@ Public Enum CameraPosition
     Car
     Interior
     Engine
+    RearEngine
     Trunk
     FrontBumper
     RearBumper
@@ -343,6 +344,32 @@ Public Class WorkshopCamera
                     Else
                         _targetPos = GetBonePosition(_target, "bumper_r")
                     End If
+                    _cameraZoom = 3.0
+
+                    startValueRotation = _mainCamera.Rotation
+                    startValuePosition = _mainCamera.Position
+                    duration = 1000.0
+                    IsLerping = True
+                    startTime = DateTime.Now
+
+                    endValuePosition = _targetPos + _target.ForwardVector * -3.0 + _target.UpVector
+                    endValueRotation = New Vector3(0, 0, _target.Heading)
+                    _mainCamera.StopPointing()
+                    _mainCamera.PointAt(_targetPos)
+                    CameraClamp = New CameraClamp() With {
+                    .MaxVerticalValue = -40.0,
+                    .MinVerticalValue = -3.0,
+                    .LeftHorizontalValue = _target.Heading - 410.0,
+                    .RightHorizontalValue = _target.Heading - 300.0
+                }
+                    _justSwitched = True
+                End If
+                Exit Select
+            Case CameraPosition.RearEngine
+                If True Then
+                    Game.Player.Character.Alpha = 255
+                    RotationMode = CameraRotationMode.Around
+                    GetBonePosition(_target, "engine")
                     _cameraZoom = 3.0
 
                     startValueRotation = _mainCamera.Rotation

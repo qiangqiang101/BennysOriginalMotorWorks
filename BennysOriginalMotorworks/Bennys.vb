@@ -20,7 +20,8 @@ Public Class Bennys
     Public Shared scriptCam As ScriptedCamera
     Public Shared unWelcome As List(Of VehicleClass) = New List(Of VehicleClass) From {VehicleClass.Commercial, VehicleClass.Boats, VehicleClass.Cycles, VehicleClass.Helicopters, VehicleClass.Military, VehicleClass.Planes}
     Public Shared unWelcomeV As List(Of Model) = New List(Of Model) From {"firetruck", "pbus", "policeb", "riot", "dump", "cutter", "bulldozer", "flatbed", "handler", "mixer", "mixer2", "rubble", "tiptruck", "tiptruck2",
-        "ruiner3", "dune2", "marshall", "monster", "brickade", "airbus", "bus", "coach", "rallytruck", "rentalbus", "tourbus", "trash", "trash2", "wastelander"}
+        "ruiner3", "dune2", "marshall", "monster", "brickade", "airbus", "bus", "coach", "rallytruck", "rentalbus", "tourbus", "trash", "trash2", "wastelander", "airtug", "caddy", "caddy2", "docktug", "ripley", "mower",
+        "forklift", "scrap", "towtruck", "towtruck2", "tractor", "tractor2", "tractor3", "utillitruck", "utilitytruck2", "utillitruck3", "camper", "journey", "taco"}
 
     Public Sub New()
         LoadSettings()

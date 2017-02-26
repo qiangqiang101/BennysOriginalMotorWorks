@@ -485,17 +485,19 @@ Public Class Helper
                 Exit Select
             Case VehicleMod.Roof
                 If Bennys.veh.ClassType = VehicleClass.Motorcycles Then
-                    If Bennys.veh.Model = "penetrator" Then
-                        cur = Game.GetGXTEntry("CMM_MOD_S43")
-                    ElseIf Bennys.veh.Model = "blazer4" Then
-                        cur = Game.GetGXTEntry("CMM_MOD_S17")
-                    ElseIf Bennys.veh.Model = "faggio3" Then
+                    If Bennys.veh.Model = "faggio3" Then
                         cur = Game.GetGXTEntry("TOP_ANTENNAR")
                     Else
                         cur = Game.GetGXTEntry("CMOD_MOD_TNK")
                     End If
                 Else
-                    cur = Game.GetGXTEntry("CMOD_MOD_ROF")
+                    If Bennys.veh.Model = "penetrator" Then
+                        cur = Game.GetGXTEntry("CMM_MOD_S43")
+                    ElseIf Bennys.veh.Model = "blazer4" Then
+                        cur = Game.GetGXTEntry("CMM_MOD_S17")
+                    Else
+                        cur = Game.GetGXTEntry("CMOD_MOD_ROF")
+                    End If
                 End If
                 Exit Select
             Case Else

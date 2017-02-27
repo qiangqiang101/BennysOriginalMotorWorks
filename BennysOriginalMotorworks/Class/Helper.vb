@@ -431,58 +431,58 @@ Public Class Helper
                 Exit Select
 
             'I'm Not MentaL
-            Case VehicleMod.Fender
-                If Bennys.veh.ClassType = VehicleClass.Motorcycles Then
-                    cur = Game.GetGXTEntry("CMOD_SHIFTER_0")
-                Else
-                    cur = Game.GetGXTEntry("CMOD_MOD_FEN")
-                End If
-                Exit Select
-            Case VehicleMod.Spoilers
-                If Bennys.veh.ClassType = VehicleClass.Motorcycles Then
-                    If Bennys.veh.Model = "faggio3" Then
-                        cur = Game.GetGXTEntry("TOP_ANTENNA")
-                    Else
-                        cur = Game.GetGXTEntry("CMOD_MOD_BLT")
-                    End If
-                Else
-                    If Bennys.veh.Model = "btype3" Then
-                        cur = Game.GetGXTEntry("BT_SPARE2")
-                    Else
-                        cur = Game.GetGXTEntry("CMOD_MOD_SPO")
-                    End If
-                End If
-                Exit Select
-            Case VehicleMod.Frame
-                If Bennys.veh.ClassType = VehicleClass.Motorcycles Then
-                    cur = Game.GetGXTEntry("CMM_MOD_S14")
-                Else
-                    If Bennys.veh.Model = "sultanrs" Then
-                        cur = Game.GetGXTEntry("TOP_CAGE")
-                    Else
-                        cur = Game.GetGXTEntry("CMOD_MOD_CHA")
-                    End If
-                End If
-                Exit Select
-            Case VehicleMod.Exhaust
-                cur = Game.GetGXTEntry("CMOD_MOD_MUF")
-                Exit Select
-            Case VehicleMod.Grille
-                Select Case Bennys.veh.Model
-                    Case "avarus"
-                        cur = Game.GetGXTEntry("TOP_OIL")
-                    Case Else
-                        cur = Game.GetGXTEntry("CMOD_MOD_GRL")
-                End Select
+            'Case VehicleMod.Fender
+            '    If Bennys.veh.ClassType = VehicleClass.Motorcycles Then
+            '        cur = Game.GetGXTEntry("CMOD_SHIFTER_0")
+            '    Else
+            '        cur = Game.GetGXTEntry("CMOD_MOD_FEN")
+            '    End If
+            '    Exit Select
+            'Case VehicleMod.Spoilers
+            '    If Bennys.veh.ClassType = VehicleClass.Motorcycles Then
+            '        If Bennys.veh.Model = "faggio3" Then
+            '            cur = Game.GetGXTEntry("TOP_ANTENNA")
+            '        Else
+            '            cur = Game.GetGXTEntry("CMOD_MOD_BLT")
+            '        End If
+            '    Else
+            '        If Bennys.veh.Model = "btype3" Then
+            '            cur = Game.GetGXTEntry("BT_SPARE2")
+            '        Else
+            '            cur = Game.GetGXTEntry("CMOD_MOD_SPO")
+            '        End If
+            '    End If
+            '    Exit Select
+            'Case VehicleMod.Frame
+            '    If Bennys.veh.ClassType = VehicleClass.Motorcycles Then
+            '        cur = Game.GetGXTEntry("CMM_MOD_S14")
+            '    Else
+            '        If Bennys.veh.Model = "sultanrs" Then
+            '            cur = Game.GetGXTEntry("TOP_CAGE")
+            '        Else
+            '            cur = Game.GetGXTEntry("CMOD_MOD_CHA")
+            '        End If
+            '    End If
+            '    Exit Select
+            'Case VehicleMod.Exhaust
+            '    cur = Game.GetGXTEntry("CMOD_MOD_MUF")
+            '    Exit Select
+            'Case VehicleMod.Grille
+            '    Select Case Bennys.veh.Model
+            '        Case "avarus"
+            '            cur = Game.GetGXTEntry("TOP_OIL")
+            '        Case Else
+            '            cur = Game.GetGXTEntry("CMOD_MOD_GRL")
+            '    End Select
 
-                Exit Select
-            Case VehicleMod.Hood
-                If Bennys.veh.ClassType = VehicleClass.Motorcycles Then
-                    cur = Game.GetGXTEntry("CMM_MOD_S7")
-                Else
-                    cur = Game.GetGXTEntry("CMOD_MOD_HOD")
-                End If
-                Exit Select
+            '    Exit Select
+            'Case VehicleMod.Hood
+            '    If Bennys.veh.ClassType = VehicleClass.Motorcycles Then
+            '        cur = Game.GetGXTEntry("CMM_MOD_S7")
+            '    Else
+            '        cur = Game.GetGXTEntry("CMOD_MOD_HOD")
+            '    End If
+            '    Exit Select
             Case VehicleMod.Roof
                 If Bennys.veh.ClassType = VehicleClass.Motorcycles Then
                     If Bennys.veh.Model = "faggio3" Then
@@ -517,7 +517,7 @@ Public Class Helper
     End Function
 
     Public Shared Function LocalizeModTitleName(title As String) As String
-        Dim langConf As ScriptSettings = ScriptSettings.Load("scripts\bennyslang.ini")
+        Dim langConf As ScriptSettings = ScriptSettings.Load("scripts\BennysLang-" & Game.Language.ToString & ".ini")
         Return langConf.GetValue("TITLE", title, "NULL")
     End Function
 
@@ -1282,7 +1282,7 @@ Public Class Helper
 
     Public Shared Sub CreateTitleNames()
         Try
-            Dim langConf As ScriptSettings = ScriptSettings.Load("scripts\BennysLang.ini")
+            Dim langConf As ScriptSettings = ScriptSettings.Load("scripts\BennysLang-" & Game.Language.ToString & ".ini")
             langConf.SetValue(Of String)("TITLE", "AERIALS", Game.GetGXTEntry("CMM_MOD_ST18"))
             langConf.SetValue(Of String)("TITLE", "BODYWORK", Game.GetGXTEntry("CMOD_BW_T"))
             langConf.SetValue(Of String)("TITLE", "DOORS", Game.GetGXTEntry("CMM_MOD_ST6"))
@@ -1373,7 +1373,7 @@ Public Class Helper
     End Sub
 
     Public Shared Sub SaveTitleNames()
-        Dim langConf As ScriptSettings = ScriptSettings.Load("scripts\BennysLang.ini")
+        Dim langConf As ScriptSettings = ScriptSettings.Load("scripts\BennysLang-" & Game.Language.ToString & ".ini")
         If langConf.GetValue("TITLE", "AERIALS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "AERIALS", Game.GetGXTEntry("CMM_MOD_ST18"))
         If langConf.GetValue("TITLE", "BODYWORK") = "NULL" Then langConf.SetValue(Of String)("TITLE", "BODYWORK", Game.GetGXTEntry("CMOD_BW_T"))
         If langConf.GetValue("TITLE", "DOORS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "DOORS", Game.GetGXTEntry("CMM_MOD_ST6"))
@@ -1461,4 +1461,18 @@ Public Class Helper
         'If langConf.GetValue("TITLE", "") = "NULL"  Then langConf.SetValue(Of String)("TITLE", "", Game.GetGXTEntry(""))
         langConf.Save()
     End Sub
+
+    Public Shared Function IsNullorNothing() As Boolean
+        Dim result As Boolean = False
+        Using reader As New IO.StreamReader(".\scripts\BennysLang-" & Game.Language.ToString & ".ini")
+            While Not reader.EndOfStream
+                Dim line As String = reader.ReadLine()
+                If line.Contains("NULL") Then
+                    result = True
+                    Exit While
+                End If
+            End While
+        End Using
+        Return result
+    End Function
 End Class

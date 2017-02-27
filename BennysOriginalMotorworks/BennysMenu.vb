@@ -12,7 +12,7 @@ Public Class BennysMenu
     Public Shared bennysvehicle As List(Of Model) = New List(Of Model) From {"banshee2", "buccaneer2", "chino2", "diabolus2", "comet3", "faction2", "faction3", "fcr2", "italigtb2", "minivan2", "moonbeam2", "nero2", "primo2",
         "sabregt2", "specter2", "sultanrs", "tornado5", "virgo2", "voodoo", "elegy"}
     Public Shared tyres As String() = New String() {"Stock", "Thin White", "White", "Fat White", "Red", "Blue", "Atomic"}
-    Public Shared MainMenu, gmBodywork, gmEngine, gmInterior, gmPlate, gmLights, gmRespray, gmWheels, gmBumper, gmWheelType, gmNeonKits, gmDoor As UIMenu
+    Public Shared QuitMenu, MainMenu, gmBodywork, gmEngine, gmInterior, gmPlate, gmLights, gmRespray, gmWheels, gmBumper, gmWheelType, gmNeonKits, gmDoor As UIMenu
     Public Shared mAerials, mSuspension, mArmor, mBrakes, mEngine, mTransmission, mFBumper, mRBumper, mSSkirt, mTrim, mEngineBlock, mAirFilter, mStruts, mColumnShifterLevers, mDashboard, mDialDesign, mOrnaments, mSeats,
         mSteeringWheels, mTrimDesign, mPlateHolder, mVanityPlates, mNumberPlate, mBikeWheels, mHighEnd, mLowrider, mMuscle, mOffroad, mSport, mSUV, mTuner, mBennysOriginals, mBespoke, mTires, mHeadlights, mNeon, mNeonColor,
     mArchCover, mExhaust, mFender, mRFender, mDoor, mFrame, mGrille, mHood, mHorn, mHydraulics, mLivery, mPlaques, mRoof, mSpeakers, mSpoilers, mTank, mTrunk, mWindow, mTurbo, mTint, mLightsColor, mTrimColor, mRimColor,
@@ -307,7 +307,7 @@ Public Class BennysMenu
             Bennys.ply.Task.DriveTo(Bennys.veh, New Vector3(-205.743, -1303.657, 30.84998), 0.5, 5)
             Wait(500)
             Game.FadeScreenIn(500)
-            Wait(5000)
+            Wait(7000)
             Bennys.ply.Task.ClearAll()
             Bennys.isExiting = False
         Catch ex As Exception
@@ -2452,6 +2452,12 @@ Public Class BennysMenu
     End Sub
 
     Public Shared Sub CreateMenus()
+        Do Until (IO.File.Exists(".\scripts\BennysLang-" & Game.Language.ToString & ".ini"))
+            Threading.Thread.Sleep(1000)
+        Loop
+        Do Until Helper.IsNullorNothing = False
+            Threading.Thread.Sleep(1000)
+        Loop
         CreateMainMenu()
         CreateBodyworkMenu()
         CreateModMenuFor(mAerials, Helper.LocalizeModTitleName("AERIALS")) 'AERIALS

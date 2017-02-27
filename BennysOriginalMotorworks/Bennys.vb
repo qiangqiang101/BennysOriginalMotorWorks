@@ -27,7 +27,7 @@ Public Class Bennys
         LoadSettings()
         bennyIntID = Helper.GetInteriorID(New Vector3(-211.798, -1324.292, 30.37535))
         CreateBlip()
-        If Not IO.File.Exists(".\scripts\BennysLang.ini") Then Helper.CreateTitleNames()
+        If Not IO.File.Exists(".\scripts\BennysLang-" & Game.Language.ToString & ".ini") Then Helper.CreateTitleNames()
     End Sub
 
     Public Sub LoadSettings()
@@ -143,10 +143,8 @@ Public Class Bennys
         End Try
     End Sub
 
-
     Public Shared Sub PutVehIntoShop()
         Try
-
             veh.InstallModKit()
             RefreshMenus()
             lastVehMemory = New Memory() With {

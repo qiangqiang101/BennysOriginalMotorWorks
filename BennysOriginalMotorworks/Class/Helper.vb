@@ -431,58 +431,58 @@ Public Class Helper
                 Exit Select
 
             'I'm Not MentaL
-            'Case VehicleMod.Fender
-            '    If Bennys.veh.ClassType = VehicleClass.Motorcycles Then
-            '        cur = Game.GetGXTEntry("CMOD_SHIFTER_0")
-            '    Else
-            '        cur = Game.GetGXTEntry("CMOD_MOD_FEN")
-            '    End If
-            '    Exit Select
-            'Case VehicleMod.Spoilers
-            '    If Bennys.veh.ClassType = VehicleClass.Motorcycles Then
-            '        If Bennys.veh.Model = "faggio3" Then
-            '            cur = Game.GetGXTEntry("TOP_ANTENNA")
-            '        Else
-            '            cur = Game.GetGXTEntry("CMOD_MOD_BLT")
-            '        End If
-            '    Else
-            '        If Bennys.veh.Model = "btype3" Then
-            '            cur = Game.GetGXTEntry("BT_SPARE2")
-            '        Else
-            '            cur = Game.GetGXTEntry("CMOD_MOD_SPO")
-            '        End If
-            '    End If
-            '    Exit Select
-            'Case VehicleMod.Frame
-            '    If Bennys.veh.ClassType = VehicleClass.Motorcycles Then
-            '        cur = Game.GetGXTEntry("CMM_MOD_S14")
-            '    Else
-            '        If Bennys.veh.Model = "sultanrs" Then
-            '            cur = Game.GetGXTEntry("TOP_CAGE")
-            '        Else
-            '            cur = Game.GetGXTEntry("CMOD_MOD_CHA")
-            '        End If
-            '    End If
-            '    Exit Select
-            'Case VehicleMod.Exhaust
-            '    cur = Game.GetGXTEntry("CMOD_MOD_MUF")
-            '    Exit Select
-            'Case VehicleMod.Grille
-            '    Select Case Bennys.veh.Model
-            '        Case "avarus"
-            '            cur = Game.GetGXTEntry("TOP_OIL")
-            '        Case Else
-            '            cur = Game.GetGXTEntry("CMOD_MOD_GRL")
-            '    End Select
+            Case VehicleMod.Fender
+                If Bennys.veh.ClassType = VehicleClass.Motorcycles Then
+                    cur = Game.GetGXTEntry("CMOD_SHIFTER_0")
+                Else
+                    cur = Game.GetGXTEntry("CMOD_MOD_FEN")
+                End If
+                Exit Select
+            Case VehicleMod.Spoilers
+                If Bennys.veh.ClassType = VehicleClass.Motorcycles Then
+                    If Bennys.veh.Model = "faggio3" Then
+                        cur = Game.GetGXTEntry("TOP_ANTENNA")
+                    Else
+                        cur = Game.GetGXTEntry("CMOD_MOD_BLT")
+                    End If
+                Else
+                    If Bennys.veh.Model = "btype3" Then
+                        cur = Game.GetGXTEntry("BT_SPARE2")
+                    Else
+                        cur = Game.GetGXTEntry("CMOD_MOD_SPO")
+                    End If
+                End If
+                Exit Select
+            Case VehicleMod.Frame
+                If Bennys.veh.ClassType = VehicleClass.Motorcycles Then
+                    cur = Game.GetGXTEntry("CMM_MOD_S14")
+                Else
+                    If Bennys.veh.Model = "sultanrs" Then
+                        cur = Game.GetGXTEntry("TOP_CAGE")
+                    Else
+                        cur = Game.GetGXTEntry("CMOD_MOD_CHA")
+                    End If
+                End If
+                Exit Select
+            Case VehicleMod.Exhaust
+                cur = Game.GetGXTEntry("CMOD_MOD_MUF")
+                Exit Select
+            Case VehicleMod.Grille
+                Select Case Bennys.veh.Model
+                    Case "avarus"
+                        cur = Game.GetGXTEntry("TOP_OIL")
+                    Case Else
+                        cur = Game.GetGXTEntry("CMOD_MOD_GRL")
+                End Select
 
-            '    Exit Select
-            'Case VehicleMod.Hood
-            '    If Bennys.veh.ClassType = VehicleClass.Motorcycles Then
-            '        cur = Game.GetGXTEntry("CMM_MOD_S7")
-            '    Else
-            '        cur = Game.GetGXTEntry("CMOD_MOD_HOD")
-            '    End If
-            '    Exit Select
+                Exit Select
+            Case VehicleMod.Hood
+                If Bennys.veh.ClassType = VehicleClass.Motorcycles Then
+                    cur = Game.GetGXTEntry("CMM_MOD_S7")
+                Else
+                    cur = Game.GetGXTEntry("CMOD_MOD_HOD")
+                End If
+                Exit Select
             Case VehicleMod.Roof
                 If Bennys.veh.ClassType = VehicleClass.Motorcycles Then
                     If Bennys.veh.Model = "faggio3" Then

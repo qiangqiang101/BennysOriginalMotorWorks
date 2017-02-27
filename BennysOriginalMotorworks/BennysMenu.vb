@@ -2456,7 +2456,7 @@ Public Class BennysMenu
             Threading.Thread.Sleep(1000)
         Loop
         Do Until Helper.IsNullorNothing = False
-            Threading.Thread.Sleep(1000)
+            Helper.CreateTitleNames()
         Loop
         CreateMainMenu()
         CreateBodyworkMenu()

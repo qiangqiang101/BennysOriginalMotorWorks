@@ -108,7 +108,6 @@ Public Class Bennys
             Wait(500)
             isExiting = True
             isCutscene = True
-            Native.Function.Call(Hash._0x260BE8F09E326A20, veh, 3.0, 0, False)
             If bennyPed = Nothing Then
                 bennyPed = World.CreatePed(PedHash.Benny, New Vector3(-216.0945, -1319.185, 30.89038), 219.5891)
             Else

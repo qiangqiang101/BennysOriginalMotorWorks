@@ -1276,10 +1276,6 @@ Public Class Helper
         Return Game.GetGXTEntry("VEH_CLASS_" + CInt(vehicleClass).ToString())
     End Function
 
-    Public Shared Function GetPrice(itemhash As Integer, vehhash As Integer) As Integer
-        Return Native.Function.Call(Of Integer)(Hash._NETWORK_SHOP_GET_PRICE, vehhash, itemhash, True)
-    End Function
-
     Public Shared Sub CreateTitleNames()
         Try
             Dim langConf As ScriptSettings = ScriptSettings.Load("scripts\BennysLang-" & Game.Language.ToString & ".ini")
@@ -1475,4 +1471,60 @@ Public Class Helper
         End Using
         Return result
     End Function
+
+    Public Shared Function GetUpgradePrice(vehicleModel As Model) As Integer
+        Dim result As Integer = 0
+        Select Case vehicleModel
+            Case "banshee"
+                result = 565000
+            Case "buccaneer"
+                result = 390000
+            Case "chino"
+                result = 180000
+            Case "diablous"
+                result = 245000
+            Case "comet2"
+                result = 645000
+            Case "faction"
+                result = 335000
+            Case "faction2"
+                result = 695000
+            Case "fcr"
+                result = 196000
+            Case "italigtb"
+                result = 495000
+            Case "minivan"
+                result = 330000
+            Case "moonbeam"
+                result = 370000
+            Case "nero"
+                result = 605000
+            Case "primo"
+                result = 400000
+            Case "sabregt"
+                result = 490000
+            Case "slamvan"
+                result = 394250
+            Case "specter"
+                result = 252000
+            Case "sultan"
+                result = 795000
+            Case "tornado", "tornado2", "tornado3"
+                result = 375000
+            Case "virgo3"
+                result = 240000
+            Case "voodoo2"
+                result = 420000
+            Case "elegy2"
+                result = 904000
+            Case Else
+                result = 0
+        End Select
+        Return result
+    End Function
+
+    Public Shared Sub PlaySpeech(speechName As String)
+        If speechName = "" Then speechName = "LR_UPGRADE_GENERIC"
+        Native.Function.Call(Hash._PLAY_AMBIENT_SPEECH_WITH_VOICE, Bennys.bennyPed, speechName, "BENNY", "SPEECH_PARAMS_FORCE_SHOUTED", 0)
+    End Sub
 End Class

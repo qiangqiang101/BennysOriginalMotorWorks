@@ -31,6 +31,7 @@ Public Class BennysMenu
     Public Shared mShifter, mFMudguard, mBSeat, mOilTank, mRMudguard, mFuelTank, mBeltDriveCovers, mBEngineBlock, mBAirFilter, mBTank As UIMenu
     Public Shared _menuPool As MenuPool
     Public Shared camera As WorkshopCamera
+    Public Shared isRepairing As Boolean = False
 
     Public Shared Sub CreateMainMenu()
         Try
@@ -55,10 +56,15 @@ Public Class BennysMenu
                 iRepair = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.Repair), Game.GetGXTEntry("CMOD_MOD_0_D")) 'Repair
                 MainMenu.AddItem(iRepair)
                 MainMenu.RefreshIndex()
+                Helper.PlaySpeech("SHOP_SELL_REPAIR")
             ElseIf Bennys.veh.ClassType = VehicleClass.Motorcycles Or Bennys.veh.Model = "blazer4" Then
                 'Specials
                 If lowriders.Contains(Bennys.veh.Model) Then
                     iUpgrade = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.Upgrade), Game.GetGXTEntry("CMOD_MOD_100_D")) 'Upgrade
+                    With iUpgrade
+                        .SetRightLabel("$" & Helper.GetUpgradePrice(Bennys.veh.Model).ToString("###,###"))
+                        .SubInteger1 = Helper.GetUpgradePrice(Bennys.veh.Model)
+                    End With
                     MainMenu.AddItem(iUpgrade)
                 End If
 
@@ -148,6 +154,10 @@ Public Class BennysMenu
                 'Specials
                 If lowriders.Contains(Bennys.veh.Model) Then
                     iUpgrade = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.Upgrade), Game.GetGXTEntry("CMOD_MOD_100_D")) 'Upgrade
+                    With iUpgrade
+                        .SetRightLabel("$" & Helper.GetUpgradePrice(Bennys.veh.Model).ToString("###,###"))
+                        .SubInteger1 = Helper.GetUpgradePrice(Bennys.veh.Model)
+                    End With
                     MainMenu.AddItem(iUpgrade)
                 End If
 
@@ -289,9 +299,7 @@ Public Class BennysMenu
                     MainMenu.BindMenuToItem(mTint, iTint)
                 End If
                 MainMenu.RefreshIndex()
-                End If
-
-                MainMenu.RefreshIndex()
+            End If
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
         End Try
@@ -299,17 +307,23 @@ Public Class BennysMenu
 
     Public Shared Sub MainMenuCloseHandler(sender As UIMenu)
         Try
-            Game.FadeScreenOut(500)
-            Wait(500)
-            Bennys.isExiting = True
-            camera.Stop()
-            Bennys.veh.Position = New Vector3(-205.8678, -1321.805, 30.41191)
-            Bennys.ply.Task.DriveTo(Bennys.veh, New Vector3(-205.743, -1303.657, 30.84998), 0.5, 5)
-            Wait(500)
-            Game.FadeScreenIn(500)
-            Wait(7000)
-            Bennys.ply.Task.ClearAll()
-            Bennys.isExiting = False
+            If Not isRepairing Then
+                Game.FadeScreenOut(500)
+                Wait(500)
+                Bennys.isExiting = True
+                camera.Stop()
+                Bennys.veh.Position = New Vector3(-205.8678, -1321.805, 30.41191)
+                Bennys.ply.Task.DriveTo(Bennys.veh, New Vector3(-205.743, -1303.657, 30.84998), 0.5, 5)
+                Wait(500)
+                Game.FadeScreenIn(500)
+                Helper.PlaySpeech("SHOP_GOODBYE")
+                Wait(7000)
+                Bennys.ply.Task.ClearAll()
+                Bennys.isExiting = False
+                If Native.Function.Call(Of Boolean)(Hash.IS_AUDIO_SCENE_ACTIVE, "CAR_MOD_RADIO_MUTE_SCENE") Then
+                    Native.Function.Call(Hash.STOP_AUDIO_SCENE, "CAR_MOD_RADIO_MUTE_SCENE")
+                End If
+            End If
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
         End Try
@@ -319,6 +333,7 @@ Public Class BennysMenu
         Try
             If sender Is MainMenu Then
                 If selectedItem Is iRepair Then
+                    isRepairing = True
                     Bennys.veh.Repair()
                     RefreshMenus()
                 ElseIf selectedItem Is iUpgrade Then
@@ -388,11 +403,15 @@ Public Class BennysMenu
                     Bennys.veh = veh
                     veh.InstallModKit()
                     MainMenu.MenuItems.Remove(selectedItem)
+                    isRepairing = True
                     RefreshMenus()
                     camera.RepositionFor(veh)
                     Wait(500)
                     Game.FadeScreenIn(500)
-                    Helper.ScreenEffectStart(Helper.ScreenEffect.RaceTurbo, 1000)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger1)
+                    Native.Function.Call(Hash._START_SCREEN_EFFECT, "MP_corona_switch_supermod", 0, 1)
+                    Native.Function.Call(Hash.PLAY_SOUND_FRONTEND, -1, "Lowrider_Upgrade", "Lowrider_Super_Mod_Garage_Sounds", 1)
+                    Helper.PlaySpeech("LR_UPGRADE_SUPERMOD")
                 ElseIf selectedItem Is giEngine Then
                     If Not Bennys.veh.ClassType = VehicleClass.Motorcycles Or Bennys.veh.Model = "blazer4" Then
                         Select Case Bennys.veh.Model
@@ -454,6 +473,8 @@ Public Class BennysMenu
                     Select Case Bennys.veh.Model
                         Case "penetrator"
                             camera.MainCameraPosition = CameraPosition.RearEngine
+                        Case "banshee2"
+                            camera.MainCameraPosition = CameraPosition.Trunk
                         Case Else
                             camera.MainCameraPosition = CameraPosition.Grille
                     End Select
@@ -1590,30 +1611,35 @@ Public Class BennysMenu
                     Bennys.veh.SetMod(VehicleMod.Suspension, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.Suspension = selectedItem.SubInteger1
+                    Helper.PlaySpeech("SHOP_SELL_SUSPENSION")
                 End If
             ElseIf sender Is mArmor Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Armor, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.Armor = selectedItem.SubInteger1
+                    Helper.PlaySpeech("SHOP_SELL_ARMOUR")
                 End If
             ElseIf sender Is mBrakes Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Brakes, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.Brakes = selectedItem.SubInteger1
+                    Helper.PlaySpeech("SHOP_SELL_BRAKES")
                 End If
             ElseIf sender Is mTransmission Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Transmission, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.Transmission = selectedItem.SubInteger1
+                    Helper.PlaySpeech("SHOP_SELL_TRANS_UPGRADE")
                 End If
             ElseIf sender Is mEngine Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Engine, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.Engine = selectedItem.SubInteger1
+                    Helper.PlaySpeech("SHOP_SELL_ENGINE_UPGRADE")
                 End If
             End If
 
@@ -1623,234 +1649,273 @@ Public Class BennysMenu
                     Bennys.veh.SetMod(VehicleMod.FrontBumper, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.FrontBumper = selectedItem.SubInteger1
+                    Helper.PlaySpeech("")
                 End If
             ElseIf sender Is mRBumper Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.RearBumper, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.RearBumper = selectedItem.SubInteger1
+                    Helper.PlaySpeech("")
                 End If
             ElseIf sender Is mSSkirt Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.SideSkirt, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.SideSkirt = selectedItem.SubInteger1
+                    Helper.PlaySpeech("")
                 End If
             ElseIf sender Is mNumberPlate Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.NumberPlateType = selectedItem.SubInteger1
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.NumberPlate = selectedItem.SubInteger1
+                    Helper.PlaySpeech("")
                 End If
             ElseIf sender Is mHeadlights Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.ToggleMod(VehicleToggleMod.XenonHeadlights, CBool(selectedItem.SubInteger1))
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.Headlights = CBool(selectedItem.SubInteger1)
+                    Helper.PlaySpeech("")
                 End If
             ElseIf sender Is mArchCover Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.ArchCover, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.ArchCover = selectedItem.SubInteger1
+                    Helper.PlaySpeech("SHOP_SELL_COSMETICS")
                 End If
             ElseIf sender Is mExhaust Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Exhaust, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.Exhaust = selectedItem.SubInteger1
+                    Helper.PlaySpeech("SHOP_SELL_EXHAUST")
                 End If
             ElseIf sender Is mFender Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Fender, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.Fender = selectedItem.SubInteger1
+                    Helper.PlaySpeech("")
                 End If
             ElseIf sender Is mRFender Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.RightFender, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.RightFender = selectedItem.SubInteger1
+                    Helper.PlaySpeech("")
                 End If
             ElseIf sender Is mDoor Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.DoorSpeakers, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.DoorSpeakers = selectedItem.SubInteger1
+                    Helper.PlaySpeech("")
                 End If
             ElseIf sender Is mFrame Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Frame, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.Frame = selectedItem.SubInteger1
+                    Helper.PlaySpeech("LR_SELL_EXCHASSIS_MOD")
                 End If
             ElseIf sender Is mAerials Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Aerials, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.Aerials = selectedItem.SubInteger1
+                    Helper.PlaySpeech("")
                 End If
             ElseIf sender Is mTrim Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Trim, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.Trim = selectedItem.SubInteger1
+                    Helper.PlaySpeech("")
                 End If
             ElseIf sender Is mEngineBlock Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.EngineBlock, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.EngineBlock = selectedItem.SubInteger1
+                    Helper.PlaySpeech("LR_UPGRADE_ENGINE")
                 End If
             ElseIf sender Is mAirFilter Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.AirFilter, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.AirFilter = selectedItem.SubInteger1
+                    Helper.PlaySpeech("LR_UPGRADE_ENGINE")
                 End If
             ElseIf sender Is mStruts Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Struts, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.Struts = selectedItem.SubInteger1
+                    Helper.PlaySpeech("")
                 End If
             ElseIf sender Is mColumnShifterLevers Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.ColumnShifterLevers, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.ColumnShifterLevers = selectedItem.SubInteger1
+                    Helper.PlaySpeech("LR_UPGRADE_GEARKNOB")
                 End If
             ElseIf sender Is mDashboard Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Dashboard, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.Dashboard = selectedItem.SubInteger1
+                    Helper.PlaySpeech("LR_SELL_SUPERMOD_INTERIOR")
                 End If
             ElseIf sender Is mDialDesign Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.DialDesign, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.DialDesign = selectedItem.SubInteger1
+                    Helper.PlaySpeech("LR_SELL_SUPERMOD_INTERIOR")
                 End If
             ElseIf sender Is mOrnaments Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Ornaments, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.Ornaments = selectedItem.SubInteger1
+                    Helper.PlaySpeech("LR_SELL_DOLL")
                 End If
             ElseIf sender Is mSeats Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Seats, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.Seats = selectedItem.SubInteger1
+                    Helper.PlaySpeech("LR_SELL_SUPERMOD_INTERIOR")
                 End If
             ElseIf sender Is mSteeringWheels Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.SteeringWheels, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.SteeringWheels = selectedItem.SubInteger1
+                    Helper.PlaySpeech("LR_SELL_SUPERMOD_INTERIOR")
                 End If
             ElseIf sender Is mTrimDesign Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.TrimDesign, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.TrimDesign = selectedItem.SubInteger1
+                    Helper.PlaySpeech("LR_SELL_SUPERMOD_INTERIOR")
                 End If
             ElseIf sender Is mPlateHolder Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.PlateHolder, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.PlateHolder = selectedItem.SubInteger1
+                    Helper.PlaySpeech("LR_UPGRADE_PLATEHOLDER")
                 End If
             ElseIf sender Is mVanityPlates Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.VanityPlates, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.VanityPlates = selectedItem.SubInteger1
+                    Helper.PlaySpeech("LR_SELL_VANITYPLATE")
                 End If
             ElseIf sender Is mGrille Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Grille, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.Grille = selectedItem.SubInteger1
+                    Helper.PlaySpeech("")
                 End If
             ElseIf sender Is mHood Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Hood, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.Hood = selectedItem.SubInteger1
+                    Helper.PlaySpeech("")
                 End If
             ElseIf sender Is mHorn Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Horns, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.Horns = selectedItem.SubInteger1
+                    Helper.PlaySpeech("SHOP_SELL_HORN")
                 End If
             ElseIf sender Is mHydraulics Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Hydraulics, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.Hydraulics = selectedItem.SubInteger1
+                    Helper.PlaySpeech("LR_UPGRADE_HYDRAULICS")
                 End If
             ElseIf sender Is mLivery Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Livery, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.Livery = selectedItem.SubInteger1
+                    Helper.PlaySpeech("LR_SELL_LIVERY")
                 End If
             ElseIf sender Is mPlaques Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Plaques, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.Plaques = selectedItem.SubInteger1
+                    Helper.PlaySpeech("LR_UPGRADE_PLAQUE")
                 End If
             ElseIf sender Is mRoof Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Roof, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.Roof = selectedItem.SubInteger1
+                    Helper.PlaySpeech("")
                 End If
             ElseIf sender Is mSpeakers Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Speakers, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.Speakers = selectedItem.SubInteger1
+                    Helper.PlaySpeech("LR_UPGRADE_ICE")
                 End If
             ElseIf sender Is mSpoilers Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Spoilers, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.Spoilers = selectedItem.SubInteger1
+                    Helper.PlaySpeech("")
                 End If
             ElseIf sender Is mTank Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Tank, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.Tank = selectedItem.SubInteger1
+                    Helper.PlaySpeech("")
                 End If
             ElseIf sender Is mTrunk Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Trunk, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.Trunk = selectedItem.SubInteger1
+                    Helper.PlaySpeech("LR_UPGRADE_TRUNK")
                 End If
             ElseIf sender Is mWindow Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Windows, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.Windows = selectedItem.SubInteger1
+                    Helper.PlaySpeech("")
                 End If
             ElseIf sender Is mTurbo Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.ToggleMod(VehicleToggleMod.Turbo, CBool(selectedItem.SubInteger1))
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.Turbo = CBool(selectedItem.SubInteger1)
+                    Helper.PlaySpeech("SHOP_SELL_TURBO")
                 End If
             ElseIf sender Is mTint Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.WindowTint = selectedItem.SubInteger1
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.Tint = selectedItem.SubInteger1
+                    Helper.PlaySpeech("")
                 End If
             End If
 
@@ -1860,60 +1925,70 @@ Public Class BennysMenu
                     Bennys.veh.SetMod(VehicleMod.Fender, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.Fender = selectedItem.SubInteger1
+                    Helper.PlaySpeech("")
                 End If
             ElseIf sender Is mFMudguard Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.FrontBumper, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.FrontBumper = selectedItem.SubInteger1
+                    Helper.PlaySpeech("")
                 End If
             ElseIf sender Is mbSeat Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Hood, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.Hood = selectedItem.SubInteger1
+                    Helper.PlaySpeech("")
                 End If
             ElseIf sender Is mOilTank Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Grille, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.Grille = selectedItem.SubInteger1
+                    Helper.PlaySpeech("")
                 End If
             ElseIf sender Is mRMudguard Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.RearBumper, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.RearBumper = selectedItem.SubInteger1
+                    Helper.PlaySpeech("")
                 End If
             ElseIf sender Is mFuelTank Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Roof, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.Roof = selectedItem.SubInteger1
+                    Helper.PlaySpeech("")
                 End If
             ElseIf sender Is mBeltDriveCovers Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Spoilers, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.Spoilers = selectedItem.SubInteger1
+                    Helper.PlaySpeech("")
                 End If
             ElseIf sender Is mBEngineBlock Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Frame, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.Frame = selectedItem.SubInteger1
+                    Helper.PlaySpeech("")
                 End If
             ElseIf sender Is mBAirFilter Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.SideSkirt, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.SideSkirt = selectedItem.SubInteger1
+                    Helper.PlaySpeech("")
                 End If
             ElseIf sender Is mBTank Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Tank, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.Tank = selectedItem.SubInteger1
+                    Helper.PlaySpeech("")
                 End If
             End If
 
@@ -2017,6 +2092,7 @@ Public Class BennysMenu
                             Bennys.lastVehMemory.RightNeon = True
                         End If
                 End Select
+                Helper.PlaySpeech("")
             End If
 
             'Wheels Mods
@@ -2031,6 +2107,7 @@ Public Class BennysMenu
                     Bennys.lastVehMemory.WheelType = Bennys.veh.WheelType
                     Bennys.lastVehMemory.FrontWheels = selectedItem.SubInteger1
                     Bennys.lastVehMemory.BackWheels = selectedItem.SubInteger1
+                    Helper.PlaySpeech("LR_UPGRADE_WHEEL")
                 End If
             ElseIf (sender Is mHighEnd) Or (sender Is mLowrider) Or (sender Is mMuscle) Or (sender Is mOffroad) Or (sender Is mSport) Or (sender Is mSUV) Or (sender Is mTuner) Or (sender Is mBennysOriginals) Or (sender Is mBespoke) Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2038,6 +2115,7 @@ Public Class BennysMenu
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.WheelType = Bennys.veh.WheelType
                     Bennys.lastVehMemory.FrontWheels = selectedItem.SubInteger1
+                    Helper.PlaySpeech("LR_UPGRADE_WHEEL")
                 End If
             End If
             If sender Is mTires Then
@@ -2058,6 +2136,7 @@ Public Class BennysMenu
                             End If
                         End If
                 End Select
+                Helper.PlaySpeech("LR_UPGRADE_WHEEL")
             End If
 
             'Wheel Type
@@ -2101,24 +2180,28 @@ Public Class BennysMenu
                     Bennys.veh.DashboardColor = selectedItem.SubInteger1
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.LightsColor = selectedItem.SubInteger1
+                    Helper.PlaySpeech("SHOP_SELL_COSMETICS")
                 End If
             ElseIf sender Is mTrimColor Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.TrimColor = selectedItem.SubInteger1
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.TrimColor = selectedItem.SubInteger1
+                    Helper.PlaySpeech("SHOP_SELL_COSMETICS")
                 End If
             ElseIf sender Is mRimColor Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.RimColor = selectedItem.SubInteger1
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.RimColor = selectedItem.SubInteger1
+                    Helper.PlaySpeech("SHOP_SELL_COSMETICS")
                 End If
             ElseIf (sender Is mPrimaryChromeColor) Or (sender Is mPrimaryClassicColor) Or (sender Is mPrimaryMatteColor) Or (sender Is mPrimaryMetalsColor) Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.PrimaryColor = selectedItem.SubInteger1
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.PrimaryColor = selectedItem.SubInteger1
+                    Helper.PlaySpeech("SHOP_SELL_COSMETICS")
                 End If
             ElseIf sender Is mPrimaryMetallicColor
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2127,24 +2210,28 @@ Public Class BennysMenu
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.PrimaryColor = selectedItem.SubInteger1
                     Bennys.lastVehMemory.PearlescentColor = selectedItem.SubInteger1
+                    Helper.PlaySpeech("SHOP_SELL_COSMETICS")
                 End If
             ElseIf sender Is mPrimaryPearlescentColor Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.PearlescentColor = selectedItem.SubInteger1
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.PearlescentColor = selectedItem.SubInteger1
+                    Helper.PlaySpeech("SHOP_SELL_COSMETICS")
                 End If
             ElseIf (sender Is mSecondaryChromeColor) Or (sender Is mSecondaryClassicColor) Or (sender Is mSecondaryMatteColor) Or (sender Is mSecondaryMetallicColor) Or (sender Is mSecondaryMetalsColor) Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SecondaryColor = selectedItem.SubInteger1
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.SecondaryColor = selectedItem.SubInteger1
+                    Helper.PlaySpeech("SHOP_SELL_COSMETICS")
                 End If
             ElseIf sender Is mNeonColor Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.NeonLightsColor = Drawing.Color.FromArgb(selectedItem.SubInteger1, selectedItem.SubInteger2, selectedItem.SubInteger3)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.NeonLightsColor = Drawing.Color.FromArgb(selectedItem.SubInteger1, selectedItem.SubInteger2, selectedItem.SubInteger3)
+                    Helper.PlaySpeech("")
                 End If
             ElseIf sender Is mTireSmoke Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2152,6 +2239,7 @@ Public Class BennysMenu
                     Bennys.veh.ToggleMod(VehicleToggleMod.TireSmoke, True)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Bennys.lastVehMemory.TireSmokeColor = Drawing.Color.FromArgb(selectedItem.SubInteger1, selectedItem.SubInteger2, selectedItem.SubInteger3)
+                    Helper.PlaySpeech("")
                 End If
             End If
 
@@ -2449,6 +2537,8 @@ Public Class BennysMenu
         _menuPool = New MenuPool()
         camera = New WorkshopCamera
         CreateMenus()
+        Native.Function.Call(Hash.REQUEST_SCRIPT_AUDIO_BANK, "VEHICLE_SHOP_HUD_1", False, -1)
+        Native.Function.Call(Hash.REQUEST_SCRIPT_AUDIO_BANK, "VEHICLE_SHOP_HUD_2", False, -1)
     End Sub
 
     Public Shared Sub CreateMenus()
@@ -2557,7 +2647,6 @@ Public Class BennysMenu
     End Sub
 
     Public Shared Sub RefreshMenus()
-        RefreshMainMenu()
         RefreshBodyworkMenu()
         RefreshModMenuFor(mAerials, iAerials, VehicleMod.Aerials)
         RefreshModMenuFor(mTrim, iTrim, VehicleMod.Trim)
@@ -2653,6 +2742,7 @@ Public Class BennysMenu
         RefreshModMenuFor(mBEngineBlock, iBEngineBlock, VehicleMod.Frame)
         RefreshModMenuFor(mBAirFilter, iBAirFilter, VehicleMod.SideSkirt)
         RefreshModMenuFor(mBTank, iBTank, VehicleMod.Tank)
+        RefreshMainMenu()
     End Sub
 
     Public Sub OnTick(sender As Object, e As EventArgs) Handles Me.Tick
@@ -2669,6 +2759,13 @@ Public Class BennysMenu
                         Helper.DrawText(Bennys.veh.FriendlyName, New Drawing.Point(0, 550), 2.0, Drawing.Color.White, Helper.GTAFont.Title, Helper.GTAFontAlign.Right, Helper.GTAFontStyleOptions.DropShadow)
                         Helper.DrawText(Helper.GetClassDisplayName(Bennys.veh.ClassType), New Drawing.Point(0, 600), 2.0, Drawing.Color.DodgerBlue, Helper.GTAFont.Script, Helper.GTAFontAlign.Right, Helper.GTAFontStyleOptions.DropShadow)
                 End Select
+            End If
+
+            If isRepairing Then
+                If Not MainMenu.Visible Then
+                    mArmor.GoBack()
+                    isRepairing = False
+                End If
             End If
 
             Select Case True

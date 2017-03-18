@@ -415,13 +415,13 @@ Public Class BennysMenu
                 ElseIf selectedItem Is giEngine Then
                     If Not Bennys.veh.ClassType = VehicleClass.Motorcycles Or Bennys.veh.Model = "blazer4" Then
                         Select Case Bennys.veh.Model
-                            Case "comet2", "monroe", "vacca"
+                            Case "comet2", "monroe", "vacca", "ruston"
                                 Bennys.veh.OpenDoor(VehicleDoor.Trunk, False, False)
                                 camera.MainCameraPosition = CameraPosition.RearEngine
                             Case "jester", "jester2", "ninef", "bullet", "entityxf", "infernus", "italigtb", "italigtb2"
                                 Bennys.veh.OpenDoor(VehicleDoor.Trunk, False, False)
                                 camera.MainCameraPosition = CameraPosition.Trunk
-                            Case "comet3", "pfister811", "cheetah", "tyrus", "prototipo", "surfer", "surfer2"
+                            Case "comet3", "pfister811", "cheetah", "tyrus", "prototipo", "surfer", "surfer2", "gp1", "turismo2", "infernus2"
                                 Bennys.veh.OpenDoor(VehicleDoor.Hood, False, False)
                                 camera.MainCameraPosition = CameraPosition.RearEngine
                             Case "bfinjection", "bifta", "ninef2", "adder", "reaper", "voltic", "voltic2", "zentorno"
@@ -480,7 +480,7 @@ Public Class BennysMenu
                     End Select
                 ElseIf selectedItem Is giHood Then
                     Select Case Bennys.veh.Model
-                        Case "comet3", "hotknife", "nero", "nero2", "t20", "tempesta", "zentorno"
+                        Case "comet3", "hotknife", "nero", "nero2", "t20", "tempesta", "zentorno", "gp1", "turismo2", "ruston"
                             camera.MainCameraPosition = CameraPosition.FrontBumper
                         Case "tropos"
                             camera.MainCameraPosition = CameraPosition.Trunk
@@ -499,11 +499,11 @@ Public Class BennysMenu
                     camera.MainCameraPosition = CameraPosition.Plaque
                 ElseIf selectedItem Is giSpoilers Then
                     Select Case Bennys.veh.Model
-                        Case "bifta", "ninef2", "specter", "specter2", "fmj", "reaper", "le7b", "voltic", "zentorno"
+                        Case "bifta", "ninef2", "specter", "specter2", "fmj", "reaper", "le7b", "voltic", "zentorno", "gp1"
                             camera.MainCameraPosition = CameraPosition.RearEngine
                         Case "tyrus", "prototipo"
                             camera.MainCameraPosition = CameraPosition.RearBumper
-                        Case "comet3", "tropos", "cheetah", "nero2", "osiris", "penetrator", "tempesta", "turismor"
+                        Case "comet3", "tropos", "cheetah", "nero2", "osiris", "penetrator", "tempesta", "turismor", "turismo2", "infernus2"
                             camera.MainCameraPosition = CameraPosition.RearWindscreen
                         Case "sheava"
                             camera.MainCameraPosition = CameraPosition.Car

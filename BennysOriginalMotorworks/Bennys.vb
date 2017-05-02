@@ -197,6 +197,7 @@ Public Class Bennys
                 .Horns = veh.GetMod(VehicleMod.Horns),
                 .Hydraulics = veh.GetMod(VehicleMod.Hydraulics),
                 .Livery = veh.GetMod(VehicleMod.Livery),
+                .Livery2 = Helper.GetTornadoCustomRoof(veh),
                 .Plaques = veh.GetMod(VehicleMod.Plaques),
                 .Roof = veh.GetMod(VehicleMod.Roof),
                 .Speakers = veh.GetMod(VehicleMod.Speakers),
@@ -215,7 +216,7 @@ Public Class Bennys
                 .PlateNumbers = veh.NumberPlate,
                 .Suspension = veh.GetMod(VehicleMod.Suspension)}
             veh.Position = New Vector3(-211.798, -1324.292, 30.37535)
-            veh.Heading = 358.6677
+            veh.Heading = 150.2801 '358.6677
             MainMenu.Visible = Not MainMenu.Visible
             BennysMenu.camera.RepositionFor(veh)
             Wait(500)

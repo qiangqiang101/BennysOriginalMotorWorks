@@ -839,6 +839,10 @@ Public Class Helper
         Return result
     End Function
 
+    Public Shared Function LocalizedT5RoofName(roofID As Integer) As String
+        Return Game.GetGXTEntry("T5_ROOF" & roofID)
+    End Function
+
     Public Shared Function LocalizedWindowsTint(tint As GTA.VehicleWindowTint) As String
         Dim result As String = Nothing
 
@@ -1527,4 +1531,16 @@ Public Class Helper
         If speechName = "" Then speechName = "LR_UPGRADE_GENERIC"
         Native.Function.Call(Hash._PLAY_AMBIENT_SPEECH_WITH_VOICE, Bennys.bennyPed, speechName, "BENNY", "SPEECH_PARAMS_FORCE_SHOUTED", 0)
     End Sub
+
+    Public Shared Sub SetTornadoCustomRoof(veh As Vehicle, liv As Integer)
+        Native.Function.Call(DirectCast(&HA6D3A8750DC73270UL, Hash), veh.Handle, liv)
+    End Sub
+
+    Public Shared Function GetTornadoCustomRoof(veh As Vehicle) As Integer
+        Return Native.Function.Call(Of Integer)(DirectCast(&H60190048C0764A26UL, Hash), veh.Handle)
+    End Function
+
+    Public Shared Function GetTornadoCustomRoofCount(veh As Vehicle) As Integer
+        Return Native.Function.Call(Of Integer)(DirectCast(&H5ECB40269053C0D4UL, Hash), veh.Handle)
+    End Function
 End Class

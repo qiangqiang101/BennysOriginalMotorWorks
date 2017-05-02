@@ -17,12 +17,12 @@ Public Class BennysMenu
         mSteeringWheels, mTrimDesign, mPlateHolder, mVanityPlates, mNumberPlate, mBikeWheels, mHighEnd, mLowrider, mMuscle, mOffroad, mSport, mSUV, mTuner, mBennysOriginals, mBespoke, mTires, mHeadlights, mNeon, mNeonColor,
     mArchCover, mExhaust, mFender, mRFender, mDoor, mFrame, mGrille, mHood, mHorn, mHydraulics, mLivery, mPlaques, mRoof, mSpeakers, mSpoilers, mTank, mTrunk, mWindow, mTurbo, mTint, mLightsColor, mTrimColor, mRimColor,
     mPrimaryClassicColor, mPrimaryChromeColor, mPrimaryMetallicColor, mPrimaryMetalsColor, mPrimaryMatteColor, mPrimaryPearlescentColor, mPrimaryColor, mSecondaryColor, mSecondaryClassicColor, mSecondaryChromeColor,
-    mSecondaryMetallicColor, mSecondaryMetalsColor, mSecondaryMatteColor, mTireSmoke As UIMenu
+    mSecondaryMetallicColor, mSecondaryMetalsColor, mSecondaryMatteColor, mTireSmoke, mTornadoC As UIMenu
     Public Shared iRepair, iHorn, iArmor, iBrakes, iFBumper, iExhaust, iFender, iRollcage, iRoof, iTransmission, iEngine, iPlate, iLights, iTint, iTurbo, iRespray, iWheels, iSuspension, iEngineBlock, iAerials, iAirFilter,
         iArchCover, iDoor, iFrame, iGrille, iHood, iHydraulics, iLivery, iPlaques, iRFender, iSpeaker, iSpoilers, iTank, iTrunk, iWindows, iTrim, iUpgrade, iStruts, iTrimColor, iColumnShifterLevers, iDashboard, iDialDesign,
         iOrnaments, iSeats, iSteeringWheels, iTrimDesign, iRBumper, iSideSkirt, iRimColor, iPlateHolder, iVanityPlates, iHeadlights, iDashboardColor, iNumberPlate, iBikeWheels, iHighEnd, iLowrider, iMuscle, iOffroad,
         iSport, iSUV, iTuner, iBennys, iBespoke, iTires, iNeon, iTireSmoke, iNeonColor, iLightsColor, iPrimaryCol, iSecondaryCol, iPrimaryChromeColor, iPrimaryClassicColor, iPrimaryMetallicColor, iPrimaryMetalsColor,
-        iPrimaryMatteColor, iPrimaryPearlescentColor, iSecondaryChromeColor, iSecondaryClassicColor, iSecondaryMetallicColor, iSecondaryMetalsColor, iSecondaryMatteColor, iSecondaryPearlescentColor, iPlaceholder As UIMenuItem
+        iPrimaryMatteColor, iPrimaryPearlescentColor, iSecondaryChromeColor, iSecondaryClassicColor, iSecondaryMetallicColor, iSecondaryMetalsColor, iSecondaryMatteColor, iSecondaryPearlescentColor, iPlaceholder, iTornadoC As UIMenuItem
     Public Shared giBodywork, giEngine, giInterior, giPlate, giLights, giRespray, giWheels, giBumper, giWheelType, giTires, giNeonKits, giPrimaryCol, giSecondaryCol, giBikeWheels, giHighEndWheels, giDoor,
         giLowriderWheels, giMuscleWheels, giOffroadWheels, giSportWheels, giSUVWheels, giTunerWheels, giBennysWheels, giBespokeWheels, giFBumper, giRBumper, giSSkirt, giNumberPlate, giVanityPlate, giPlateHolder,
         giExhaust, giBrakes, giGrille, giHood, giHydraulics, giPlaques, giSpoilers, giTank, giTrunk, giStruts As UIMenuItem
@@ -125,6 +125,11 @@ Public Class BennysMenu
                     iLivery = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Livery), Game.GetGXTEntry("CMOD_SMOD_6_D"))
                     MainMenu.AddItem(iLivery)
                     MainMenu.BindMenuToItem(mLivery, iLivery)
+                End If
+                If Helper.GetTornadoCustomRoofCount(Bennys.veh) <> 0 Then
+                    iTornadoC = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Roof), Game.GetGXTEntry("CMOD_SMOD_6_D"))
+                    MainMenu.AddItem(iTornadoC)
+                    MainMenu.BindMenuToItem(mTornadoC, iTornadoC)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.Plaques) <> 0 Then
                     giPlaques = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Plaques), Game.GetGXTEntry("SMOD_IN_PLAQUE"))
@@ -250,6 +255,11 @@ Public Class BennysMenu
                     MainMenu.AddItem(iLivery)
                     MainMenu.BindMenuToItem(mLivery, iLivery)
                 End If
+                If Helper.GetTornadoCustomRoofCount(Bennys.veh) <> 0 Then
+                    iTornadoC = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Roof), Game.GetGXTEntry("CMOD_MOD_73_D"))
+                    MainMenu.AddItem(iTornadoC)
+                    MainMenu.BindMenuToItem(mTornadoC, iTornadoC)
+                End If
                 If Bennys.veh.GetModCount(VehicleMod.Plaques) <> 0 Then
                     giPlaques = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Plaques), Game.GetGXTEntry("SMOD_IN_PLAQUE"))
                     MainMenu.AddItem(giPlaques)
@@ -313,6 +323,7 @@ Public Class BennysMenu
                 Bennys.isExiting = True
                 camera.Stop()
                 Bennys.veh.Position = New Vector3(-205.8678, -1321.805, 30.41191)
+                Bennys.veh.Heading = 358.6677
                 Bennys.ply.Task.DriveTo(Bennys.veh, New Vector3(-205.743, -1303.657, 30.84998), 0.5, 5)
                 Wait(500)
                 Game.FadeScreenIn(500)
@@ -373,6 +384,7 @@ Public Class BennysMenu
                     veh.SetMod(VehicleMod.Horns, Bennys.lastVehMemory.Horns, False)
                     veh.SetMod(VehicleMod.Hydraulics, Bennys.lastVehMemory.Hydraulics, False)
                     veh.SetMod(VehicleMod.Livery, Bennys.lastVehMemory.Livery, False)
+                    Helper.SetTornadoCustomRoof(veh, Bennys.lastVehMemory.Livery2)
                     veh.SetMod(VehicleMod.Ornaments, Bennys.lastVehMemory.Ornaments, False)
                     veh.SetMod(VehicleMod.Plaques, Bennys.lastVehMemory.Plaques, False)
                     veh.SetMod(VehicleMod.PlateHolder, Bennys.lastVehMemory.PlateHolder, False)
@@ -1200,52 +1212,94 @@ Public Class BennysMenu
         Try
             mNeon.MenuItems.Clear()
 
-            iNeon = New UIMenuItem("None")
+            iNeon = New UIMenuItem(Game.GetGXTEntry("CMOD_NEONLAY_0"))
             With iNeon
                 .SubInteger1 = Helper.NeonLayouts.None
                 If Helper.NeonLayout = Helper.NeonLayouts.None Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
             End With
             mNeon.AddItem(iNeon)
-            iNeon = New UIMenuItem("Front")
+            iNeon = New UIMenuItem(Game.GetGXTEntry("CMOD_NEONLAY_1"))
             With iNeon
                 .SubInteger1 = Helper.NeonLayouts.Front
-                If Helper.NeonLayout = Helper.NeonLayouts.Front Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                If Helper.NeonLayout = Helper.NeonLayouts.Front Then
+                    .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                Else
+                    Dim price As String = "$" & 1000.ToString("###,###")
+                    .SetRightLabel(price)
+                    .SubInteger2 = 1000
+                End If
             End With
             mNeon.AddItem(iNeon)
-            iNeon = New UIMenuItem("Back")
+            iNeon = New UIMenuItem(Game.GetGXTEntry("CMOD_NEONLAY_2"))
             With iNeon
                 .SubInteger1 = Helper.NeonLayouts.Back
-                If Helper.NeonLayout = Helper.NeonLayouts.Back Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                If Helper.NeonLayout = Helper.NeonLayouts.Back Then
+                    .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                Else
+                    Dim price As String = "$" & 1000.ToString("###,###")
+                    .SetRightLabel(price)
+                    .SubInteger2 = 1000
+                End If
             End With
             mNeon.AddItem(iNeon)
-            iNeon = New UIMenuItem("Sides")
+            iNeon = New UIMenuItem(Game.GetGXTEntry("CMOD_NEONLAY_3"))
             With iNeon
                 .SubInteger1 = Helper.NeonLayouts.Sides
-                If Helper.NeonLayout = Helper.NeonLayouts.Sides Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                If Helper.NeonLayout = Helper.NeonLayouts.Sides Then
+                    .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                Else
+                    Dim price As String = "$" & 1250.ToString("###,###")
+                    .SetRightLabel(price)
+                    .SubInteger2 = 1250
+                End If
             End With
             mNeon.AddItem(iNeon)
-            iNeon = New UIMenuItem("Front and Back")
+            iNeon = New UIMenuItem(Game.GetGXTEntry("CMOD_NEONLAY_4"))
             With iNeon
                 .SubInteger1 = Helper.NeonLayouts.FrontAndBack
-                If Helper.NeonLayout = Helper.NeonLayouts.FrontAndBack Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                If Helper.NeonLayout = Helper.NeonLayouts.FrontAndBack Then
+                    .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                Else
+                    Dim price As String = "$" & 1800.ToString("###,###")
+                    .SetRightLabel(price)
+                    .SubInteger2 = 1800
+                End If
             End With
             mNeon.AddItem(iNeon)
-            iNeon = New UIMenuItem("Front and Sides")
+            iNeon = New UIMenuItem(Game.GetGXTEntry("CMOD_NEONLAY_5"))
             With iNeon
                 .SubInteger1 = Helper.NeonLayouts.FrontAndSides
-                If Helper.NeonLayout = Helper.NeonLayouts.FrontAndSides Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                If Helper.NeonLayout = Helper.NeonLayouts.FrontAndSides Then
+                    .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                Else
+                    Dim price As String = "$" & 2000.ToString("###,###")
+                    .SetRightLabel(price)
+                    .SubInteger2 = 2000
+                End If
             End With
             mNeon.AddItem(iNeon)
-            iNeon = New UIMenuItem("Back and Sides")
+            iNeon = New UIMenuItem(Game.GetGXTEntry("CMOD_NEONLAY_6"))
             With iNeon
                 .SubInteger1 = Helper.NeonLayouts.BackAndSides
-                If Helper.NeonLayout = Helper.NeonLayouts.BackAndSides Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                If Helper.NeonLayout = Helper.NeonLayouts.BackAndSides Then
+                    .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                Else
+                    Dim price As String = "$" & 2000.ToString("###,###")
+                    .SetRightLabel(price)
+                    .SubInteger2 = 2000
+                End If
             End With
             mNeon.AddItem(iNeon)
-            iNeon = New UIMenuItem("Front, Back and Sides")
+            iNeon = New UIMenuItem(Game.GetGXTEntry("CMOD_NEONLAY_7"))
             With iNeon
                 .SubInteger1 = Helper.NeonLayouts.FrontBackAndSides
-                If Helper.NeonLayout = Helper.NeonLayouts.FrontBackAndSides Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                If Helper.NeonLayout = Helper.NeonLayouts.FrontBackAndSides Then
+                    .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                Else
+                    Dim price As String = "$" & 3000.ToString("###,###")
+                    .SetRightLabel(price)
+                    .SubInteger2 = 3000
+                End If
             End With
             mNeon.AddItem(iNeon)
 
@@ -1424,7 +1478,16 @@ Public Class BennysMenu
                 With item
                     If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_ARM_0")
                     .SubInteger1 = i
-                    If Bennys.veh.GetMod(vehmod) = i Then item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    If Bennys.veh.GetMod(vehmod) = i Then
+                        item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    Else
+                        If Not i = -1 Then
+                            Dim ii = i + 1
+                            Dim price As String = "$" & 2000 * ii.ToString("###,###")
+                            item.SetRightLabel(price)
+                            .SubInteger2 = 2000 * ii
+                        End If
+                    End If
                 End With
                 menu.AddItem(item)
             Next
@@ -1450,6 +1513,33 @@ Public Class BennysMenu
         End Try
     End Sub
 
+    Public Shared Sub RefreshModMenuForLivery2(ByRef menu As UIMenu, ByRef item As UIMenuItem)
+        Try
+            menu.MenuItems.Clear()
+            For i As Integer = 0 To Helper.GetTornadoCustomRoofCount(Bennys.veh) - 1
+                item = New UIMenuItem(Helper.LocalizedT5RoofName(i))
+                With item
+                    If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_ARM_0")
+                    .SubInteger1 = i
+                    If Helper.GetTornadoCustomRoof(Bennys.veh) = i Then
+                        item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    Else
+                        If Not i = -1 Then
+                            Dim ii = i + 1
+                            Dim price As String = "$" & 200 * ii.ToString("###,###")
+                            item.SetRightLabel(price)
+                            .SubInteger2 = 200 * ii
+                        End If
+                    End If
+                End With
+                menu.AddItem(item)
+            Next
+            menu.RefreshIndex()
+        Catch ex As Exception
+            Logger.Log(ex.Message & " " & ex.StackTrace)
+        End Try
+    End Sub
+
     Public Shared Sub RefreshModMenuFor(ByRef menu As UIMenu, ByRef item As UIMenuItem, ByRef vehmod As VehicleMod)
         Try
             menu.MenuItems.Clear()
@@ -1458,7 +1548,16 @@ Public Class BennysMenu
                 With item
                     If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_ARM_0")
                     .SubInteger1 = i
-                    If Bennys.veh.GetMod(vehmod) = i Then item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    If Bennys.veh.GetMod(vehmod) = i Then
+                        item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    Else
+                        If Not i = -1 Then
+                            Dim ii = i + 1
+                            Dim price As String = "$" & 200 * ii.ToString("###,###")
+                            item.SetRightLabel(price)
+                            .SubInteger2 = 200 * ii
+                        End If
+                    End If
                 End With
                 menu.AddItem(item)
             Next
@@ -1483,7 +1582,13 @@ Public Class BennysMenu
             With item
                 If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_ARM_0")
                 .SubInteger1 = 1
-                If Bennys.veh.IsToggleModOn(vehmod) Then item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                If Bennys.veh.IsToggleModOn(vehmod) Then
+                    item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                Else
+                    Dim price As String = "$" & 1000.ToString("###,###")
+                    item.SetRightLabel(price)
+                    .SubInteger2 = 1000
+                End If
             End With
             menu.AddItem(item)
 
@@ -1526,6 +1631,7 @@ Public Class BennysMenu
             Bennys.veh.SetMod(VehicleMod.Horns, Bennys.lastVehMemory.Horns, False)
             Bennys.veh.SetMod(VehicleMod.Hydraulics, Bennys.lastVehMemory.Hydraulics, False)
             Bennys.veh.SetMod(VehicleMod.Livery, Bennys.lastVehMemory.Livery, False)
+            Helper.SetTornadoCustomRoof(Bennys.veh, Bennys.lastVehMemory.Livery2)
             Bennys.veh.SetMod(VehicleMod.Plaques, Bennys.lastVehMemory.Plaques, False)
             Bennys.veh.SetMod(VehicleMod.Roof, Bennys.lastVehMemory.Roof, False)
             Bennys.veh.SetMod(VehicleMod.Speakers, Bennys.lastVehMemory.Speakers, False)
@@ -1610,6 +1716,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Suspension, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Suspension = selectedItem.SubInteger1
                     Helper.PlaySpeech("SHOP_SELL_SUSPENSION")
                 End If
@@ -1617,6 +1726,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Armor, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Armor = selectedItem.SubInteger1
                     Helper.PlaySpeech("SHOP_SELL_ARMOUR")
                 End If
@@ -1624,6 +1736,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Brakes, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Brakes = selectedItem.SubInteger1
                     Helper.PlaySpeech("SHOP_SELL_BRAKES")
                 End If
@@ -1631,6 +1746,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Transmission, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Transmission = selectedItem.SubInteger1
                     Helper.PlaySpeech("SHOP_SELL_TRANS_UPGRADE")
                 End If
@@ -1638,6 +1756,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Engine, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Engine = selectedItem.SubInteger1
                     Helper.PlaySpeech("SHOP_SELL_ENGINE_UPGRADE")
                 End If
@@ -1648,6 +1769,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.FrontBumper, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.FrontBumper = selectedItem.SubInteger1
                     Helper.PlaySpeech("")
                 End If
@@ -1655,6 +1779,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.RearBumper, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.RearBumper = selectedItem.SubInteger1
                     Helper.PlaySpeech("")
                 End If
@@ -1662,6 +1789,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.SideSkirt, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.SideSkirt = selectedItem.SubInteger1
                     Helper.PlaySpeech("")
                 End If
@@ -1669,6 +1799,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.NumberPlateType = selectedItem.SubInteger1
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.NumberPlate = selectedItem.SubInteger1
                     Helper.PlaySpeech("")
                 End If
@@ -1676,6 +1809,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.ToggleMod(VehicleToggleMod.XenonHeadlights, CBool(selectedItem.SubInteger1))
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Headlights = CBool(selectedItem.SubInteger1)
                     Helper.PlaySpeech("")
                 End If
@@ -1683,6 +1819,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.ArchCover, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.ArchCover = selectedItem.SubInteger1
                     Helper.PlaySpeech("SHOP_SELL_COSMETICS")
                 End If
@@ -1690,6 +1829,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Exhaust, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Exhaust = selectedItem.SubInteger1
                     Helper.PlaySpeech("SHOP_SELL_EXHAUST")
                 End If
@@ -1697,6 +1839,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Fender, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Fender = selectedItem.SubInteger1
                     Helper.PlaySpeech("")
                 End If
@@ -1704,6 +1849,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.RightFender, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.RightFender = selectedItem.SubInteger1
                     Helper.PlaySpeech("")
                 End If
@@ -1711,6 +1859,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.DoorSpeakers, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.DoorSpeakers = selectedItem.SubInteger1
                     Helper.PlaySpeech("")
                 End If
@@ -1718,6 +1869,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Frame, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Frame = selectedItem.SubInteger1
                     Helper.PlaySpeech("LR_SELL_EXCHASSIS_MOD")
                 End If
@@ -1725,6 +1879,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Aerials, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Aerials = selectedItem.SubInteger1
                     Helper.PlaySpeech("")
                 End If
@@ -1732,6 +1889,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Trim, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Trim = selectedItem.SubInteger1
                     Helper.PlaySpeech("")
                 End If
@@ -1739,6 +1899,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.EngineBlock, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.EngineBlock = selectedItem.SubInteger1
                     Helper.PlaySpeech("LR_UPGRADE_ENGINE")
                 End If
@@ -1746,6 +1909,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.AirFilter, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.AirFilter = selectedItem.SubInteger1
                     Helper.PlaySpeech("LR_UPGRADE_ENGINE")
                 End If
@@ -1753,6 +1919,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Struts, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Struts = selectedItem.SubInteger1
                     Helper.PlaySpeech("")
                 End If
@@ -1760,6 +1929,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.ColumnShifterLevers, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.ColumnShifterLevers = selectedItem.SubInteger1
                     Helper.PlaySpeech("LR_UPGRADE_GEARKNOB")
                 End If
@@ -1767,6 +1939,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Dashboard, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Dashboard = selectedItem.SubInteger1
                     Helper.PlaySpeech("LR_SELL_SUPERMOD_INTERIOR")
                 End If
@@ -1774,6 +1949,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.DialDesign, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.DialDesign = selectedItem.SubInteger1
                     Helper.PlaySpeech("LR_SELL_SUPERMOD_INTERIOR")
                 End If
@@ -1781,6 +1959,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Ornaments, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Ornaments = selectedItem.SubInteger1
                     Helper.PlaySpeech("LR_SELL_DOLL")
                 End If
@@ -1788,6 +1969,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Seats, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Seats = selectedItem.SubInteger1
                     Helper.PlaySpeech("LR_SELL_SUPERMOD_INTERIOR")
                 End If
@@ -1795,6 +1979,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.SteeringWheels, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.SteeringWheels = selectedItem.SubInteger1
                     Helper.PlaySpeech("LR_SELL_SUPERMOD_INTERIOR")
                 End If
@@ -1802,6 +1989,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.TrimDesign, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.TrimDesign = selectedItem.SubInteger1
                     Helper.PlaySpeech("LR_SELL_SUPERMOD_INTERIOR")
                 End If
@@ -1809,6 +1999,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.PlateHolder, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.PlateHolder = selectedItem.SubInteger1
                     Helper.PlaySpeech("LR_UPGRADE_PLATEHOLDER")
                 End If
@@ -1816,6 +2009,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.VanityPlates, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.VanityPlates = selectedItem.SubInteger1
                     Helper.PlaySpeech("LR_SELL_VANITYPLATE")
                 End If
@@ -1823,6 +2019,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Grille, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Grille = selectedItem.SubInteger1
                     Helper.PlaySpeech("")
                 End If
@@ -1830,6 +2029,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Hood, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Hood = selectedItem.SubInteger1
                     Helper.PlaySpeech("")
                 End If
@@ -1837,6 +2039,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Horns, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Horns = selectedItem.SubInteger1
                     Helper.PlaySpeech("SHOP_SELL_HORN")
                 End If
@@ -1844,6 +2049,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Hydraulics, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Hydraulics = selectedItem.SubInteger1
                     Helper.PlaySpeech("LR_UPGRADE_HYDRAULICS")
                 End If
@@ -1851,13 +2059,29 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Livery, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Livery = selectedItem.SubInteger1
+                    Helper.PlaySpeech("LR_SELL_LIVERY")
+                End If
+            ElseIf sender Is mTornadoC Then
+                If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
+                    Helper.SetTornadoCustomRoof(Bennys.veh, selectedItem.SubInteger1)
+                    selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
+                    Bennys.lastVehMemory.Livery2 = selectedItem.SubInteger1
                     Helper.PlaySpeech("LR_SELL_LIVERY")
                 End If
             ElseIf sender Is mPlaques Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Plaques, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Plaques = selectedItem.SubInteger1
                     Helper.PlaySpeech("LR_UPGRADE_PLAQUE")
                 End If
@@ -1865,6 +2089,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Roof, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Roof = selectedItem.SubInteger1
                     Helper.PlaySpeech("")
                 End If
@@ -1872,6 +2099,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Speakers, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Speakers = selectedItem.SubInteger1
                     Helper.PlaySpeech("LR_UPGRADE_ICE")
                 End If
@@ -1879,6 +2109,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Spoilers, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Spoilers = selectedItem.SubInteger1
                     Helper.PlaySpeech("")
                 End If
@@ -1886,6 +2119,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Tank, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Tank = selectedItem.SubInteger1
                     Helper.PlaySpeech("")
                 End If
@@ -1893,6 +2129,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Trunk, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Trunk = selectedItem.SubInteger1
                     Helper.PlaySpeech("LR_UPGRADE_TRUNK")
                 End If
@@ -1900,6 +2139,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Windows, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Windows = selectedItem.SubInteger1
                     Helper.PlaySpeech("")
                 End If
@@ -1907,6 +2149,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.ToggleMod(VehicleToggleMod.Turbo, CBool(selectedItem.SubInteger1))
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Turbo = CBool(selectedItem.SubInteger1)
                     Helper.PlaySpeech("SHOP_SELL_TURBO")
                 End If
@@ -1914,6 +2159,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.WindowTint = selectedItem.SubInteger1
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Tint = selectedItem.SubInteger1
                     Helper.PlaySpeech("")
                 End If
@@ -1924,6 +2172,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Fender, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Fender = selectedItem.SubInteger1
                     Helper.PlaySpeech("")
                 End If
@@ -1931,6 +2182,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.FrontBumper, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.FrontBumper = selectedItem.SubInteger1
                     Helper.PlaySpeech("")
                 End If
@@ -1938,6 +2192,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Hood, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Hood = selectedItem.SubInteger1
                     Helper.PlaySpeech("")
                 End If
@@ -1945,6 +2202,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Grille, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Grille = selectedItem.SubInteger1
                     Helper.PlaySpeech("")
                 End If
@@ -1952,6 +2212,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.RearBumper, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.RearBumper = selectedItem.SubInteger1
                     Helper.PlaySpeech("")
                 End If
@@ -1959,6 +2222,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Roof, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Roof = selectedItem.SubInteger1
                     Helper.PlaySpeech("")
                 End If
@@ -1966,6 +2232,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Spoilers, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Spoilers = selectedItem.SubInteger1
                     Helper.PlaySpeech("")
                 End If
@@ -1973,6 +2242,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Frame, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Frame = selectedItem.SubInteger1
                     Helper.PlaySpeech("")
                 End If
@@ -1980,6 +2252,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.SideSkirt, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.SideSkirt = selectedItem.SubInteger1
                     Helper.PlaySpeech("")
                 End If
@@ -1987,6 +2262,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.Tank, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Tank = selectedItem.SubInteger1
                     Helper.PlaySpeech("")
                 End If
@@ -2002,6 +2280,9 @@ Public Class BennysMenu
                             Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Left, False)
                             Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Right, False)
                             selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                            selectedItem.SetRightLabel(Nothing)
+                            Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                            selectedItem.SubInteger2 = 0
                             Bennys.lastVehMemory.FrontNeon = False
                             Bennys.lastVehMemory.BackNeon = False
                             Bennys.lastVehMemory.LeftNeon = False
@@ -2014,6 +2295,9 @@ Public Class BennysMenu
                             Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Left, False)
                             Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Right, False)
                             selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                            selectedItem.SetRightLabel(Nothing)
+                            Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                            selectedItem.SubInteger2 = 0
                             Bennys.lastVehMemory.FrontNeon = True
                             Bennys.lastVehMemory.BackNeon = False
                             Bennys.lastVehMemory.LeftNeon = False
@@ -2026,6 +2310,9 @@ Public Class BennysMenu
                             Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Left, False)
                             Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Right, False)
                             selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                            selectedItem.SetRightLabel(Nothing)
+                            Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                            selectedItem.SubInteger2 = 0
                             Bennys.lastVehMemory.FrontNeon = False
                             Bennys.lastVehMemory.BackNeon = True
                             Bennys.lastVehMemory.LeftNeon = False
@@ -2038,6 +2325,9 @@ Public Class BennysMenu
                             Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Left, True)
                             Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Right, True)
                             selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                            selectedItem.SetRightLabel(Nothing)
+                            Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                            selectedItem.SubInteger2 = 0
                             Bennys.lastVehMemory.FrontNeon = False
                             Bennys.lastVehMemory.BackNeon = False
                             Bennys.lastVehMemory.LeftNeon = True
@@ -2050,6 +2340,9 @@ Public Class BennysMenu
                             Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Left, False)
                             Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Right, False)
                             selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                            selectedItem.SetRightLabel(Nothing)
+                            Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                            selectedItem.SubInteger2 = 0
                             Bennys.lastVehMemory.FrontNeon = True
                             Bennys.lastVehMemory.BackNeon = True
                             Bennys.lastVehMemory.LeftNeon = False
@@ -2062,6 +2355,9 @@ Public Class BennysMenu
                             Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Left, True)
                             Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Right, True)
                             selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                            selectedItem.SetRightLabel(Nothing)
+                            Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                            selectedItem.SubInteger2 = 0
                             Bennys.lastVehMemory.FrontNeon = True
                             Bennys.lastVehMemory.BackNeon = False
                             Bennys.lastVehMemory.LeftNeon = True
@@ -2074,6 +2370,9 @@ Public Class BennysMenu
                             Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Left, True)
                             Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Right, True)
                             selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                            selectedItem.SetRightLabel(Nothing)
+                            Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                            selectedItem.SubInteger2 = 0
                             Bennys.lastVehMemory.FrontNeon = False
                             Bennys.lastVehMemory.BackNeon = True
                             Bennys.lastVehMemory.LeftNeon = True
@@ -2086,6 +2385,9 @@ Public Class BennysMenu
                             Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Left, True)
                             Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Right, True)
                             selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                            selectedItem.SetRightLabel(Nothing)
+                            Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                            selectedItem.SubInteger2 = 0
                             Bennys.lastVehMemory.FrontNeon = True
                             Bennys.lastVehMemory.BackNeon = True
                             Bennys.lastVehMemory.LeftNeon = True
@@ -2104,6 +2406,9 @@ Public Class BennysMenu
                     Bennys.veh.SetMod(VehicleMod.FrontWheels, selectedItem.SubInteger1, False)
                     Bennys.veh.SetMod(VehicleMod.BackWheels, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.WheelType = Bennys.veh.WheelType
                     Bennys.lastVehMemory.FrontWheels = selectedItem.SubInteger1
                     Bennys.lastVehMemory.BackWheels = selectedItem.SubInteger1
@@ -2113,6 +2418,9 @@ Public Class BennysMenu
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.FrontWheels, selectedItem.SubInteger1, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.WheelType = Bennys.veh.WheelType
                     Bennys.lastVehMemory.FrontWheels = selectedItem.SubInteger1
                     Helper.PlaySpeech("LR_UPGRADE_WHEEL")
@@ -2396,6 +2704,8 @@ Public Class BennysMenu
                 Bennys.veh.SetMod(VehicleMod.Hydraulics, sender.MenuItems(index).SubInteger1, False)
             ElseIf sender Is mLivery Then
                 Bennys.veh.SetMod(VehicleMod.Livery, sender.MenuItems(index).SubInteger1, False)
+            ElseIf sender Is mTornadoC Then
+                Helper.SetTornadoCustomRoof(Bennys.veh, sender.MenuItems(index).SubInteger1)
             ElseIf sender Is mPlaques Then
                 Bennys.veh.SetMod(VehicleMod.Plaques, sender.MenuItems(index).SubInteger1, False)
             ElseIf sender Is mRoof Then
@@ -2553,6 +2863,7 @@ Public Class BennysMenu
         CreateModMenuFor(mAerials, Helper.LocalizeModTitleName("AERIALS")) 'AERIALS
         CreateModMenuFor(mTrim, Helper.LocalizeModTitleName("TRIM")) 'TRIM
         CreateModMenuFor(mWindow, Helper.LocalizeModTitleName("WINDOWS")) 'WINDOWS
+        CreateModMenuFor(mArchCover, Helper.LocalizeModTitleName("ARCHCOVERS")) 'ARCH COVERS
         CreateEngineMenu()
         CreatePerformanceMenuFor(mEngine, Helper.LocalizeModTitleName("ENGINE")) 'ENGINE
         CreateModMenuFor(mEngineBlock, Helper.LocalizeModTitleName("ENGINEBLOCK")) 'ENGINE BLOCK
@@ -2611,7 +2922,6 @@ Public Class BennysMenu
         CreateModMenuFor(mSecondaryMetallicColor, Helper.LocalizeModTitleName("SECONDARYCOLOR"))
         CreateModMenuFor(mSecondaryMetalsColor, Helper.LocalizeModTitleName("SECONDARYCOLOR"))
         CreateModMenuFor(mSecondaryMatteColor, Helper.LocalizeModTitleName("SECONDARYCOLOR"))
-        CreateModMenuFor(mArchCover, Helper.LocalizeModTitleName("ARCHCOVERS")) 'ARCH COVERS
         CreateModMenuFor(mExhaust, Helper.LocalizeModTitleName("EXHAUST")) 'EXHAUST
         CreateModMenuFor(mFender, Helper.LocalizeModTitleName("FENDER")) 'FENDER
         CreateModMenuFor(mRFender, Helper.LocalizeModTitleName("RIGHTFENDER")) 'RIGHT FENDER
@@ -2621,6 +2931,7 @@ Public Class BennysMenu
         CreateModMenuFor(mHorn, Helper.LocalizeModTitleName("HORN")) 'HORN
         CreateModMenuFor(mHydraulics, Helper.LocalizeModTitleName("HYDRAULICS")) 'HYDRAULICS
         CreateModMenuFor(mLivery, Helper.LocalizeModTitleName("LIVERY")) 'LIVERY
+        CreateModMenuFor(mTornadoC, Helper.LocalizeModTitleName("ROOF")) 'ROOF
         CreateModMenuFor(mPlaques, Helper.LocalizeModTitleName("PLAQUES")) 'PLAQUES
         CreateModMenuFor(mRoof, Helper.LocalizeModTitleName("ROOF")) 'ROOF
         CreateModMenuFor(mSpeakers, Helper.LocalizeModTitleName("SPEAKERS")) 'SPEAKERS
@@ -2651,6 +2962,7 @@ Public Class BennysMenu
         RefreshModMenuFor(mAerials, iAerials, VehicleMod.Aerials)
         RefreshModMenuFor(mTrim, iTrim, VehicleMod.Trim)
         RefreshModMenuFor(mWindow, iWindows, VehicleMod.Windows)
+        RefreshModMenuFor(mArchCover, iArchCover, VehicleMod.ArchCover)
         RefreshEngineMenu()
         RefreshPerformanceMenuFor(mEngine, iEngine, VehicleMod.Engine, "CMOD_ENG_")
         RefreshModMenuFor(mEngineBlock, iEngineBlock, VehicleMod.EngineBlock)
@@ -2709,7 +3021,6 @@ Public Class BennysMenu
         RefreshColorMenuFor(mSecondaryMetallicColor, iSecondaryMetallicColor, Helper.ClassicColor, "Secondary")
         RefreshColorMenuFor(mSecondaryMetalsColor, iSecondaryMetalsColor, Helper.MetalColor, "Secondary")
         RefreshColorMenuFor(mSecondaryMatteColor, iSecondaryMatteColor, Helper.MatteColor, "Secondary")
-        RefreshModMenuFor(mArchCover, iArchCover, VehicleMod.ArchCover)
         RefreshModMenuFor(mExhaust, iExhaust, VehicleMod.Exhaust)
         RefreshModMenuFor(mFender, iFender, VehicleMod.Fender)
         RefreshModMenuFor(mRFender, iRFender, VehicleMod.RightFender)
@@ -2719,6 +3030,7 @@ Public Class BennysMenu
         RefreshModMenuFor(mHorn, iHorn, VehicleMod.Horns)
         RefreshModMenuFor(mHydraulics, iHydraulics, VehicleMod.Hydraulics)
         RefreshModMenuFor(mLivery, iLivery, VehicleMod.Livery)
+        RefreshModMenuForLivery2(mTornadoC, iTornadoC)
         RefreshModMenuFor(mPlaques, iPlaques, VehicleMod.Plaques)
         RefreshModMenuFor(mRoof, iRoof, VehicleMod.Roof)
         RefreshModMenuFor(mSpeakers, iSpeaker, VehicleMod.Speakers)

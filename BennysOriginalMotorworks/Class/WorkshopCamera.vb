@@ -63,6 +63,12 @@ Public Class WorkshopCamera
         End Set
     End Property
 
+    Public ReadOnly Property Rotation() As Vector3
+        Get
+            Return _mainCamera.Rotation
+        End Get
+    End Property
+
     Public Property RotationMode() As CameraRotationMode
         Get
             Return m_RotationMode

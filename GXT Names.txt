@@ -926,3 +926,8 @@ Los Santos Customs, S_MO_08
 Benny's Original Motor Works, S_MO_09
 Custom Mod Shop, S_MO_10
 Custom Auto Shop, S_MO_11
+
+
+CMOD_WHE4_0 = Stock Rims
+
+CMOD_WHE4_1 = Chrome Rims

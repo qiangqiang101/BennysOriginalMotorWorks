@@ -761,11 +761,13 @@ Public Class Helper
                     Return Game.GetGXTEntry("CMOD_WHE_B_0")
                 End If
             End If
-            If index >= modCount / 2 Then
-                Return Game.GetGXTEntry("CHROME") + " " + Game.GetGXTEntry(Native.Function.Call(Of String)(Hash.GET_MOD_TEXT_LABEL, Bennys.veh.Handle, modType, index))
-            Else
-                Return Game.GetGXTEntry(Native.Function.Call(Of String)(Hash.GET_MOD_TEXT_LABEL, Bennys.veh.Handle, modType, index))
-            End If
+
+            Return Game.GetGXTEntry(Native.Function.Call(Of String)(Hash.GET_MOD_TEXT_LABEL, Bennys.veh.Handle, modType, index))
+            'If index >= modCount / 2 Then
+            '    Return Game.GetGXTEntry("CHROME") + " " + Game.GetGXTEntry(Native.Function.Call(Of String)(Hash.GET_MOD_TEXT_LABEL, Bennys.veh.Handle, modType, index))
+            'Else
+            '    Return Game.GetGXTEntry(Native.Function.Call(Of String)(Hash.GET_MOD_TEXT_LABEL, Bennys.veh.Handle, modType, index))
+            'End If
         End If
 
         Select Case modType
@@ -1366,6 +1368,9 @@ Public Class Helper
             langConf.SetValue(Of String)("TITLE", "OILTANK", Game.GetGXTEntry("CMM_MOD_ST29"))
             langConf.SetValue(Of String)("TITLE", "FUELTANK", Game.GetGXTEntry("CMOD_FUL_T"))
             langConf.SetValue(Of String)("TITLE", "BELTDRIVECOVER", Game.GetGXTEntry("CMOD_MOD_BLT").ToUpper)
+            '1.4.1 update
+            langConf.SetValue(Of String)("TITLE", "STOCKRIMS", Game.GetGXTEntry("CMOD_WHE4_0").ToUpper)
+            langConf.SetValue(Of String)("TITLE", "CHROMERIMS", Game.GetGXTEntry("CMOD_WHE4_1").ToUpper)
             langConf.Save()
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
@@ -1457,8 +1462,9 @@ Public Class Helper
         If langConf.GetValue("TITLE", "OILTANK") = "NULL" Then langConf.SetValue(Of String)("TITLE", "OILTANK", Game.GetGXTEntry("CMM_MOD_ST29"))
         If langConf.GetValue("TITLE", "FUELTANK") = "NULL" Then langConf.SetValue(Of String)("TITLE", "FUELTANK", Game.GetGXTEntry("CMOD_FUL_T"))
         If langConf.GetValue("TITLE", "BELTDRIVECOVER") = "NULL" Then langConf.SetValue(Of String)("TITLE", "BELTDRIVECOVER", Game.GetGXTEntry("CMOD_MOD_BLT").ToUpper)
-        'If langConf.GetValue("TITLE", "") = "NULL"  Then langConf.SetValue(Of String)("TITLE", "", Game.GetGXTEntry(""))
-        'If langConf.GetValue("TITLE", "") = "NULL"  Then langConf.SetValue(Of String)("TITLE", "", Game.GetGXTEntry(""))
+        '1.4.1 update
+        If langConf.GetValue("TITLE", "STOCKRIMS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "STOCKRIMS", Game.GetGXTEntry("CMOD_WHE4_0").ToUpper)
+        If langConf.GetValue("TITLE", "CHROMERIMS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "CHROMERIMS", Game.GetGXTEntry("CMOD_WHE4_1").ToUpper)
         langConf.Save()
     End Sub
 
@@ -1474,6 +1480,25 @@ Public Class Helper
             End While
         End Using
         Return result
+    End Function
+
+    Public Shared Function IsUpgradeModExist(vehDispName As String) As Boolean
+        Dim result As Boolean = False
+        Dim config As ScriptSettings = ScriptSettings.Load("scripts\BennysCustomUpgrade.ini")
+        Dim v As String = config.GetValue(Of String)("UPGRADE", vehDispName.ToString.ToLower & "_Model", Nothing)
+        If v = Nothing Then
+            result = False
+        Else
+            result = True
+        End If
+        Return result
+    End Function
+
+    Public Shared Function GetUpgradeModVehicleInfo(vehDispName As String) As Tuple(Of String, Integer)
+        Dim config As ScriptSettings = ScriptSettings.Load("scripts\BennysCustomUpgrade.ini")
+        Dim newModel As String = config.GetValue(Of String)("UPGRADE", vehDispName.ToString.ToLower & "_Model", Nothing)
+        Dim newPrice As Integer = config.GetValue(Of Integer)("UPGRADE", vehDispName.ToString.ToLower & "_Price", 0)
+        Return New Tuple(Of String, Integer)(newModel, newPrice)
     End Function
 
     Public Shared Function GetUpgradePrice(vehicleModel As Model) As Integer
@@ -1542,5 +1567,129 @@ Public Class Helper
 
     Public Shared Function GetTornadoCustomRoofCount(veh As Vehicle) As Integer
         Return Native.Function.Call(Of Integer)(DirectCast(&H5ECB40269053C0D4UL, Hash), veh.Handle)
+    End Function
+
+    Public Shared Function GetCarMakeNames(veh As Vehicle) As String
+        Dim brand As String = Nothing
+
+        Select Case veh.Model
+            Case "ninef", "ninef2", "rocoto", "tailgate", "omnis"
+                brand = "OBEY"
+            Case "blista", "akuma", "double", "marquis", "blista2", "blista3", "enduro", "jester", "jester2", "thrust", "vindicator"
+                brand = "DINKA"
+            Case "asea", "asea2", "burrito", "burrito2", "burrito3", "burrito4", "burrito5", "gburrito", "granger", "premier", "rancherxl", "rancherxl2", "sabregt", "tornado", "tornado2", "tornado3", "tornado4", "voodoo2", "vigero", "mamba", "moonbeam", "moonbeam2", "rhapsody", "sabregt2", "stalion", "stalion2", "tampa", "tampa2", "tornado5", "tornado6", "voodoo", "gburrito2"
+                brand = "DECLASSE"
+            Case "asterope", "bjxl", "dilettante", "dilettante2", "futo", "intruder", "rebel", "rebel2", "sultan", "kuruma", "kuruma2", "sultanrs", "technical", "technical2"
+                brand = "KARIN"
+            Case "barracks2", "biff", "bulldozer", "cutter", "dump", "forklift", "mixer", "mixer2", "brickade", "insurgent", "insurgent2"
+                brand = "HVY"
+            Case "blazer", "blazer2", "blazer3", "carbonrs", "dinghy", "dinghy2", "bf400", "blazer4", "blazer5", "chimera", "dinghy3", "dinghy4", "shotaro"
+                brand = "NAGASAKI"
+            Case "bison", "bison2", "bison3", "banshee", "buffalo", "buffalo2", "gresley", "dloader", "gauntlet", "rumpo", "rumpo2", "youga", "banshee2", "buffalo3", "gauntlet2", "paradise", "ratloader2", "rumpo3", "verlierer2", "youga2"
+                brand = "BRAVADO"
+            Case "baller", "baller2", "baller3", "baller4", "baller5", "baller6"
+                brand = "GALLIVAN"
+            Case "benson", "bobcatxl", "bullet", "hotknife", "dominator", "minivan", "peyote", "radi", "sadler", "sadler2", "sandking", "sandking2", "speedo", "speedo2", "stanier", "chino", "chino2", "contender", "dominator2", "fmj", "guardian", "minivan2", "monster", "slamvan", "slamvan2", "slamvan3", "trophytruck", "trophytruck2", "blade"
+                brand = "VAPID"
+            Case "bfinjection", "dune", "surfer", "surfer2", "bifta", "raptor"
+                brand = "BF"
+            Case "boxville3", "camper", "pony", "pony2", "stockade", "stockade3", "tiptruck", "boxville4"
+                brand = "BRUTE"
+            Case "bodhi2", "mesa", "mesa2", "mesa3", "crusader", "seminole", "kalahari"
+                brand = "CANIS"
+            Case "buccaneer", "cavalcade", "cavalcade2", "emperor", "emperor2", "emperor3", "manana", "primo", "washington", "alpha", "btype", "btype2", "btype3", "buccaneer2", "Lurcher", "primo2", "virgo"
+                brand = "ALBANY"
+            Case "carbonizzare", "cheetah", "stinger", "stingergt", "bestiagts", "brioso", "prototipo", "turismo2", "turismor"
+                brand = "GROTTI"
+            Case "comet2", "comet3", "pfister811"
+                brand = "PFISTER"
+            Case "cogcabrio", "superd", "cog55", "cog552", "cognoscenti", "cognoscenti2", "huntley", "windsor", "windsor2"
+                brand = "ENUS"
+            Case "coquette", "coquette2", "coquette3"
+                brand = "INVERTO"
+            Case "dubsta", "dubsta2", "feltzer2", "schafter2", "schwarzer", "serrano", "surano", "dubsta3", "feltzer3", "glendale", "limo2", "panto", "schafter3", "schafter4", "schafter5", "schafter6", "xls", "xls2"
+                brand = "BENEFAC"
+            Case "flatbed", "packer", "pounder", "rallytruck", "wastelander"
+                brand = "MTL"
+            Case "fq2"
+                brand = "FATHOM"
+            Case "fusilade"
+                brand = "SCHYSTER"
+            Case "fugitive", "picador", "surge", "marshall"
+                brand = "CHEVAL"
+            Case "habanero", "sheava"
+                brand = "EMPEROR"
+            Case "hauler", "rubble", "phantom", "phantom"
+                brand = "JOBUILT"
+            Case "entityxf"
+                brand = "OVERFLOD"
+            Case "exemplar", "jb700", "rapidgt", "rapidgt2", "massacro", "massacro2", "seven70", "specter", "specter2"
+                brand = "DEWBAUCH"
+            Case "elegy2", "elegy", "le7b"
+                brand = "ANNIS"
+            Case "f620", "Jackal", "lynx", "penetrator"
+                brand = "OCELOT"
+            Case "felon", "felon2", "casco", "furoregt", "pigalle", "toro", "toro2", "tropos"
+                brand = "LAMPADA"
+            Case "infernus", "monroe", "bati", "bati2", "ruffian", "faggio2", "vacca", "esskey", "faggio", "faggio3", "fcr", "fcr2", "infernus2", "osiris", "reaper", "speeder", "speeder2", "tempesta", "vortex", "zentorno"
+                brand = "PEGASSI"
+            Case "ingot", "warrener"
+                brand = "VULCAR"
+            Case "issi2"
+                brand = "WEENY"
+            Case "journey", "stratum"
+                brand = "ZIRCONIU"
+            Case "khamelion", "ruston"
+                brand = "HIJAK"
+            Case "landstalker", "regina", "stretch", "virgo2", "virgo3"
+                brand = "DUNDREAR"
+            Case "mule", "mule2", "penumbra", "sanchez", "sanchez2", "manchez", "mule3"
+                brand = "MAIBATSU"
+            Case "bagger", "daemon", "besra", "cliffhanger", "daemon2", "gargoyle", "nightblade", "ratbike", "sovereign", "wolfsbane", "zombiea", "zombieb"
+                brand = "WESTERN"
+            Case "pcj", "vader", "squalo", "jetmax", "tropic", "suntrap", "defiler", "hakuchou", "hakuchou2", "tropic2"
+                brand = "SHITZU"
+            Case "hexer", "avarus", "innovation", "sanctus"
+                brand = "LCC"
+            Case "nemesis", "diablous", "diablous2", "lectro"
+                brand = "PRINCIPL"
+            Case "shamal", "luxor", "luxor2", "miljet", "nimbus", "supervolito", "supervolito2", "swift", "swift2", "vestra", "volatus"
+                brand = "BUCKING"
+            Case "seashark", "seashark2", "seashark3"
+                brand = "SPEEDOPH"
+            Case "adder", "ztype", "nero", "nero2"
+                brand = "TRUFFADE"
+            Case "voltic", "brawler", "voltic2"
+                brand = "COIL"
+            Case "dukes", "dukes2", "nightshade", "ruiner2", "ruiner3", "ruiner", "phoenix"
+                brand = "IMPONTE"
+            Case "faction", "faction2", "faction3"
+                brand = "WILLARD"
+            Case "gp1", "italigtb", "italigtb2", "t20", "tyrus"
+                brand = "PROGEN"
+            Case "hydra"
+                brand = "MAMMOTH"
+            Case "sentinel", "sentinel2", "zion", "zion2", "oracle", "oracle2"
+                brand = "UBERMACH"
+            Case Else
+                brand = ""
+        End Select
+        Return brand
+    End Function
+
+    Public Shared Function GetBennysOriginalRim(curRim As Integer) As Integer
+        Dim result As Integer = 0
+
+        Dim totalWheelsCount As Integer = Bennys.veh.GetModCount(VehicleMod.FrontWheels) '217
+        Dim howMany As Integer = (totalWheelsCount / 7) '31
+
+        If curRim <= howMany Then
+            result = curRim
+        Else
+            result = curRim Mod 31
+            '                ^ thanks to ikt
+        End If
+
+        Return result
     End Function
 End Class

@@ -52,16 +52,16 @@ Public Class Bennys
             '    Dim s As String = Game.GetUserInput(System.Windows.Forms.Clipboard.GetText(), 99)
             '    UI.Notify(Game.GetGXTEntry(s))
 
-            '    'For Each line As String In IO.File.ReadLines("C:\New.txt")
-            '    '    Logger.Log(Game.GetGXTEntry(line) & ", " & line)
-            '    'Next
+            '    ''For Each line As String In IO.File.ReadLines("C:\New.txt")
+            '    ''    Logger.Log(Game.GetGXTEntry(line) & ", " & line)
+            '    ''Next
 
-            '    'For i As Integer = 0 To 500
-            '    '    Logger.Write("CMOD_MOD_" & i & "_D = " & Game.GetGXTEntry("CMOD_MOD_" & i & "_D"))
-            '    'Next
-            '    'For i As Integer = 0 To 500
-            '    '    Logger.Write("CMOD_SMOD_" & i & "_D = " & Game.GetGXTEntry("CMOD_SMOD_" & i & "_D"))
-            '    'Next
+            '    ''For i As Integer = 0 To 500
+            '    ''    Logger.Write("CMOD_MOD_" & i & "_D = " & Game.GetGXTEntry("CMOD_MOD_" & i & "_D"))
+            '    ''Next
+            '    ''For i As Integer = 0 To 500
+            '    ''    Logger.Write("CMOD_SMOD_" & i & "_D = " & Game.GetGXTEntry("CMOD_SMOD_" & i & "_D"))
+            '    ''Next
             'End If
 
             If fixDoor = 1 Then

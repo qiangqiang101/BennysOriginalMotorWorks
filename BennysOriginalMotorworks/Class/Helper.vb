@@ -1484,7 +1484,7 @@ Public Class Helper
 
     Public Shared Function IsUpgradeModExist(vehDispName As String) As Boolean
         Dim result As Boolean = False
-        Dim config As ScriptSettings = ScriptSettings.Load("scripts\BennysCustomUpgrade.ini")
+        Dim config As ScriptSettings = ScriptSettings.Load("scripts\BennysOriginalMotorWorks.ini")
         Dim v As String = config.GetValue(Of String)("UPGRADE", vehDispName.ToString.ToLower & "_Model", Nothing)
         If v = Nothing Then
             result = False
@@ -1495,7 +1495,7 @@ Public Class Helper
     End Function
 
     Public Shared Function GetUpgradeModVehicleInfo(vehDispName As String) As Tuple(Of String, Integer)
-        Dim config As ScriptSettings = ScriptSettings.Load("scripts\BennysCustomUpgrade.ini")
+        Dim config As ScriptSettings = ScriptSettings.Load("scripts\BennysOriginalMotorWorks.ini")
         Dim newModel As String = config.GetValue(Of String)("UPGRADE", vehDispName.ToString.ToLower & "_Model", Nothing)
         Dim newPrice As Integer = config.GetValue(Of Integer)("UPGRADE", vehDispName.ToString.ToLower & "_Price", 0)
         Return New Tuple(Of String, Integer)(newModel, newPrice)

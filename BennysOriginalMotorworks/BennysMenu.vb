@@ -1077,7 +1077,8 @@ Public Class BennysMenu
                 If Bennys.veh.GetMod(vehmod) = -1 Then
                     item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
-                    Dim price As String = "$" & 200.ToString("###,###")
+                    Dim value As Integer = 200
+                    Dim price As String = "$" & value.ToString("###,###")
                     item.SetRightLabel(price)
                     .SubInteger2 = 200
                 End If
@@ -1165,7 +1166,8 @@ Public Class BennysMenu
                     If Not Helper.IsCustomWheels Then
                         .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Else
-                        Dim price As String = "$" & 100.ToString("###,###")
+                        Dim value As Integer = 100
+                        Dim price As String = "$" & value.ToString("###,###")
                         .SetRightLabel(price)
                         .SubInteger2 = 100
                     End If
@@ -1183,7 +1185,8 @@ Public Class BennysMenu
                             If Bennys.veh.GetMod(VehicleMod.FrontWheels) = newid Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
-                                Dim price As String = "$" & 100.ToString("###,###")
+                                Dim value As Integer = 100
+                                Dim price As String = "$" & value.ToString("###,###")
                                 .SetRightLabel(price)
                                 .SubInteger2 = 100
                             End If
@@ -1196,7 +1199,8 @@ Public Class BennysMenu
                             If Bennys.veh.GetMod(VehicleMod.FrontWheels) = newid Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
-                                Dim price As String = "$" & 200.ToString("###,###")
+                                Dim value As Integer = 200
+                                Dim price As String = "$" & value.ToString("###,###")
                                 .SetRightLabel(price)
                                 .SubInteger2 = 200
                             End If
@@ -1209,7 +1213,8 @@ Public Class BennysMenu
                             If Bennys.veh.GetMod(VehicleMod.FrontWheels) = newid Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
-                                Dim price As String = "$" & 300.ToString("###,###")
+                                Dim value As Integer = 300
+                                Dim price As String = "$" & value.ToString("###,###")
                                 .SetRightLabel(price)
                                 .SubInteger2 = 300
                             End If
@@ -1222,7 +1227,8 @@ Public Class BennysMenu
                             If Bennys.veh.GetMod(VehicleMod.FrontWheels) = newid Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
-                                Dim price As String = "$" & 400.ToString("###,###")
+                                Dim value As Integer = 400
+                                Dim price As String = "$" & value.ToString("###,###")
                                 .SetRightLabel(price)
                                 .SubInteger2 = 400
                             End If
@@ -1248,7 +1254,8 @@ Public Class BennysMenu
                             If Bennys.veh.GetMod(VehicleMod.FrontWheels) = newid Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
-                                Dim price As String = "$" & 600.ToString("###,###")
+                                Dim value As Integer = 600
+                                Dim price As String = "$" & value.ToString("###,###")
                                 .SetRightLabel(price)
                                 .SubInteger2 = 600
                             End If
@@ -1261,7 +1268,8 @@ Public Class BennysMenu
                             If Bennys.veh.GetMod(VehicleMod.FrontWheels) = newid Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
-                                Dim price As String = "$" & 700.ToString("###,###")
+                                Dim value As Integer = 700
+                                Dim price As String = "$" & value.ToString("###,###")
                                 .SetRightLabel(price)
                                 .SubInteger2 = 700
                             End If
@@ -1274,7 +1282,8 @@ Public Class BennysMenu
                             If Not Helper.IsCustomWheels Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
-                                Dim price As String = "$" & 100.ToString("###,###")
+                                Dim value As Integer = 100
+                                Dim price As String = "$" & value.ToString("###,###")
                                 .SetRightLabel(price)
                                 .SubInteger2 = 100
                             End If
@@ -1286,7 +1295,8 @@ Public Class BennysMenu
                             If Helper.IsCustomWheels Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
-                                Dim price As String = "$" & 700.ToString("###,###")
+                                Dim value As Integer = 700
+                                Dim price As String = "$" & value.ToString("###,###")
                                 .SetRightLabel(price)
                                 .SubInteger2 = 700
                             End If
@@ -1400,7 +1410,8 @@ Public Class BennysMenu
                             If Bennys.veh.NumberPlateType = enumItem Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
-                                Dim price As String = "$" & 200.ToString("###,###")
+                                Dim value As Integer = 200
+                                Dim price As String = "$" & value.ToString("###,###")
                                 item.SetRightLabel(price)
                                 .SubInteger2 = 200
                             End If
@@ -1416,7 +1427,8 @@ Public Class BennysMenu
                             If Bennys.veh.WindowTint = enumItem Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
-                                Dim price As String = "$" & 2000.ToString("###,###")
+                                Dim value As Integer = 2000
+                                Dim price As String = "$" & value.ToString("###,###")
                                 item.SetRightLabel(price)
                                 .SubInteger2 = 2000
                             End If
@@ -1432,7 +1444,8 @@ Public Class BennysMenu
                             If Bennys.veh.PrimaryColor = enumItem Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
-                                Dim price As String = "$" & 2000.ToString("###,###")
+                                Dim value As Integer = 2000
+                                Dim price As String = "$" & value.ToString("###,###")
                                 item.SetRightLabel(price)
                                 .SubInteger2 = 2000
                             End If
@@ -1448,7 +1461,8 @@ Public Class BennysMenu
                             If Bennys.veh.SecondaryColor = enumItem Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
-                                Dim price As String = "$" & 2000.ToString("###,###")
+                                Dim value As Integer = 2000
+                                Dim price As String = "$" & value.ToString("###,###")
                                 item.SetRightLabel(price)
                                 .SubInteger2 = 2000
                             End If
@@ -1464,7 +1478,8 @@ Public Class BennysMenu
                             If Bennys.veh.PearlescentColor = enumItem Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
-                                Dim price As String = "$" & 2000.ToString("###,###")
+                                Dim value As Integer = 2000
+                                Dim price As String = "$" & value.ToString("###,###")
                                 item.SetRightLabel(price)
                                 .SubInteger2 = 2000
                             End If
@@ -1480,7 +1495,8 @@ Public Class BennysMenu
                             If Bennys.veh.TrimColor = enumItem Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
-                                Dim price As String = "$" & 2000.ToString("###,###")
+                                Dim value As Integer = 2000
+                                Dim price As String = "$" & value.ToString("###,###")
                                 item.SetRightLabel(price)
                                 .SubInteger2 = 2000
                             End If
@@ -1496,7 +1512,8 @@ Public Class BennysMenu
                             If Bennys.veh.DashboardColor = enumItem Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
-                                Dim price As String = "$" & 2000.ToString("###,###")
+                                Dim value As Integer = 2000
+                                Dim price As String = "$" & value.ToString("###,###")
                                 item.SetRightLabel(price)
                                 .SubInteger2 = 2000
                             End If
@@ -1512,7 +1529,8 @@ Public Class BennysMenu
                             If Bennys.veh.RimColor = enumItem Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
-                                Dim price As String = "$" & 2000.ToString("###,###")
+                                Dim value As Integer = 2000
+                                Dim price As String = "$" & value.ToString("###,###")
                                 item.SetRightLabel(price)
                                 .SubInteger2 = 2000
                             End If
@@ -1619,7 +1637,8 @@ Public Class BennysMenu
                 If Helper.NeonLayout = Helper.NeonLayouts.Front Then
                     .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
-                    Dim price As String = "$" & 1000.ToString("###,###")
+                    Dim value As Integer = 1000
+                    Dim price As String = "$" & value.ToString("###,###")
                     .SetRightLabel(price)
                     .SubInteger2 = 1000
                 End If
@@ -1631,7 +1650,8 @@ Public Class BennysMenu
                 If Helper.NeonLayout = Helper.NeonLayouts.Back Then
                     .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
-                    Dim price As String = "$" & 1000.ToString("###,###")
+                    Dim value As Integer = 1000
+                    Dim price As String = "$" & value.ToString("###,###")
                     .SetRightLabel(price)
                     .SubInteger2 = 1000
                 End If
@@ -1643,7 +1663,8 @@ Public Class BennysMenu
                 If Helper.NeonLayout = Helper.NeonLayouts.Sides Then
                     .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
-                    Dim price As String = "$" & 1250.ToString("###,###")
+                    Dim value As Integer = 1250
+                    Dim price As String = "$" & value.ToString("###,###")
                     .SetRightLabel(price)
                     .SubInteger2 = 1250
                 End If
@@ -1655,7 +1676,8 @@ Public Class BennysMenu
                 If Helper.NeonLayout = Helper.NeonLayouts.FrontAndBack Then
                     .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
-                    Dim price As String = "$" & 1800.ToString("###,###")
+                    Dim value As Integer = 1800
+                    Dim price As String = "$" & value.ToString("###,###")
                     .SetRightLabel(price)
                     .SubInteger2 = 1800
                 End If
@@ -1667,7 +1689,8 @@ Public Class BennysMenu
                 If Helper.NeonLayout = Helper.NeonLayouts.FrontAndSides Then
                     .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
-                    Dim price As String = "$" & 2000.ToString("###,###")
+                    Dim value As Integer = 2000
+                    Dim price As String = "$" & value.ToString("###,###")
                     .SetRightLabel(price)
                     .SubInteger2 = 2000
                 End If
@@ -1679,7 +1702,8 @@ Public Class BennysMenu
                 If Helper.NeonLayout = Helper.NeonLayouts.BackAndSides Then
                     .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
-                    Dim price As String = "$" & 2000.ToString("###,###")
+                    Dim value As Integer = 2000
+                    Dim price As String = "$" & value.ToString("###,###")
                     .SetRightLabel(price)
                     .SubInteger2 = 2000
                 End If
@@ -1691,7 +1715,8 @@ Public Class BennysMenu
                 If Helper.NeonLayout = Helper.NeonLayouts.FrontBackAndSides Then
                     .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
-                    Dim price As String = "$" & 3000.ToString("###,###")
+                    Dim value As Integer = 3000
+                    Dim price As String = "$" & value.ToString("###,###")
                     .SetRightLabel(price)
                     .SubInteger2 = 3000
                 End If
@@ -1802,7 +1827,8 @@ Public Class BennysMenu
                         If Bennys.veh.PrimaryColor = col Then
                             .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                         Else
-                            Dim price As String = "$" & 2000.ToString("###,###")
+                            Dim value As Integer = 2000
+                            Dim price As String = "$" & value.ToString("###,###")
                             item.SetRightLabel(price)
                             .SubInteger2 = 2000
                         End If
@@ -1810,7 +1836,8 @@ Public Class BennysMenu
                         If Bennys.veh.SecondaryColor = col Then
                             .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                         Else
-                            Dim price As String = "$" & 2000.ToString("###,###")
+                            Dim value As Integer = 2000
+                            Dim price As String = "$" & value.ToString("###,###")
                             item.SetRightLabel(price)
                             .SubInteger2 = 2000
                         End If
@@ -1818,7 +1845,8 @@ Public Class BennysMenu
                         If Bennys.veh.PearlescentColor = col Then
                             .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                         Else
-                            Dim price As String = "$" & 2000.ToString("###,###")
+                            Dim value As Integer = 2000
+                            Dim price As String = "$" & value.ToString("###,###")
                             item.SetRightLabel(price)
                             .SubInteger2 = 2000
                         End If
@@ -1847,7 +1875,8 @@ Public Class BennysMenu
                             If Bennys.veh.NeonLightsColor = Drawing.Color.FromName(col.Name) Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
-                                Dim price As String = "$" & 200.ToString("###,###")
+                                Dim value As Integer = 200
+                                Dim price As String = "$" & value.ToString("###,###")
                                 item.SetRightLabel(price)
                                 .SubInteger4 = 200
                             End If
@@ -1855,7 +1884,8 @@ Public Class BennysMenu
                             If Bennys.veh.TireSmokeColor = Drawing.Color.FromName(col.Name) Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
-                                Dim price As String = "$" & 200.ToString("###,###")
+                                Dim value As Integer = 200
+                                Dim price As String = "$" & value.ToString("###,###")
                                 item.SetRightLabel(price)
                                 .SubInteger4 = 200
                             End If

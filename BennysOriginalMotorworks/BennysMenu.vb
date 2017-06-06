@@ -1050,7 +1050,8 @@ Public Class BennysMenu
                     Else
                         If Not i = -1 Then
                             Dim ii = i + 1
-                            Dim price As String = "$" & 200 * ii.ToString("###,###")
+                            Dim value As Integer = 200 * ii
+                            Dim price As String = "$" & value.ToString("###,###")
                             item.SetRightLabel(price)
                             .SubInteger2 = 200 * ii
                         End If
@@ -1095,7 +1096,8 @@ Public Class BennysMenu
                     Else
                         If Not i = -1 Then
                             Dim ii = i + 1
-                            Dim price As String = "$" & 200 * ii.ToString("###,###")
+                            Dim value As Integer = 200 * ii
+                            Dim price As String = "$" & value.ToString("###,###")
                             item.SetRightLabel(price)
                             .SubInteger2 = 200 * ii
                         End If
@@ -1125,7 +1127,8 @@ Public Class BennysMenu
                     Else
                         If Not i = -1 Then
                             Dim ii = i + 1
-                            Dim price As String = "$" & 200 * ii.ToString("###,###")
+                            Dim value As Integer = 200 * ii
+                            Dim price As String = "$" & value.ToString("###,###")
                             item.SetRightLabel(price)
                             .SubInteger2 = 200 * ii
                         End If
@@ -1937,7 +1940,8 @@ Public Class BennysMenu
                     Else
                         If Not i = -1 Then
                             Dim ii = i + 1
-                            Dim price As String = "$" & 2000 * ii.ToString("###,###")
+                            Dim value As Integer = 2000 * ii
+                            Dim price As String = "$" & value.ToString("###,###")
                             item.SetRightLabel(price)
                             .SubInteger2 = 2000 * ii
                         End If
@@ -1980,7 +1984,8 @@ Public Class BennysMenu
                     Else
                         If Not i = -1 Then
                             Dim ii = i + 1
-                            Dim price As String = "$" & 200 * ii.ToString("###,###")
+                            Dim value As Integer = 200 * ii
+                            Dim price As String = "$" & value.ToString("###,###")
                             item.SetRightLabel(price)
                             .SubInteger2 = 200 * ii
                         End If
@@ -2007,7 +2012,8 @@ Public Class BennysMenu
                     Else
                         If Not i = -1 Then
                             Dim ii = i + 1
-                            Dim price As String = "$" & 200 * ii.ToString("###,###")
+                            Dim value As Integer = 200 * ii
+                            Dim price As String = "$" & value.ToString("###,###")
                             item.SetRightLabel(price)
                             .SubInteger2 = 200 * ii
                         End If

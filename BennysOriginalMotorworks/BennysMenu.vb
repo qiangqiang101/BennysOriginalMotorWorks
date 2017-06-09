@@ -1180,7 +1180,9 @@ Public Class BennysMenu
                 Select Case Bennys.veh.WheelType
                     Case 8, 9
                         Dim whe As Integer = Helper.GetBennysOriginalRim(Bennys.veh.GetMod(VehicleMod.FrontWheels))
-                        Dim thirtyOne As Integer = 31
+                        Dim count As Integer = Bennys.veh.GetModCount(VehicleMod.FrontWheels)
+                        Dim oneOver6 As Integer = count / 7
+                        Dim thirtyOne As Integer = oneOver6 '31
                         iTires = New UIMenuItem(Game.GetGXTEntry("CMOD_TYR_0"))
                         With iTires
                             Dim newid As Integer = whe
@@ -2860,8 +2862,6 @@ Public Class BennysMenu
             'Wheels Mods
             If sender Is gmWheels Then
                 RefreshTyresMenu()
-                'Dim whe As Integer = Helper.GetBennysOriginalRim(Bennys.veh.GetMod(VehicleMod.FrontWheels))
-                'Bennys.veh.SetMod(VehicleMod.FrontWheels, whe, False)
             End If
             If (sender Is mSBikeWheels) Or (sender Is mCBikeWheels) Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then

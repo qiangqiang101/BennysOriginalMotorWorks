@@ -533,7 +533,8 @@ Public Class BennysMenu
                             Case "jester", "jester2", "ninef", "bullet", "entityxf", "infernus", "italigtb", "italigtb2"
                                 Bennys.veh.OpenDoor(VehicleDoor.Trunk, False, False)
                                 camera.MainCameraPosition = CameraPosition.Trunk
-                            Case "comet3", "pfister811", "cheetah", "tyrus", "prototipo", "surfer", "surfer2", "gp1", "turismo2", "infernus2"
+                            Case "comet3", "pfister811", "cheetah", "tyrus", "prototipo", "surfer", "surfer2", "gp1", "turismo2",
+                                 "infernus2", "ardent", "cheetah2", "xa21", "vagner", "torero"
                                 Bennys.veh.OpenDoor(VehicleDoor.Hood, False, False)
                                 camera.MainCameraPosition = CameraPosition.RearEngine
                             Case "bfinjection", "bifta", "ninef2", "adder", "reaper", "voltic", "voltic2", "zentorno"
@@ -541,7 +542,7 @@ Public Class BennysMenu
                             Case "alpha"
                                 Bennys.veh.OpenDoor(VehicleDoor.Hood, False, False)
                                 camera.MainCameraPosition = CameraPosition.Hood
-                            Case "penetrator"
+                            Case "penetrator", "dune3"
                                 camera.MainCameraPosition = CameraPosition.RearEngine
                             Case "t20", "tempesta"
                                 Bennys.veh.OpenDoor(VehicleDoor.Hood, False, False)
@@ -583,7 +584,7 @@ Public Class BennysMenu
                     camera.MainCameraPosition = CameraPosition.Wheels
                 ElseIf selectedItem Is giGrille Then
                     Select Case Bennys.veh.Model
-                        Case "penetrator"
+                        Case "penetrator", "torero"
                             camera.MainCameraPosition = CameraPosition.RearEngine
                         Case "banshee2"
                             camera.MainCameraPosition = CameraPosition.Trunk
@@ -592,7 +593,8 @@ Public Class BennysMenu
                     End Select
                 ElseIf selectedItem Is giHood Then
                     Select Case Bennys.veh.Model
-                        Case "comet3", "hotknife", "nero", "nero2", "t20", "tempesta", "zentorno", "gp1", "turismo2", "ruston"
+                        Case "comet3", "hotknife", "nero", "nero2", "t20", "tempesta", "zentorno", "gp1", "turismo2",
+                             "ruston", "ardent", "cheetah2", "xa21", "vagner", "torero"
                             camera.MainCameraPosition = CameraPosition.FrontBumper
                         Case "tropos"
                             camera.MainCameraPosition = CameraPosition.Trunk
@@ -611,11 +613,13 @@ Public Class BennysMenu
                     camera.MainCameraPosition = CameraPosition.Plaque
                 ElseIf selectedItem Is giSpoilers Then
                     Select Case Bennys.veh.Model
-                        Case "bifta", "ninef2", "specter", "specter2", "fmj", "reaper", "le7b", "voltic", "zentorno", "gp1"
+                        Case "bifta", "ninef2", "specter", "specter2", "fmj", "reaper", "le7b", "voltic", "zentorno",
+                             "gp1", "ardent", "cheetah2", "xa21", "vagner", "torero"
                             camera.MainCameraPosition = CameraPosition.RearEngine
                         Case "tyrus", "prototipo"
                             camera.MainCameraPosition = CameraPosition.RearBumper
-                        Case "comet3", "tropos", "cheetah", "nero2", "osiris", "penetrator", "tempesta", "turismor", "turismo2", "infernus2"
+                        Case "comet3", "tropos", "cheetah", "nero2", "osiris", "penetrator", "tempesta", "turismor",
+                             "turismo2", "infernus2"
                             camera.MainCameraPosition = CameraPosition.RearWindscreen
                         Case "sheava"
                             camera.MainCameraPosition = CameraPosition.Car
@@ -2863,7 +2867,7 @@ Public Class BennysMenu
             If sender Is gmWheels Then
                 RefreshTyresMenu()
             End If
-            If (sender Is mSBikeWheels) Or (sender Is mCBikeWheels) Then
+            If sender Is gmBikeWheels Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.FrontWheels, selectedItem.SubInteger1, False)
                     Bennys.veh.SetMod(VehicleMod.BackWheels, selectedItem.SubInteger1, False)
@@ -2927,8 +2931,7 @@ Public Class BennysMenu
             If sender Is gmWheelType Then
                 If selectedItem Is giBikeWheels Then
                     Bennys.veh.WheelType = VehicleWheelType.BikeWheels
-                    RefreshStockWheelsModMenuFor(mSBikeWheels, iSBikeWheels, VehicleMod.BackWheels)
-                    RefreshChromeWheelsModMenuFor(mCBikeWheels, iCBikeWheels, VehicleMod.BackWheels)
+                    RefreshModMenuFor(gmBikeWheels, iBikeWheels, VehicleMod.BackWheels)
                 ElseIf selectedItem Is giHighEndWheels Then
                     Bennys.veh.WheelType = VehicleWheelType.HighEnd
                     RefreshStockWheelsModMenuFor(mSHighEnd, iSHighEnd, VehicleMod.FrontWheels)
@@ -3105,8 +3108,10 @@ Public Class BennysMenu
             ElseIf sender Is gmPlate Then
                 If selectedItem Is giNumberPlate Then
                     Select Case Bennys.veh.Model
-                        Case "police", "blazer", "blazer2", "blazer3", "blazer5", "dune4", "dune5", "dune", "tornado4"
+                        Case "police", "blazer", "blazer2", "blazer3", "blazer5", "dune4", "dune5", "dune", "tornado4", "dune3"
                             camera.MainCameraPosition = CameraPosition.Car
+                        Case "technical3"
+                            camera.MainCameraPosition = CameraPosition.FrontPlate
                         Case Else
                             If Bennys.veh.ClassType = VehicleClass.Motorcycles Or Bennys.veh.Model = "blazer4" Then
                                 camera.MainCameraPosition = CameraPosition.Car
@@ -3328,7 +3333,7 @@ Public Class BennysMenu
             End If
 
             'Wheels Mods
-            If (sender Is mSBikeWheels) Or (sender Is mCBikeWheels) Then
+            If sender Is gmBikeWheels Then
                 Bennys.veh.SetMod(VehicleMod.FrontWheels, sender.MenuItems(index).SubInteger1, False)
                 Bennys.veh.SetMod(VehicleMod.BackWheels, sender.MenuItems(index).SubInteger1, False)
             ElseIf (sender Is mSHighEnd) Or (sender Is mSLowrider) Or (sender Is mSMuscle) Or (sender Is mSOffroad) Or (sender Is mSSport) Or (sender Is mSSUV) Or (sender Is mSTuner) Or (sender Is mCHighEnd) Or (sender Is mCLowrider) Or (sender Is mCMuscle) Or (sender Is mCOffroad) Or (sender Is mCSport) Or (sender Is mCSUV) Or (sender Is mCTuner) Or (sender Is mBennysOriginals) Or (sender Is mBespoke) Then
@@ -3420,9 +3425,10 @@ Public Class BennysMenu
         CreateWheelsMenu()
         CreateWheelTypeMenu()
 
-        CreateWheelRimMenu(gmBikeWheels, Helper.LocalizeModTitleName("BIKEWHEELS")) 'BIKE WHEELS
-        CreateModMenuFor(mSBikeWheels, Helper.LocalizeModTitleName("BIKEWHEELS")) 'STOCK RIMS
-        CreateModMenuFor(mCBikeWheels, Helper.LocalizeModTitleName("BIKEWHEELS")) 'CHROME RIMS
+        'CreateWheelRimMenu(gmBikeWheels, Helper.LocalizeModTitleName("BIKEWHEELS")) 'BIKE WHEELS
+        'CreateModMenuFor(mSBikeWheels, Helper.LocalizeModTitleName("BIKEWHEELS")) 'STOCK RIMS
+        'CreateModMenuFor(mCBikeWheels, Helper.LocalizeModTitleName("BIKEWHEELS")) 'CHROME RIMS
+        CreateModMenuFor(gmBikeWheels, Helper.LocalizeModTitleName("BIKEWHEELS")) 'BIKE WHEELS
 
         CreateWheelRimMenu(gmHighEnd, Helper.LocalizeModTitleName("HIGHEND")) 'HIGH END
         CreateModMenuFor(mSHighEnd, Helper.LocalizeModTitleName("HIGHEND")) 'STOCK RIMS
@@ -3544,9 +3550,11 @@ Public Class BennysMenu
         RefreshWheelsMenu()
         RefreshWheelTypeMenu()
 
-        RefreshWheelRimMenu(gmBikeWheels, mSBikeWheels, mCBikeWheels, iSBikeWheels, iCBikeWheels)
-        RefreshStockWheelsModMenuFor(mSBikeWheels, iSBikeWheels, VehicleMod.BackWheels)
-        RefreshChromeWheelsModMenuFor(mCBikeWheels, iCBikeWheels, VehicleMod.BackWheels)
+        'RefreshWheelRimMenu(gmBikeWheels, mSBikeWheels, mCBikeWheels, iSBikeWheels, iCBikeWheels)
+        'RefreshStockWheelsModMenuFor(mSBikeWheels, iSBikeWheels, VehicleMod.BackWheels)
+        'RefreshChromeWheelsModMenuFor(mCBikeWheels, iCBikeWheels, VehicleMod.BackWheels)
+        RefreshModMenuFor(gmBikeWheels, iBikeWheels, VehicleMod.BackWheels)
+
         RefreshWheelRimMenu(gmHighEnd, mSHighEnd, mCHighEnd, iSHighEnd, iCHighEnd)
         RefreshStockWheelsModMenuFor(mSHighEnd, iSHighEnd, VehicleMod.FrontWheels)
         RefreshChromeWheelsModMenuFor(mCHighEnd, iCHighEnd, VehicleMod.FrontWheels)

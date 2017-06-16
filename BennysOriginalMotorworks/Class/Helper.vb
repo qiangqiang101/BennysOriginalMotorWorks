@@ -1577,21 +1577,21 @@ Public Class Helper
                 brand = "OBEY"
             Case "blista", "akuma", "double", "marquis", "blista2", "blista3", "enduro", "jester", "jester2", "thrust", "vindicator"
                 brand = "DINKA"
-            Case "asea", "asea2", "burrito", "burrito2", "burrito3", "burrito4", "burrito5", "gburrito", "granger", "premier", "rancherxl", "rancherxl2", "sabregt", "tornado", "tornado2", "tornado3", "tornado4", "voodoo2", "vigero", "mamba", "moonbeam", "moonbeam2", "rhapsody", "sabregt2", "stalion", "stalion2", "tampa", "tampa2", "tornado5", "tornado6", "voodoo", "gburrito2"
+            Case "asea", "asea2", "burrito", "burrito2", "burrito3", "burrito4", "burrito5", "gburrito", "granger", "premier", "rancherxl", "rancherxl2", "sabregt", "tornado", "tornado2", "tornado3", "tornado4", "voodoo2", "vigero", "mamba", "moonbeam", "moonbeam2", "rhapsody", "sabregt2", "stalion", "stalion2", "tampa", "tampa2", "tornado5", "tornado6", "voodoo", "gburrito2", "tampa3"
                 brand = "DECLASSE"
-            Case "asterope", "bjxl", "dilettante", "dilettante2", "futo", "intruder", "rebel", "rebel2", "sultan", "kuruma", "kuruma2", "sultanrs", "technical", "technical2"
+            Case "asterope", "bjxl", "dilettante", "dilettante2", "futo", "intruder", "rebel", "rebel2", "sultan", "kuruma", "kuruma2", "sultanrs", "technical", "technical2", "technical3"
                 brand = "KARIN"
-            Case "barracks2", "biff", "bulldozer", "cutter", "dump", "forklift", "mixer", "mixer2", "brickade", "insurgent", "insurgent2"
+            Case "barracks2", "biff", "bulldozer", "cutter", "dump", "forklift", "mixer", "mixer2", "brickade", "insurgent", "insurgent2", "apc", "insurgent", "nightshark"
                 brand = "HVY"
             Case "blazer", "blazer2", "blazer3", "carbonrs", "dinghy", "dinghy2", "bf400", "blazer4", "blazer5", "chimera", "dinghy3", "dinghy4", "shotaro"
                 brand = "NAGASAKI"
-            Case "bison", "bison2", "bison3", "banshee", "buffalo", "buffalo2", "gresley", "dloader", "gauntlet", "rumpo", "rumpo2", "youga", "banshee2", "buffalo3", "gauntlet2", "paradise", "ratloader2", "rumpo3", "verlierer2", "youga2"
+            Case "bison", "bison2", "bison3", "banshee", "buffalo", "buffalo2", "gresley", "dloader", "gauntlet", "rumpo", "rumpo2", "youga", "banshee2", "buffalo3", "gauntlet2", "paradise", "ratloader2", "rumpo3", "verlierer2", "youga2", "halftrack"
                 brand = "BRAVADO"
             Case "baller", "baller2", "baller3", "baller4", "baller5", "baller6"
                 brand = "GALLIVAN"
             Case "benson", "bobcatxl", "bullet", "hotknife", "dominator", "minivan", "peyote", "radi", "sadler", "sadler2", "sandking", "sandking2", "speedo", "speedo2", "stanier", "chino", "chino2", "contender", "dominator2", "fmj", "guardian", "minivan2", "monster", "slamvan", "slamvan2", "slamvan3", "trophytruck", "trophytruck2", "blade"
                 brand = "VAPID"
-            Case "bfinjection", "dune", "surfer", "surfer2", "bifta", "raptor"
+            Case "bfinjection", "dune", "surfer", "surfer2", "bifta", "raptor", "dune3"
                 brand = "BF"
             Case "boxville3", "camper", "pony", "pony2", "stockade", "stockade3", "tiptruck", "boxville4"
                 brand = "BRUTE"
@@ -1599,7 +1599,7 @@ Public Class Helper
                 brand = "CANIS"
             Case "buccaneer", "cavalcade", "cavalcade2", "emperor", "emperor2", "emperor3", "manana", "primo", "washington", "alpha", "btype", "btype2", "btype3", "buccaneer2", "Lurcher", "primo2", "virgo"
                 brand = "ALBANY"
-            Case "carbonizzare", "cheetah", "stinger", "stingergt", "bestiagts", "brioso", "prototipo", "turismo2", "turismor"
+            Case "carbonizzare", "cheetah", "stinger", "stingergt", "bestiagts", "brioso", "prototipo", "turismo2", "turismor", "cheetah2"
                 brand = "GROTTI"
             Case "comet2", "comet3", "pfister811"
                 brand = "PFISTER"
@@ -1619,19 +1619,19 @@ Public Class Helper
                 brand = "CHEVAL"
             Case "habanero", "sheava"
                 brand = "EMPEROR"
-            Case "hauler", "rubble", "phantom", "phantom"
+            Case "hauler", "rubble", "phantom", "phantom", "hauler2", "phantom3"
                 brand = "JOBUILT"
             Case "entityxf"
                 brand = "OVERFLOD"
-            Case "exemplar", "jb700", "rapidgt", "rapidgt2", "massacro", "massacro2", "seven70", "specter", "specter2"
+            Case "exemplar", "jb700", "rapidgt", "rapidgt2", "massacro", "massacro2", "seven70", "specter", "specter2", "vagner"
                 brand = "DEWBAUCH"
             Case "elegy2", "elegy", "le7b"
                 brand = "ANNIS"
-            Case "f620", "Jackal", "lynx", "penetrator"
+            Case "f620", "Jackal", "lynx", "penetrator", "ardent", "xa21"
                 brand = "OCELOT"
             Case "felon", "felon2", "casco", "furoregt", "pigalle", "toro", "toro2", "tropos"
                 brand = "LAMPADA"
-            Case "infernus", "monroe", "bati", "bati2", "ruffian", "faggio2", "vacca", "esskey", "faggio", "faggio3", "fcr", "fcr2", "infernus2", "osiris", "reaper", "speeder", "speeder2", "tempesta", "vortex", "zentorno"
+            Case "infernus", "monroe", "bati", "bati2", "ruffian", "faggio2", "vacca", "esskey", "faggio", "faggio3", "fcr", "fcr2", "infernus2", "osiris", "reaper", "speeder", "speeder2", "tempesta", "vortex", "zentorno", "oppressor", "torero"
                 brand = "PEGASSI"
             Case "ingot", "warrener"
                 brand = "VULCAR"
@@ -1671,6 +1671,8 @@ Public Class Helper
                 brand = "MAMMOTH"
             Case "sentinel", "sentinel2", "zion", "zion2", "oracle", "oracle2"
                 brand = "UBERMACH"
+            Case "trailersmall2"
+                brand = "VOMFEUER"
             Case Else
                 brand = ""
         End Select
@@ -1691,5 +1693,9 @@ Public Class Helper
         End If
 
         Return result
+    End Function
+
+    Public Shared Function CanEnterBennysMotorwork(veh As Vehicle) As Boolean
+        Return Native.Function.Call(Of Boolean)(Hash._0x8D474C8FAEFF6CDE, veh)
     End Function
 End Class

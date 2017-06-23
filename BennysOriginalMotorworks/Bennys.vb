@@ -7,7 +7,7 @@ Imports BennysOriginalMotorworks.BennysMenu
 Public Class Bennys
     Inherits Script
 
-    Public Shared veh As Vehicle
+    Public Shared veh, tra As Vehicle
     Public Shared ply As Ped
     Public Shared onlineMap As Integer = 1
     Public Shared fixDoor As Integer = 1
@@ -44,25 +44,27 @@ Public Class Bennys
         Try
             veh = Game.Player.Character.LastVehicle
             ply = Game.Player.Character
+            If Helper.IsVehicleAttachedToTrailer(veh) Then tra = Helper.GetVehicleTrailerVehicle(veh)
+
             If Game.Version < GameVersion.VER_1_0_877_1_STEAM Then
                 Helper.DisplayHelpTextThisFrame("Un-supported GTA V version detected! SPB may not work properly on this version.")
             End If
 
-            'If Game.IsControlPressed(0, Control.Jump) AndAlso Game.IsControlPressed(0, Control.Reload) Then
-            '    Dim s As String = Game.GetUserInput(System.Windows.Forms.Clipboard.GetText(), 99)
-            '    UI.Notify(Game.GetGXTEntry(s))
+            If Game.IsControlPressed(0, Control.Jump) AndAlso Game.IsControlPressed(0, Control.Reload) Then
+                Dim s As String = Game.GetUserInput(System.Windows.Forms.Clipboard.GetText(), 99)
+                UI.Notify(Game.GetGXTEntry(s))
 
-            '    ''For Each line As String In IO.File.ReadLines("C:\New.txt")
-            '    ''    Logger.Log(Game.GetGXTEntry(line) & ", " & line)
-            '    ''Next
+                ''For Each line As String In IO.File.ReadLines("C:\New.txt")
+                ''    Logger.Log(Game.GetGXTEntry(line) & ", " & line)
+                ''Next
 
-            '    ''For i As Integer = 0 To 500
-            '    ''    Logger.Write("CMOD_MOD_" & i & "_D = " & Game.GetGXTEntry("CMOD_MOD_" & i & "_D"))
-            '    ''Next
-            '    ''For i As Integer = 0 To 500
-            '    ''    Logger.Write("CMOD_SMOD_" & i & "_D = " & Game.GetGXTEntry("CMOD_SMOD_" & i & "_D"))
-            '    ''Next
-            'End If
+                ''For i As Integer = 0 To 500
+                ''    Logger.Write("CMOD_MOD_" & i & "_D = " & Game.GetGXTEntry("CMOD_MOD_" & i & "_D"))
+                ''Next
+                ''For i As Integer = 0 To 500
+                ''    Logger.Write("CMOD_SMOD_" & i & "_D = " & Game.GetGXTEntry("CMOD_SMOD_" & i & "_D"))
+                ''Next
+            End If
 
             If fixDoor = 1 Then
                 If Not unWelcome.Contains(veh.ClassType) AndAlso Not unWelcomeV.Contains(veh.Model) Then

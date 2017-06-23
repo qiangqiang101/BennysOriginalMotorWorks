@@ -1698,4 +1698,14 @@ Public Class Helper
     Public Shared Function CanEnterBennysMotorwork(veh As Vehicle) As Boolean
         Return Native.Function.Call(Of Boolean)(Hash._0x8D474C8FAEFF6CDE, veh)
     End Function
+
+    Public Shared Function IsVehicleAttachedToTrailer(veh As Vehicle) As Boolean
+        Return Native.Function.Call(Of Boolean)(Hash.IS_VEHICLE_ATTACHED_TO_TRAILER, veh)
+    End Function
+
+    Public Shared Function GetVehicleTrailerVehicle(veh As Vehicle) As Vehicle
+        Dim arg As New OutputArgument()
+        Native.Function.Call(Hash.GET_VEHICLE_TRAILER_VEHICLE, veh, arg)
+        Return arg.GetResult(Of Vehicle)()
+    End Function
 End Class

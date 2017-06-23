@@ -28,14 +28,14 @@ Public Class BennysMenu
     Public Shared giBodywork, giEngine, giInterior, giPlate, giLights, giRespray, giWheels, giBumper, giWheelType, giTires, giNeonKits, giPrimaryCol, giSecondaryCol, giBikeWheels, giHighEndWheels, giDoor,
         giLowriderWheels, giMuscleWheels, giOffroadWheels, giSportWheels, giSUVWheels, giTunerWheels, giBennysWheels, giBespokeWheels, giFBumper, giRBumper, giSSkirt, giNumberPlate, giVanityPlate, giPlateHolder,
         giExhaust, giBrakes, giGrille, giHood, giHydraulics, giPlaques, giSpoilers, giTank, giTrunk, giStruts, iSBikeWheels, iCBikeWheels, iSHighEnd, iCHighEnd, iSLowrider, iCLowrider, iSMuscle, iCMuscle, iSOffroad, iCOffroad,
-    iSSport, iCSport, iSSUV, iCSUV, iSTuner, iCTuner As UIMenuItem
+    iSSport, iCSport, iSSUV, iCSUV, iSTuner, iCTuner, giTrailer As UIMenuItem
     Public Shared iShifter, iFMudguard, iBSeat, iOilTank, iRMudguard, iFuelTank, iBeltDriveCovers, iBEngineBlock, iBAirFilter, iBTank As UIMenuItem
     Public Shared giShifter, giFMudguard, giOilTank, giRMudguard, giFuelTank, giBeltDriveCovers, giBEngineBlock, giBAirFilter, giBTank As UIMenuItem
-    Public Shared mShifter, mFMudguard, mBSeat, mOilTank, mRMudguard, mFuelTank, mBeltDriveCovers, mBEngineBlock, mBAirFilter, mBTank As UIMenu
+    Public Shared mShifter, mFMudguard, mBSeat, mOilTank, mRMudguard, mFuelTank, mBeltDriveCovers, mBEngineBlock, mBAirFilter, mBTank, gmTrailer As UIMenu
     Public Shared _menuPool As MenuPool
     Public Shared camera As WorkshopCamera
     Public Shared isRepairing As Boolean = False
-    Public bennytext As New Scaleform("mp_car_stats_02")
+    'Public bennytext As New Scaleform("mp_car_stats_02")
 
     Public Shared Sub CreateMainMenu()
         Try
@@ -330,6 +330,11 @@ Public Class BennysMenu
                     MainMenu.AddItem(iTint)
                     MainMenu.BindMenuToItem(mTint, iTint)
                 End If
+                'If Helper.IsVehicleAttachedToTrailer(Bennys.veh) Then
+                '    giTrailer = New UIMenuItem(Game.GetGXTEntry("TRAILER"))
+                '    MainMenu.AddItem(giTrailer)
+                '    MainMenu.BindMenuToItem(gmTrailer, giTrailer)
+                'End If
                 MainMenu.RefreshIndex()
             End If
         Catch ex As Exception
@@ -598,7 +603,7 @@ Public Class BennysMenu
                             camera.MainCameraPosition = CameraPosition.FrontBumper
                         Case "tropos"
                             camera.MainCameraPosition = CameraPosition.Trunk
-                        Case "btype2"
+                        Case "btype2", "nightshark"
                             camera.MainCameraPosition = CameraPosition.Engine
                         Case Else
                             camera.MainCameraPosition = CameraPosition.Hood

@@ -139,8 +139,8 @@ Public Class WorkshopCamera
                     CameraClamp = New CameraClamp() With {
                         .MaxVerticalValue = -60.0,
                         .MinVerticalValue = -3.0,
-                        .LeftHorizontalValue = _target.Heading - 510.0,
-                        .RightHorizontalValue = _target.Heading - 380.0
+                        .LeftHorizontalValue = _target.Heading - 130.0, '- 510.0,
+                        .RightHorizontalValue = _target.Heading - 380.0 '- 380.0
                     }
                     _cameraZoom = 4.0
                     startValueRotation = _mainCamera.Rotation
@@ -193,7 +193,7 @@ Public Class WorkshopCamera
                         .MaxVerticalValue = -40.0,
                         .MinVerticalValue = -3.0,
                         .LeftHorizontalValue = _target.Heading - 250.6141,
-                        .RightHorizontalValue = _target.Heading - 470.79
+                        .RightHorizontalValue = _target.Heading - 105.30705 '- 470.79
                     }
                     _justSwitched = True
                 End If
@@ -221,7 +221,7 @@ Public Class WorkshopCamera
                         .MaxVerticalValue = -40.0,
                         .MinVerticalValue = -3.0,
                         .LeftHorizontalValue = _target.Heading - 250.6141,
-                        .RightHorizontalValue = _target.Heading - 470.79
+                        .RightHorizontalValue = _target.Heading - 105.30705 '- 470.79
                     }
                     _justSwitched = True
                 End If
@@ -254,7 +254,7 @@ Public Class WorkshopCamera
                         .MaxVerticalValue = -40.0,
                         .MinVerticalValue = -3.0,
                         .LeftHorizontalValue = _target.Heading - 250.6141,
-                        .RightHorizontalValue = _target.Heading - 470.79
+                        .RightHorizontalValue = _target.Heading - 105.30705 '- 470.79
                     }
                     _justSwitched = True
                 End If
@@ -280,13 +280,13 @@ Public Class WorkshopCamera
                         endValueRotation = New Vector3(0, 0, _target.Heading)
                         _mainCamera.StopPointing()
                         _mainCamera.PointAt(_targetPos)
-                        CameraClamp = New CameraClamp() With {
+                    CameraClamp = New CameraClamp() With {
                         .MaxVerticalValue = -40.0,
                         .MinVerticalValue = -3.0,
-                        .LeftHorizontalValue = _target.Heading - 410.0,
+                        .LeftHorizontalValue = _target.Heading - 60.0, '- 410.0,
                         .RightHorizontalValue = _target.Heading - 300.0
-                    }
-                        _justSwitched = True
+                         }
+                    _justSwitched = True
                     End If
                 Exit Select
             Case CameraPosition.BikeExhaust
@@ -309,7 +309,7 @@ Public Class WorkshopCamera
                     CameraClamp = New CameraClamp() With {
                     .MaxVerticalValue = -40.0,
                     .MinVerticalValue = -3.0,
-                    .LeftHorizontalValue = _target.Heading - 410.0,
+                    .LeftHorizontalValue = _target.Heading - 60.0, '- 410.0,
                     .RightHorizontalValue = _target.Heading - 300.0
                 }
                     _justSwitched = True
@@ -335,7 +335,7 @@ Public Class WorkshopCamera
                     CameraClamp = New CameraClamp() With {
                     .MaxVerticalValue = -40.0,
                     .MinVerticalValue = -3.0,
-                    .LeftHorizontalValue = _target.Heading - 410.0,
+                    .LeftHorizontalValue = _target.Heading - 60.0, '- 410.0,
                     .RightHorizontalValue = _target.Heading - 300.0
                 }
                     _justSwitched = True
@@ -365,7 +365,7 @@ Public Class WorkshopCamera
                     CameraClamp = New CameraClamp() With {
                     .MaxVerticalValue = -40.0,
                     .MinVerticalValue = -3.0,
-                    .LeftHorizontalValue = _target.Heading - 410.0,
+                    .LeftHorizontalValue = _target.Heading - 60.0, '- 410.0,
                     .RightHorizontalValue = _target.Heading - 300.0
                 }
                     _justSwitched = True
@@ -391,7 +391,7 @@ Public Class WorkshopCamera
                     CameraClamp = New CameraClamp() With {
                     .MaxVerticalValue = -40.0,
                     .MinVerticalValue = -3.0,
-                    .LeftHorizontalValue = _target.Heading - 410.0,
+                    .LeftHorizontalValue = _target.Heading - 60.0, '- 410.0,
                     .RightHorizontalValue = _target.Heading - 300.0
                 }
                     _justSwitched = True
@@ -420,7 +420,7 @@ Public Class WorkshopCamera
                         .MaxVerticalValue = -40.0,
                         .MinVerticalValue = -3.0,
                         .LeftHorizontalValue = _target.Heading - 250.6141,
-                        .RightHorizontalValue = _target.Heading - 470.79
+                        .RightHorizontalValue = _target.Heading - 105.30705 '- 470.79
                     }
                     _justSwitched = True
                 End If
@@ -448,7 +448,7 @@ Public Class WorkshopCamera
                         .MaxVerticalValue = -40.0,
                         .MinVerticalValue = -3.0,
                         .LeftHorizontalValue = _target.Heading - 250.6141,
-                        .RightHorizontalValue = _target.Heading - 470.79
+                        .RightHorizontalValue = _target.Heading - 105.30705 '- 470.79
                     }
                     _justSwitched = True
                 End If
@@ -473,7 +473,7 @@ Public Class WorkshopCamera
                     CameraClamp = New CameraClamp() With {
                         .MaxVerticalValue = -40.0,
                         .MinVerticalValue = -3.0,
-                        .LeftHorizontalValue = _target.Heading - 410.0,
+                        .LeftHorizontalValue = _target.Heading - 60.0, '- 410.0,
                         .RightHorizontalValue = _target.Heading - 300.0
                     }
                     _justSwitched = True
@@ -499,12 +499,58 @@ Public Class WorkshopCamera
                     CameraClamp = New CameraClamp() With {
                         .MaxVerticalValue = -40.0,
                         .MinVerticalValue = -3.0,
-                        .LeftHorizontalValue = _target.Heading - 410.0,
+                        .LeftHorizontalValue = _target.Heading - 60.0, '- 410.0,
                         .RightHorizontalValue = _target.Heading - 300.0
                     }
                     _justSwitched = True
                 End If
                 Exit Select
+            'Case CameraPosition.Plaque
+            '    If True Then
+            '        Game.Player.Character.Alpha = 255
+            '        RotationMode = CameraRotationMode.Around
+
+            '        Select Case Bennys.veh.Model
+            '            Case "buccaneer2", "faction2", "moonbeam2", "slamvan3", "faction3"
+            '                _targetPos = GetBonePosition(_target, "misc_h")
+            '            Case "voodoo", "chino2"
+            '                _targetPos = GetBonePosition(_target, "misc_j")
+            '            Case "primo2"
+            '                _targetPos = GetBonePosition(_target, "misc_d")
+            '            Case "sabregt2", "virgo2"
+            '                _targetPos = GetBonePosition(_target, "misc_n")
+            '            Case "tornado5"
+            '                _targetPos = GetBonePosition(_target, "misc_o")
+            '            Case "minivan2"
+            '                _targetPos = GetBonePosition(_target, "misc_c")
+            '            Case Else
+            '                _targetPos = GetBonePosition(_target, "windscreen_r")
+            '        End Select
+
+            '        _cameraZoom = 0
+
+            '        startValueRotation = _mainCamera.Rotation
+            '        startValuePosition = _mainCamera.Position
+            '        duration = 1000.0
+            '        IsLerping = True
+            '        startTime = DateTime.Now
+
+            '        endValuePosition = _targetPos + _target.ForwardVector * -0.8 + _target.UpVector * 0.2
+            '        Dim tRot = _target.Heading
+            '        If tRot > 180.0 Then
+            '            tRot -= 360.0
+            '        End If
+            '        endValueRotation = New Vector3(0, 0, tRot)
+            '        _mainCamera.PointAt(_targetPos)
+            '        CameraClamp = New CameraClamp() With {
+            '            .MaxVerticalValue = -40.0,
+            '            .MinVerticalValue = -3.0,
+            '            .LeftHorizontalValue = _target.Heading - 60.0, '- 410.0,
+            '            .RightHorizontalValue = _target.Heading - 300.0
+            '        }
+            '        _justSwitched = True
+            '    End If
+            '    Exit Select
             Case CameraPosition.Plaque
                 If True Then
                     Game.Player.Character.Alpha = 255
@@ -527,7 +573,7 @@ Public Class WorkshopCamera
                             _targetPos = GetBonePosition(_target, "windscreen_r")
                     End Select
 
-                    _cameraZoom = 0
+                    _cameraZoom = 0.6
 
                     startValueRotation = _mainCamera.Rotation
                     startValuePosition = _mainCamera.Position
@@ -535,7 +581,7 @@ Public Class WorkshopCamera
                     IsLerping = True
                     startTime = DateTime.Now
 
-                    endValuePosition = _targetPos + _target.ForwardVector * -0.8 + _target.UpVector * 0.2
+                    endValuePosition = _targetPos + _target.ForwardVector * -0.5 + _target.UpVector * 0.1
                     Dim tRot = _target.Heading
                     If tRot > 180.0 Then
                         tRot -= 360.0
@@ -544,8 +590,8 @@ Public Class WorkshopCamera
                     _mainCamera.PointAt(_targetPos)
                     CameraClamp = New CameraClamp() With {
                         .MaxVerticalValue = -40.0,
-                        .MinVerticalValue = -3.0,
-                        .LeftHorizontalValue = _target.Heading - 410.0,
+                        .MinVerticalValue = -20.0,
+                        .LeftHorizontalValue = _target.Heading - 60.0, '- 410.0,
                         .RightHorizontalValue = _target.Heading - 300.0
                     }
                     _justSwitched = True
@@ -572,13 +618,13 @@ Public Class WorkshopCamera
                         endValueRotation = New Vector3(0, 0, _target.Heading)
                         _mainCamera.StopPointing()
                         _mainCamera.PointAt(_targetPos)
-                        CameraClamp = New CameraClamp() With {
+                    CameraClamp = New CameraClamp() With {
                         .MaxVerticalValue = -40.0,
                         .MinVerticalValue = -3.0,
-                        .LeftHorizontalValue = _target.Heading - 410.0,
+                        .LeftHorizontalValue = _target.Heading - 60.0, '- 410.0,
                         .RightHorizontalValue = _target.Heading - 300.0
                     }
-                        _justSwitched = True
+                    _justSwitched = True
                     End If
                     Exit Select
             Case CameraPosition.FrontPlate
@@ -604,7 +650,7 @@ Public Class WorkshopCamera
                         .MaxVerticalValue = -40.0,
                         .MinVerticalValue = -3.0,
                         .LeftHorizontalValue = _target.Heading - 250.6141,
-                        .RightHorizontalValue = _target.Heading - 470.79
+                        .RightHorizontalValue = _target.Heading - 105.30705 '- 470.79
                     }
                     _justSwitched = True
                 End If
@@ -828,9 +874,9 @@ Public Class WorkshopCamera
                 CameraClamp.RightHorizontalValue = CameraClamp.RightHorizontalValue - (360 * CInt(CameraClamp.RightHorizontalValue / 360) + 1)
             End If
 
-            Dim sameHemisphereLeft = (_mainCamera.Rotation.Z > 0F AndAlso CameraClamp.LeftHorizontalValue > 0F) OrElse (_mainCamera.Rotation.Z < 0F AndAlso CameraClamp.LeftHorizontalValue < 0F)
+            Dim sameHemisphereLeft = (_mainCamera.Rotation.Z > 0.0 AndAlso CameraClamp.LeftHorizontalValue > 0.0) OrElse (_mainCamera.Rotation.Z < 0.0 AndAlso CameraClamp.LeftHorizontalValue < 0.0)
 
-            Dim sameHemisphereRight = (_mainCamera.Rotation.Z > 0F AndAlso CameraClamp.RightHorizontalValue > 0F) OrElse (_mainCamera.Rotation.Z < 0F AndAlso CameraClamp.RightHorizontalValue < 0F)
+            Dim sameHemisphereRight = (_mainCamera.Rotation.Z > 0.0 AndAlso CameraClamp.RightHorizontalValue > 0.0) OrElse (_mainCamera.Rotation.Z < 0.0 AndAlso CameraClamp.RightHorizontalValue < 0.0)
 
             If goingLeft AndAlso _mainCamera.Rotation.Z > CameraClamp.RightHorizontalValue AndAlso sameHemisphereRight Then
                 Return True

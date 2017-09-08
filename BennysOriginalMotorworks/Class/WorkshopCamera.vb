@@ -505,52 +505,6 @@ Public Class WorkshopCamera
                     _justSwitched = True
                 End If
                 Exit Select
-            'Case CameraPosition.Plaque
-            '    If True Then
-            '        Game.Player.Character.Alpha = 255
-            '        RotationMode = CameraRotationMode.Around
-
-            '        Select Case Bennys.veh.Model
-            '            Case "buccaneer2", "faction2", "moonbeam2", "slamvan3", "faction3"
-            '                _targetPos = GetBonePosition(_target, "misc_h")
-            '            Case "voodoo", "chino2"
-            '                _targetPos = GetBonePosition(_target, "misc_j")
-            '            Case "primo2"
-            '                _targetPos = GetBonePosition(_target, "misc_d")
-            '            Case "sabregt2", "virgo2"
-            '                _targetPos = GetBonePosition(_target, "misc_n")
-            '            Case "tornado5"
-            '                _targetPos = GetBonePosition(_target, "misc_o")
-            '            Case "minivan2"
-            '                _targetPos = GetBonePosition(_target, "misc_c")
-            '            Case Else
-            '                _targetPos = GetBonePosition(_target, "windscreen_r")
-            '        End Select
-
-            '        _cameraZoom = 0
-
-            '        startValueRotation = _mainCamera.Rotation
-            '        startValuePosition = _mainCamera.Position
-            '        duration = 1000.0
-            '        IsLerping = True
-            '        startTime = DateTime.Now
-
-            '        endValuePosition = _targetPos + _target.ForwardVector * -0.8 + _target.UpVector * 0.2
-            '        Dim tRot = _target.Heading
-            '        If tRot > 180.0 Then
-            '            tRot -= 360.0
-            '        End If
-            '        endValueRotation = New Vector3(0, 0, tRot)
-            '        _mainCamera.PointAt(_targetPos)
-            '        CameraClamp = New CameraClamp() With {
-            '            .MaxVerticalValue = -40.0,
-            '            .MinVerticalValue = -3.0,
-            '            .LeftHorizontalValue = _target.Heading - 60.0, '- 410.0,
-            '            .RightHorizontalValue = _target.Heading - 300.0
-            '        }
-            '        _justSwitched = True
-            '    End If
-            '    Exit Select
             Case CameraPosition.Plaque
                 If True Then
                     Game.Player.Character.Alpha = 255

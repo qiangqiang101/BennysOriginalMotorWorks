@@ -18,10 +18,10 @@ Public Class Bennys
     Public Shared bennyPed As Ped
     Public Shared isCutscene As Boolean = False
     Public Shared scriptCam As ScriptedCamera
-    Public Shared unWelcome As List(Of VehicleClass) = New List(Of VehicleClass) From {VehicleClass.Commercial, VehicleClass.Boats, VehicleClass.Cycles, VehicleClass.Helicopters, VehicleClass.Military, VehicleClass.Planes}
+    Public Shared unWelcome As List(Of VehicleClass) = New List(Of VehicleClass) From {VehicleClass.Commercial, VehicleClass.Boats, VehicleClass.Cycles, VehicleClass.Helicopters, VehicleClass.Planes}
     Public Shared unWelcomeV As List(Of Model) = New List(Of Model) From {"firetruck", "pbus", "policeb", "riot", "dump", "cutter", "bulldozer", "flatbed", "handler", "mixer", "mixer2", "rubble", "tiptruck", "tiptruck2",
         "ruiner3", "dune2", "marshall", "monster", "brickade", "airbus", "bus", "coach", "rallytruck", "rentalbus", "tourbus", "trash", "trash2", "wastelander", "airtug", "caddy", "caddy2", "docktug", "ripley", "mower",
-        "forklift", "scrap", "towtruck", "towtruck2", "tractor", "tractor2", "tractor3", "utillitruck", "utilitytruck2", "utillitruck3", "camper", "journey", "taco"}
+        "forklift", "scrap", "towtruck", "towtruck2", "tractor", "tractor2", "tractor3", "utillitruck", "utilitytruck2", "utillitruck3", "camper", "journey", "taco", "rhino", "barracks3", "barracks2", "barracks"}
 
     Public Sub New()
         LoadSettings()
@@ -51,19 +51,20 @@ Public Class Bennys
             End If
 
             If Game.IsControlPressed(0, Control.Jump) AndAlso Game.IsControlPressed(0, Control.Reload) Then
-                Dim s As String = Game.GetUserInput(System.Windows.Forms.Clipboard.GetText(), 99)
-                UI.Notify(Game.GetGXTEntry(s))
+                '    Dim s As String = Game.GetUserInput(System.Windows.Forms.Clipboard.GetText(), 99)
+                '    UI.Notify(Game.GetGXTEntry(s))
 
-                ''For Each line As String In IO.File.ReadLines("C:\New.txt")
-                ''    Logger.Log(Game.GetGXTEntry(line) & ", " & line)
-                ''Next
+                '    ''For Each line As String In IO.File.ReadLines("C:\New.txt")
+                '    ''    Logger.Log(Game.GetGXTEntry(line) & ", " & line)
+                '    ''Next
 
-                ''For i As Integer = 0 To 500
-                ''    Logger.Write("CMOD_MOD_" & i & "_D = " & Game.GetGXTEntry("CMOD_MOD_" & i & "_D"))
-                ''Next
-                ''For i As Integer = 0 To 500
-                ''    Logger.Write("CMOD_SMOD_" & i & "_D = " & Game.GetGXTEntry("CMOD_SMOD_" & i & "_D"))
-                ''Next
+                '    ''For i As Integer = 0 To 500
+                '    ''    Logger.Write("CMOD_MOD_" & i & "_D = " & Game.GetGXTEntry("CMOD_MOD_" & i & "_D"))
+                '    ''Next
+                '    ''For i As Integer = 0 To 500
+                '    ''    Logger.Write("CMOD_SMOD_" & i & "_D = " & Game.GetGXTEntry("CMOD_SMOD_" & i & "_D"))
+                '    ''Next
+                UI.ShowSubtitle(Helper.GetVehicleEnginePositionSingle(Game.Player.LastVehicle))
             End If
 
             If fixDoor = 1 Then

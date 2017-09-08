@@ -531,31 +531,53 @@ Public Class BennysMenu
                     Helper.PlaySpeech("LR_UPGRADE_SUPERMOD")
                 ElseIf selectedItem Is giEngine Then
                     If Not Bennys.veh.ClassType = VehicleClass.Motorcycles Or Bennys.veh.Model = "blazer4" Then
-                        Select Case Bennys.veh.Model
-                            Case "comet2", "monroe", "vacca", "ruston"
+                        If Bennys.veh.HasBone("bonnet") Then
+                            If Helper.GetVehEnginePos(Bennys.veh) = Helper.EngineLoc.rear AndAlso Helper.GetVehHoodPos(Bennys.veh) = Helper.EngineLoc.front Then 'rear engine, open trunk
+                                Bennys.veh.OpenDoor(VehicleDoor.Hood, False, False)
+                                camera.MainCameraPosition = CameraPosition.RearEngine
+                            ElseIf Helper.GetVehEnginePos(Bennys.veh) = Helper.EngineLoc.rear AndAlso Helper.GetVehHoodPos(Bennys.veh) = Helper.EngineLoc.rear Then 'rear engine, open hood
                                 Bennys.veh.OpenDoor(VehicleDoor.Trunk, False, False)
                                 camera.MainCameraPosition = CameraPosition.RearEngine
-                            Case "jester", "jester2", "ninef", "bullet", "entityxf", "infernus", "italigtb", "italigtb2"
-                                Bennys.veh.OpenDoor(VehicleDoor.Trunk, False, False)
-                                camera.MainCameraPosition = CameraPosition.Trunk
-                            Case "comet3", "pfister811", "cheetah", "tyrus", "prototipo", "surfer", "surfer2", "gp1", "turismo2",
-                                 "infernus2", "ardent", "cheetah2", "xa21", "vagner", "torero"
-                                Bennys.veh.OpenDoor(VehicleDoor.Hood, False, False)
-                                camera.MainCameraPosition = CameraPosition.RearEngine
-                            Case "bfinjection", "bifta", "ninef2", "adder", "reaper", "voltic", "voltic2", "zentorno"
-                                camera.MainCameraPosition = CameraPosition.RearEngine
-                            Case "alpha"
-                                Bennys.veh.OpenDoor(VehicleDoor.Hood, False, False)
-                                camera.MainCameraPosition = CameraPosition.Hood
-                            Case "penetrator", "dune3"
-                                camera.MainCameraPosition = CameraPosition.RearEngine
-                            Case "t20", "tempesta"
-                                Bennys.veh.OpenDoor(VehicleDoor.Hood, False, False)
-                                camera.MainCameraPosition = CameraPosition.RearEngine
-                            Case Else
+                            ElseIf Helper.GetVehEnginePos(Bennys.veh) = Helper.EngineLoc.front AndAlso Helper.GetVehHoodPos(Bennys.veh) = Helper.EngineLoc.front Then 'front engine, open hood
                                 Bennys.veh.OpenDoor(VehicleDoor.Hood, False, False)
                                 camera.MainCameraPosition = CameraPosition.Engine
-                        End Select
+                            ElseIf Helper.GetVehEnginePos(Bennys.veh) = Helper.EngineLoc.front AndAlso Helper.GetVehHoodPos(Bennys.veh) = Helper.EngineLoc.rear Then 'front engine, open trunk
+                                Bennys.veh.OpenDoor(VehicleDoor.Trunk, False, False)
+                                camera.MainCameraPosition = CameraPosition.Engine
+                            End If
+                        Else
+                            If Helper.GetVehEnginePos(Bennys.veh) = Helper.EngineLoc.rear Then 'rear engine, no open anything
+                                camera.MainCameraPosition = CameraPosition.RearEngine
+                            ElseIf Helper.GetVehEnginePos(Bennys.veh) = Helper.EngineLoc.front Then
+                                camera.MainCameraPosition = CameraPosition.Engine
+                            End If
+                        End If
+
+                        'Select Case Bennys.veh.Model
+                        '    Case "comet2", "monroe", "vacca", "ruston"
+                        '        Bennys.veh.OpenDoor(VehicleDoor.Trunk, False, False)
+                        '        camera.MainCameraPosition = CameraPosition.RearEngine
+                        '    Case "jester", "jester2", "ninef", "bullet", "entityxf", "infernus", "italigtb", "italigtb2"
+                        '        Bennys.veh.OpenDoor(VehicleDoor.Trunk, False, False)
+                        '        camera.MainCameraPosition = CameraPosition.Trunk
+                        '    Case "comet3", "pfister811", "cheetah", "tyrus", "prototipo", "surfer", "surfer2", "gp1", "turismo2",
+                        '         "infernus2", "ardent", "cheetah2", "xa21", "vagner", "torero"
+                        '        Bennys.veh.OpenDoor(VehicleDoor.Hood, False, False)
+                        '        camera.MainCameraPosition = CameraPosition.RearEngine
+                        '    Case "bfinjection", "bifta", "ninef2", "adder", "reaper", "voltic", "voltic2", "zentorno", "cyclone"
+                        '        camera.MainCameraPosition = CameraPosition.RearEngine
+                        '    Case "alpha"
+                        '        Bennys.veh.OpenDoor(VehicleDoor.Hood, False, False)
+                        '        camera.MainCameraPosition = CameraPosition.Hood
+                        '    Case "penetrator", "dune3"
+                        '        camera.MainCameraPosition = CameraPosition.RearEngine
+                        '    Case "t20", "tempesta"
+                        '        Bennys.veh.OpenDoor(VehicleDoor.Hood, False, False)
+                        '        camera.MainCameraPosition = CameraPosition.RearEngine
+                        '    Case Else
+                        '        Bennys.veh.OpenDoor(VehicleDoor.Hood, False, False)
+                        '        camera.MainCameraPosition = CameraPosition.Engine
+                        'End Select
                     Else
                         camera.MainCameraPosition = CameraPosition.Wheels
                     End If
@@ -598,16 +620,33 @@ Public Class BennysMenu
                     End Select
                 ElseIf selectedItem Is giHood Then
                     Select Case Bennys.veh.Model
-                        Case "comet3", "hotknife", "nero", "nero2", "t20", "tempesta", "zentorno", "gp1", "turismo2",
-                             "ruston", "ardent", "cheetah2", "xa21", "vagner", "torero"
+                        Case "comet3", "vacca"
                             camera.MainCameraPosition = CameraPosition.FrontBumper
-                        Case "tropos"
-                            camera.MainCameraPosition = CameraPosition.Trunk
-                        Case "btype2", "nightshark"
-                            camera.MainCameraPosition = CameraPosition.Engine
                         Case Else
-                            camera.MainCameraPosition = CameraPosition.Hood
+                            If Bennys.veh.HasBone("bonnet") Then
+                                If Helper.GetVehEnginePos(Bennys.veh) = Helper.EngineLoc.front Then
+                                    camera.MainCameraPosition = CameraPosition.Hood
+                                ElseIf Helper.GetVehEnginePos(Bennys.veh) = Helper.EngineLoc.rear Then
+                                    camera.MainCameraPosition = CameraPosition.Trunk
+                                End If
+                            ElseIf Bennys.veh.HasBone("neon_f") Then
+                                camera.MainCameraPosition = CameraPosition.FrontBumper
+                            Else
+                                camera.MainCameraPosition = CameraPosition.Engine
+                            End If
                     End Select
+
+                    'Select Case Bennys.veh.Model
+                    'Case "comet3", "hotknife", "nero", "nero2", "t20", "tempesta", "zentorno", "gp1", "turismo2",
+                    '     "ruston", "ardent", "cheetah2", "xa21", "vagner", "torero"
+                    '    camera.MainCameraPosition = CameraPosition.FrontBumper
+                    'Case "tropos"
+                    '    camera.MainCameraPosition = CameraPosition.Trunk
+                    'Case "btype2", "nightshark"
+                    '    camera.MainCameraPosition = CameraPosition.Engine
+                    'Case Else
+                    '    camera.MainCameraPosition = CameraPosition.Hood
+                    'End Select
                 ElseIf selectedItem Is giHydraulics Then
                     Bennys.veh.OpenDoor(VehicleDoor.Trunk, False, False)
                     camera.MainCameraPosition = CameraPosition.Trunk
@@ -618,19 +657,37 @@ Public Class BennysMenu
                     camera.MainCameraPosition = CameraPosition.Plaque
                 ElseIf selectedItem Is giSpoilers Then
                     Select Case Bennys.veh.Model
-                        Case "bifta", "ninef2", "specter", "specter2", "fmj", "reaper", "le7b", "voltic", "zentorno",
-                             "gp1", "ardent", "cheetah2", "xa21", "vagner", "torero"
-                            camera.MainCameraPosition = CameraPosition.RearEngine
-                        Case "tyrus", "prototipo"
-                            camera.MainCameraPosition = CameraPosition.RearBumper
-                        Case "comet3", "tropos", "cheetah", "nero2", "osiris", "penetrator", "tempesta", "turismor",
-                             "turismo2", "infernus2"
+                        Case "comet3"
                             camera.MainCameraPosition = CameraPosition.RearWindscreen
-                        Case "sheava"
-                            camera.MainCameraPosition = CameraPosition.Car
                         Case Else
-                            camera.MainCameraPosition = CameraPosition.Trunk
+                            If Bennys.veh.HasBone("boot") Then
+                                camera.MainCameraPosition = CameraPosition.Trunk
+                            ElseIf Bennys.veh.HasBone("windscreen_r") Then
+                                camera.MainCameraPosition = CameraPosition.RearWindscreen
+                            ElseIf Helper.GetVehEnginePos(Bennys.veh) = Helper.EngineLoc.rear Then
+                                camera.MainCameraPosition = CameraPosition.RearEngine
+                            ElseIf Bennys.veh.HasBone("bumper_r") Then
+                                camera.MainCameraPosition = CameraPosition.RearBumper
+                            Else
+                                camera.MainCameraPosition = CameraPosition.Car
+                            End If
                     End Select
+
+                    'Select Case Bennys.veh.Model
+                    'Case "bifta", "ninef2", "specter", "specter2", "fmj", "reaper", "le7b", "voltic", "zentorno",
+                    '     "gp1", "ardent", "cheetah2", "xa21", "vagner", "torero"
+                    '    camera.MainCameraPosition = CameraPosition.RearEngine
+                    'Case "tyrus", "prototipo"
+                    '    camera.MainCameraPosition = CameraPosition.RearBumper
+                    'Case "comet3", "tropos", "cheetah", "nero2", "osiris", "penetrator", "tempesta", "turismor",
+                    '     "turismo2", "infernus2", "cyclone"
+                    '    camera.MainCameraPosition = CameraPosition.RearWindscreen
+                    'Case "sheava"
+                    '        camera.MainCameraPosition = CameraPosition.Car
+                    'Case Else
+                    '    camera.MainCameraPosition = CameraPosition.Trunk
+                    'End Select
+
                 ElseIf selectedItem Is giTank Then
                     Select Case Bennys.veh.Model
                         Case "slamvan3"
@@ -2139,12 +2196,13 @@ Public Class BennysMenu
 
             'Close Doors
             If sender Is gmEngine Then
-                Select Case Bennys.veh.Model
-                    Case "comet2", "jester", "jester2", "ninef", "monroe", "bullet", "entityxf", "infernus", "italigtb", "italigtb2", "vacca"
-                        Bennys.veh.CloseDoor(VehicleDoor.Trunk, False)
-                    Case Else
-                        Bennys.veh.CloseDoor(VehicleDoor.Hood, False)
-                End Select
+                'Select Case Bennys.veh.Model
+                '    Case "comet2", "jester", "jester2", "ninef", "monroe", "bullet", "entityxf", "infernus", "italigtb", "italigtb2", "vacca"
+                '        Bennys.veh.CloseDoor(VehicleDoor.Trunk, False)
+                '    Case Else
+                '        Bennys.veh.CloseDoor(VehicleDoor.Hood, False)
+                'End Select
+                Native.Function.Call(Hash.SET_VEHICLE_DOORS_SHUT, Bennys.veh, False)
             End If
             If sender Is mStruts Then
                 Select Case Bennys.veh.Model
@@ -2154,8 +2212,9 @@ Public Class BennysMenu
                 End Select
             End If
             If sender Is mDoor Then
-                Bennys.veh.CloseDoor(VehicleDoor.FrontLeftDoor, False)
-                Bennys.veh.CloseDoor(VehicleDoor.FrontRightDoor, False)
+                'Bennys.veh.CloseDoor(VehicleDoor.FrontLeftDoor, False)
+                'Bennys.veh.CloseDoor(VehicleDoor.FrontRightDoor, False)
+                Native.Function.Call(Hash.SET_VEHICLE_DOORS_SHUT, Bennys.veh, False)
             End If
             If sender Is mHydraulics Then Bennys.veh.CloseDoor(VehicleDoor.Trunk, False)
             If sender Is mTrunk Then Bennys.veh.CloseDoor(VehicleDoor.Trunk, False)
@@ -3094,36 +3153,60 @@ Public Class BennysMenu
             'Camera
             If sender Is gmBumper Then
                 If selectedItem Is giFBumper Then
-                    Select Case Bennys.veh.Model
-                        Case "police3"
-                            camera.MainCameraPosition = CameraPosition.Hood
-                        Case Else
-                            camera.MainCameraPosition = CameraPosition.FrontBumper
-                    End Select
+                    If Bennys.veh.HasBone("neon_f") Then
+                        camera.MainCameraPosition = CameraPosition.FrontBumper
+                    Else
+                        camera.MainCameraPosition = CameraPosition.Hood
+                    End If
+
+                    'Select Case Bennys.veh.Model
+                    '    Case "police3"
+                    '        camera.MainCameraPosition = CameraPosition.Hood
+                    '    Case Else
+                    '        camera.MainCameraPosition = CameraPosition.FrontBumper
+                    'End Select
                 ElseIf selectedItem Is giRBumper Then
-                    Select Case Bennys.veh.Model
-                        Case "police3"
-                            camera.MainCameraPosition = CameraPosition.Trunk
-                        Case Else
-                            camera.MainCameraPosition = CameraPosition.RearBumper
-                    End Select
+                    If Bennys.veh.HasBone("neon_r") Then
+                        camera.MainCameraPosition = CameraPosition.RearBumper
+                    Else
+                        camera.MainCameraPosition = CameraPosition.Trunk
+                    End If
+
+                    'Select Case Bennys.veh.Model
+                    '    Case "police3"
+                    '        camera.MainCameraPosition = CameraPosition.Trunk
+                    '    Case Else
+                    '        camera.MainCameraPosition = CameraPosition.RearBumper
+                    'End Select
                 ElseIf selectedItem Is giSSkirt
                     camera.MainCameraPosition = CameraPosition.Wheels
                 End If
             ElseIf sender Is gmPlate Then
                 If selectedItem Is giNumberPlate Then
-                    Select Case Bennys.veh.Model
-                        Case "police", "blazer", "blazer2", "blazer3", "blazer5", "dune4", "dune5", "dune", "tornado4", "dune3"
+                    If Bennys.veh.HasBone("platelight") Then
+                        If Bennys.veh.ClassType = VehicleClass.Motorcycles Or Bennys.veh.Model = "blazer4" Then
                             camera.MainCameraPosition = CameraPosition.Car
-                        Case "technical3"
-                            camera.MainCameraPosition = CameraPosition.FrontPlate
-                        Case Else
-                            If Bennys.veh.ClassType = VehicleClass.Motorcycles Or Bennys.veh.Model = "blazer4" Then
-                                camera.MainCameraPosition = CameraPosition.Car
-                            Else
-                                camera.MainCameraPosition = CameraPosition.BackPlate
-                            End If
-                    End Select
+                        Else
+                            camera.MainCameraPosition = CameraPosition.BackPlate
+                        End If
+                    ElseIf Bennys.veh.HasBone("neon_f") Then
+                        camera.MainCameraPosition = CameraPosition.FrontPlate
+                    Else
+                        camera.MainCameraPosition = CameraPosition.Car
+                    End If
+
+                    'Select Case Bennys.veh.Model
+                    '    Case "police", "blazer", "blazer2", "blazer3", "blazer5", "dune4", "dune5", "dune", "tornado4", "dune3"
+                    '        camera.MainCameraPosition = CameraPosition.Car
+                    '    Case "technical3"
+                    '        camera.MainCameraPosition = CameraPosition.FrontPlate
+                    '    Case Else
+                    '        If Bennys.veh.ClassType = VehicleClass.Motorcycles Or Bennys.veh.Model = "blazer4" Then
+                    '            camera.MainCameraPosition = CameraPosition.Car
+                    '        Else
+                    '            camera.MainCameraPosition = CameraPosition.BackPlate
+                    '        End If
+                    'End Select
                 ElseIf selectedItem Is giPlateHolder Then
                     Select Case Bennys.veh.Model
                         Case "slamvan3", "buccaneer2", "chino2", "sabregt2", "voodoo", "primo2", "tornado5", "minivan2"

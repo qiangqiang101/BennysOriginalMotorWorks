@@ -1589,7 +1589,7 @@ Public Class Helper
                 brand = "BRAVADO"
             Case "baller", "baller2", "baller3", "baller4", "baller5", "baller6"
                 brand = "GALLIVAN"
-            Case "benson", "bobcatxl", "bullet", "hotknife", "dominator", "minivan", "peyote", "radi", "sadler", "sadler2", "sandking", "sandking2", "speedo", "speedo2", "stanier", "chino", "chino2", "contender", "dominator2", "fmj", "guardian", "minivan2", "monster", "slamvan", "slamvan2", "slamvan3", "trophytruck", "trophytruck2", "blade"
+            Case "benson", "bobcatxl", "bullet", "hotknife", "dominator", "minivan", "peyote", "radi", "sadler", "sadler2", "sandking", "sandking2", "speedo", "speedo2", "stanier", "chino", "chino2", "contender", "dominator2", "fmj", "guardian", "minivan2", "monster", "slamvan", "slamvan2", "slamvan3", "trophytruck", "trophytruck2", "blade", "retinue"
                 brand = "VAPID"
             Case "bfinjection", "dune", "surfer", "surfer2", "bifta", "raptor", "dune3"
                 brand = "BF"
@@ -1599,7 +1599,7 @@ Public Class Helper
                 brand = "CANIS"
             Case "buccaneer", "cavalcade", "cavalcade2", "emperor", "emperor2", "emperor3", "manana", "primo", "washington", "alpha", "btype", "btype2", "btype3", "buccaneer2", "Lurcher", "primo2", "virgo"
                 brand = "ALBANY"
-            Case "carbonizzare", "cheetah", "stinger", "stingergt", "bestiagts", "brioso", "prototipo", "turismo2", "turismor", "cheetah2"
+            Case "carbonizzare", "cheetah", "stinger", "stingergt", "bestiagts", "brioso", "prototipo", "turismo2", "turismor", "cheetah2", "visione"
                 brand = "GROTTI"
             Case "comet2", "comet3", "pfister811"
                 brand = "PFISTER"
@@ -1623,7 +1623,7 @@ Public Class Helper
                 brand = "JOBUILT"
             Case "entityxf"
                 brand = "OVERFLOD"
-            Case "exemplar", "jb700", "rapidgt", "rapidgt2", "massacro", "massacro2", "seven70", "specter", "specter2", "vagner"
+            Case "exemplar", "jb700", "rapidgt", "rapidgt2", "massacro", "massacro2", "seven70", "specter", "specter2", "vagner", "rapidgt3"
                 brand = "DEWBAUCH"
             Case "elegy2", "elegy", "le7b"
                 brand = "ANNIS"
@@ -1659,7 +1659,7 @@ Public Class Helper
                 brand = "SPEEDOPH"
             Case "adder", "ztype", "nero", "nero2"
                 brand = "TRUFFADE"
-            Case "voltic", "brawler", "voltic2"
+            Case "voltic", "brawler", "voltic2", "cyclone"
                 brand = "COIL"
             Case "dukes", "dukes2", "nightshade", "ruiner2", "ruiner3", "ruiner", "phoenix"
                 brand = "IMPONTE"
@@ -1674,7 +1674,7 @@ Public Class Helper
             Case "trailersmall2"
                 brand = "VOMFEUER"
             Case Else
-                brand = ""
+                brand = "NULL"
         End Select
         Return brand
     End Function
@@ -1707,5 +1707,49 @@ Public Class Helper
         Dim arg As New OutputArgument()
         Native.Function.Call(Hash.GET_VEHICLE_TRAILER_VEHICLE, veh, arg)
         Return arg.GetResult(Of Vehicle)()
+    End Function
+
+    Public Enum EngineLoc
+        front
+        rear
+        unk
+    End Enum
+
+    Public Shared Function GetVehEnginePos(veh As Vehicle) As EngineLoc
+        Dim lfwheel As Vector3 = veh.GetBoneCoord("wheel_lf")
+        Dim engine As Vector3 = veh.GetBoneCoord("engine")
+        Dim result As EngineLoc = EngineLoc.unk
+        Select Case Vector3.Distance(lfwheel, engine)
+            Case 0.0 To 1.9
+                result = EngineLoc.front
+            Case 2.0 To 5.0
+                result = EngineLoc.rear
+            Case Else
+                result = EngineLoc.unk
+        End Select
+
+        Return result
+    End Function
+
+    Public Shared Function GetVehicleEnginePositionSingle(veh As Vehicle) As Single
+        Dim lfwheel As Vector3 = veh.GetBoneCoord("wheel_lf")
+        Dim engine As Vector3 = veh.GetBoneCoord("engine")
+        Return Vector3.Distance(lfwheel, engine)
+    End Function
+
+    Public Shared Function GetVehHoodPos(veh As Vehicle) As EngineLoc
+        Dim bonnet As Vector3 = veh.GetBoneCoord("bonnet")
+        Dim engine As Vector3 = veh.GetBoneCoord("engine")
+        Dim result As EngineLoc = EngineLoc.unk
+        Select Case Vector3.Distance(bonnet, engine)
+            Case 0.0 To 1.99
+                result = EngineLoc.front
+            Case 2.0 To 5.0
+                result = EngineLoc.rear
+            Case Else
+                result = EngineLoc.unk
+        End Select
+
+        Return result
     End Function
 End Class

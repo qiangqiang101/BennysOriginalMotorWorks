@@ -1,8 +1,8 @@
-﻿Imports INMNativeUI
-Imports GTA
+﻿Imports GTA
 Imports GTA.Native
 Imports GTA.Math
 Imports BennysOriginalMotorworks.BennysMenu
+Imports System.Windows.Forms
 
 Public Class Bennys
     Inherits Script
@@ -50,23 +50,6 @@ Public Class Bennys
                 Helper.DisplayHelpTextThisFrame("Un-supported GTA V version detected! SPB may not work properly on this version.")
             End If
 
-            If Game.IsControlPressed(0, Control.Jump) AndAlso Game.IsControlPressed(0, Control.Reload) Then
-                '    Dim s As String = Game.GetUserInput(System.Windows.Forms.Clipboard.GetText(), 99)
-                '    UI.Notify(Game.GetGXTEntry(s))
-
-                '    ''For Each line As String In IO.File.ReadLines("C:\New.txt")
-                '    ''    Logger.Log(Game.GetGXTEntry(line) & ", " & line)
-                '    ''Next
-
-                '    ''For i As Integer = 0 To 500
-                '    ''    Logger.Write("CMOD_MOD_" & i & "_D = " & Game.GetGXTEntry("CMOD_MOD_" & i & "_D"))
-                '    ''Next
-                '    ''For i As Integer = 0 To 500
-                '    ''    Logger.Write("CMOD_SMOD_" & i & "_D = " & Game.GetGXTEntry("CMOD_SMOD_" & i & "_D"))
-                '    ''Next
-                UI.ShowSubtitle(Helper.GetVehicleEnginePositionSingle(Game.Player.LastVehicle))
-            End If
-
             If fixDoor = 1 Then
                 If Not unWelcome.Contains(veh.ClassType) AndAlso Not unWelcomeV.Contains(veh.Model) Then
                     If veh.Position.DistanceTo(New Vector3(-205.6828, -1310.683, 30.29572)) <= 15 Then
@@ -99,6 +82,27 @@ Public Class Bennys
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
         End Try
+
+        'If Game.IsControlPressed(0, GTA.Control.Jump) AndAlso Game.IsControlPressed(0, GTA.Control.Reload) Then
+        '    '    Dim s As String = Game.GetUserInput(System.Windows.Forms.Clipboard.GetText(), 99)
+        '    '    UI.Notify(Game.GetGXTEntry(s))
+
+        '    '    ''For Each line As String In IO.File.ReadLines("C:\New.txt")
+        '    '    ''    Logger.Log(Game.GetGXTEntry(line) & ", " & line)
+        '    '    ''Next
+
+        '    '    ''For i As Integer = 0 To 500
+        '    '    ''    Logger.Write("CMOD_MOD_" & i & "_D = " & Game.GetGXTEntry("CMOD_MOD_" & i & "_D"))
+        '    '    ''Next
+        '    '    ''For i As Integer = 0 To 500
+        '    '    ''    Logger.Write("CMOD_SMOD_" & i & "_D = " & Game.GetGXTEntry("CMOD_SMOD_" & i & "_D"))
+        '    '    ''Next
+        '    Dim engine As Single = Helper.GetVehicleEnginePositionSingle(Game.Player.LastVehicle)
+        '    Dim hood As Single = Helper.GetVehicleHoodPositionSingle(Game.Player.LastVehicle)
+        '    Dim trunk As Single = Helper.GetVehicleTrunkPositionSingle(Game.Player.LastVehicle)
+        '    Dim brand As String = GetVehicleMakeName(Game.Player.LastVehicle.Model.Hash)
+        '    UI.ShowSubtitle(String.Format("Engine: {0}, Hood: {1}, Trunk: {2}, Brand: {3}", engine, hood, trunk, brand))
+        'End If
     End Sub
 
     Public Shared Sub CreateBlip()
@@ -220,7 +224,7 @@ Public Class Bennys
                 .Suspension = veh.GetMod(VehicleMod.Suspension)}
             veh.Position = New Vector3(-211.798, -1324.292, 30.37535)
             veh.Heading = 150.2801 '358.6677
-            MainMenu.Visible = Not MainMenu.Visible
+            BennysMenu.MainMenu.Visible = Not BennysMenu.MainMenu.Visible
             BennysMenu.camera.RepositionFor(veh)
             Wait(500)
             Game.FadeScreenIn(500)
@@ -229,6 +233,26 @@ Public Class Bennys
             Logger.Log(ex.Message & " " & ex.StackTrace)
         End Try
     End Sub
+
+    'Public Sub OnKeyDown(o As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+    '    If Game.Player.Character.IsInVehicle Then
+    '        If e.KeyCode = Keys.Up Then
+    '            If Game.Player.Character.LastVehicle.IsDoorOpen(VehicleDoor.Hood) Then
+    '                Game.Player.Character.LastVehicle.CloseDoor(VehicleDoor.Hood, False)
+    '            Else
+    '                Game.Player.Character.LastVehicle.OpenDoor(VehicleDoor.Hood, False, False)
+    '            End If
+    '        End If
+
+    '        If e.KeyCode = Keys.Down Then
+    '            If Game.Player.Character.LastVehicle.IsDoorOpen(VehicleDoor.Trunk) Then
+    '                Game.Player.Character.LastVehicle.CloseDoor(VehicleDoor.Trunk, False)
+    '            Else
+    '                Game.Player.Character.LastVehicle.OpenDoor(VehicleDoor.Trunk, False, False)
+    '            End If
+    '        End If
+    '    End If
+    'End Sub
 
     Public Sub OnAborted() Handles MyBase.Aborted
         BennysBlip.Remove()

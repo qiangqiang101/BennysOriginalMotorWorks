@@ -58,6 +58,10 @@ Public Class BennysMenu
 
             If Bennys.veh.IsDamaged Then
                 iRepair = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.Repair), Game.GetGXTEntry("CMOD_MOD_0_D")) 'Repair
+                With iRepair
+                    .SetRightLabel("$" & Helper.GetRepairPrice(Bennys.veh).ToString("###,###"))
+                    .SubInteger1 = Helper.GetRepairPrice(Bennys.veh)
+                End With
                 MainMenu.AddItem(iRepair)
                 MainMenu.RefreshIndex()
                 Helper.PlaySpeech("SHOP_SELL_REPAIR")
@@ -373,6 +377,7 @@ Public Class BennysMenu
                 If selectedItem Is iRepair Then
                     isRepairing = True
                     Bennys.veh.Repair()
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger1)
                     RefreshMenus()
                 ElseIf selectedItem Is iUpgrade Then
                     Game.FadeScreenOut(500)
@@ -1231,6 +1236,61 @@ Public Class BennysMenu
                 End With
                 menu.AddItem(item)
             Next
+            menu.RefreshIndex()
+        Catch ex As Exception
+            Logger.Log(ex.Message & " " & ex.StackTrace)
+        End Try
+    End Sub
+
+    Public Shared Sub RefreshBikeWheelsModMenuFor(ByRef menu As UIMenu, ByRef item As UIMenuItem, ByRef vehmod As VehicleMod, ByRef chromeWheels As Boolean)
+        Try
+            menu.MenuItems.Clear()
+            Dim count As Integer = Bennys.veh.GetModCount(vehmod)
+            Dim standard As List(Of Integer) = New List(Of Integer) From {-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48}
+            Dim chrome As List(Of Integer) = New List(Of Integer) From {-1, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71}
+
+            If chromeWheels = False Then 'Standard
+                For Each i As Integer In standard
+                    item = New UIMenuItem(Helper.GetLocalizedModName(i, Bennys.veh.GetModCount(vehmod), vehmod))
+                    With item
+                        If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_ARM_0")
+                        .SubInteger1 = i
+                        If Bennys.veh.GetMod(vehmod) = i Then
+                            item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                        Else
+                            If Not i = -1 Then
+                                Dim ii = i + 1
+                                Dim value As Integer = 200 * ii
+                                Dim price As String = "$" & value.ToString("###,###")
+                                item.SetRightLabel(price)
+                                .SubInteger2 = 200 * ii
+                            End If
+                        End If
+                    End With
+                    menu.AddItem(item)
+                Next
+            ElseIf chromeWheels = True Then 'Chrome
+                For Each i As Integer In chrome
+                    item = New UIMenuItem(Helper.GetLocalizedModName(i, Bennys.veh.GetModCount(vehmod), vehmod))
+                    With item
+                        If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_ARM_0")
+                        .SubInteger1 = i
+                        If Bennys.veh.GetMod(vehmod) = i Then
+                            item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                        Else
+                            If Not i = -1 Then
+                                Dim ii = i + 1
+                                Dim value As Integer = 200 * ii
+                                Dim price As String = "$" & value.ToString("###,###")
+                                item.SetRightLabel(price)
+                                .SubInteger2 = 200 * ii
+                            End If
+                        End If
+                    End With
+                    menu.AddItem(item)
+                Next
+            End If
+
             menu.RefreshIndex()
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
@@ -2952,7 +3012,7 @@ Public Class BennysMenu
             If sender Is gmWheels Then
                 RefreshTyresMenu()
             End If
-            If sender Is gmBikeWheels Then
+            If (sender Is mSBikeWheels) Or (sender Is mCBikeWheels) Then 'gmBikeWheels
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.FrontWheels, selectedItem.SubInteger1, False)
                     Bennys.veh.SetMod(VehicleMod.BackWheels, selectedItem.SubInteger1, False)
@@ -3016,7 +3076,11 @@ Public Class BennysMenu
             If sender Is gmWheelType Then
                 If selectedItem Is giBikeWheels Then
                     Bennys.veh.WheelType = VehicleWheelType.BikeWheels
-                    RefreshModMenuFor(gmBikeWheels, iBikeWheels, VehicleMod.BackWheels)
+                    ''RefreshModMenuFor(gmBikeWheels, iBikeWheels, VehicleMod.BackWheels)
+                    'RefreshStockWheelsModMenuFor(mSBikeWheels, iSBikeWheels, VehicleMod.FrontWheels)
+                    'RefreshChromeWheelsModMenuFor(mCBikeWheels, iCBikeWheels, VehicleMod.FrontWheels)
+                    RefreshBikeWheelsModMenuFor(mSBikeWheels, iSBikeWheels, VehicleMod.BackWheels, False)
+                    RefreshBikeWheelsModMenuFor(mCBikeWheels, iCBikeWheels, VehicleMod.BackWheels, True)
                 ElseIf selectedItem Is giHighEndWheels Then
                     Bennys.veh.WheelType = VehicleWheelType.HighEnd
                     RefreshStockWheelsModMenuFor(mSHighEnd, iSHighEnd, VehicleMod.FrontWheels)
@@ -3415,7 +3479,7 @@ Public Class BennysMenu
             End If
 
             'Wheels Mods
-            If sender Is gmBikeWheels Then
+            If (sender Is mSBikeWheels) Or (sender Is mCBikeWheels) Then 'gmBikeWheels
                 Bennys.veh.SetMod(VehicleMod.FrontWheels, sender.MenuItems(index).SubInteger1, False)
                 Bennys.veh.SetMod(VehicleMod.BackWheels, sender.MenuItems(index).SubInteger1, False)
             ElseIf (sender Is mSHighEnd) Or (sender Is mSLowrider) Or (sender Is mSMuscle) Or (sender Is mSOffroad) Or (sender Is mSSport) Or (sender Is mSSUV) Or (sender Is mSTuner) Or (sender Is mCHighEnd) Or (sender Is mCLowrider) Or (sender Is mCMuscle) Or (sender Is mCOffroad) Or (sender Is mCSport) Or (sender Is mCSUV) Or (sender Is mCTuner) Or (sender Is mBennysOriginals) Or (sender Is mBespoke) Then
@@ -3507,10 +3571,10 @@ Public Class BennysMenu
         CreateWheelsMenu()
         CreateWheelTypeMenu()
 
-        'CreateWheelRimMenu(gmBikeWheels, Helper.LocalizeModTitleName("BIKEWHEELS")) 'BIKE WHEELS
-        'CreateModMenuFor(mSBikeWheels, Helper.LocalizeModTitleName("BIKEWHEELS")) 'STOCK RIMS
-        'CreateModMenuFor(mCBikeWheels, Helper.LocalizeModTitleName("BIKEWHEELS")) 'CHROME RIMS
-        CreateModMenuFor(gmBikeWheels, Helper.LocalizeModTitleName("BIKEWHEELS")) 'BIKE WHEELS
+        CreateWheelRimMenu(gmBikeWheels, Helper.LocalizeModTitleName("BIKEWHEELS")) 'BIKE WHEELS
+        CreateModMenuFor(mSBikeWheels, Helper.LocalizeModTitleName("BIKEWHEELS")) 'STOCK RIMS
+        CreateModMenuFor(mCBikeWheels, Helper.LocalizeModTitleName("BIKEWHEELS")) 'CHROME RIMS
+        'CreateModMenuFor(gmBikeWheels, Helper.LocalizeModTitleName("BIKEWHEELS")) 'BIKE WHEELS
 
         CreateWheelRimMenu(gmHighEnd, Helper.LocalizeModTitleName("HIGHEND")) 'HIGH END
         CreateModMenuFor(mSHighEnd, Helper.LocalizeModTitleName("HIGHEND")) 'STOCK RIMS
@@ -3632,10 +3696,12 @@ Public Class BennysMenu
         RefreshWheelsMenu()
         RefreshWheelTypeMenu()
 
-        'RefreshWheelRimMenu(gmBikeWheels, mSBikeWheels, mCBikeWheels, iSBikeWheels, iCBikeWheels)
+        RefreshWheelRimMenu(gmBikeWheels, mSBikeWheels, mCBikeWheels, iSBikeWheels, iCBikeWheels)
         'RefreshStockWheelsModMenuFor(mSBikeWheels, iSBikeWheels, VehicleMod.BackWheels)
         'RefreshChromeWheelsModMenuFor(mCBikeWheels, iCBikeWheels, VehicleMod.BackWheels)
-        RefreshModMenuFor(gmBikeWheels, iBikeWheels, VehicleMod.BackWheels)
+        ''RefreshModMenuFor(gmBikeWheels, iBikeWheels, VehicleMod.BackWheels)
+        RefreshBikeWheelsModMenuFor(mSBikeWheels, iSBikeWheels, VehicleMod.BackWheels, False)
+        RefreshBikeWheelsModMenuFor(mCBikeWheels, iCBikeWheels, VehicleMod.BackWheels, True)
 
         RefreshWheelRimMenu(gmHighEnd, mSHighEnd, mCHighEnd, iSHighEnd, iCHighEnd)
         RefreshStockWheelsModMenuFor(mSHighEnd, iSHighEnd, VehicleMod.FrontWheels)

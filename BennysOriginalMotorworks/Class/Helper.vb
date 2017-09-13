@@ -1500,6 +1500,10 @@ Public Class Helper
         Return New Tuple(Of String, Integer)(newModel, newPrice)
     End Function
 
+    Public Shared Function GetRepairPrice(vehicle As Vehicle) As Integer
+        Return (vehicle.MaxHealth - vehicle.Health) * 2
+    End Function
+
     Public Shared Function GetUpgradePrice(vehicleModel As Model) As Integer
         Dim result As Integer = 0
         Select Case vehicleModel

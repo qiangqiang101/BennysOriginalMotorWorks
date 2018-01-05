@@ -18,7 +18,7 @@ Public Module ReadMemory
             Dim index As Integer = &HFFFF
             Dim handle As GCHandle = GCHandle.Alloc(index, GCHandleType.Pinned)
             Dim modelInfo As IntPtr = GetModelInfo(modelHash, handle.AddrOfPinnedObject())
-            Dim str As String = Marshal.PtrToStringAnsi(modelInfo + &H27C)
+            Dim str As String = Marshal.PtrToStringAnsi(modelInfo + &H2A4)
             handle.Free()
             result = str
         Catch ex As Exception

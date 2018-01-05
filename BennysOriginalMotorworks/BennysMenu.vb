@@ -615,7 +615,7 @@ Public Class BennysMenu
                     Bennys.veh.LightsOn = True
                 ElseIf selectedItem Is giExhaust Then
                     Select Case Bennys.veh.Model
-                        Case "sultanrs", "guardian", "ratloader", "ratloader2", "banshee", "mamba", "feltzer3", "le7b"
+                        Case "sultanrs", "guardian", "ratloader", "ratloader2", "banshee", "mamba", "feltzer3", "le7b", "barrage"
                             camera.MainCameraPosition = CameraPosition.Wheels
                         Case "police3"
                             camera.MainCameraPosition = CameraPosition.Trunk
@@ -632,7 +632,7 @@ Public Class BennysMenu
                     camera.MainCameraPosition = CameraPosition.Wheels
                 ElseIf selectedItem Is giGrille Then
                     Select Case Bennys.veh.Model
-                        Case "penetrator", "torero"
+                        Case "penetrator", "torero", "viseris"
                             camera.MainCameraPosition = CameraPosition.RearEngine
                         Case "banshee2"
                             camera.MainCameraPosition = CameraPosition.Trunk
@@ -716,7 +716,12 @@ Public Class BennysMenu
                     ElseIf Bennys.veh.HasBone("windscreen_r") Then
                         camera.MainCameraPosition = CameraPosition.RearWindscreen
                     ElseIf Helper.GetVehEnginePos(Bennys.veh) = Helper.EngineLoc.rear Then
-                        camera.MainCameraPosition = CameraPosition.RearEngine
+                        Select Case Bennys.veh.Model
+                            Case "barrage"
+                                camera.MainCameraPosition = CameraPosition.Car
+                            Case Else
+                                camera.MainCameraPosition = CameraPosition.RearEngine
+                        End Select
                     ElseIf Bennys.veh.HasBone("neon_b") Then
                         camera.MainCameraPosition = CameraPosition.RearBumper
                     Else
@@ -3245,12 +3250,22 @@ Public Class BennysMenu
                     End If
                 ElseIf selectedItem Is giRBumper Then
                     If Bennys.veh.HasBone("neon_r") Then
-                        camera.MainCameraPosition = CameraPosition.RearBumper
+                        Select Case Bennys.veh.Model
+                            Case "barrage"
+                                camera.MainCameraPosition = CameraPosition.Car
+                            Case Else
+                                camera.MainCameraPosition = CameraPosition.RearBumper
+                        End Select
                     Else
                         camera.MainCameraPosition = CameraPosition.Trunk
                     End If
                 ElseIf selectedItem Is giSSkirt
-                    camera.MainCameraPosition = CameraPosition.Wheels
+                    Select Case Bennys.veh.Model
+                        Case "barrage"
+                            camera.MainCameraPosition = CameraPosition.Car
+                        Case Else
+                            camera.MainCameraPosition = CameraPosition.Wheels
+                    End Select
                 End If
             ElseIf sender Is gmPlate Then
                 If selectedItem Is giNumberPlate Then
@@ -3261,7 +3276,12 @@ Public Class BennysMenu
                             camera.MainCameraPosition = CameraPosition.BackPlate
                         End If
                     ElseIf Bennys.veh.HasBone("neon_f") Then
-                        camera.MainCameraPosition = CameraPosition.FrontPlate
+                        Select Case Bennys.veh.Model
+                            Case "stromberg", "z190", "comet4", "autarch"
+                                camera.MainCameraPosition = CameraPosition.Car
+                            Case Else
+                                camera.MainCameraPosition = CameraPosition.FrontPlate
+                        End Select
                     Else
                         camera.MainCameraPosition = CameraPosition.Car
                     End If

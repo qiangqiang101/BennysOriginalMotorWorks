@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("")>
 <Assembly: AssemblyCompany("Zettabyte Technology")>
 <Assembly: AssemblyProduct("Benny's Original Motor Works")>
-<Assembly: AssemblyCopyright("Copyright © 2017 Zettabyte Technology")>
+<Assembly: AssemblyCopyright("Copyright © 2018 Zettabyte Technology")>
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.6.914.1")>
-<Assembly: AssemblyFileVersion("1.6.914.1")>
+<Assembly: AssemblyVersion("1.7.105.0")>
+<Assembly: AssemblyFileVersion("1.7.105.0")>

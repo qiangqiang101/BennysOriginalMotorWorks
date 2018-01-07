@@ -1501,7 +1501,7 @@ Public Class Helper
     End Function
 
     Public Shared Function GetRepairPrice(vehicle As Vehicle) As Integer
-        Return (vehicle.MaxHealth - vehicle.Health) * 2
+        Return (vehicle.MaxHealth - vehicle.Health) * 4
     End Function
 
     Public Shared Function GetUpgradePrice(vehicleModel As Model) As Integer
@@ -1675,6 +1675,30 @@ Public Class Helper
                 result = EngineLoc.unk
         End Select
 
+        Return result
+    End Function
+
+    Public Shared Function GetVehAcceleration(veh As Vehicle) As Single
+        Dim result As Single = (Native.Function.Call(Of Single)(Hash.GET_VEHICLE_ACCELERATION, veh) * 100) * 4.4
+        If result >= 200 Then result = 200
+        Return result
+    End Function
+
+    Public Shared Function GetVehTopSpeed(veh As Vehicle) As Single
+        Dim result As Single = (((Native.Function.Call(Of Single)(Hash._0x53AF99BAA671CA47, veh) * 3600) / 1609.344) * 1.9)
+        If result >= 200 Then result = 200
+        Return result
+    End Function
+
+    Public Shared Function GetVehBraking(veh As Vehicle) As Single
+        Dim result As Single = (Native.Function.Call(Of Single)(Hash.GET_VEHICLE_MAX_BRAKING, veh) * 70)
+        If result >= 200 Then result = 200
+        Return result
+    End Function
+
+    Public Shared Function GetVehTraction(veh As Vehicle) As Single
+        Dim result As Single = Native.Function.Call(Of Single)(Hash.GET_VEHICLE_MAX_TRACTION, veh) * 6.5
+        If result >= 200 Then result = 200
         Return result
     End Function
 End Class

@@ -39,7 +39,7 @@ Public Class BennysMenu
 
     Public Shared Sub CreateMainMenu()
         Try
-            MainMenu = New UIMenu("", Helper.LocalizeModTitleName("CATEGORIES"))
+            MainMenu = New UIMenu("", Helper.LocalizeModTitleName("CATEGORIES"), True)
             MainMenu.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             MainMenu.MouseEdgeEnabled = False
             _menuPool.Add(MainMenu)
@@ -349,15 +349,15 @@ Public Class BennysMenu
     Public Shared Sub MainMenuCloseHandler(sender As UIMenu)
         Try
             If Not isRepairing Then
-                Game.FadeScreenOut(500)
-                Wait(500)
+                Game.FadeScreenOut(1000)
+                Wait(1000)
                 Bennys.isExiting = True
                 camera.Stop()
                 Bennys.veh.Position = New Vector3(-205.8678, -1321.805, 30.41191)
                 Bennys.veh.Heading = 358.6677
                 Bennys.ply.Task.DriveTo(Bennys.veh, New Vector3(-205.743, -1303.657, 30.84998), 0.5, 5)
-                Wait(500)
-                Game.FadeScreenIn(500)
+                Wait(1000)
+                Game.FadeScreenIn(1000)
                 Helper.PlaySpeech("SHOP_GOODBYE")
                 Wait(7000)
                 Bennys.ply.Task.ClearAll()
@@ -380,8 +380,8 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger1)
                     RefreshMenus()
                 ElseIf selectedItem Is iUpgrade Then
-                    Game.FadeScreenOut(500)
-                    Wait(500)
+                    Game.FadeScreenOut(1000)
+                    Wait(1000)
                     Dim veh As Vehicle = World.CreateVehicle(Helper.LowriderUpgrade(Bennys.veh.Model), Bennys.veh.Position, Bennys.veh.Heading)
                     veh.IsPersistent = False
                     veh.PrimaryColor = Bennys.lastVehMemory.PrimaryColor
@@ -450,15 +450,15 @@ Public Class BennysMenu
                     isRepairing = True
                     RefreshMenus()
                     camera.RepositionFor(veh)
-                    Wait(500)
-                    Game.FadeScreenIn(500)
+                    Wait(1000)
+                    Game.FadeScreenIn(1000)
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger1)
                     Native.Function.Call(Hash._START_SCREEN_EFFECT, "MP_corona_switch_supermod", 0, 1)
                     Native.Function.Call(Hash.PLAY_SOUND_FRONTEND, -1, "Lowrider_Upgrade", "Lowrider_Super_Mod_Garage_Sounds", 1)
                     Helper.PlaySpeech("LR_UPGRADE_SUPERMOD")
                 ElseIf selectedItem Is iUpgradeMod Then
-                    Game.FadeScreenOut(500)
-                    Wait(500)
+                    Game.FadeScreenOut(1000)
+                    Wait(1000)
                     Dim upgrade2 As Tuple(Of String, Integer) = Helper.GetUpgradeModVehicleInfo(Bennys.veh.DisplayName)
                     Dim veh As Vehicle = World.CreateVehicle(upgrade2.Item1, Bennys.veh.Position, Bennys.veh.Heading)
                     veh.IsPersistent = False
@@ -528,8 +528,8 @@ Public Class BennysMenu
                     isRepairing = True
                     RefreshMenus()
                     camera.RepositionFor(veh)
-                    Wait(500)
-                    Game.FadeScreenIn(500)
+                    Wait(1000)
+                    Game.FadeScreenIn(1000)
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger1)
                     Native.Function.Call(Hash._START_SCREEN_EFFECT, "MP_corona_switch_supermod", 0, 1)
                     Native.Function.Call(Hash.PLAY_SOUND_FRONTEND, -1, "Lowrider_Upgrade", "Lowrider_Super_Mod_Garage_Sounds", 1)
@@ -745,7 +745,7 @@ Public Class BennysMenu
 
     Public Shared Sub CreateBodyworkMenu()
         Try
-            gmBodywork = New UIMenu("", Helper.LocalizeModTitleName("BODYWORK")) 'BODYWORK
+            gmBodywork = New UIMenu("", Helper.LocalizeModTitleName("BODYWORK"), True) 'BODYWORK
             gmBodywork.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmBodywork.MouseEdgeEnabled = False
             _menuPool.Add(gmBodywork)
@@ -838,7 +838,7 @@ Public Class BennysMenu
 
     Public Shared Sub CreateEngineMenu()
         Try
-            gmEngine = New UIMenu("", Helper.LocalizeModTitleName("ENGINE")) 'ENGINE
+            gmEngine = New UIMenu("", Helper.LocalizeModTitleName("ENGINE"), True) 'ENGINE
             gmEngine.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmEngine.MouseEdgeEnabled = False
             _menuPool.Add(gmEngine)
@@ -902,7 +902,7 @@ Public Class BennysMenu
 
     Public Shared Sub CreateInteriorMenu()
         Try
-            gmInterior = New UIMenu("", Helper.LocalizeModTitleName("INTERIOR")) 'INTERIOR
+            gmInterior = New UIMenu("", Helper.LocalizeModTitleName("INTERIOR"), True) 'INTERIOR
             gmInterior.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmInterior.MouseEdgeEnabled = False
             _menuPool.Add(gmInterior)
@@ -979,7 +979,7 @@ Public Class BennysMenu
 
     Public Shared Sub CreateBumperMenu()
         Try
-            gmBumper = New UIMenu("", Helper.LocalizeModTitleName("BUMPERS")) 'BUMPERS
+            gmBumper = New UIMenu("", Helper.LocalizeModTitleName("BUMPERS"), True) 'BUMPERS
             gmBumper.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmBumper.MouseEdgeEnabled = False
             _menuPool.Add(gmBumper)
@@ -1017,7 +1017,7 @@ Public Class BennysMenu
 
     Public Shared Sub CreateWheelsMenu()
         Try
-            gmWheels = New UIMenu("", Helper.LocalizeModTitleName("WHEELS")) 'WHEELS
+            gmWheels = New UIMenu("", Helper.LocalizeModTitleName("WHEELS"), True) 'WHEELS
             gmWheels.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmWheels.MouseEdgeEnabled = False
             _menuPool.Add(gmWheels)
@@ -1053,7 +1053,7 @@ Public Class BennysMenu
 
     Public Shared Sub CreateWheelTypeMenu()
         Try
-            gmWheelType = New UIMenu("", Helper.LocalizeModTitleName("WHEELTYPE")) 'WHEEL TYPE
+            gmWheelType = New UIMenu("", Helper.LocalizeModTitleName("WHEELTYPE"), True) 'WHEEL TYPE
             gmWheelType.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmWheelType.MouseEdgeEnabled = False
             _menuPool.Add(gmWheelType)
@@ -1112,7 +1112,7 @@ Public Class BennysMenu
 
     Public Shared Sub CreateWheelRimMenu(ByRef menu As UIMenu, ByRef title As String)
         Try
-            menu = New UIMenu("", title)
+            menu = New UIMenu("", title, True)
             menu.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             menu.MouseEdgeEnabled = False
             _menuPool.Add(menu)
@@ -1304,7 +1304,7 @@ Public Class BennysMenu
 
     Public Shared Sub CreateTyresMenu()
         Try
-            mTires = New UIMenu("", Helper.LocalizeModTitleName("TIRES")) 'TIRES
+            mTires = New UIMenu("", Helper.LocalizeModTitleName("TIRES"), True) 'TIRES
             mTires.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             mTires.MouseEdgeEnabled = False
             _menuPool.Add(mTires)
@@ -1477,7 +1477,7 @@ Public Class BennysMenu
 
     Public Shared Sub CreatePlateMenu()
         Try
-            gmPlate = New UIMenu("", Helper.LocalizeModTitleName("PLATES")) 'PLATES
+            gmPlate = New UIMenu("", Helper.LocalizeModTitleName("PLATES"), True) 'PLATES
             gmPlate.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmPlate.MouseEdgeEnabled = False
             _menuPool.Add(gmPlate)
@@ -1514,7 +1514,7 @@ Public Class BennysMenu
 
     Public Shared Sub CreatePlateNumberMenu()
         Try
-            mNumberPlate = New UIMenu("", Helper.LocalizeModTitleName("LICENSE")) 'LICENSE PLATE
+            mNumberPlate = New UIMenu("", Helper.LocalizeModTitleName("LICENSE"), True) 'LICENSE PLATE
             mNumberPlate.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             mNumberPlate.MouseEdgeEnabled = False
             _menuPool.Add(mNumberPlate)
@@ -1530,7 +1530,7 @@ Public Class BennysMenu
 
     Public Shared Sub CreateTintMenu()
         Try
-            mTint = New UIMenu("", Helper.LocalizeModTitleName("TINTS")) 'TINTS
+            mTint = New UIMenu("", Helper.LocalizeModTitleName("TINTS"), True) 'TINTS
             mTint.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             mTint.MouseEdgeEnabled = False
             _menuPool.Add(mTint)
@@ -1546,7 +1546,7 @@ Public Class BennysMenu
 
     Public Shared Sub CreateColorMenuFor(ByRef menu As UIMenu, ByRef title As String)
         Try
-            menu = New UIMenu("", title)
+            menu = New UIMenu("", title, True)
             menu.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             menu.MouseEdgeEnabled = False
             _menuPool.Add(menu)
@@ -1711,7 +1711,7 @@ Public Class BennysMenu
 
     Public Shared Sub CreateLightsMenu()
         Try
-            gmLights = New UIMenu("", Helper.LocalizeModTitleName("LIGHTS")) 'LIGHTS
+            gmLights = New UIMenu("", Helper.LocalizeModTitleName("LIGHTS"), True) 'LIGHTS
             gmLights.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmLights.MouseEdgeEnabled = False
             _menuPool.Add(gmLights)
@@ -1742,7 +1742,7 @@ Public Class BennysMenu
 
     Public Shared Sub CreateNeonKitsMenu()
         Try
-            gmNeonKits = New UIMenu("", Helper.LocalizeModTitleName("NEONKITS")) 'NEON KITS
+            gmNeonKits = New UIMenu("", Helper.LocalizeModTitleName("NEONKITS"), True) 'NEON KITS
             gmNeonKits.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmNeonKits.MouseEdgeEnabled = False
             _menuPool.Add(gmNeonKits)
@@ -1772,7 +1772,7 @@ Public Class BennysMenu
 
     Public Shared Sub CreateNeonMenu()
         Try
-            mNeon = New UIMenu("", Helper.LocalizeModTitleName("NEONLAYOUT")) 'NEON LAYOUT
+            mNeon = New UIMenu("", Helper.LocalizeModTitleName("NEONLAYOUT"), True) 'NEON LAYOUT
             mNeon.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             mNeon.MouseEdgeEnabled = False
             _menuPool.Add(mNeon)
@@ -1896,7 +1896,7 @@ Public Class BennysMenu
 
     Public Shared Sub CreateResprayMenu()
         Try
-            gmRespray = New UIMenu("", Helper.LocalizeModTitleName("RESPRAY")) 'RESPRAY
+            gmRespray = New UIMenu("", Helper.LocalizeModTitleName("RESPRAY"), True) 'RESPRAY
             gmRespray.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmRespray.MouseEdgeEnabled = False
             _menuPool.Add(gmRespray)
@@ -2068,7 +2068,7 @@ Public Class BennysMenu
 
     Public Shared Sub CreatePerformanceMenuFor(ByRef menu As UIMenu, ByRef title As String)
         Try
-            menu = New UIMenu("", title)
+            menu = New UIMenu("", title, True)
             menu.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             menu.MouseEdgeEnabled = False
             _menuPool.Add(menu)
@@ -2119,7 +2119,7 @@ Public Class BennysMenu
 
     Public Shared Sub CreateModMenuFor(ByRef menu As UIMenu, ByRef title As String)
         Try
-            menu = New UIMenu("", title)
+            menu = New UIMenu("", title, True)
             menu.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             menu.MouseEdgeEnabled = False
             _menuPool.Add(menu)
@@ -3810,7 +3810,10 @@ Public Class BennysMenu
 
     Public Sub OnTick(sender As Object, e As EventArgs) Handles Me.Tick
         Try
+            'UI.ShowSubtitle(Helper.GetVehTopSpeed(Bennys.veh) & ", " & Helper.GetVehAcceleration(Bennys.veh) & ", " & Helper.GetVehBraking(Bennys.veh) & ", " & Helper.GetVehTraction(Bennys.veh))
+
             _menuPool.ProcessMenus()
+            _menuPool.UpdateStats(Helper.GetVehTopSpeed(Bennys.veh), Helper.GetVehAcceleration(Bennys.veh), Helper.GetVehBraking(Bennys.veh), Helper.GetVehTraction(Bennys.veh))
 
             If Bennys.isCutscene Then
                 Native.Function.Call(Hash.HIDE_HUD_AND_RADAR_THIS_FRAME)

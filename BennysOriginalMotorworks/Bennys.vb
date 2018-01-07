@@ -117,8 +117,8 @@ Public Class Bennys
     Public Shared Sub PlayCutScene()
         Try
             If Not Native.Function.Call(Of Boolean)(Hash.IS_AUDIO_SCENE_ACTIVE, "CAR_MOD_RADIO_MUTE_SCENE") Then Native.Function.Call(Hash.START_AUDIO_SCENE, "CAR_MOD_RADIO_MUTE_SCENE")
-            Game.FadeScreenOut(500)
-            Wait(500)
+            Game.FadeScreenOut(1000)
+            Wait(1000)
             isExiting = True
             isCutscene = True
             If bennyPed = Nothing Then
@@ -131,8 +131,8 @@ Public Class Bennys
             bennyPed.AlwaysKeepTask = True
             veh.Position = New Vector3(-205.4903, -1313.958, 31.02291)
             veh.Heading = 180.3224
-            Wait(500)
-            Game.FadeScreenIn(500)
+            Wait(1000)
+            Game.FadeScreenIn(1000)
             scriptCam = New ScriptedCamera()
             ScriptedCamera.EnableCamera()
             ScriptedCamera.prevPos = New Vector4(New Vector3(-201.1808, -1321.512, 32.20821))
@@ -145,8 +145,8 @@ Public Class Bennys
             ply.Task.DriveTo(veh, New Vector3(-211.798, -1324.292, 30.37535), 0.1, 2)
             Wait(4000)
             ply.Task.ClearAll()
-            Game.FadeScreenOut(500)
-            Wait(500)
+            Game.FadeScreenOut(1000)
+            Wait(1000)
             World.DestroyAllCameras()
             ScriptedCamera.DisableCamera()
             isExiting = False
@@ -227,8 +227,8 @@ Public Class Bennys
             veh.Heading = 150.2801 '358.6677
             BennysMenu.MainMenu.Visible = Not BennysMenu.MainMenu.Visible
             BennysMenu.camera.RepositionFor(veh)
-            Wait(500)
-            Game.FadeScreenIn(500)
+            Wait(1000)
+            Game.FadeScreenIn(1000)
             If Not Native.Function.Call(Of Boolean)(Hash.IS_AUDIO_SCENE_ACTIVE, "CAR_MOD_RADIO_MUTE_SCENE") Then Native.Function.Call(Hash.START_AUDIO_SCENE, "CAR_MOD_RADIO_MUTE_SCENE")
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
@@ -257,7 +257,7 @@ Public Class Bennys
 
     Public Sub OnAborted() Handles MyBase.Aborted
         BennysBlip.Remove()
-        Game.FadeScreenIn(500)
+        Game.FadeScreenIn(1000)
         If Not bennyPed = Nothing Then bennyPed.Delete()
     End Sub
 End Class

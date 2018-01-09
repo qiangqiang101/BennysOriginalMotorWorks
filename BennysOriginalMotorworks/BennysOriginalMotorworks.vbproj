@@ -102,6 +102,7 @@
     <Compile Include="Class\Logger.vb" />
     <Compile Include="Class\ReadMemory.vb" />
     <Compile Include="Class\ScriptedCamera.vb" />
+    <Compile Include="Class\VehicleStats.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

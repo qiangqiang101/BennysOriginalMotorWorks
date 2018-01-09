@@ -1678,27 +1678,16 @@ Public Class Helper
         Return result
     End Function
 
-    Public Shared Function GetVehAcceleration(veh As Vehicle) As Single
-        Dim result As Single = (Native.Function.Call(Of Single)(Hash.GET_VEHICLE_ACCELERATION, veh) * 100) * 4.4
-        If result >= 200 Then result = 200
-        Return result
-    End Function
-
-    Public Shared Function GetVehTopSpeed(veh As Vehicle) As Single
-        Dim result As Single = (((Native.Function.Call(Of Single)(Hash._0x53AF99BAA671CA47, veh) * 3600) / 1609.344) * 1.9)
-        If result >= 200 Then result = 200
-        Return result
-    End Function
-
-    Public Shared Function GetVehBraking(veh As Vehicle) As Single
-        Dim result As Single = (Native.Function.Call(Of Single)(Hash.GET_VEHICLE_MAX_BRAKING, veh) * 70)
-        If result >= 200 Then result = 200
-        Return result
-    End Function
-
-    Public Shared Function GetVehTraction(veh As Vehicle) As Single
-        Dim result As Single = Native.Function.Call(Of Single)(Hash.GET_VEHICLE_MAX_TRACTION, veh) * 6.5
-        If result >= 200 Then result = 200
-        Return result
+    Public Shared Function GetVehicleStats(ByVal veh As Vehicle) As VehicleStats
+        Dim stats As New VehicleStats
+        stats.TopSpeed = ((Native.Function.Call(Of Single)(Hash._0x53AF99BAA671CA47, veh) * 3600) / 1609.344) * 1.9
+        stats.Braking = Native.Function.Call(Of Single)(Hash.GET_VEHICLE_MAX_BRAKING, veh) * 70
+        stats.Acceleration = (Native.Function.Call(Of Single)(Hash.GET_VEHICLE_ACCELERATION, veh) * 100) * 4.4
+        stats.Traction = Native.Function.Call(Of Single)(Hash.GET_VEHICLE_MAX_TRACTION, veh) * 6.5
+        If stats.TopSpeed >= 200 Then stats.TopSpeed = 200
+        If stats.Braking >= 200 Then stats.Braking = 200
+        If stats.Acceleration >= 200 Then stats.Acceleration = 200
+        If stats.Traction >= 200 Then stats.Traction = 200
+        Return stats
     End Function
 End Class

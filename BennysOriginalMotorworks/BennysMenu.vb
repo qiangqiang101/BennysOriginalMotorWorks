@@ -35,6 +35,7 @@ Public Class BennysMenu
     Public Shared _menuPool As MenuPool
     Public Shared camera As WorkshopCamera
     Public Shared isRepairing As Boolean = False
+    Public Shared vehicleStats As VehicleStats
     'Public bennytext As New Scaleform("mp_car_stats_02")
 
     Public Shared Sub CreateMainMenu()
@@ -3813,7 +3814,8 @@ Public Class BennysMenu
             'UI.ShowSubtitle(Helper.GetVehTopSpeed(Bennys.veh) & ", " & Helper.GetVehAcceleration(Bennys.veh) & ", " & Helper.GetVehBraking(Bennys.veh) & ", " & Helper.GetVehTraction(Bennys.veh))
 
             _menuPool.ProcessMenus()
-            _menuPool.UpdateStats(Helper.GetVehTopSpeed(Bennys.veh), Helper.GetVehAcceleration(Bennys.veh), Helper.GetVehBraking(Bennys.veh), Helper.GetVehTraction(Bennys.veh))
+            vehicleStats = Helper.GetVehicleStats(Bennys.veh)
+            _menuPool.UpdateStats(vehicleStats.TopSpeed, vehicleStats.Acceleration, vehicleStats.Braking, vehicleStats.Traction)
 
             If Bennys.isCutscene Then
                 Native.Function.Call(Hash.HIDE_HUD_AND_RADAR_THIS_FRAME)

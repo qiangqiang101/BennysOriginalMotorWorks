@@ -1,4 +1,5 @@
-﻿Imports System.Runtime.InteropServices
+﻿Imports System.Runtime.CompilerServices
+Imports System.Runtime.InteropServices
 Imports System.Text
 
 Public Module ReadMemory
@@ -12,6 +13,7 @@ Public Module ReadMemory
         End Get
     End Property
 
+    <Extension()>
     Public Function GetVehicleMakeName(modelHash As Integer) As String
         Dim result As String = "ERROR"
         Try

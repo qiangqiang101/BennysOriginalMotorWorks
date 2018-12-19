@@ -8,20 +8,23 @@ Imports System.Drawing
 Public Class BennysMenu
     Inherits Script
 
-    Public Shared lowriders As List(Of Model) = New List(Of Model) From {"banshee", "Buccaneer", "chino", "diablous", "comet2", "faction", "faction2", "fcr", "italigtb", "minivan", "moonbeam", "nero", "primo", "sabregt",
+    Public Shared lowriders As New List(Of Model) From {"banshee", "Buccaneer", "chino", "diablous", "comet2", "faction", "faction2", "fcr", "italigtb", "minivan", "moonbeam", "nero", "primo", "sabregt",
         "slamvan", "specter", "sultan", "tornado", "tornado2", "tornado3", "virgo3", "voodoo2", "elegy2", "technical", "insurgent"}
-    Public Shared bennysvehicle As List(Of Model) = New List(Of Model) From {"banshee2", "buccaneer2", "chino2", "diabolus2", "comet3", "faction2", "faction3", "fcr2", "italigtb2", "minivan2", "moonbeam2", "nero2", "primo2",
+    Public Shared arenawar As New List(Of Model) From {"glendale", "gargoyle", "dominator", "dominator2", "impaler", "issi3", "ratloader", "ratloader2", "slamvan", "slamvan2", "slamvan3"}
+    Public Shared bennysvehicle As New List(Of Model) From {"banshee2", "buccaneer2", "chino2", "diabolus2", "comet3", "faction2", "faction3", "fcr2", "italigtb2", "minivan2", "moonbeam2", "nero2", "primo2",
         "sabregt2", "specter2", "sultanrs", "tornado5", "virgo2", "voodoo", "elegy", "technical3", "insurgent3"}
-    Public Shared tyres As String() = New String() {"", "Stock Tires", "White Lines", "Classic White Wall", "Retro White Wall", "Red Lines", "Blue Lines", "Atomic"}
-    Public Shared QuitMenu, MainMenu, gmBodywork, gmEngine, gmInterior, gmPlate, gmLights, gmRespray, gmWheels, gmBumper, gmWheelType, gmNeonKits, gmDoor As UIMenu
+    Public Shared arenavehicle As New List(Of Model) From {"bruiser", "bruiser2", "bruiser3", "deathbike", "deathbike2", "deathbike3", "dominator4", "dominator5", "dominator6", "impaler2", "impaler3", "impaler4",
+        "issi4", "issi5", "issi6", "monster3", "monster4", "monster5", "slamvan4", "slamvan5", "slamvan6", "brutus", "brutus2", "brutus3", "scarab", "scarab2", "scarab3", "zr380", "zr3802", "zr3803"}
+
+    Public Shared QuitMenu, MainMenu, gmBodywork, gmEngine, gmInterior, gmPlate, gmLights, gmRespray, gmWheels, gmBumper, gmWheelType, gmNeonKits As UIMenu
     Public Shared mAerials, mSuspension, mArmor, mBrakes, mEngine, mTransmission, mFBumper, mRBumper, mSSkirt, mTrim, mEngineBlock, mAirFilter, mStruts, mColumnShifterLevers, mDashboard, mDialDesign, mOrnaments, mSeats,
         mSteeringWheels, mTrimDesign, mPlateHolder, mVanityPlates, mNumberPlate, gmBikeWheels, gmHighEnd, gmLowrider, gmMuscle, gmOffroad, gmSport, gmSUV, gmTuner, mBennysOriginals, mBespoke, mTires, mHeadlights, mNeon, mNeonColor,
     mArchCover, mExhaust, mFender, mRFender, mDoor, mFrame, mGrille, mHood, mHorn, mHydraulics, mLivery, mPlaques, mRoof, mSpeakers, mSpoilers, mTank, mTrunk, mWindow, mTurbo, mTint, mLightsColor, mTrimColor, mRimColor,
     mPrimaryClassicColor, mPrimaryChromeColor, mPrimaryMetallicColor, mPrimaryMetalsColor, mPrimaryMatteColor, mPrimaryPearlescentColor, mPrimaryColor, mSecondaryColor, mSecondaryClassicColor, mSecondaryChromeColor,
     mSecondaryMetallicColor, mSecondaryMetalsColor, mSecondaryMatteColor, mTireSmoke, mTornadoC, mSBikeWheels, mCBikeWheels, mSHighEnd, mCHighEnd, mSLowrider, mCLowrider, mSMuscle, mCMuscle, mSOffroad, mCOffroad,
-    mSSport, mCSport, mSSUV, mCSUV, mSTuner, mCTuner As UIMenu
+    mSSport, mCSport, mSSUV, mCSUV, mSTuner, mCTuner, mUpgradeAW As UIMenu
     Public Shared iRepair, iHorn, iArmor, iBrakes, iFBumper, iExhaust, iFender, iRollcage, iRoof, iTransmission, iEngine, iPlate, iLights, iTint, iTurbo, iRespray, iWheels, iSuspension, iEngineBlock, iAerials, iAirFilter,
-        iArchCover, iDoor, iFrame, iGrille, iHood, iHydraulics, iLivery, iPlaques, iRFender, iSpeaker, iSpoilers, iTank, iTrunk, iWindows, iTrim, iUpgrade, iUpgradeMod, iStruts, iTrimColor, iColumnShifterLevers, iDashboard, iDialDesign,
+        iArchCover, iDoor, iFrame, iGrille, iHood, iHydraulics, iLivery, iPlaques, iRFender, iSpeaker, iSpoilers, iTank, iTrunk, iWindows, iTrim, iUpgrade, iUpgradeMod, iUpgradeAW, iUpgradeAWV, iStruts, iTrimColor, iColumnShifterLevers, iDashboard, iDialDesign,
         iOrnaments, iSeats, iSteeringWheels, iTrimDesign, iRBumper, iSideSkirt, iRimColor, iPlateHolder, iVanityPlates, iHeadlights, iDashboardColor, iNumberPlate, iBikeWheels, iHighEnd, iLowrider, iMuscle, iOffroad,
         iSport, iSUV, iTuner, iBennys, iBespoke, iTires, iNeon, iTireSmoke, iNeonColor, iLightsColor, iPrimaryCol, iSecondaryCol, iPrimaryChromeColor, iPrimaryClassicColor, iPrimaryMetallicColor, iPrimaryMetalsColor,
         iPrimaryMatteColor, iPrimaryPearlescentColor, iSecondaryChromeColor, iSecondaryClassicColor, iSecondaryMetallicColor, iSecondaryMetalsColor, iSecondaryMatteColor, iSecondaryPearlescentColor, iPlaceholder, iTornadoC As UIMenuItem
@@ -36,11 +39,131 @@ Public Class BennysMenu
     Public Shared camera As WorkshopCamera
     Public Shared isRepairing As Boolean = False
     Public Shared vehicleStats As VehicleStats
-    'Public bennytext As New Scaleform("mp_car_stats_02")
+
+    Public Shared Sub UpdateTitleName()
+        QuitMenu.UpdateTitleCaption("CMOD_MOD_E")
+        MainMenu.UpdateTitleCaption("CMOD_MOD_T")
+        gmBodywork.UpdateTitleCaption("CMOD_BW_T")
+        gmEngine.UpdateTitleCaption("CMM_MOD_GT3")
+        gmInterior.UpdateTitleCaption("CMM_MOD_GT1")
+        gmPlate.UpdateTitleCaption("CMM_MOD_GT2")
+        gmRespray.UpdateTitleCaption("CMOD_COL0_T")
+        gmWheels.UpdateTitleCaption("CMOD_WHE0_T")
+        gmBumper.UpdateTitleCaption("CMOD_BUM_T")
+        gmWheelType.UpdateTitleCaption("CMOD_WHE1_T")
+        gmNeonKits.UpdateTitleCaption("CMOD_MOD_LGT_N", True)
+        mAerials.UpdateTitleCaption("CMM_MOD_ST18")
+        mSuspension.UpdateTitleCaption("CMOD_SUS_T")
+        mArmor.UpdateTitleCaption("CMOD_ARM_T")
+        mBrakes.UpdateTitleCaption("CMOD_BRA_T")
+        mEngine.UpdateTitleCaption("CMM_MOD_GT3")
+        mTransmission.UpdateTitleCaption("CMOD_GBX_T")
+        mFBumper.UpdateTitleCaption("CMOD_BUMF_T")
+        mRBumper.UpdateTitleCaption("CMOD_BUMR_T")
+        mSSkirt.UpdateTitleCaption("CMOD_SS_T")
+        mTrim.UpdateTitleCaption("CMM_MOD_ST19")
+        mEngineBlock.UpdateTitleCaption("CMOD_EB_T")
+        mAirFilter.UpdateTitleCaption("CMM_MOD_ST15")
+        mStruts.UpdateTitleCaption("CMM_MOD_ST16")
+        mColumnShifterLevers.UpdateTitleCaption("CMM_MOD_ST9")
+        mDashboard.UpdateTitleCaption("CMM_MOD_ST4")
+        mDialDesign.UpdateTitleCaption("CMM_MOD_ST5")
+        mOrnaments.UpdateTitleCaption("CMM_MOD_ST3")
+        mSeats.UpdateTitleCaption("CMM_MOD_ST7")
+        mSteeringWheels.UpdateTitleCaption("CMM_MOD_ST8")
+        mTrimDesign.UpdateTitleCaption("CMM_MOD_ST2")
+        mPlateHolder.UpdateTitleCaption("CMOD_PLH_T")
+        mVanityPlates.UpdateTitleCaption("CMM_MOD_ST1")
+        mNumberPlate.UpdateTitleCaption("CMM_MOD_GT2")
+        gmBikeWheels.UpdateTitleCaption(VehicleWheelType.BikeWheels, True)
+        gmHighEnd.UpdateTitleCaption(VehicleWheelType.HighEnd, True)
+        gmLowrider.UpdateTitleCaption(VehicleWheelType.Lowrider, True)
+        gmMuscle.UpdateTitleCaption(VehicleWheelType.Muscle, True)
+        gmOffroad.UpdateTitleCaption(VehicleWheelType.Offroad, True)
+        gmSport.UpdateTitleCaption(VehicleWheelType.Sport, True)
+        gmSUV.UpdateTitleCaption(VehicleWheelType.SUV, True)
+        gmTuner.UpdateTitleCaption(VehicleWheelType.Tuner, True)
+        mBennysOriginals.UpdateTitleCaption(CType(8, VehicleWheelType), True)
+        mBespoke.UpdateTitleCaption(CType(9, VehicleWheelType))
+        mTires.UpdateTitleCaption("CMOD_TYR_T")
+        mHeadlights.UpdateTitleCaption("CMOD_HED_T")
+        mNeon.UpdateTitleCaption("CMOD_MOD_LGT_N", True)
+        mNeonColor.UpdateTitleCaption("CMOD_NEON_1", True)
+        mArchCover.UpdateTitleCaption("CMM_MOD_ST17")
+        mExhaust.UpdateTitleCaption("CMOD_EXH_T")
+        mFender.UpdateTitleCaption("CMOD_WNG_T")
+        mRFender.UpdateTitleCaption("CMOD_WNG_T")
+        mDoor.UpdateTitleCaption("CMM_MOD_ST6")
+        mFrame.UpdateTitleCaption("CMOD_RC_T")
+        mGrille.UpdateTitleCaption("CMOD_GRL_T")
+        mHood.UpdateTitleCaption("CMOD_BON_T")
+        mHorn.UpdateTitleCaption("CMOD_HRN_T")
+        mHydraulics.UpdateTitleCaption("CMM_MOD_ST13")
+        mLivery.UpdateTitleCaption("CMM_MOD_ST23")
+        mPlaques.UpdateTitleCaption("CMM_MOD_ST10")
+        mRoof.UpdateTitleCaption("CMOD_ROF_T")
+        mSpeakers.UpdateTitleCaption("CMM_MOD_S11")
+        mSpoilers.UpdateTitleCaption("CMOD_SPO_T")
+        mTank.UpdateTitleCaption("CMM_MOD_ST20")
+        mTrunk.UpdateTitleCaption("CMOD_TR_T")
+        mWindow.UpdateTitleCaption("CMM_MOD_ST21")
+        mTurbo.UpdateTitleCaption("CMOD_TUR_T")
+        mTint.UpdateTitleCaption("CMOD_WIN_T")
+        mLightsColor.UpdateTitleCaption("CMM_MOD_ST26", True)
+        mTrimColor.UpdateTitleCaption("CMOD_MOD_TRIM2", True)
+        mRimColor.UpdateTitleCaption("CMOD_COL5_T")
+        mPrimaryClassicColor.UpdateTitleCaption("CMOD_COL0_0", True)
+        mPrimaryChromeColor.UpdateTitleCaption("CMOD_COL0_0", True)
+        mPrimaryMetallicColor.UpdateTitleCaption("CMOD_COL0_0", True)
+        mPrimaryMetalsColor.UpdateTitleCaption("CMOD_COL0_0", True)
+        mPrimaryMatteColor.UpdateTitleCaption("CMOD_COL0_0", True)
+        mPrimaryPearlescentColor.UpdateTitleCaption("CMOD_COL0_0", True)
+        mPrimaryColor.UpdateTitleCaption("CMOD_COL0_0", True)
+        mSecondaryColor.UpdateTitleCaption("CMOD_COL0_1", True)
+        mSecondaryClassicColor.UpdateTitleCaption("CMOD_COL0_1", True)
+        mSecondaryChromeColor.UpdateTitleCaption("CMOD_COL0_1", True)
+        mSecondaryMetallicColor.UpdateTitleCaption("CMOD_COL0_1", True)
+        mSecondaryMetalsColor.UpdateTitleCaption("CMOD_COL0_1", True)
+        mSecondaryMatteColor.UpdateTitleCaption("CMOD_COL0_1", True)
+        mTireSmoke.UpdateTitleCaption("CMOD_MOD_TYR3", True)
+        mTornadoC.UpdateTitleCaption("CMOD_SMOD_6_D")
+        mSBikeWheels.UpdateTitleCaption(VehicleWheelType.BikeWheels, True)
+        mCBikeWheels.UpdateTitleCaption(VehicleWheelType.BikeWheels, True)
+        mSHighEnd.UpdateTitleCaption(VehicleWheelType.HighEnd, True)
+        mCHighEnd.UpdateTitleCaption(VehicleWheelType.HighEnd, True)
+        mSLowrider.UpdateTitleCaption(VehicleWheelType.Lowrider, True)
+        mCLowrider.UpdateTitleCaption(VehicleWheelType.Lowrider, True)
+        mSMuscle.UpdateTitleCaption(VehicleWheelType.Muscle, True)
+        mCMuscle.UpdateTitleCaption(VehicleWheelType.Muscle, True)
+        mSOffroad.UpdateTitleCaption(VehicleWheelType.Offroad, True)
+        mCOffroad.UpdateTitleCaption(VehicleWheelType.Offroad, True)
+        mSSport.UpdateTitleCaption(VehicleWheelType.Sport, True)
+        mSSport.UpdateTitleCaption(VehicleWheelType.Sport, True)
+        mSSUV.UpdateTitleCaption(VehicleWheelType.SUV, True)
+        mCSUV.UpdateTitleCaption(VehicleWheelType.SUV, True)
+        mSTuner.UpdateTitleCaption(VehicleWheelType.Tuner, True)
+        mCTuner.UpdateTitleCaption(VehicleWheelType.Tuner, True)
+        mUpgradeAW.UpdateTitleCaption("collision_9znude7")
+    End Sub
+
+    Public Shared Sub CreateQuitMenu()
+        Try
+            QuitMenu = New UIMenu("", Game.GetGXTEntry("CMOD_MOD_E"))
+            QuitMenu.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
+            QuitMenu.MouseEdgeEnabled = False
+            _menuPool.Add(QuitMenu)
+            QuitMenu.AddItem(New UIMenuItem(Game.GetGXTEntry("ITEM_EXIT"), Game.GetGXTEntry("collision_6p1r1v")))
+            QuitMenu.RefreshIndex()
+            AddHandler QuitMenu.OnMenuClose, AddressOf MainMenuCloseHandler
+            AddHandler QuitMenu.OnItemSelect, AddressOf MainMenuItemSelectHandler
+        Catch ex As Exception
+            Logger.Log(ex.Message & " " & ex.StackTrace)
+        End Try
+    End Sub
 
     Public Shared Sub CreateMainMenu()
         Try
-            MainMenu = New UIMenu("", Helper.LocalizeModTitleName("CATEGORIES"), True)
+            MainMenu = New UIMenu("", Game.GetGXTEntry("CMOD_MOD_T"), True)
             MainMenu.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             MainMenu.MouseEdgeEnabled = False
             _menuPool.Add(MainMenu)
@@ -48,6 +171,7 @@ Public Class BennysMenu
             MainMenu.RefreshIndex()
             AddHandler MainMenu.OnMenuClose, AddressOf MainMenuCloseHandler
             AddHandler MainMenu.OnItemSelect, AddressOf MainMenuItemSelectHandler
+            'QuitMenu.BindMenuToItem(MainMenu, QuitMenu.MenuItems.FirstOrDefault)
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
         End Try
@@ -58,37 +182,42 @@ Public Class BennysMenu
             MainMenu.MenuItems.Clear()
 
             If Bennys.veh.IsDamaged Then
-                iRepair = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.Repair), Game.GetGXTEntry("CMOD_MOD_0_D")) 'Repair
+                iRepair = New UIMenuItem(LocalizedModGroupName(GroupName.Repair), Game.GetGXTEntry("CMOD_MOD_0_D")) 'Repair
                 With iRepair
-                    .SetRightLabel("$" & Helper.GetRepairPrice(Bennys.veh).ToString("###,###"))
-                    .SubInteger1 = Helper.GetRepairPrice(Bennys.veh)
+                    .SetRightLabel("$" & Bennys.veh.GetRepairPrice.ToString("###,###"))
+                    .SubInteger1 = Bennys.veh.GetRepairPrice
                 End With
                 MainMenu.AddItem(iRepair)
                 MainMenu.RefreshIndex()
-                Helper.PlaySpeech("SHOP_SELL_REPAIR")
+                PlaySpeech("SHOP_SELL_REPAIR")
             ElseIf Bennys.veh.ClassType = VehicleClass.Motorcycles Or Bennys.veh.Model = "blazer4" Then
                 'Specials
                 If lowriders.Contains(Bennys.veh.Model) Then
-                    iUpgrade = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.Upgrade), Game.GetGXTEntry("CMOD_MOD_100_D")) 'Upgrade
+                    iUpgrade = New UIMenuItem(LocalizedModGroupName(GroupName.Upgrade), Game.GetGXTEntry("CMOD_MOD_100_D")) 'Upgrade
                     With iUpgrade
-                        .SetRightLabel("$" & Helper.GetUpgradePrice(Bennys.veh.Model).ToString("###,###"))
-                        .SubInteger1 = Helper.GetUpgradePrice(Bennys.veh.Model)
+                        .SetRightLabel("$" & Bennys.veh.Model.GetUpgradePrice.ToString("###,###"))
+                        .SubInteger1 = Bennys.veh.Model.GetUpgradePrice
                     End With
                     MainMenu.AddItem(iUpgrade)
                 End If
-                If Helper.IsUpgradeModExist(Bennys.veh.DisplayName) Then
-                    Dim upgrade2 As Tuple(Of String, Integer) = Helper.GetUpgradeModVehicleInfo(Bennys.veh.DisplayName)
-                    iUpgradeMod = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.Upgrade), Game.GetGXTEntry("CMOD_MOD_100_D"))
+                If Bennys.veh.DisplayName.IsUpgradeModExist Then
+                    Dim upgrade2 As Tuple(Of String, Integer) = Bennys.veh.DisplayName.GetUpgradeModVehicleInfo
+                    iUpgradeMod = New UIMenuItem(LocalizedModGroupName(GroupName.Upgrade), Game.GetGXTEntry("CMOD_MOD_100_D"))
                     With iUpgradeMod
                         .SetRightLabel("$" & upgrade2.Item2.ToString("###,###"))
                         .SubInteger1 = upgrade2.Item2
                     End With
                     MainMenu.AddItem(iUpgradeMod)
                 End If
+                If arenawar.Contains(Bennys.veh.Model) Then
+                    iUpgradeAW = New UIMenuItem(LocalizedModGroupName(GroupName.Upgrade2), Game.GetGXTEntry("collision_87oubis")) 'Arena War Upgrade
+                    MainMenu.AddItem(iUpgradeAW)
+                    MainMenu.BindMenuToItem(mUpgradeAW, iUpgradeAW)
+                End If
 
                 'Single Item
                 If Bennys.veh.GetModCount(VehicleMod.Armor) <> 0 Then
-                    iArmor = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Armor), Game.GetGXTEntry("CMOD_MOD_1_D"))
+                    iArmor = New UIMenuItem(LocalizedModTypeName(VehicleMod.Armor), Game.GetGXTEntry("CMOD_MOD_1_D"))
                     MainMenu.AddItem(iArmor)
                     MainMenu.BindMenuToItem(mArmor, iArmor)
                 End If
@@ -96,246 +225,251 @@ Public Class BennysMenu
                 'Groups
                 If (Bennys.veh.GetModCount(VehicleMod.Fender) <> 0 Or Bennys.veh.GetModCount(VehicleMod.FrontBumper) <> 0 Or Bennys.veh.GetModCount(VehicleMod.Hood) <> 0 Or Bennys.veh.GetModCount(VehicleMod.Grille) <> 0 _
                     Or Bennys.veh.GetModCount(VehicleMod.RearBumper) <> 0 Or Bennys.veh.GetModCount(VehicleMod.Roof) <> 0 Or Bennys.veh.GetModCount(VehicleMod.Spoilers) <> 0) Then
-                    giBodywork = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.Bodyworks), Game.GetGXTEntry("IE_BO_DT1")) 'bodywork
+                    giBodywork = New UIMenuItem(LocalizedModGroupName(GroupName.Bodyworks), Game.GetGXTEntry("IE_BO_DT1")) 'bodywork
                     MainMenu.AddItem(giBodywork)
                     MainMenu.BindMenuToItem(gmBodywork, giBodywork)
                 End If
                 If (Bennys.veh.GetModCount(VehicleMod.Engine) <> 0 Or Bennys.veh.GetModCount(VehicleMod.Frame) <> 0 Or Bennys.veh.GetModCount(VehicleMod.SideSkirt) <> 0) Then
-                    giEngine = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.Engine), Game.GetGXTEntry("CMOD_SMOD_2_D")) 'engine
+                    giEngine = New UIMenuItem(LocalizedModGroupName(GroupName.Engine), Game.GetGXTEntry("CMOD_SMOD_2_D")) 'engine
                     MainMenu.AddItem(giEngine)
                     MainMenu.BindMenuToItem(gmEngine, giEngine)
                 End If
-                giPlate = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.Plate), Game.GetGXTEntry("CMOD_MOD_18_D")) 'Plate
+                giPlate = New UIMenuItem(LocalizedModGroupName(GroupName.Plate), Game.GetGXTEntry("CMOD_MOD_18_D")) 'Plate
                 MainMenu.AddItem(giPlate)
                 MainMenu.BindMenuToItem(gmPlate, giPlate)
-                giWheels = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.Wheels), Game.GetGXTEntry("CMOD_MOD_60_D"))
+                giWheels = New UIMenuItem(LocalizedModGroupName(GroupName.Wheels), Game.GetGXTEntry("CMOD_MOD_60_D"))
                 MainMenu.AddItem(giWheels)
                 MainMenu.BindMenuToItem(gmWheels, giWheels)
-                giLights = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.Lights), Game.GetGXTEntry("CMOD_MOD_15_D"))  'CMOD_MOD_47_D
+                giLights = New UIMenuItem(LocalizedModGroupName(GroupName.Lights), Game.GetGXTEntry("CMOD_MOD_15_D"))  'CMOD_MOD_47_D
                 MainMenu.AddItem(giLights)
                 MainMenu.BindMenuToItem(gmLights, giLights)
-                giRespray = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.Respray), Game.GetGXTEntry("CMOD_MOD_6_D"))
+                giRespray = New UIMenuItem(LocalizedModGroupName(GroupName.Respray), Game.GetGXTEntry("CMOD_MOD_6_D"))
                 MainMenu.AddItem(giRespray)
                 MainMenu.BindMenuToItem(gmRespray, giRespray)
 
                 'Single Item
                 If Bennys.veh.GetModCount(VehicleMod.Brakes) <> 0 Then
-                    giBrakes = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Brakes), Game.GetGXTEntry("CMOD_MOD_3_D"))
+                    giBrakes = New UIMenuItem(LocalizedModTypeName(VehicleMod.Brakes), Game.GetGXTEntry("CMOD_MOD_3_D"))
                     MainMenu.AddItem(giBrakes)
                     MainMenu.BindMenuToItem(mBrakes, giBrakes)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.Exhaust) <> 0 Then
-                    giExhaust = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Exhaust), Game.GetGXTEntry("CMOD_MOD_16_D"))
+                    giExhaust = New UIMenuItem(LocalizedModTypeName(VehicleMod.Exhaust), Game.GetGXTEntry("CMOD_MOD_16_D"))
                     MainMenu.AddItem(giExhaust)
                     MainMenu.BindMenuToItem(mExhaust, giExhaust)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.Horns) <> 0 Then
-                    iHorn = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Horns), Game.GetGXTEntry("CMOD_MOD_14_D"))
+                    iHorn = New UIMenuItem(LocalizedModTypeName(VehicleMod.Horns), Game.GetGXTEntry("CMOD_MOD_14_D"))
                     MainMenu.AddItem(iHorn)
                     MainMenu.BindMenuToItem(mHorn, iHorn)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.Hydraulics) <> 0 Then
-                    giHydraulics = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Hydraulics), Game.GetGXTEntry("CMOD_SMOD_5_D"))
+                    giHydraulics = New UIMenuItem(LocalizedModTypeName(VehicleMod.Hydraulics), Game.GetGXTEntry("CMOD_SMOD_5_D"))
                     MainMenu.AddItem(giHydraulics)
                     MainMenu.BindMenuToItem(mHydraulics, giHydraulics)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.Livery) <> 0 Then
-                    iLivery = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Livery), Game.GetGXTEntry("CMOD_SMOD_6_D"))
+                    iLivery = New UIMenuItem(LocalizedModTypeName(VehicleMod.Livery), Game.GetGXTEntry("CMOD_SMOD_6_D"))
                     MainMenu.AddItem(iLivery)
                     MainMenu.BindMenuToItem(mLivery, iLivery)
                 End If
-                If Helper.GetTornadoCustomRoofCount(Bennys.veh) <> 0 Then
-                    iTornadoC = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Roof), Game.GetGXTEntry("CMOD_SMOD_6_D"))
+                If Bennys.veh.Livery2Count <> 0 Then
+                    iTornadoC = New UIMenuItem(LocalizedModTypeName(VehicleMod.Roof), Game.GetGXTEntry("CMOD_SMOD_6_D"))
                     MainMenu.AddItem(iTornadoC)
                     MainMenu.BindMenuToItem(mTornadoC, iTornadoC)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.Plaques) <> 0 Then
-                    giPlaques = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Plaques), Game.GetGXTEntry("SMOD_IN_PLAQUE"))
+                    giPlaques = New UIMenuItem(LocalizedModTypeName(VehicleMod.Plaques), Game.GetGXTEntry("SMOD_IN_PLAQUE"))
                     MainMenu.AddItem(giPlaques)
                     MainMenu.BindMenuToItem(mPlaques, giPlaques)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.Suspension) <> 0 Then
-                    iSuspension = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Suspension), Game.GetGXTEntry("CMOD_MOD_24_D"))
+                    iSuspension = New UIMenuItem(LocalizedModTypeName(VehicleMod.Suspension), Game.GetGXTEntry("CMOD_MOD_24_D"))
                     MainMenu.AddItem(iSuspension)
                     MainMenu.BindMenuToItem(mSuspension, iSuspension)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.Transmission) <> 0 Then
-                    iTransmission = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Transmission), Game.GetGXTEntry("CMOD_MOD_26_D"))
+                    iTransmission = New UIMenuItem(LocalizedModTypeName(VehicleMod.Transmission), Game.GetGXTEntry("CMOD_MOD_26_D"))
                     MainMenu.AddItem(iTransmission)
                     MainMenu.BindMenuToItem(mTransmission, iTransmission)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.Trunk) <> 0 Then
-                    giTrunk = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Trunk), Game.GetGXTEntry("CMOD_MOD_62_D"))
+                    giTrunk = New UIMenuItem(LocalizedModTypeName(VehicleMod.Trunk), Game.GetGXTEntry("CMOD_MOD_62_D"))
                     MainMenu.AddItem(giTrunk)
                     MainMenu.BindMenuToItem(mTrunk, giTrunk)
                 End If
-                iTurbo = New UIMenuItem(Helper.LocalizedModTypeName(VehicleToggleMod.Turbo), Game.GetGXTEntry("CMOD_MOD_27_D"))
+                iTurbo = New UIMenuItem(LocalizedModTypeName(VehicleToggleMod.Turbo), Game.GetGXTEntry("CMOD_MOD_27_D"))
                 MainMenu.AddItem(iTurbo)
                 MainMenu.BindMenuToItem(mTurbo, iTurbo)
                 MainMenu.RefreshIndex()
             Else
                 'Specials
                 If lowriders.Contains(Bennys.veh.Model) Then
-                    iUpgrade = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.Upgrade), Game.GetGXTEntry("CMOD_MOD_100_D")) 'Upgrade
+                    iUpgrade = New UIMenuItem(LocalizedModGroupName(GroupName.Upgrade), Game.GetGXTEntry("CMOD_MOD_100_D")) 'Upgrade
                     With iUpgrade
-                        .SetRightLabel("$" & Helper.GetUpgradePrice(Bennys.veh.Model).ToString("###,###"))
-                        .SubInteger1 = Helper.GetUpgradePrice(Bennys.veh.Model)
+                        .SetRightLabel("$" & Bennys.veh.Model.GetUpgradePrice.ToString("###,###"))
+                        .SubInteger1 = Bennys.veh.Model.GetUpgradePrice
                     End With
                     MainMenu.AddItem(iUpgrade)
                 End If
-                If Helper.IsUpgradeModExist(Bennys.veh.DisplayName) Then
-                    Dim upgrade2 As Tuple(Of String, Integer) = Helper.GetUpgradeModVehicleInfo(Bennys.veh.DisplayName)
-                    iUpgradeMod = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.Upgrade), Game.GetGXTEntry("CMOD_MOD_100_D"))
+                If Bennys.veh.DisplayName.IsUpgradeModExist Then
+                    Dim upgrade2 As Tuple(Of String, Integer) = Bennys.veh.DisplayName.GetUpgradeModVehicleInfo
+                    iUpgradeMod = New UIMenuItem(LocalizedModGroupName(GroupName.Upgrade), Game.GetGXTEntry("CMOD_MOD_100_D"))
                     With iUpgradeMod
                         .SetRightLabel("$" & upgrade2.Item2.ToString("###,###"))
                         .SubInteger1 = upgrade2.Item2
                     End With
                     MainMenu.AddItem(iUpgradeMod)
                 End If
+                If arenawar.Contains(Bennys.veh.Model) Then
+                    iUpgradeAW = New UIMenuItem(LocalizedModGroupName(GroupName.Upgrade2), Game.GetGXTEntry("collision_87oubis")) 'Arena War Upgrade
+                    MainMenu.AddItem(iUpgradeAW)
+                    MainMenu.BindMenuToItem(mUpgradeAW, iUpgradeAW)
+                End If
 
                 'Single Item
                 If Bennys.veh.GetModCount(VehicleMod.Armor) <> 0 Then
-                    iArmor = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Armor), Game.GetGXTEntry("CMOD_MOD_1_D"))
+                    iArmor = New UIMenuItem(LocalizedModTypeName(VehicleMod.Armor), Game.GetGXTEntry("CMOD_MOD_1_D"))
                     MainMenu.AddItem(iArmor)
                     MainMenu.BindMenuToItem(mArmor, iArmor)
                 End If
 
                 'Groups
                 If (Bennys.veh.GetModCount(VehicleMod.Aerials) <> 0 Or Bennys.veh.GetModCount(VehicleMod.Trim) <> 0 Or Bennys.veh.GetModCount(VehicleMod.Windows) <> 0 Or Bennys.veh.GetModCount(VehicleMod.ArchCover) <> 0) Then
-                    giBodywork = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.Bodyworks), Game.GetGXTEntry("IE_BO_DT1")) 'bodywork
+                    giBodywork = New UIMenuItem(LocalizedModGroupName(GroupName.Bodyworks), Game.GetGXTEntry("IE_BO_DT1")) 'bodywork
                     MainMenu.AddItem(giBodywork)
                     MainMenu.BindMenuToItem(gmBodywork, giBodywork)
                 End If
                 If (Bennys.veh.GetModCount(VehicleMod.Engine) <> 0 Or Bennys.veh.GetModCount(VehicleMod.EngineBlock) <> 0 Or Bennys.veh.GetModCount(VehicleMod.AirFilter) <> 0 Or Bennys.veh.GetModCount(VehicleMod.Struts) <> 0) Then
-                    giEngine = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.Engine), Game.GetGXTEntry("CMOD_SMOD_2_D")) 'engine
+                    giEngine = New UIMenuItem(LocalizedModGroupName(GroupName.Engine), Game.GetGXTEntry("CMOD_SMOD_2_D")) 'engine
                     MainMenu.AddItem(giEngine)
                     MainMenu.BindMenuToItem(gmEngine, giEngine)
                 End If
                 If (Bennys.veh.GetModCount(VehicleMod.ColumnShifterLevers) <> 0 Or Bennys.veh.GetModCount(VehicleMod.Dashboard) <> 0 Or Bennys.veh.GetModCount(VehicleMod.DialDesign) <> 0 Or Bennys.veh.GetModCount(VehicleMod.Ornaments) <> 0 _
                         Or Bennys.veh.GetModCount(VehicleMod.Seats) <> 0 Or Bennys.veh.GetModCount(VehicleMod.SteeringWheels) <> 0 Or Bennys.veh.GetModCount(VehicleMod.TrimDesign) <> 0 Or Bennys.veh.GetModCount(VehicleMod.DoorSpeakers) <> 0 _
                         Or Bennys.veh.GetModCount(VehicleMod.Speakers) <> 0) Then
-                    giInterior = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.Interior), Game.GetGXTEntry("SMOD_IN_1")) 'interior
+                    giInterior = New UIMenuItem(LocalizedModGroupName(GroupName.Interior), Game.GetGXTEntry("SMOD_IN_1")) 'interior
                     MainMenu.AddItem(giInterior)
                     MainMenu.BindMenuToItem(gmInterior, giInterior)
                 End If
                 If (Bennys.veh.GetModCount(VehicleMod.FrontBumper) <> 0 Or Bennys.veh.GetModCount(VehicleMod.RearBumper) <> 0 Or Bennys.veh.GetModCount(VehicleMod.SideSkirt) <> 0) Then
-                    giBumper = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.Bumpers), Game.GetGXTEntry("CMOD_MOD_4_D")) 'bumper
+                    giBumper = New UIMenuItem(LocalizedModGroupName(GroupName.Bumpers), Game.GetGXTEntry("CMOD_MOD_4_D")) 'bumper
                     MainMenu.AddItem(giBumper)
                     MainMenu.BindMenuToItem(gmBumper, giBumper)
                 End If
-                giPlate = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.Plate), Game.GetGXTEntry("CMOD_MOD_18_D")) 'Plate
+                giPlate = New UIMenuItem(LocalizedModGroupName(GroupName.Plate), Game.GetGXTEntry("CMOD_MOD_18_D")) 'Plate
                 MainMenu.AddItem(giPlate)
                 MainMenu.BindMenuToItem(gmPlate, giPlate)
-                giWheels = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.Wheels), Game.GetGXTEntry("CMOD_MOD_60_D"))
+                giWheels = New UIMenuItem(LocalizedModGroupName(GroupName.Wheels), Game.GetGXTEntry("CMOD_MOD_60_D"))
                 MainMenu.AddItem(giWheels)
                 MainMenu.BindMenuToItem(gmWheels, giWheels)
-                giLights = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.Lights), Game.GetGXTEntry("CMOD_MOD_15_D"))  'CMOD_MOD_47_D
+                giLights = New UIMenuItem(LocalizedModGroupName(GroupName.Lights), Game.GetGXTEntry("CMOD_MOD_15_D"))  'CMOD_MOD_47_D
                 MainMenu.AddItem(giLights)
                 MainMenu.BindMenuToItem(gmLights, giLights)
-                giRespray = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.Respray), Game.GetGXTEntry("CMOD_MOD_6_D"))
+                giRespray = New UIMenuItem(LocalizedModGroupName(GroupName.Respray), Game.GetGXTEntry("CMOD_MOD_6_D"))
                 MainMenu.AddItem(giRespray)
                 MainMenu.BindMenuToItem(gmRespray, giRespray)
 
                 'Single Item
                 If Bennys.veh.GetModCount(VehicleMod.Brakes) <> 0 Then
-                    giBrakes = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Brakes), Game.GetGXTEntry("CMOD_MOD_3_D"))
+                    giBrakes = New UIMenuItem(LocalizedModTypeName(VehicleMod.Brakes), Game.GetGXTEntry("CMOD_MOD_3_D"))
                     MainMenu.AddItem(giBrakes)
                     MainMenu.BindMenuToItem(mBrakes, giBrakes)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.Frame) <> 0 Then
-                    iFrame = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Frame), Game.GetGXTEntry("SMOD_ROLLCAGE_1"))
+                    iFrame = New UIMenuItem(LocalizedModTypeName(VehicleMod.Frame), Game.GetGXTEntry("SMOD_ROLLCAGE_1"))
                     MainMenu.AddItem(iFrame)
                     MainMenu.BindMenuToItem(mFrame, iFrame)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.Exhaust) <> 0 Then
-                    giExhaust = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Exhaust), Game.GetGXTEntry("CMOD_MOD_16_D"))
+                    giExhaust = New UIMenuItem(LocalizedModTypeName(VehicleMod.Exhaust), Game.GetGXTEntry("CMOD_MOD_16_D"))
                     MainMenu.AddItem(giExhaust)
                     MainMenu.BindMenuToItem(mExhaust, giExhaust)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.Fender) <> 0 Then
-                    iFender = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Fender), Game.GetGXTEntry("CMOD_MOD_9_D"))
+                    iFender = New UIMenuItem(LocalizedModTypeName(VehicleMod.Fender), Game.GetGXTEntry("CMOD_MOD_9_D"))
                     MainMenu.AddItem(iFender)
                     MainMenu.BindMenuToItem(mFender, iFender)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.Grille) <> 0 Then
-                    giGrille = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Grille), Game.GetGXTEntry("SMOD_CHASS_2c"))
+                    giGrille = New UIMenuItem(LocalizedModTypeName(VehicleMod.Grille), Game.GetGXTEntry("SMOD_CHASS_2c"))
                     MainMenu.AddItem(giGrille)
                     MainMenu.BindMenuToItem(mGrille, giGrille)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.Hood) <> 0 Then
-                    giHood = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Hood), Game.GetGXTEntry("CMOD_MOD_72_D"))
+                    giHood = New UIMenuItem(LocalizedModTypeName(VehicleMod.Hood), Game.GetGXTEntry("CMOD_MOD_72_D"))
                     MainMenu.AddItem(giHood)
                     MainMenu.BindMenuToItem(mHood, giHood)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.Horns) <> 0 Then
-                    iHorn = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Horns), Game.GetGXTEntry("CMOD_MOD_14_D"))
+                    iHorn = New UIMenuItem(LocalizedModTypeName(VehicleMod.Horns), Game.GetGXTEntry("CMOD_MOD_14_D"))
                     MainMenu.AddItem(iHorn)
                     MainMenu.BindMenuToItem(mHorn, iHorn)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.Hydraulics) <> 0 Then
-                    giHydraulics = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Hydraulics), Game.GetGXTEntry("CMOD_SMOD_5_D"))
+                    giHydraulics = New UIMenuItem(LocalizedModTypeName(VehicleMod.Hydraulics), Game.GetGXTEntry("CMOD_SMOD_5_D"))
                     MainMenu.AddItem(giHydraulics)
                     MainMenu.BindMenuToItem(mHydraulics, giHydraulics)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.Livery) <> 0 Then
-                    iLivery = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Livery), Game.GetGXTEntry("CMOD_SMOD_6_D"))
+                    iLivery = New UIMenuItem(LocalizedModTypeName(VehicleMod.Livery), Game.GetGXTEntry("CMOD_SMOD_6_D"))
                     MainMenu.AddItem(iLivery)
                     MainMenu.BindMenuToItem(mLivery, iLivery)
                 End If
-                If Helper.GetTornadoCustomRoofCount(Bennys.veh) <> 0 Then
-                    iTornadoC = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Roof), Game.GetGXTEntry("CMOD_MOD_73_D"))
+                If Bennys.veh.Livery2Count <> 0 Then
+                    iTornadoC = New UIMenuItem(LocalizedModTypeName(VehicleMod.Roof), Game.GetGXTEntry("CMOD_MOD_73_D"))
                     MainMenu.AddItem(iTornadoC)
                     MainMenu.BindMenuToItem(mTornadoC, iTornadoC)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.Plaques) <> 0 Then
-                    giPlaques = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Plaques), Game.GetGXTEntry("SMOD_IN_PLAQUE"))
+                    giPlaques = New UIMenuItem(LocalizedModTypeName(VehicleMod.Plaques), Game.GetGXTEntry("SMOD_IN_PLAQUE"))
                     MainMenu.AddItem(giPlaques)
                     MainMenu.BindMenuToItem(mPlaques, giPlaques)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.RightFender) <> 0 Then
-                    iRFender = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.RightFender), Game.GetGXTEntry("CMOD_MOD_9_D"))
+                    iRFender = New UIMenuItem(LocalizedModTypeName(VehicleMod.RightFender), Game.GetGXTEntry("CMOD_MOD_9_D"))
                     MainMenu.AddItem(iRFender)
                     MainMenu.BindMenuToItem(mRFender, iRFender)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.Roof) <> 0 Then
-                    iRoof = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Roof), Game.GetGXTEntry("CMOD_MOD_73_D"))
+                    iRoof = New UIMenuItem(LocalizedModTypeName(VehicleMod.Roof), Game.GetGXTEntry("CMOD_MOD_73_D"))
                     MainMenu.AddItem(iRoof)
                     MainMenu.BindMenuToItem(mRoof, iRoof)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.Spoilers) <> 0 Then
-                    giSpoilers = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Spoilers), Game.GetGXTEntry("CMOD_MOD_37_D"))
+                    giSpoilers = New UIMenuItem(LocalizedModTypeName(VehicleMod.Spoilers), Game.GetGXTEntry("CMOD_MOD_37_D"))
                     MainMenu.AddItem(giSpoilers)
                     MainMenu.BindMenuToItem(mSpoilers, giSpoilers)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.Suspension) <> 0 Then
-                    iSuspension = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Suspension), Game.GetGXTEntry("CMOD_MOD_24_D"))
+                    iSuspension = New UIMenuItem(LocalizedModTypeName(VehicleMod.Suspension), Game.GetGXTEntry("CMOD_MOD_24_D"))
                     MainMenu.AddItem(iSuspension)
                     MainMenu.BindMenuToItem(mSuspension, iSuspension)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.Tank) <> 0 Then
-                    giTank = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Tank), Game.GetGXTEntry("CMOD_MOD_45_D"))
+                    giTank = New UIMenuItem(LocalizedModTypeName(VehicleMod.Tank), Game.GetGXTEntry("CMOD_MOD_45_D"))
                     MainMenu.AddItem(giTank)
                     MainMenu.BindMenuToItem(mTank, giTank)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.Transmission) <> 0 Then
-                    iTransmission = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Transmission), Game.GetGXTEntry("CMOD_MOD_26_D"))
+                    iTransmission = New UIMenuItem(LocalizedModTypeName(VehicleMod.Transmission), Game.GetGXTEntry("CMOD_MOD_26_D"))
                     MainMenu.AddItem(iTransmission)
                     MainMenu.BindMenuToItem(mTransmission, iTransmission)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.Trunk) <> 0 Then
-                    giTrunk = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Trunk), Game.GetGXTEntry("CMOD_MOD_62_D"))
+                    giTrunk = New UIMenuItem(LocalizedModTypeName(VehicleMod.Trunk), Game.GetGXTEntry("CMOD_MOD_62_D"))
                     MainMenu.AddItem(giTrunk)
                     MainMenu.BindMenuToItem(mTrunk, giTrunk)
                 End If
-                iTurbo = New UIMenuItem(Helper.LocalizedModTypeName(VehicleToggleMod.Turbo), Game.GetGXTEntry("CMOD_MOD_27_D"))
+                iTurbo = New UIMenuItem(LocalizedModTypeName(VehicleToggleMod.Turbo), Game.GetGXTEntry("CMOD_MOD_27_D"))
                 MainMenu.AddItem(iTurbo)
                 MainMenu.BindMenuToItem(mTurbo, iTurbo)
                 If Bennys.veh.HasBone("windscreen") Then
-                    iTint = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.Windows), Game.GetGXTEntry("CMOD_MOD_29_D"))
+                    iTint = New UIMenuItem(LocalizedModGroupName(GroupName.Windows), Game.GetGXTEntry("CMOD_MOD_29_D"))
                     MainMenu.AddItem(iTint)
                     MainMenu.BindMenuToItem(mTint, iTint)
                 End If
-                'If Helper.IsVehicleAttachedToTrailer(Bennys.veh) Then
+                'If IsVehicleAttachedToTrailer(Bennys.veh) Then
                 '    giTrailer = New UIMenuItem(Game.GetGXTEntry("TRAILER"))
                 '    MainMenu.AddItem(giTrailer)
                 '    MainMenu.BindMenuToItem(gmTrailer, giTrailer)
@@ -349,23 +483,10 @@ Public Class BennysMenu
 
     Public Shared Sub MainMenuCloseHandler(sender As UIMenu)
         Try
-            If Not isRepairing Then
-                Game.FadeScreenOut(1000)
-                Wait(1000)
-                Bennys.isExiting = True
-                camera.Stop()
-                Bennys.veh.Position = New Vector3(-205.8678, -1321.805, 30.41191)
-                Bennys.veh.Heading = 358.6677
-                Bennys.ply.Task.DriveTo(Bennys.veh, New Vector3(-205.743, -1303.657, 30.84998), 0.5, 5)
-                Wait(1000)
-                Game.FadeScreenIn(1000)
-                Helper.PlaySpeech("SHOP_GOODBYE")
-                Wait(7000)
-                Bennys.ply.Task.ClearAll()
-                Bennys.isExiting = False
-                If Native.Function.Call(Of Boolean)(Hash.IS_AUDIO_SCENE_ACTIVE, "CAR_MOD_RADIO_MUTE_SCENE") Then
-                    Native.Function.Call(Hash.STOP_AUDIO_SCENE, "CAR_MOD_RADIO_MUTE_SCENE")
-                End If
+            If sender Is QuitMenu Then
+                MainMenu.Visible = True
+            ElseIf sender Is MainMenu Then
+                QuitMenu.Visible = True
             End If
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
@@ -383,7 +504,7 @@ Public Class BennysMenu
                 ElseIf selectedItem Is iUpgrade Then
                     Game.FadeScreenOut(1000)
                     Wait(1000)
-                    Dim veh As Vehicle = World.CreateVehicle(Helper.LowriderUpgrade(Bennys.veh.Model), Bennys.veh.Position, Bennys.veh.Heading)
+                    Dim veh As Vehicle = World.CreateVehicle(LowriderUpgrade(Bennys.veh.Model), Bennys.veh.Position, Bennys.veh.Heading)
                     veh.IsPersistent = False
                     veh.PrimaryColor = Bennys.lastVehMemory.PrimaryColor
                     veh.SecondaryColor = Bennys.lastVehMemory.SecondaryColor
@@ -417,7 +538,7 @@ Public Class BennysMenu
                     veh.SetMod(VehicleMod.Horns, Bennys.lastVehMemory.Horns, False)
                     veh.SetMod(VehicleMod.Hydraulics, Bennys.lastVehMemory.Hydraulics, False)
                     veh.SetMod(VehicleMod.Livery, Bennys.lastVehMemory.Livery, False)
-                    Helper.SetTornadoCustomRoof(veh, Bennys.lastVehMemory.Livery2)
+                    veh.SetLivery2(Bennys.lastVehMemory.Livery2)
                     veh.SetMod(VehicleMod.Ornaments, Bennys.lastVehMemory.Ornaments, False)
                     veh.SetMod(VehicleMod.Plaques, Bennys.lastVehMemory.Plaques, False)
                     veh.SetMod(VehicleMod.PlateHolder, Bennys.lastVehMemory.PlateHolder, False)
@@ -441,6 +562,7 @@ Public Class BennysMenu
                     veh.ToggleMod(VehicleToggleMod.TireSmoke, True)
                     veh.ToggleMod(VehicleToggleMod.Turbo, Bennys.lastVehMemory.Turbo)
                     veh.ToggleMod(VehicleToggleMod.XenonHeadlights, Bennys.lastVehMemory.Headlights)
+                    veh.SetXenonHeadlightsColor(Bennys.lastVehMemory.HeadlightsColor, veh.IsToggleModOn(VehicleToggleMod.XenonHeadlights))
                     veh.NumberPlateType = Bennys.lastVehMemory.NumberPlate
                     veh.NumberPlate = Bennys.lastVehMemory.PlateNumbers
                     Bennys.veh.Delete()
@@ -456,11 +578,11 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger1)
                     Native.Function.Call(Hash._START_SCREEN_EFFECT, "MP_corona_switch_supermod", 0, 1)
                     Native.Function.Call(Hash.PLAY_SOUND_FRONTEND, -1, "Lowrider_Upgrade", "Lowrider_Super_Mod_Garage_Sounds", 1)
-                    Helper.PlaySpeech("LR_UPGRADE_SUPERMOD")
+                    PlaySpeech("LR_UPGRADE_SUPERMOD")
                 ElseIf selectedItem Is iUpgradeMod Then
                     Game.FadeScreenOut(1000)
                     Wait(1000)
-                    Dim upgrade2 As Tuple(Of String, Integer) = Helper.GetUpgradeModVehicleInfo(Bennys.veh.DisplayName)
+                    Dim upgrade2 As Tuple(Of String, Integer) = Bennys.veh.DisplayName.GetUpgradeModVehicleInfo
                     Dim veh As Vehicle = World.CreateVehicle(upgrade2.Item1, Bennys.veh.Position, Bennys.veh.Heading)
                     veh.IsPersistent = False
                     veh.PrimaryColor = Bennys.lastVehMemory.PrimaryColor
@@ -495,7 +617,7 @@ Public Class BennysMenu
                     veh.SetMod(VehicleMod.Horns, Bennys.lastVehMemory.Horns, False)
                     veh.SetMod(VehicleMod.Hydraulics, Bennys.lastVehMemory.Hydraulics, False)
                     veh.SetMod(VehicleMod.Livery, Bennys.lastVehMemory.Livery, False)
-                    Helper.SetTornadoCustomRoof(veh, Bennys.lastVehMemory.Livery2)
+                    veh.SetLivery2(Bennys.lastVehMemory.Livery2)
                     veh.SetMod(VehicleMod.Ornaments, Bennys.lastVehMemory.Ornaments, False)
                     veh.SetMod(VehicleMod.Plaques, Bennys.lastVehMemory.Plaques, False)
                     veh.SetMod(VehicleMod.PlateHolder, Bennys.lastVehMemory.PlateHolder, False)
@@ -519,6 +641,7 @@ Public Class BennysMenu
                     veh.ToggleMod(VehicleToggleMod.TireSmoke, True)
                     veh.ToggleMod(VehicleToggleMod.Turbo, Bennys.lastVehMemory.Turbo)
                     veh.ToggleMod(VehicleToggleMod.XenonHeadlights, Bennys.lastVehMemory.Headlights)
+                    veh.SetXenonHeadlightsColor(Bennys.lastVehMemory.HeadlightsColor, veh.IsToggleModOn(VehicleToggleMod.XenonHeadlights))
                     veh.NumberPlateType = Bennys.lastVehMemory.NumberPlate
                     veh.NumberPlate = Bennys.lastVehMemory.PlateNumbers
                     Bennys.veh.Delete()
@@ -534,7 +657,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger1)
                     Native.Function.Call(Hash._START_SCREEN_EFFECT, "MP_corona_switch_supermod", 0, 1)
                     Native.Function.Call(Hash.PLAY_SOUND_FRONTEND, -1, "Lowrider_Upgrade", "Lowrider_Super_Mod_Garage_Sounds", 1)
-                    Helper.PlaySpeech("LR_UPGRADE_SUPERMOD")
+                    PlaySpeech("LR_UPGRADE_SUPERMOD")
                 ElseIf selectedItem Is giEngine Then
                     Select Case Bennys.veh.Model
                         Case "alpha"
@@ -543,59 +666,59 @@ Public Class BennysMenu
                         Case Else
                             If Not Bennys.veh.ClassType = VehicleClass.Motorcycles Or Bennys.veh.Model = "blazer4" Then
                                 If Bennys.veh.HasBone("bonnet") AndAlso Bennys.veh.HasBone("boot") Then 'has hood and trunk
-                                    If Helper.GetVehEnginePos(Bennys.veh) = Helper.EngineLoc.front Then 'front engine
-                                        If Helper.GetVehHoodPos(Bennys.veh) = Helper.EngineLoc.front Then 'front hood
+                                    If Bennys.veh.GetVehEnginePos = EngineLoc.front Then 'front engine
+                                        If Bennys.veh.GetVehHoodPos = EngineLoc.front Then 'front hood
                                             Bennys.veh.OpenDoor(VehicleDoor.Hood, False, False)
                                             camera.MainCameraPosition = CameraPosition.Engine
-                                        ElseIf Helper.GetVehHoodPos(Bennys.veh) = Helper.EngineLoc.rear Then 'rear hood
+                                        ElseIf Bennys.veh.GetVehHoodPos = EngineLoc.rear Then 'rear hood
                                             Bennys.veh.OpenDoor(VehicleDoor.Trunk, False, False)
                                             camera.MainCameraPosition = CameraPosition.Engine
                                         End If
-                                    ElseIf Helper.GetVehEnginePos(Bennys.veh) = Helper.EngineLoc.rear Then 'rear engine
-                                        If Helper.GetVehHoodPos(Bennys.veh) = Helper.EngineLoc.rear Then 'rear hood
+                                    ElseIf Bennys.veh.GetVehEnginePos = EngineLoc.rear Then 'rear engine
+                                        If Bennys.veh.GetVehHoodPos = EngineLoc.rear Then 'rear hood
                                             Bennys.veh.OpenDoor(VehicleDoor.Hood, False, False)
                                             camera.MainCameraPosition = CameraPosition.RearEngine
-                                        ElseIf Helper.GetVehHoodPos(Bennys.veh) = Helper.EngineLoc.front Then 'rear hood
+                                        ElseIf Bennys.veh.GetVehHoodPos = EngineLoc.front Then 'rear hood
                                             Bennys.veh.OpenDoor(VehicleDoor.Trunk, False, False)
                                             camera.MainCameraPosition = CameraPosition.RearEngine
                                         End If
                                     End If
                                 ElseIf Bennys.veh.HasBone("bonnet") Then 'has hood only
-                                    If Helper.GetVehEnginePos(Bennys.veh) = Helper.EngineLoc.front Then 'front engine
-                                        If Helper.GetVehHoodPos(Bennys.veh) = Helper.EngineLoc.front Then 'front hood
+                                    If Bennys.veh.GetVehEnginePos = EngineLoc.front Then 'front engine
+                                        If Bennys.veh.GetVehHoodPos = EngineLoc.front Then 'front hood
                                             Bennys.veh.OpenDoor(VehicleDoor.Hood, False, False)
                                             camera.MainCameraPosition = CameraPosition.Engine
-                                        ElseIf Helper.GetVehHoodPos(Bennys.veh) = Helper.EngineLoc.rear Then 'rear hood
+                                        ElseIf Bennys.veh.GetVehHoodPos = EngineLoc.rear Then 'rear hood
                                             camera.MainCameraPosition = CameraPosition.Engine
                                         End If
-                                    ElseIf Helper.GetVehEnginePos(Bennys.veh) = Helper.EngineLoc.rear Then 'rear engine
-                                        If Helper.GetVehHoodPos(Bennys.veh) = Helper.EngineLoc.rear Then 'rear hood
+                                    ElseIf Bennys.veh.GetVehEnginePos = EngineLoc.rear Then 'rear engine
+                                        If Bennys.veh.GetVehHoodPos = EngineLoc.rear Then 'rear hood
                                             Bennys.veh.OpenDoor(VehicleDoor.Hood, False, False)
                                             camera.MainCameraPosition = CameraPosition.RearEngine
-                                        ElseIf Helper.GetVehHoodPos(Bennys.veh) = Helper.EngineLoc.front Then 'rear hood
+                                        ElseIf Bennys.veh.GetVehHoodPos = EngineLoc.front Then 'rear hood
                                             camera.MainCameraPosition = CameraPosition.RearEngine
                                         End If
                                     End If
                                 ElseIf Bennys.veh.HasBone("boot") Then 'has trunk only
-                                    If Helper.GetVehEnginePos(Bennys.veh) = Helper.EngineLoc.front Then 'front engine
-                                        If Helper.GetVehTrunkPos(Bennys.veh) = Helper.EngineLoc.front Then 'front trunk
+                                    If Bennys.veh.GetVehEnginePos = EngineLoc.front Then 'front engine
+                                        If Bennys.veh.GetVehTrunkPos = EngineLoc.front Then 'front trunk
                                             Bennys.veh.OpenDoor(VehicleDoor.Trunk, False, False)
                                             camera.MainCameraPosition = CameraPosition.Engine
-                                        ElseIf Helper.GetVehTrunkPos(Bennys.veh) = Helper.EngineLoc.rear Then 'rear trunk
+                                        ElseIf Bennys.veh.GetVehTrunkPos = EngineLoc.rear Then 'rear trunk
                                             camera.MainCameraPosition = CameraPosition.Engine
                                         End If
-                                    ElseIf Helper.GetVehEnginePos(Bennys.veh) = Helper.EngineLoc.rear Then 'rear engine
-                                        If Helper.GetVehTrunkPos(Bennys.veh) = Helper.EngineLoc.rear Then 'rear trunk
+                                    ElseIf Bennys.veh.GetVehEnginePos = EngineLoc.rear Then 'rear engine
+                                        If Bennys.veh.GetVehTrunkPos = EngineLoc.rear Then 'rear trunk
                                             Bennys.veh.OpenDoor(VehicleDoor.Trunk, False, False)
                                             camera.MainCameraPosition = CameraPosition.RearEngine
-                                        ElseIf Helper.GetVehTrunkPos(Bennys.veh) = Helper.EngineLoc.front Then 'rear trunk
+                                        ElseIf Bennys.veh.GetVehTrunkPos = EngineLoc.front Then 'rear trunk
                                             camera.MainCameraPosition = CameraPosition.RearEngine
                                         End If
                                     End If
                                 Else 'nothing to open
-                                    If Helper.GetVehEnginePos(Bennys.veh) = Helper.EngineLoc.rear Then 'rear engine, no open anything
+                                    If Bennys.veh.GetVehEnginePos = EngineLoc.rear Then 'rear engine, no open anything
                                         camera.MainCameraPosition = CameraPosition.RearEngine
-                                    ElseIf Helper.GetVehEnginePos(Bennys.veh) = Helper.EngineLoc.front Then
+                                    ElseIf Bennys.veh.GetVehEnginePos = EngineLoc.front Then
                                         camera.MainCameraPosition = CameraPosition.Engine
                                     End If
                                 End If
@@ -642,17 +765,17 @@ Public Class BennysMenu
                     End Select
                 ElseIf selectedItem Is giHood Then
                     If Bennys.veh.HasBone("bonnet") AndAlso Bennys.veh.HasBone("boot") Then 'has hood and trunk
-                        If Helper.GetVehEnginePos(Bennys.veh) = Helper.EngineLoc.front Then 'front engine
-                            If Helper.GetVehHoodPos(Bennys.veh) = Helper.EngineLoc.front Then 'front hood
+                        If Bennys.veh.GetVehEnginePos = EngineLoc.front Then 'front engine
+                            If Bennys.veh.GetVehHoodPos = EngineLoc.front Then 'front hood
                                 camera.MainCameraPosition = CameraPosition.Hood
-                            ElseIf Helper.GetVehHoodPos(Bennys.veh) = Helper.EngineLoc.rear Then 'rear hood
+                            ElseIf Bennys.veh.GetVehHoodPos = EngineLoc.rear Then 'rear hood
                                 camera.MainCameraPosition = CameraPosition.RearHood
                             End If
-                        ElseIf Helper.GetVehEnginePos(Bennys.veh) = Helper.EngineLoc.rear Then 'rear engine
-                            If Helper.GetVehHoodPos(Bennys.veh) = Helper.EngineLoc.front Then 'front hood
+                        ElseIf Bennys.veh.GetVehEnginePos = EngineLoc.rear Then 'rear engine
+                            If Bennys.veh.GetVehHoodPos = EngineLoc.front Then 'front hood
                                 camera.MainCameraPosition = CameraPosition.Hood
-                            ElseIf Helper.GetVehHoodPos(Bennys.veh) = Helper.EngineLoc.rear Then 'rear hood
-                                If Helper.GetVehTrunkPos(Bennys.veh) = Helper.EngineLoc.front Then
+                            ElseIf Bennys.veh.GetVehHoodPos = EngineLoc.rear Then 'rear hood
+                                If Bennys.veh.GetVehTrunkPos = EngineLoc.front Then
                                     camera.MainCameraPosition = CameraPosition.FrontTrunk
                                 Else
                                     camera.MainCameraPosition = CameraPosition.FrontBumper
@@ -660,38 +783,38 @@ Public Class BennysMenu
                             End If
                         End If
                     ElseIf Bennys.veh.HasBone("bonnet") Then 'has hood only
-                        If Helper.GetVehEnginePos(Bennys.veh) = Helper.EngineLoc.front Then 'front engine
-                            If Helper.GetVehHoodPos(Bennys.veh) = Helper.EngineLoc.front Then 'front hood
+                        If Bennys.veh.GetVehEnginePos = EngineLoc.front Then 'front engine
+                            If Bennys.veh.GetVehHoodPos = EngineLoc.front Then 'front hood
                                 camera.MainCameraPosition = CameraPosition.Hood
-                            ElseIf Helper.GetVehHoodPos(Bennys.veh) = Helper.EngineLoc.rear Then 'rear hood
+                            ElseIf Bennys.veh.GetVehHoodPos = EngineLoc.rear Then 'rear hood
                                 camera.MainCameraPosition = CameraPosition.RearHood
                             End If
-                        ElseIf Helper.GetVehEnginePos(Bennys.veh) = Helper.EngineLoc.rear Then 'rear engine
-                            If Helper.GetVehHoodPos(Bennys.veh) = Helper.EngineLoc.front Then 'front hood
+                        ElseIf Bennys.veh.GetVehEnginePos = EngineLoc.rear Then 'rear engine
+                            If Bennys.veh.GetVehHoodPos = EngineLoc.front Then 'front hood
                                 camera.MainCameraPosition = CameraPosition.Hood
-                            ElseIf Helper.GetVehHoodPos(Bennys.veh) = Helper.EngineLoc.rear Then 'rear hood
+                            ElseIf Bennys.veh.GetVehHoodPos = EngineLoc.rear Then 'rear hood
                                 camera.MainCameraPosition = CameraPosition.FrontBumper
                             End If
                         End If
 
                     ElseIf Bennys.veh.HasBone("boot") Then 'has trunk only
-                        If Helper.GetVehEnginePos(Bennys.veh) = Helper.EngineLoc.front Then 'front engine
-                            If Helper.GetVehTrunkPos(Bennys.veh) = Helper.EngineLoc.front Then 'front trunk
+                        If Bennys.veh.GetVehEnginePos = EngineLoc.front Then 'front engine
+                            If Bennys.veh.GetVehTrunkPos = EngineLoc.front Then 'front trunk
                                 camera.MainCameraPosition = CameraPosition.FrontTrunk
-                            ElseIf Helper.GetVehTrunkPos(Bennys.veh) = Helper.EngineLoc.rear Then 'rear trunk
+                            ElseIf Bennys.veh.GetVehTrunkPos = EngineLoc.rear Then 'rear trunk
                                 camera.MainCameraPosition = CameraPosition.FrontBumper
                             End If
-                        ElseIf Helper.GetVehEnginePos(Bennys.veh) = Helper.EngineLoc.rear Then 'rear engine
-                            If Helper.GetVehTrunkPos(Bennys.veh) = Helper.EngineLoc.front Then 'front trunk
+                        ElseIf Bennys.veh.GetVehEnginePos = EngineLoc.rear Then 'rear engine
+                            If Bennys.veh.GetVehTrunkPos = EngineLoc.front Then 'front trunk
                                 camera.MainCameraPosition = CameraPosition.FrontTrunk
-                            ElseIf Helper.GetVehTrunkPos(Bennys.veh) = Helper.EngineLoc.rear Then 'rear trunk
+                            ElseIf Bennys.veh.GetVehTrunkPos = EngineLoc.rear Then 'rear trunk
                                 camera.MainCameraPosition = CameraPosition.FrontBumper
                             End If
                         End If
                     Else 'no hood and trunk
-                        If Helper.GetVehEnginePos(Bennys.veh) = Helper.EngineLoc.rear Then 'rear engine
+                        If Bennys.veh.GetVehEnginePos = EngineLoc.rear Then 'rear engine
                             camera.MainCameraPosition = CameraPosition.FrontBumper
-                        ElseIf Helper.GetVehEnginePos(Bennys.veh) = Helper.EngineLoc.front Then 'front engine
+                        ElseIf Bennys.veh.GetVehEnginePos = EngineLoc.front Then 'front engine
                             camera.MainCameraPosition = CameraPosition.Engine
                         End If
                     End If
@@ -705,7 +828,7 @@ Public Class BennysMenu
                     camera.MainCameraPosition = CameraPosition.Plaque
                 ElseIf selectedItem Is giSpoilers Then
                     If Bennys.veh.HasBone("boot") Then
-                        If Helper.GetVehTrunkPos(Bennys.veh) = Helper.EngineLoc.rear Then
+                        If Bennys.veh.GetVehTrunkPos = EngineLoc.rear Then
                             camera.MainCameraPosition = CameraPosition.Trunk
                         Else
                             If Bennys.veh.HasBone("windscreen_r") Then
@@ -716,7 +839,7 @@ Public Class BennysMenu
                         End If
                     ElseIf Bennys.veh.HasBone("windscreen_r") Then
                         camera.MainCameraPosition = CameraPosition.RearWindscreen
-                    ElseIf Helper.GetVehEnginePos(Bennys.veh) = Helper.EngineLoc.rear Then
+                    ElseIf Bennys.veh.GetVehEnginePos = EngineLoc.rear Then
                         Select Case Bennys.veh.Model
                             Case "barrage"
                                 camera.MainCameraPosition = CameraPosition.Car
@@ -738,7 +861,227 @@ Public Class BennysMenu
                             camera.MainCameraPosition = CameraPosition.Tank
                     End Select
                 End If
+            ElseIf sender Is QuitMenu Then
+                QuitMenu.Visible = False
+                Game.FadeScreenOut(1000)
+                Wait(1000)
+                Bennys.isExiting = True
+                camera.Stop()
+                Bennys.veh.Position = New Vector3(-205.8678, -1321.805, 30.41191)
+                Bennys.veh.Heading = 358.6677
+                Bennys.ply.Task.DriveTo(Bennys.veh, New Vector3(-205.743, -1303.657, 30.84998), 0.5, 5)
+                Wait(1000)
+                Game.FadeScreenIn(1000)
+                PlaySpeech("SHOP_GOODBYE")
+                Wait(7000)
+                Bennys.ply.Task.ClearAll()
+                Bennys.isExiting = False
+                If Native.Function.Call(Of Boolean)(Hash.IS_AUDIO_SCENE_ACTIVE, "CAR_MOD_RADIO_MUTE_SCENE") Then
+                    Native.Function.Call(Hash.STOP_AUDIO_SCENE, "CAR_MOD_RADIO_MUTE_SCENE")
+                End If
             End If
+        Catch ex As Exception
+            Logger.Log(ex.Message & " " & ex.StackTrace)
+        End Try
+    End Sub
+
+    Public Shared Sub CreateArenaWarMenu()
+        Try
+            mUpgradeAW = New UIMenu("", Game.GetGXTEntry("collision_9znude7"), True) 'ARENA WAR
+            mUpgradeAW.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
+            mUpgradeAW.MouseEdgeEnabled = False
+            _menuPool.Add(mUpgradeAW)
+            mUpgradeAW.AddItem(New UIMenuItem("Nothing"))
+            mUpgradeAW.RefreshIndex()
+            AddHandler mUpgradeAW.OnItemSelect, AddressOf ModsMenuItemSelectHandler
+        Catch ex As Exception
+            Logger.Log(ex.Message & " " & ex.StackTrace)
+        End Try
+    End Sub
+
+    Public Shared Sub RefreshArenaWarMenu()
+        Try
+            mUpgradeAW.MenuItems.Clear()
+
+            Select Case Bennys.veh.Model
+                Case "glendale"
+                    iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("bruiser"))
+                    With iUpgradeAWV
+                        .SubString1 = "bruiser"
+                        .SubInteger1 = 1609000
+                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        .SetRightLabel(price)
+                    End With
+                    mUpgradeAW.AddItem(iUpgradeAWV)
+                    iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("bruiser2"))
+                    With iUpgradeAWV
+                        .SubString1 = "bruiser2"
+                        .SubInteger1 = 1609000
+                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        .SetRightLabel(price)
+                    End With
+                    mUpgradeAW.AddItem(iUpgradeAWV)
+                    iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("bruiser3"))
+                    With iUpgradeAWV
+                        .SubString1 = "bruiser3"
+                        .SubInteger1 = 1609000
+                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        .SetRightLabel(price)
+                    End With
+                    mUpgradeAW.AddItem(iUpgradeAWV)
+                Case "gargoyle"
+                    iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("deathbike"))
+                    With iUpgradeAWV
+                        .SubString1 = "deathbike"
+                        .SubInteger1 = 1269000
+                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        .SetRightLabel(price)
+                    End With
+                    mUpgradeAW.AddItem(iUpgradeAWV)
+                    iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("deathbike2"))
+                    With iUpgradeAWV
+                        .SubString1 = "deathbike2"
+                        .SubInteger1 = 1269000
+                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        .SetRightLabel(price)
+                    End With
+                    mUpgradeAW.AddItem(iUpgradeAWV)
+                    iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("deathbike3"))
+                    With iUpgradeAWV
+                        .SubString1 = "deathbike3"
+                        .SubInteger1 = 1269000
+                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        .SetRightLabel(price)
+                    End With
+                    mUpgradeAW.AddItem(iUpgradeAWV)
+                Case "dominator", "dominator2"
+                    iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("dominator4"))
+                    With iUpgradeAWV
+                        .SubString1 = "dominator4"
+                        .SubInteger1 = 1132000
+                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        .SetRightLabel(price)
+                    End With
+                    mUpgradeAW.AddItem(iUpgradeAWV)
+                    iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("dominator5"))
+                    With iUpgradeAWV
+                        .SubString1 = "dominator5"
+                        .SubInteger1 = 1132000
+                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        .SetRightLabel(price)
+                    End With
+                    mUpgradeAW.AddItem(iUpgradeAWV)
+                    iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("dominator6"))
+                    With iUpgradeAWV
+                        .SubString1 = "dominator6"
+                        .SubInteger1 = 1132000
+                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        .SetRightLabel(price)
+                    End With
+                    mUpgradeAW.AddItem(iUpgradeAWV)
+                Case "impaler"
+                    iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("impaler2"))
+                    With iUpgradeAWV
+                        .SubString1 = "impaler2"
+                        .SubInteger1 = 1209500
+                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        .SetRightLabel(price)
+                    End With
+                    mUpgradeAW.AddItem(iUpgradeAWV)
+                    iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("impaler3"))
+                    With iUpgradeAWV
+                        .SubString1 = "impaler3"
+                        .SubInteger1 = 1209500
+                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        .SetRightLabel(price)
+                    End With
+                    mUpgradeAW.AddItem(iUpgradeAWV)
+                    iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("impaler4"))
+                    With iUpgradeAWV
+                        .SubString1 = "impaler4"
+                        .SubInteger1 = 1209500
+                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        .SetRightLabel(price)
+                    End With
+                    mUpgradeAW.AddItem(iUpgradeAWV)
+                Case "issi3"
+                    iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("issi4"))
+                    With iUpgradeAWV
+                        .SubString1 = "issi4"
+                        .SubInteger1 = 1089000
+                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        .SetRightLabel(price)
+                    End With
+                    mUpgradeAW.AddItem(iUpgradeAWV)
+                    iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("issi5"))
+                    With iUpgradeAWV
+                        .SubString1 = "issi5"
+                        .SubInteger1 = 1089000
+                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        .SetRightLabel(price)
+                    End With
+                    mUpgradeAW.AddItem(iUpgradeAWV)
+                    iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("issi6"))
+                    With iUpgradeAWV
+                        .SubString1 = "issi6"
+                        .SubInteger1 = 1089000
+                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        .SetRightLabel(price)
+                    End With
+                    mUpgradeAW.AddItem(iUpgradeAWV)
+                Case "ratloader", "ratloader2"
+                    iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("monster3"))
+                    With iUpgradeAWV
+                        .SubString1 = "monster3"
+                        .SubInteger1 = 1530875
+                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        .SetRightLabel(price)
+                    End With
+                    mUpgradeAW.AddItem(iUpgradeAWV)
+                    iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("monster4"))
+                    With iUpgradeAWV
+                        .SubString1 = "monster4"
+                        .SubInteger1 = 1530875
+                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        .SetRightLabel(price)
+                    End With
+                    mUpgradeAW.AddItem(iUpgradeAWV)
+                    iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("monster5"))
+                    With iUpgradeAWV
+                        .SubString1 = "monster5"
+                        .SubInteger1 = 1530875
+                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        .SetRightLabel(price)
+                    End With
+                    mUpgradeAW.AddItem(iUpgradeAWV)
+                Case "slamvan", "slamvan2", "slamvan3"
+                    iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("slamvan4"))
+                    With iUpgradeAWV
+                        .SubString1 = "slamvan4"
+                        .SubInteger1 = 1321875
+                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        .SetRightLabel(price)
+                    End With
+                    mUpgradeAW.AddItem(iUpgradeAWV)
+                    iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("slamvan5"))
+                    With iUpgradeAWV
+                        .SubString1 = "slamvan5"
+                        .SubInteger1 = 1321875
+                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        .SetRightLabel(price)
+                    End With
+                    mUpgradeAW.AddItem(iUpgradeAWV)
+                    iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("slamvan6"))
+                    With iUpgradeAWV
+                        .SubString1 = "slamvan6"
+                        .SubInteger1 = 1321875
+                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        .SetRightLabel(price)
+                    End With
+                    mUpgradeAW.AddItem(iUpgradeAWV)
+            End Select
+
+            mUpgradeAW.RefreshIndex()
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
         End Try
@@ -746,7 +1089,7 @@ Public Class BennysMenu
 
     Public Shared Sub CreateBodyworkMenu()
         Try
-            gmBodywork = New UIMenu("", Helper.LocalizeModTitleName("BODYWORK"), True) 'BODYWORK
+            gmBodywork = New UIMenu("", Game.GetGXTEntry("CMOD_BW_T"), True) 'BODYWORK
             gmBodywork.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmBodywork.MouseEdgeEnabled = False
             _menuPool.Add(gmBodywork)
@@ -764,68 +1107,68 @@ Public Class BennysMenu
 
             If Bennys.veh.ClassType = VehicleClass.Motorcycles Or Bennys.veh.Model = "blazer4" Then
                 If Bennys.veh.GetModCount(VehicleMod.Fender) <> 0 Then
-                    giShifter = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Fender), Game.GetGXTEntry("CMOD_MOD_SHI_D"))
+                    giShifter = New UIMenuItem(LocalizedModTypeName(VehicleMod.Fender), Game.GetGXTEntry("CMOD_MOD_SHI_D"))
                     gmBodywork.AddItem(giShifter)
                     gmBodywork.BindMenuToItem(mShifter, giShifter)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.FrontBumper) <> 0 Then
-                    giFMudguard = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.FrontBumper), Game.GetGXTEntry("CMOD_MOD_43_D"))
+                    giFMudguard = New UIMenuItem(LocalizedModTypeName(VehicleMod.FrontBumper), Game.GetGXTEntry("CMOD_MOD_43_D"))
                     gmBodywork.AddItem(giFMudguard)
                     gmBodywork.BindMenuToItem(mFMudguard, giFMudguard)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.Hood) <> 0 Then
-                    iBSeat = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Hood), Game.GetGXTEntry("CMOD_MOD_44_D"))
+                    iBSeat = New UIMenuItem(LocalizedModTypeName(VehicleMod.Hood), Game.GetGXTEntry("CMOD_MOD_44_D"))
                     gmBodywork.AddItem(iBSeat)
                     gmBodywork.BindMenuToItem(mBSeat, iBSeat)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.Grille) <> 0 Then
-                    giOilTank = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Grille), Game.GetGXTEntry("CMOD_MOD_OT_D"))
+                    giOilTank = New UIMenuItem(LocalizedModTypeName(VehicleMod.Grille), Game.GetGXTEntry("CMOD_MOD_OT_D"))
                     gmBodywork.AddItem(giOilTank)
                     gmBodywork.BindMenuToItem(mOilTank, giOilTank)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.RearBumper) <> 0 Then
-                    giRMudguard = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.RearBumper), Game.GetGXTEntry("CMOD_MOD_43_D"))
+                    giRMudguard = New UIMenuItem(LocalizedModTypeName(VehicleMod.RearBumper), Game.GetGXTEntry("CMOD_MOD_43_D"))
                     gmBodywork.AddItem(giRMudguard)
                     gmBodywork.BindMenuToItem(mRMudguard, giRMudguard)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.Roof) <> 0 Then
-                    giFuelTank = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Roof), Game.GetGXTEntry("CMOD_MOD_FUT_D"))
+                    giFuelTank = New UIMenuItem(LocalizedModTypeName(VehicleMod.Roof), Game.GetGXTEntry("CMOD_MOD_FUT_D"))
                     gmBodywork.AddItem(giFuelTank)
                     gmBodywork.BindMenuToItem(mFuelTank, giFuelTank)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.Spoilers) <> 0 Then
-                    giBeltDriveCovers = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Spoilers), Game.GetGXTEntry("CMOD_MOD_BEC_D"))
+                    giBeltDriveCovers = New UIMenuItem(LocalizedModTypeName(VehicleMod.Spoilers), Game.GetGXTEntry("CMOD_MOD_BEC_D"))
                     gmBodywork.AddItem(giBeltDriveCovers)
                     gmBodywork.BindMenuToItem(mBeltDriveCovers, giBeltDriveCovers)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.RightFender) <> 0 Then
-                    iRFender = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.RightFender), Game.GetGXTEntry("CMOD_MOD_41_D"))
+                    iRFender = New UIMenuItem(LocalizedModTypeName(VehicleMod.RightFender), Game.GetGXTEntry("CMOD_MOD_41_D"))
                     gmBodywork.AddItem(iRFender)
                     gmBodywork.BindMenuToItem(mRFender, iRFender)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.Tank) <> 0 Then
-                    giBTank = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Tank), Game.GetGXTEntry("CMOD_MOD_45_D"))
+                    giBTank = New UIMenuItem(LocalizedModTypeName(VehicleMod.Tank), Game.GetGXTEntry("CMOD_MOD_45_D"))
                     gmBodywork.AddItem(giBTank)
                     gmBodywork.BindMenuToItem(mBTank, giBTank)
                 End If
             Else
                 If Bennys.veh.GetModCount(VehicleMod.Aerials) <> 0 Then
-                    iAerials = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Aerials), Game.GetGXTEntry("SMOD_CHASS_6"))
+                    iAerials = New UIMenuItem(LocalizedModTypeName(VehicleMod.Aerials), Game.GetGXTEntry("SMOD_CHASS_6"))
                     gmBodywork.AddItem(iAerials)
                     gmBodywork.BindMenuToItem(mAerials, iAerials)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.Trim) <> 0 Then
-                    iTrim = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Trim), Game.GetGXTEntry("SMOD_CHASS_1b"))
+                    iTrim = New UIMenuItem(LocalizedModTypeName(VehicleMod.Trim), Game.GetGXTEntry("SMOD_CHASS_1b"))
                     gmBodywork.AddItem(iTrim)
                     gmBodywork.BindMenuToItem(mTrim, iTrim)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.Windows) <> 0 Then
-                    iWindows = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Windows), Game.GetGXTEntry("SMOD_CHASS_5"))
+                    iWindows = New UIMenuItem(LocalizedModTypeName(VehicleMod.Windows), Game.GetGXTEntry("SMOD_CHASS_5"))
                     gmBodywork.AddItem(iWindows)
                     gmBodywork.BindMenuToItem(mWindow, iWindows)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.ArchCover) <> 0 Then
-                    iArchCover = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.ArchCover), Game.GetGXTEntry("SMOD_CHASS_1c")) 'Arch Covers
+                    iArchCover = New UIMenuItem(LocalizedModTypeName(VehicleMod.ArchCover), Game.GetGXTEntry("SMOD_CHASS_1c")) 'Arch Covers
                     gmBodywork.AddItem(iArchCover)
                     gmBodywork.BindMenuToItem(mArchCover, iArchCover)
                 End If
@@ -839,7 +1182,7 @@ Public Class BennysMenu
 
     Public Shared Sub CreateEngineMenu()
         Try
-            gmEngine = New UIMenu("", Helper.LocalizeModTitleName("ENGINE"), True) 'ENGINE
+            gmEngine = New UIMenu("", Game.GetGXTEntry("CMM_MOD_GT3"), True) 'ENGINE
             gmEngine.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmEngine.MouseEdgeEnabled = False
             _menuPool.Add(gmEngine)
@@ -858,38 +1201,38 @@ Public Class BennysMenu
 
             If Bennys.veh.ClassType = VehicleClass.Motorcycles Or Bennys.veh.Model = "blazer4" Then
                 If Bennys.veh.GetModCount(VehicleMod.Frame) <> 0 Then
-                    giBEngineBlock = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Frame), Game.GetGXTEntry("SMOD_ENGINE_1"))
+                    giBEngineBlock = New UIMenuItem(LocalizedModTypeName(VehicleMod.Frame), Game.GetGXTEntry("SMOD_ENGINE_1"))
                     gmEngine.AddItem(giBEngineBlock)
                     gmEngine.BindMenuToItem(mBEngineBlock, giBEngineBlock)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.Engine) <> 0 Then
-                    iEngine = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Engine), Game.GetGXTEntry("SMOD_ENGINE_4"))
+                    iEngine = New UIMenuItem(LocalizedModTypeName(VehicleMod.Engine), Game.GetGXTEntry("SMOD_ENGINE_4"))
                     gmEngine.AddItem(iEngine)
                     gmEngine.BindMenuToItem(mEngine, iEngine)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.SideSkirt) <> 0 Then
-                    giBAirFilter = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.SideSkirt), Game.GetGXTEntry("CMOD_SMOD_2_D"))
+                    giBAirFilter = New UIMenuItem(LocalizedModTypeName(VehicleMod.SideSkirt), Game.GetGXTEntry("CMOD_SMOD_2_D"))
                     gmEngine.AddItem(giBAirFilter)
                     gmEngine.BindMenuToItem(mBAirFilter, giBAirFilter)
                 End If
             Else
                 If Bennys.veh.GetModCount(VehicleMod.Engine) <> 0 Then
-                    iEngine = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Engine), Game.GetGXTEntry("SMOD_ENGINE_4"))
+                    iEngine = New UIMenuItem(LocalizedModTypeName(VehicleMod.Engine), Game.GetGXTEntry("SMOD_ENGINE_4"))
                     gmEngine.AddItem(iEngine)
                     gmEngine.BindMenuToItem(mEngine, iEngine)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.EngineBlock) <> 0 Then
-                    iEngineBlock = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.EngineBlock), Game.GetGXTEntry("SMOD_ENGINE_1"))
+                    iEngineBlock = New UIMenuItem(LocalizedModTypeName(VehicleMod.EngineBlock), Game.GetGXTEntry("SMOD_ENGINE_1"))
                     gmEngine.AddItem(iEngineBlock)
                     gmEngine.BindMenuToItem(mEngineBlock, iEngineBlock)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.AirFilter) <> 0 Then
-                    iAirFilter = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.AirFilter), Game.GetGXTEntry("SMOD_ENGINE_2"))
+                    iAirFilter = New UIMenuItem(LocalizedModTypeName(VehicleMod.AirFilter), Game.GetGXTEntry("SMOD_ENGINE_2"))
                     gmEngine.AddItem(iAirFilter)
                     gmEngine.BindMenuToItem(mAirFilter, iAirFilter)
                 End If
                 If Bennys.veh.GetModCount(VehicleMod.Struts) <> 0 Then
-                    giStruts = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Struts), Game.GetGXTEntry("SMOD_ENGINE_3b"))
+                    giStruts = New UIMenuItem(LocalizedModTypeName(VehicleMod.Struts), Game.GetGXTEntry("SMOD_ENGINE_3b"))
                     gmEngine.AddItem(giStruts)
                     gmEngine.BindMenuToItem(mStruts, giStruts)
                 End If
@@ -903,7 +1246,7 @@ Public Class BennysMenu
 
     Public Shared Sub CreateInteriorMenu()
         Try
-            gmInterior = New UIMenu("", Helper.LocalizeModTitleName("INTERIOR"), True) 'INTERIOR
+            gmInterior = New UIMenu("", Game.GetGXTEntry("CMM_MOD_GT1"), True) 'INTERIOR
             gmInterior.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmInterior.MouseEdgeEnabled = False
             _menuPool.Add(gmInterior)
@@ -920,55 +1263,55 @@ Public Class BennysMenu
         Try
             gmInterior.MenuItems.Clear()
             If Bennys.veh.GetModCount(VehicleMod.ColumnShifterLevers) <> 0 Then
-                iColumnShifterLevers = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.ColumnShifterLevers), Game.GetGXTEntry("SMOD_IN_KNOB"))
+                iColumnShifterLevers = New UIMenuItem(LocalizedModTypeName(VehicleMod.ColumnShifterLevers), Game.GetGXTEntry("SMOD_IN_KNOB"))
                 gmInterior.AddItem(iColumnShifterLevers)
                 gmInterior.BindMenuToItem(mColumnShifterLevers, iColumnShifterLevers)
             End If
             If Bennys.veh.GetModCount(VehicleMod.Dashboard) <> 0 Then
-                iDashboard = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Dashboard), Game.GetGXTEntry("SMOD_IN_2"))
+                iDashboard = New UIMenuItem(LocalizedModTypeName(VehicleMod.Dashboard), Game.GetGXTEntry("SMOD_IN_2"))
                 gmInterior.AddItem(iDashboard)
                 gmInterior.BindMenuToItem(mDashboard, iDashboard)
             End If
             If Bennys.veh.GetModCount(VehicleMod.DialDesign) <> 0 Then
-                iDialDesign = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.DialDesign), Game.GetGXTEntry("SMOD_IN_4"))
+                iDialDesign = New UIMenuItem(LocalizedModTypeName(VehicleMod.DialDesign), Game.GetGXTEntry("SMOD_IN_4"))
                 gmInterior.AddItem(iDialDesign)
                 gmInterior.BindMenuToItem(mDialDesign, iDialDesign)
             End If
             If Bennys.veh.GetModCount(VehicleMod.Ornaments) <> 0 Then
-                iOrnaments = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Ornaments), Game.GetGXTEntry("CMOD_MOD_64_D"))
+                iOrnaments = New UIMenuItem(LocalizedModTypeName(VehicleMod.Ornaments), Game.GetGXTEntry("CMOD_MOD_64_D"))
                 gmInterior.AddItem(iOrnaments)
                 gmInterior.BindMenuToItem(mOrnaments, iOrnaments)
             End If
             If Bennys.veh.GetModCount(VehicleMod.Seats) <> 0 Then
-                iSeats = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Seats), Game.GetGXTEntry("SMOD_IN_SEAT"))
+                iSeats = New UIMenuItem(LocalizedModTypeName(VehicleMod.Seats), Game.GetGXTEntry("SMOD_IN_SEAT"))
                 gmInterior.AddItem(iSeats)
                 gmInterior.BindMenuToItem(mSeats, iSeats)
             End If
             If Bennys.veh.GetModCount(VehicleMod.SteeringWheels) <> 0 Then
-                iSteeringWheels = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.SteeringWheels), Game.GetGXTEntry("SMOD_IN_STEER"))
+                iSteeringWheels = New UIMenuItem(LocalizedModTypeName(VehicleMod.SteeringWheels), Game.GetGXTEntry("SMOD_IN_STEER"))
                 gmInterior.AddItem(iSteeringWheels)
                 gmInterior.BindMenuToItem(mSteeringWheels, iSteeringWheels)
             End If
             If Bennys.veh.GetModCount(VehicleMod.TrimDesign) <> 0 Then
-                iTrimDesign = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.TrimDesign), Game.GetGXTEntry("SMOD_IN_3"))
+                iTrimDesign = New UIMenuItem(LocalizedModTypeName(VehicleMod.TrimDesign), Game.GetGXTEntry("SMOD_IN_3"))
                 gmInterior.AddItem(iTrimDesign)
                 gmInterior.BindMenuToItem(mTrimDesign, iTrimDesign)
             End If
             If Bennys.veh.GetModCount(VehicleMod.DoorSpeakers) <> 0 Then
-                giDoor = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.DoorSpeakers), Game.GetGXTEntry("SMOD_IN_5b"))
+                giDoor = New UIMenuItem(LocalizedModTypeName(VehicleMod.DoorSpeakers), Game.GetGXTEntry("SMOD_IN_5b"))
                 gmInterior.AddItem(giDoor)
                 gmInterior.BindMenuToItem(mDoor, giDoor)
             End If
             If Bennys.veh.GetModCount(VehicleMod.Speakers) <> 0 Then
-                iSpeaker = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.Speakers), Game.GetGXTEntry("CMOD_MOD_23_D"))
+                iSpeaker = New UIMenuItem(LocalizedModTypeName(VehicleMod.Speakers), Game.GetGXTEntry("CMOD_MOD_23_D"))
                 gmInterior.AddItem(iSpeaker)
                 gmInterior.BindMenuToItem(mSpeakers, iSpeaker)
             End If
             If bennysvehicle.Contains(Bennys.veh.Model) Then
-                iDashboardColor = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.LightColor), Game.GetGXTEntry("SMOD_LIGHT_COLb"))
+                iDashboardColor = New UIMenuItem(LocalizedModGroupName(GroupName.LightColor), Game.GetGXTEntry("SMOD_LIGHT_COLb"))
                 gmInterior.AddItem(iDashboardColor)
                 gmInterior.BindMenuToItem(mLightsColor, iDashboardColor)
-                iTrimColor = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.TrimColor), Game.GetGXTEntry("CMOD_MOD_6_D")) 'trim color
+                iTrimColor = New UIMenuItem(LocalizedModGroupName(GroupName.TrimColor), Game.GetGXTEntry("CMOD_MOD_6_D")) 'trim color
                 gmInterior.AddItem(iTrimColor)
                 gmInterior.BindMenuToItem(mTrimColor, iTrimColor)
             End If
@@ -980,7 +1323,7 @@ Public Class BennysMenu
 
     Public Shared Sub CreateBumperMenu()
         Try
-            gmBumper = New UIMenu("", Helper.LocalizeModTitleName("BUMPERS"), True) 'BUMPERS
+            gmBumper = New UIMenu("", Game.GetGXTEntry("CMOD_BUM_T"), True) 'BUMPERS
             gmBumper.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmBumper.MouseEdgeEnabled = False
             _menuPool.Add(gmBumper)
@@ -996,17 +1339,17 @@ Public Class BennysMenu
         Try
             gmBumper.MenuItems.Clear()
             If Bennys.veh.GetModCount(VehicleMod.FrontBumper) <> 0 Then
-                giFBumper = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.FrontBumper), Game.GetGXTEntry("CMOD_MOD_71_D"))
+                giFBumper = New UIMenuItem(LocalizedModTypeName(VehicleMod.FrontBumper), Game.GetGXTEntry("CMOD_MOD_71_D"))
                 gmBumper.AddItem(giFBumper)
                 gmBumper.BindMenuToItem(mFBumper, giFBumper)
             End If
             If Bennys.veh.GetModCount(VehicleMod.SideSkirt) <> 0 Then
-                giSSkirt = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.SideSkirt), Game.GetGXTEntry("CMOD_MOD_21_D"))
+                giSSkirt = New UIMenuItem(LocalizedModTypeName(VehicleMod.SideSkirt), Game.GetGXTEntry("CMOD_MOD_21_D"))
                 gmBumper.AddItem(giSSkirt)
                 gmBumper.BindMenuToItem(mSSkirt, giSSkirt)
             End If
             If Bennys.veh.GetModCount(VehicleMod.RearBumper) <> 0 Then
-                giRBumper = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.RearBumper), Game.GetGXTEntry("CMOD_MOD_71_D"))
+                giRBumper = New UIMenuItem(LocalizedModTypeName(VehicleMod.RearBumper), Game.GetGXTEntry("CMOD_MOD_71_D"))
                 gmBumper.AddItem(giRBumper)
                 gmBumper.BindMenuToItem(mRBumper, giRBumper)
             End If
@@ -1018,7 +1361,7 @@ Public Class BennysMenu
 
     Public Shared Sub CreateWheelsMenu()
         Try
-            gmWheels = New UIMenu("", Helper.LocalizeModTitleName("WHEELS"), True) 'WHEELS
+            gmWheels = New UIMenu("", Game.GetGXTEntry("CMOD_WHE0_T"), True) 'WHEELS
             gmWheels.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmWheels.MouseEdgeEnabled = False
             _menuPool.Add(gmWheels)
@@ -1034,16 +1377,16 @@ Public Class BennysMenu
     Public Shared Sub RefreshWheelsMenu()
         Try
             gmWheels.MenuItems.Clear()
-            giWheelType = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.WheelType), Game.GetGXTEntry("CMOD_MOD_28_D")) 'Wheel Type
+            giWheelType = New UIMenuItem(LocalizedModGroupName(GroupName.WheelType), Game.GetGXTEntry("CMOD_MOD_28_D")) 'Wheel Type
             gmWheels.AddItem(giWheelType)
             gmWheels.BindMenuToItem(gmWheelType, giWheelType)
-            iRimColor = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.WheelColor), Game.GetGXTEntry("CMOD_MOD_59_D"))
+            iRimColor = New UIMenuItem(LocalizedModGroupName(GroupName.WheelColor), Game.GetGXTEntry("CMOD_MOD_59_D"))
             gmWheels.AddItem(iRimColor)
             gmWheels.BindMenuToItem(mRimColor, iRimColor)
-            giTires = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.Tires), Game.GetGXTEntry("CMOD_IE_25_D"))
+            giTires = New UIMenuItem(LocalizedModGroupName(GroupName.Tires), Game.GetGXTEntry("CMOD_IE_25_D"))
             gmWheels.AddItem(giTires)
             gmWheels.BindMenuToItem(mTires, giTires)
-            iTireSmoke = New UIMenuItem(Helper.LocalizedModTypeName(VehicleToggleMod.TireSmoke), Game.GetGXTEntry("CMOD_IE_25_D"))
+            iTireSmoke = New UIMenuItem(LocalizedModTypeName(VehicleToggleMod.TireSmoke), Game.GetGXTEntry("CMOD_IE_25_D"))
             gmWheels.AddItem(iTireSmoke)
             gmWheels.BindMenuToItem(mTireSmoke, iTireSmoke)
             gmWheels.RefreshIndex()
@@ -1054,7 +1397,7 @@ Public Class BennysMenu
 
     Public Shared Sub CreateWheelTypeMenu()
         Try
-            gmWheelType = New UIMenu("", Helper.LocalizeModTitleName("WHEELTYPE"), True) 'WHEEL TYPE
+            gmWheelType = New UIMenu("", Game.GetGXTEntry("CMOD_WHE1_T"), True) 'WHEEL TYPE
             gmWheelType.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmWheelType.MouseEdgeEnabled = False
             _menuPool.Add(gmWheelType)
@@ -1072,35 +1415,35 @@ Public Class BennysMenu
 
             Select Case Bennys.veh.ClassType
                 Case VehicleClass.Motorcycles, VehicleClass.Cycles
-                    giBikeWheels = New UIMenuItem(Helper.GetLocalizedWheelTypeName(VehicleWheelType.BikeWheels))
+                    giBikeWheels = New UIMenuItem(GetLocalizedWheelTypeName(VehicleWheelType.BikeWheels))
                     gmWheelType.AddItem(giBikeWheels)
                     gmWheelType.BindMenuToItem(gmBikeWheels, giBikeWheels)
                 Case Else
-                    giHighEndWheels = New UIMenuItem(Helper.GetLocalizedWheelTypeName(VehicleWheelType.HighEnd))
+                    giHighEndWheels = New UIMenuItem(GetLocalizedWheelTypeName(VehicleWheelType.HighEnd))
                     gmWheelType.AddItem(giHighEndWheels)
                     gmWheelType.BindMenuToItem(gmHighEnd, giHighEndWheels)
-                    giLowriderWheels = New UIMenuItem(Helper.GetLocalizedWheelTypeName(VehicleWheelType.Lowrider))
+                    giLowriderWheels = New UIMenuItem(GetLocalizedWheelTypeName(VehicleWheelType.Lowrider))
                     gmWheelType.AddItem(giLowriderWheels)
                     gmWheelType.BindMenuToItem(gmLowrider, giLowriderWheels)
-                    giMuscleWheels = New UIMenuItem(Helper.GetLocalizedWheelTypeName(VehicleWheelType.Muscle))
+                    giMuscleWheels = New UIMenuItem(GetLocalizedWheelTypeName(VehicleWheelType.Muscle))
                     gmWheelType.AddItem(giMuscleWheels)
                     gmWheelType.BindMenuToItem(gmMuscle, giMuscleWheels)
-                    giOffroadWheels = New UIMenuItem(Helper.GetLocalizedWheelTypeName(VehicleWheelType.Offroad))
+                    giOffroadWheels = New UIMenuItem(GetLocalizedWheelTypeName(VehicleWheelType.Offroad))
                     gmWheelType.AddItem(giOffroadWheels)
                     gmWheelType.BindMenuToItem(gmOffroad, giOffroadWheels)
-                    giSportWheels = New UIMenuItem(Helper.GetLocalizedWheelTypeName(VehicleWheelType.Sport))
+                    giSportWheels = New UIMenuItem(GetLocalizedWheelTypeName(VehicleWheelType.Sport))
                     gmWheelType.AddItem(giSportWheels)
                     gmWheelType.BindMenuToItem(gmSport, giSportWheels)
-                    giSUVWheels = New UIMenuItem(Helper.GetLocalizedWheelTypeName(VehicleWheelType.SUV))
+                    giSUVWheels = New UIMenuItem(GetLocalizedWheelTypeName(VehicleWheelType.SUV))
                     gmWheelType.AddItem(giSUVWheels)
                     gmWheelType.BindMenuToItem(gmSUV, giSUVWheels)
-                    giTunerWheels = New UIMenuItem(Helper.GetLocalizedWheelTypeName(VehicleWheelType.Tuner))
+                    giTunerWheels = New UIMenuItem(GetLocalizedWheelTypeName(VehicleWheelType.Tuner))
                     gmWheelType.AddItem(giTunerWheels)
                     gmWheelType.BindMenuToItem(gmTuner, giTunerWheels)
-                    giBennysWheels = New UIMenuItem(Helper.GetLocalizedWheelTypeName(8)) 'Benny's Original
+                    giBennysWheels = New UIMenuItem(GetLocalizedWheelTypeName(8)) 'Benny's Original
                     gmWheelType.AddItem(giBennysWheels)
                     gmWheelType.BindMenuToItem(mBennysOriginals, giBennysWheels)
-                    giBespokeWheels = New UIMenuItem(Helper.GetLocalizedWheelTypeName(9)) 'Benny's Bespoke
+                    giBespokeWheels = New UIMenuItem(GetLocalizedWheelTypeName(9)) 'Benny's Bespoke
                     gmWheelType.AddItem(giBespokeWheels)
                     gmWheelType.BindMenuToItem(mBespoke, giBespokeWheels)
             End Select
@@ -1147,7 +1490,7 @@ Public Class BennysMenu
             Dim half As Integer = count / 2
 
             For i As Integer = -1 To half - 1
-                item = New UIMenuItem(Helper.GetLocalizedModName(i, Bennys.veh.GetModCount(vehmod), vehmod))
+                item = New UIMenuItem(GetLocalizedModName(i, Bennys.veh.GetModCount(vehmod), vehmod))
                 With item
                     If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_ARM_0")
                     .SubInteger1 = i
@@ -1177,7 +1520,7 @@ Public Class BennysMenu
             Dim count As Integer = Bennys.veh.GetModCount(vehmod)
             Dim half As Integer = count / 2
 
-            item = New UIMenuItem(Helper.GetLocalizedModName(-1, Bennys.veh.GetModCount(vehmod), vehmod))
+            item = New UIMenuItem(GetLocalizedModName(-1, Bennys.veh.GetModCount(vehmod), vehmod))
             With item
                 If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_ARM_0")
                 .SubInteger1 = -1
@@ -1193,7 +1536,7 @@ Public Class BennysMenu
             menu.AddItem(item)
 
             For i As Integer = half To Bennys.veh.GetModCount(vehmod) - 1
-                item = New UIMenuItem(Helper.GetLocalizedModName(i, Bennys.veh.GetModCount(vehmod), vehmod))
+                item = New UIMenuItem(GetLocalizedModName(i, Bennys.veh.GetModCount(vehmod), vehmod))
                 With item
                     If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_ARM_0")
                     .SubInteger1 = i
@@ -1224,7 +1567,7 @@ Public Class BennysMenu
             Dim oneOver6 As Integer = count / 7
 
             For i As Integer = -1 To oneOver6 - 1
-                item = New UIMenuItem(Helper.GetLocalizedModName(i, Bennys.veh.GetModCount(vehmod), vehmod))
+                item = New UIMenuItem(GetLocalizedModName(i, Bennys.veh.GetModCount(vehmod), vehmod))
                 With item
                     If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_ARM_0")
                     .SubInteger1 = i
@@ -1257,7 +1600,7 @@ Public Class BennysMenu
 
             If chromeWheels = False Then 'Standard
                 For Each i As Integer In standard
-                    item = New UIMenuItem(Helper.GetLocalizedModName(i, Bennys.veh.GetModCount(vehmod), vehmod))
+                    item = New UIMenuItem(GetLocalizedModName(i, Bennys.veh.GetModCount(vehmod), vehmod))
                     With item
                         If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_ARM_0")
                         .SubInteger1 = i
@@ -1277,7 +1620,7 @@ Public Class BennysMenu
                 Next
             ElseIf chromeWheels = True Then 'Chrome
                 For Each i As Integer In chrome
-                    item = New UIMenuItem(Helper.GetLocalizedModName(i, Bennys.veh.GetModCount(vehmod), vehmod))
+                    item = New UIMenuItem(GetLocalizedModName(i, Bennys.veh.GetModCount(vehmod), vehmod))
                     With item
                         If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_ARM_0")
                         .SubInteger1 = i
@@ -1305,7 +1648,7 @@ Public Class BennysMenu
 
     Public Shared Sub CreateTyresMenu()
         Try
-            mTires = New UIMenu("", Helper.LocalizeModTitleName("TIRES"), True) 'TIRES
+            mTires = New UIMenu("", Game.GetGXTEntry("CMOD_TYR_T"), True) 'TIRES
             mTires.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             mTires.MouseEdgeEnabled = False
             _menuPool.Add(mTires)
@@ -1327,7 +1670,7 @@ Public Class BennysMenu
                 iTires = New UIMenuItem(Game.GetGXTEntry("CMOD_TYR_0"))
                 With iTires
                     .SubInteger1 = 1
-                    If Not Helper.IsCustomWheels Then
+                    If Not IsCustomWheels() Then
                         .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Else
                         Dim value As Integer = 100
@@ -1340,7 +1683,7 @@ Public Class BennysMenu
             Else
                 Select Case Bennys.veh.WheelType
                     Case 8, 9
-                        Dim whe As Integer = Helper.GetBennysOriginalRim(Bennys.veh.GetMod(VehicleMod.FrontWheels))
+                        Dim whe As Integer = GetBennysOriginalRim(Bennys.veh.GetMod(VehicleMod.FrontWheels))
                         Dim count As Integer = Bennys.veh.GetModCount(VehicleMod.FrontWheels)
                         Dim oneOver6 As Integer = count / 7
                         Dim thirtyOne As Integer = oneOver6 '31
@@ -1358,7 +1701,7 @@ Public Class BennysMenu
                             End If
                         End With
                         mTires.AddItem(iTires)
-                        iTires = New UIMenuItem(tyres(2))
+                        iTires = New UIMenuItem(Game.GetGXTEntry("collision_v925jg")) 'White Lines
                         With iTires
                             Dim newid As Integer = (whe + thirtyOne) ' + 1
                             .SubInteger1 = newid
@@ -1372,7 +1715,7 @@ Public Class BennysMenu
                             End If
                         End With
                         mTires.AddItem(iTires)
-                        iTires = New UIMenuItem(tyres(3))
+                        iTires = New UIMenuItem(Game.GetGXTEntry("collision_v925jh")) 'Classic White Wall
                         With iTires
                             Dim newid As Integer = (whe + thirtyOne * 2) ' + 2
                             .SubInteger1 = newid
@@ -1386,7 +1729,7 @@ Public Class BennysMenu
                             End If
                         End With
                         mTires.AddItem(iTires)
-                        iTires = New UIMenuItem(tyres(4))
+                        iTires = New UIMenuItem(Game.GetGXTEntry("collision_v925ji")) 'Retro White Wall
                         With iTires
                             Dim newid As Integer = (whe + thirtyOne * 3) ' + 3
                             .SubInteger1 = newid
@@ -1400,7 +1743,7 @@ Public Class BennysMenu
                             End If
                         End With
                         mTires.AddItem(iTires)
-                        iTires = New UIMenuItem(tyres(5))
+                        iTires = New UIMenuItem(Game.GetGXTEntry("collision_v925jj")) 'Red Line
                         With iTires
                             Dim newid As Integer = (whe + thirtyOne * 4) ' + 4
                             .SubInteger1 = newid
@@ -1413,7 +1756,7 @@ Public Class BennysMenu
                             End If
                         End With
                         mTires.AddItem(iTires)
-                        iTires = New UIMenuItem(tyres(6))
+                        iTires = New UIMenuItem(Game.GetGXTEntry("collision_v925jk")) 'Blue Line
                         With iTires
                             Dim newid As Integer = (whe + thirtyOne * 5) ' + 5
                             .SubInteger1 = newid
@@ -1445,7 +1788,7 @@ Public Class BennysMenu
                         iTires = New UIMenuItem(Game.GetGXTEntry("CMOD_TYR_0"))
                         With iTires
                             .SubInteger1 = 1
-                            If Not Helper.IsCustomWheels Then
+                            If Not IsCustomWheels() Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
                                 Dim value As Integer = 100
@@ -1458,7 +1801,7 @@ Public Class BennysMenu
                         iTires = New UIMenuItem(Game.GetGXTEntry("CMOD_TYR_1"))
                         With iTires
                             .SubInteger1 = 7
-                            If Helper.IsCustomWheels Then
+                            If IsCustomWheels() Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
                                 Dim value As Integer = 700
@@ -1478,7 +1821,7 @@ Public Class BennysMenu
 
     Public Shared Sub CreatePlateMenu()
         Try
-            gmPlate = New UIMenu("", Helper.LocalizeModTitleName("PLATES"), True) 'PLATES
+            gmPlate = New UIMenu("", Game.GetGXTEntry("CMM_MOD_GT2"), True) 'PLATES
             gmPlate.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmPlate.MouseEdgeEnabled = False
             _menuPool.Add(gmPlate)
@@ -1495,16 +1838,16 @@ Public Class BennysMenu
         Try
             gmPlate.MenuItems.Clear()
             If Bennys.veh.GetModCount(VehicleMod.PlateHolder) <> 0 Then
-                giPlateHolder = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.PlateHolder), Game.GetGXTEntry("CMOD_MOD_49_D"))
+                giPlateHolder = New UIMenuItem(LocalizedModTypeName(VehicleMod.PlateHolder), Game.GetGXTEntry("CMOD_MOD_49_D"))
                 gmPlate.AddItem(giPlateHolder)
                 gmPlate.BindMenuToItem(mPlateHolder, giPlateHolder)
             End If
             If Bennys.veh.GetModCount(VehicleMod.VanityPlates) <> 0 Then
-                giVanityPlate = New UIMenuItem(Helper.LocalizedModTypeName(VehicleMod.VanityPlates), Game.GetGXTEntry("CMOD_SMOD_4_D"))
+                giVanityPlate = New UIMenuItem(LocalizedModTypeName(VehicleMod.VanityPlates), Game.GetGXTEntry("CMOD_SMOD_4_D"))
                 gmPlate.AddItem(giVanityPlate)
                 gmPlate.BindMenuToItem(mVanityPlates, giVanityPlate)
             End If
-            giNumberPlate = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.License), Game.GetGXTEntry("CMOD_MOD_18_D")) 'Number Plate
+            giNumberPlate = New UIMenuItem(LocalizedModGroupName(GroupName.License), Game.GetGXTEntry("CMOD_MOD_18_D")) 'Number Plate
             gmPlate.AddItem(giNumberPlate)
             gmPlate.BindMenuToItem(mNumberPlate, giNumberPlate)
             gmPlate.RefreshIndex()
@@ -1515,7 +1858,7 @@ Public Class BennysMenu
 
     Public Shared Sub CreatePlateNumberMenu()
         Try
-            mNumberPlate = New UIMenu("", Helper.LocalizeModTitleName("LICENSE"), True) 'LICENSE PLATE
+            mNumberPlate = New UIMenu("", Game.GetGXTEntry("CMOD_MOD_PLA2").ToUpper, True) 'LICENSE PLATE
             mNumberPlate.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             mNumberPlate.MouseEdgeEnabled = False
             _menuPool.Add(mNumberPlate)
@@ -1531,7 +1874,7 @@ Public Class BennysMenu
 
     Public Shared Sub CreateTintMenu()
         Try
-            mTint = New UIMenu("", Helper.LocalizeModTitleName("TINTS"), True) 'TINTS
+            mTint = New UIMenu("", Game.GetGXTEntry("CMOD_WIN_T"), True) 'TINTS
             mTint.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             mTint.MouseEdgeEnabled = False
             _menuPool.Add(mTint)
@@ -1561,16 +1904,16 @@ Public Class BennysMenu
         End Try
     End Sub
 
-    Public Shared Sub RefreshEnumModMenuFor(ByRef menu As UIMenu, ByRef item As UIMenuItem, ByRef enumType As Helper.EnumTypes)
+    Public Shared Sub RefreshEnumModMenuFor(ByRef menu As UIMenu, ByRef item As UIMenuItem, ByRef enumType As EnumTypes)
         Try
             menu.MenuItems.Clear()
 
             Dim enumArray As Array = Nothing
             Select Case enumType
-                Case Helper.EnumTypes.NumberPlateType
+                Case EnumTypes.NumberPlateType
                     enumArray = System.Enum.GetValues(GetType(NumberPlateType))
                     For Each enumItem As NumberPlateType In enumArray
-                        item = New UIMenuItem(Helper.LocalizedLicensePlate(enumItem))
+                        item = New UIMenuItem(LocalizedLicensePlate(enumItem))
                         With item
                             .SubInteger1 = enumItem
                             If Bennys.veh.NumberPlateType = enumItem Then
@@ -1584,10 +1927,10 @@ Public Class BennysMenu
                         End With
                         menu.AddItem(item)
                     Next
-                Case Helper.EnumTypes.VehicleWindowTint
+                Case EnumTypes.VehicleWindowTint
                     enumArray = System.Enum.GetValues(GetType(VehicleWindowTint))
                     For Each enumItem As VehicleWindowTint In enumArray
-                        item = New UIMenuItem(Helper.LocalizedWindowsTint(enumItem))
+                        item = New UIMenuItem(LocalizedWindowsTint(enumItem))
                         With item
                             .SubInteger1 = enumItem
                             If Bennys.veh.WindowTint = enumItem Then
@@ -1601,10 +1944,10 @@ Public Class BennysMenu
                         End With
                         menu.AddItem(item)
                     Next
-                Case Helper.EnumTypes.VehicleColorPrimary
+                Case EnumTypes.VehicleColorPrimary
                     enumArray = System.Enum.GetValues(GetType(VehicleColor))
                     For Each enumItem As VehicleColor In enumArray
-                        item = New UIMenuItem(Helper.GetLocalizedColorName(enumItem))
+                        item = New UIMenuItem(GetLocalizedColorName(enumItem))
                         With item
                             .SubInteger1 = enumItem
                             If Bennys.veh.PrimaryColor = enumItem Then
@@ -1618,10 +1961,10 @@ Public Class BennysMenu
                         End With
                         menu.AddItem(item)
                     Next
-                Case Helper.EnumTypes.VehicleColorSecondary
+                Case EnumTypes.VehicleColorSecondary
                     enumArray = System.Enum.GetValues(GetType(VehicleColor))
                     For Each enumItem As VehicleColor In enumArray
-                        item = New UIMenuItem(Helper.GetLocalizedColorName(enumItem))
+                        item = New UIMenuItem(GetLocalizedColorName(enumItem))
                         With item
                             .SubInteger1 = enumItem
                             If Bennys.veh.SecondaryColor = enumItem Then
@@ -1635,10 +1978,10 @@ Public Class BennysMenu
                         End With
                         menu.AddItem(item)
                     Next
-                Case Helper.EnumTypes.vehicleColorPearlescent
+                Case EnumTypes.vehicleColorPearlescent
                     enumArray = System.Enum.GetValues(GetType(VehicleColor))
                     For Each enumItem As VehicleColor In enumArray
-                        item = New UIMenuItem(Helper.GetLocalizedColorName(enumItem))
+                        item = New UIMenuItem(GetLocalizedColorName(enumItem))
                         With item
                             .SubInteger1 = enumItem
                             If Bennys.veh.PearlescentColor = enumItem Then
@@ -1652,10 +1995,10 @@ Public Class BennysMenu
                         End With
                         menu.AddItem(item)
                     Next
-                Case Helper.EnumTypes.VehicleColorTrim
+                Case EnumTypes.VehicleColorTrim
                     enumArray = System.Enum.GetValues(GetType(VehicleColor))
                     For Each enumItem As VehicleColor In enumArray
-                        item = New UIMenuItem(Helper.GetLocalizedColorName(enumItem))
+                        item = New UIMenuItem(GetLocalizedColorName(enumItem))
                         With item
                             .SubInteger1 = enumItem
                             If Bennys.veh.TrimColor = enumItem Then
@@ -1669,10 +2012,10 @@ Public Class BennysMenu
                         End With
                         menu.AddItem(item)
                     Next
-                Case Helper.EnumTypes.VehicleColorDashboard
+                Case EnumTypes.VehicleColorDashboard
                     enumArray = System.Enum.GetValues(GetType(VehicleColor))
                     For Each enumItem As VehicleColor In enumArray
-                        item = New UIMenuItem(Helper.GetLocalizedColorName(enumItem))
+                        item = New UIMenuItem(GetLocalizedColorName(enumItem))
                         With item
                             .SubInteger1 = enumItem
                             If Bennys.veh.DashboardColor = enumItem Then
@@ -1686,10 +2029,10 @@ Public Class BennysMenu
                         End With
                         menu.AddItem(item)
                     Next
-                Case Helper.EnumTypes.VehicleColorRim
+                Case EnumTypes.VehicleColorRim
                     enumArray = System.Enum.GetValues(GetType(VehicleColor))
                     For Each enumItem As VehicleColor In enumArray
-                        item = New UIMenuItem(Helper.GetLocalizedColorName(enumItem))
+                        item = New UIMenuItem(GetLocalizedColorName(enumItem))
                         With item
                             .SubInteger1 = enumItem
                             If Bennys.veh.RimColor = enumItem Then
@@ -1712,7 +2055,7 @@ Public Class BennysMenu
 
     Public Shared Sub CreateLightsMenu()
         Try
-            gmLights = New UIMenu("", Helper.LocalizeModTitleName("LIGHTS"), True) 'LIGHTS
+            gmLights = New UIMenu("", Game.GetGXTEntry("CMOD_LGT_T"), True) 'LIGHTS
             gmLights.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmLights.MouseEdgeEnabled = False
             _menuPool.Add(gmLights)
@@ -1727,11 +2070,11 @@ Public Class BennysMenu
     Public Shared Sub RefreshLightsMenu()
         Try
             gmLights.MenuItems.Clear()
-            iHeadlights = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.Headlights), Game.GetGXTEntry("CMOD_MOD_47_D"))
+            iHeadlights = New UIMenuItem(LocalizedModGroupName(GroupName.Headlights), Game.GetGXTEntry("CMOD_MOD_47_D"))
             gmLights.AddItem(iHeadlights)
             gmLights.BindMenuToItem(mHeadlights, iHeadlights)
             If Bennys.veh.HasBone("neon_b") Then
-                giNeonKits = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.NeonKits), Game.GetGXTEntry("CMOD_MOD_6_D"))
+                giNeonKits = New UIMenuItem(LocalizedModGroupName(GroupName.NeonKits), Game.GetGXTEntry("CMOD_MOD_6_D"))
                 gmLights.AddItem(giNeonKits)
                 gmLights.BindMenuToItem(gmNeonKits, giNeonKits)
             End If
@@ -1743,7 +2086,7 @@ Public Class BennysMenu
 
     Public Shared Sub CreateNeonKitsMenu()
         Try
-            gmNeonKits = New UIMenu("", Helper.LocalizeModTitleName("NEONKITS"), True) 'NEON KITS
+            gmNeonKits = New UIMenu("", Game.GetGXTEntry("CMOD_MOD_LGT_N").ToUpper, True) 'NEON KITS
             gmNeonKits.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmNeonKits.MouseEdgeEnabled = False
             _menuPool.Add(gmNeonKits)
@@ -1757,11 +2100,11 @@ Public Class BennysMenu
     Public Shared Sub RefreshNeonKitsMenu()
         Try
             gmNeonKits.MenuItems.Clear()
-            iNeon = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.NeonLayout))
+            iNeon = New UIMenuItem(LocalizedModGroupName(GroupName.NeonLayout))
             gmNeonKits.AddItem(iNeon)
             gmNeonKits.BindMenuToItem(mNeon, iNeon)
             If Not Bennys.veh.ClassType = VehicleClass.Motorcycles Or Bennys.veh.Model = "blazer4" Then
-                iNeonColor = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.NeonColor), Game.GetGXTEntry("CMOD_MOD_6_D"))
+                iNeonColor = New UIMenuItem(LocalizedModGroupName(GroupName.NeonColor), Game.GetGXTEntry("CMOD_MOD_6_D"))
                 gmNeonKits.AddItem(iNeonColor)
                 gmNeonKits.BindMenuToItem(mNeonColor, iNeonColor)
             End If
@@ -1773,7 +2116,7 @@ Public Class BennysMenu
 
     Public Shared Sub CreateNeonMenu()
         Try
-            mNeon = New UIMenu("", Helper.LocalizeModTitleName("NEONLAYOUT"), True) 'NEON LAYOUT
+            mNeon = New UIMenu("", Game.GetGXTEntry("CMOD_NEON_0").ToUpper, True) 'NEON LAYOUT
             mNeon.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             mNeon.MouseEdgeEnabled = False
             _menuPool.Add(mNeon)
@@ -1793,14 +2136,14 @@ Public Class BennysMenu
 
             iNeon = New UIMenuItem(Game.GetGXTEntry("CMOD_NEONLAY_0"))
             With iNeon
-                .SubInteger1 = Helper.NeonLayouts.None
-                If Helper.NeonLayout = Helper.NeonLayouts.None Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                .SubInteger1 = NeonLayouts.None
+                If NeonLayout() = NeonLayouts.None Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
             End With
             mNeon.AddItem(iNeon)
             iNeon = New UIMenuItem(Game.GetGXTEntry("CMOD_NEONLAY_1"))
             With iNeon
-                .SubInteger1 = Helper.NeonLayouts.Front
-                If Helper.NeonLayout = Helper.NeonLayouts.Front Then
+                .SubInteger1 = NeonLayouts.Front
+                If NeonLayout() = NeonLayouts.Front Then
                     .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
                     Dim value As Integer = 1000
@@ -1812,8 +2155,8 @@ Public Class BennysMenu
             mNeon.AddItem(iNeon)
             iNeon = New UIMenuItem(Game.GetGXTEntry("CMOD_NEONLAY_2"))
             With iNeon
-                .SubInteger1 = Helper.NeonLayouts.Back
-                If Helper.NeonLayout = Helper.NeonLayouts.Back Then
+                .SubInteger1 = NeonLayouts.Back
+                If NeonLayout() = NeonLayouts.Back Then
                     .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
                     Dim value As Integer = 1000
@@ -1825,8 +2168,8 @@ Public Class BennysMenu
             mNeon.AddItem(iNeon)
             iNeon = New UIMenuItem(Game.GetGXTEntry("CMOD_NEONLAY_3"))
             With iNeon
-                .SubInteger1 = Helper.NeonLayouts.Sides
-                If Helper.NeonLayout = Helper.NeonLayouts.Sides Then
+                .SubInteger1 = NeonLayouts.Sides
+                If NeonLayout() = NeonLayouts.Sides Then
                     .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
                     Dim value As Integer = 1250
@@ -1838,8 +2181,8 @@ Public Class BennysMenu
             mNeon.AddItem(iNeon)
             iNeon = New UIMenuItem(Game.GetGXTEntry("CMOD_NEONLAY_4"))
             With iNeon
-                .SubInteger1 = Helper.NeonLayouts.FrontAndBack
-                If Helper.NeonLayout = Helper.NeonLayouts.FrontAndBack Then
+                .SubInteger1 = NeonLayouts.FrontAndBack
+                If NeonLayout() = NeonLayouts.FrontAndBack Then
                     .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
                     Dim value As Integer = 1800
@@ -1851,8 +2194,8 @@ Public Class BennysMenu
             mNeon.AddItem(iNeon)
             iNeon = New UIMenuItem(Game.GetGXTEntry("CMOD_NEONLAY_5"))
             With iNeon
-                .SubInteger1 = Helper.NeonLayouts.FrontAndSides
-                If Helper.NeonLayout = Helper.NeonLayouts.FrontAndSides Then
+                .SubInteger1 = NeonLayouts.FrontAndSides
+                If NeonLayout() = NeonLayouts.FrontAndSides Then
                     .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
                     Dim value As Integer = 2000
@@ -1864,8 +2207,8 @@ Public Class BennysMenu
             mNeon.AddItem(iNeon)
             iNeon = New UIMenuItem(Game.GetGXTEntry("CMOD_NEONLAY_6"))
             With iNeon
-                .SubInteger1 = Helper.NeonLayouts.BackAndSides
-                If Helper.NeonLayout = Helper.NeonLayouts.BackAndSides Then
+                .SubInteger1 = NeonLayouts.BackAndSides
+                If NeonLayout() = NeonLayouts.BackAndSides Then
                     .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
                     Dim value As Integer = 2000
@@ -1877,8 +2220,8 @@ Public Class BennysMenu
             mNeon.AddItem(iNeon)
             iNeon = New UIMenuItem(Game.GetGXTEntry("CMOD_NEONLAY_7"))
             With iNeon
-                .SubInteger1 = Helper.NeonLayouts.FrontBackAndSides
-                If Helper.NeonLayout = Helper.NeonLayouts.FrontBackAndSides Then
+                .SubInteger1 = NeonLayouts.FrontBackAndSides
+                If NeonLayout() = NeonLayouts.FrontBackAndSides Then
                     .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
                     Dim value As Integer = 3000
@@ -1897,7 +2240,7 @@ Public Class BennysMenu
 
     Public Shared Sub CreateResprayMenu()
         Try
-            gmRespray = New UIMenu("", Helper.LocalizeModTitleName("RESPRAY"), True) 'RESPRAY
+            gmRespray = New UIMenu("", Game.GetGXTEntry("CMOD_COL0_T"), True) 'RESPRAY
             gmRespray.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmRespray.MouseEdgeEnabled = False
             _menuPool.Add(gmRespray)
@@ -1911,17 +2254,17 @@ Public Class BennysMenu
     Public Shared Sub RefreshResprayMenu()
         Try
             gmRespray.MenuItems.Clear()
-            giPrimaryCol = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.PrimaryColor), Game.GetGXTEntry("CMOD_MOD_6_D"))
+            giPrimaryCol = New UIMenuItem(LocalizedModGroupName(GroupName.PrimaryColor), Game.GetGXTEntry("CMOD_MOD_6_D"))
             gmRespray.AddItem(giPrimaryCol)
             gmRespray.BindMenuToItem(mPrimaryColor, giPrimaryCol)
-            giSecondaryCol = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.SecondaryColor), Game.GetGXTEntry("CMOD_MOD_6_D"))
+            giSecondaryCol = New UIMenuItem(LocalizedModGroupName(GroupName.SecondaryColor), Game.GetGXTEntry("CMOD_MOD_6_D"))
             gmRespray.AddItem(giSecondaryCol)
             gmRespray.BindMenuToItem(mSecondaryColor, giSecondaryCol)
             If Not bennysvehicle.Contains(Bennys.veh.Model) Then
-                iDashboardColor = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.AccentColor), Game.GetGXTEntry("CMOD_MOD_6_D"))
+                iDashboardColor = New UIMenuItem(LocalizedModGroupName(GroupName.AccentColor), Game.GetGXTEntry("CMOD_MOD_6_D"))
                 gmRespray.AddItem(iDashboardColor)
                 gmRespray.BindMenuToItem(mLightsColor, iDashboardColor)
-                iTrimColor = New UIMenuItem(Helper.LocalizedModGroupName(Helper.GroupName.TrimColor), Game.GetGXTEntry("CMOD_MOD_6_D")) 'trim color
+                iTrimColor = New UIMenuItem(LocalizedModGroupName(GroupName.TrimColor), Game.GetGXTEntry("CMOD_MOD_6_D")) 'trim color
                 gmRespray.AddItem(iTrimColor)
                 gmRespray.BindMenuToItem(mTrimColor, iTrimColor)
             End If
@@ -1934,22 +2277,22 @@ Public Class BennysMenu
     Public Shared Sub RefreshPrimaryColorMenu()
         Try
             mPrimaryColor.MenuItems.Clear()
-            iPrimaryChromeColor = New UIMenuItem(Helper.LocalizedColorGroupName(Helper.ColorType.Chrome), Game.GetGXTEntry("CMOD_MOD_6_D"))
+            iPrimaryChromeColor = New UIMenuItem(LocalizedColorGroupName(ColorType.Chrome), Game.GetGXTEntry("CMOD_MOD_6_D"))
             mPrimaryColor.AddItem(iPrimaryChromeColor)
             mPrimaryColor.BindMenuToItem(mPrimaryChromeColor, iPrimaryChromeColor)
-            iPrimaryClassicColor = New UIMenuItem(Helper.LocalizedColorGroupName(Helper.ColorType.Classic), Game.GetGXTEntry("CMOD_MOD_6_D"))
+            iPrimaryClassicColor = New UIMenuItem(LocalizedColorGroupName(ColorType.Classic), Game.GetGXTEntry("CMOD_MOD_6_D"))
             mPrimaryColor.AddItem(iPrimaryClassicColor)
             mPrimaryColor.BindMenuToItem(mPrimaryClassicColor, iPrimaryClassicColor)
-            iPrimaryMatteColor = New UIMenuItem(Helper.LocalizedColorGroupName(Helper.ColorType.Matte), Game.GetGXTEntry("CMOD_MOD_6_D"))
+            iPrimaryMatteColor = New UIMenuItem(LocalizedColorGroupName(ColorType.Matte), Game.GetGXTEntry("CMOD_MOD_6_D"))
             mPrimaryColor.AddItem(iPrimaryMatteColor)
             mPrimaryColor.BindMenuToItem(mPrimaryMatteColor, iPrimaryMatteColor)
-            iPrimaryMetallicColor = New UIMenuItem(Helper.LocalizedColorGroupName(Helper.ColorType.Metallic), Game.GetGXTEntry("CMOD_MOD_6_D"))
+            iPrimaryMetallicColor = New UIMenuItem(LocalizedColorGroupName(ColorType.Metallic), Game.GetGXTEntry("CMOD_MOD_6_D"))
             mPrimaryColor.AddItem(iPrimaryMetallicColor)
             mPrimaryColor.BindMenuToItem(mPrimaryMetallicColor, iPrimaryMetallicColor)
-            iPrimaryMetalsColor = New UIMenuItem(Helper.LocalizedColorGroupName(Helper.ColorType.Metals), Game.GetGXTEntry("CMOD_MOD_6_D"))
+            iPrimaryMetalsColor = New UIMenuItem(LocalizedColorGroupName(ColorType.Metals), Game.GetGXTEntry("CMOD_MOD_6_D"))
             mPrimaryColor.AddItem(iPrimaryMetalsColor)
             mPrimaryColor.BindMenuToItem(mPrimaryMetalsColor, iPrimaryMetalsColor)
-            iPrimaryPearlescentColor = New UIMenuItem(Helper.LocalizedColorGroupName(Helper.ColorType.Pearlescent), Game.GetGXTEntry("CMOD_MOD_6_D"))
+            iPrimaryPearlescentColor = New UIMenuItem(LocalizedColorGroupName(ColorType.Pearlescent), Game.GetGXTEntry("CMOD_MOD_6_D"))
             mPrimaryColor.AddItem(iPrimaryPearlescentColor)
             mPrimaryColor.BindMenuToItem(mPrimaryPearlescentColor, iPrimaryPearlescentColor)
             mPrimaryColor.RefreshIndex()
@@ -1961,19 +2304,19 @@ Public Class BennysMenu
     Public Shared Sub RefreshSecondaryColorMenu()
         Try
             mSecondaryColor.MenuItems.Clear()
-            iSecondaryChromeColor = New UIMenuItem(Helper.LocalizedColorGroupName(Helper.ColorType.Chrome), Game.GetGXTEntry("CMOD_MOD_6_D"))
+            iSecondaryChromeColor = New UIMenuItem(LocalizedColorGroupName(ColorType.Chrome), Game.GetGXTEntry("CMOD_MOD_6_D"))
             mSecondaryColor.AddItem(iSecondaryChromeColor)
             mSecondaryColor.BindMenuToItem(mSecondaryChromeColor, iSecondaryChromeColor)
-            iSecondaryClassicColor = New UIMenuItem(Helper.LocalizedColorGroupName(Helper.ColorType.Classic), Game.GetGXTEntry("CMOD_MOD_6_D"))
+            iSecondaryClassicColor = New UIMenuItem(LocalizedColorGroupName(ColorType.Classic), Game.GetGXTEntry("CMOD_MOD_6_D"))
             mSecondaryColor.AddItem(iSecondaryClassicColor)
             mSecondaryColor.BindMenuToItem(mSecondaryClassicColor, iSecondaryClassicColor)
-            iSecondaryMatteColor = New UIMenuItem(Helper.LocalizedColorGroupName(Helper.ColorType.Matte), Game.GetGXTEntry("CMOD_MOD_6_D"))
+            iSecondaryMatteColor = New UIMenuItem(LocalizedColorGroupName(ColorType.Matte), Game.GetGXTEntry("CMOD_MOD_6_D"))
             mSecondaryColor.AddItem(iSecondaryMatteColor)
             mSecondaryColor.BindMenuToItem(mSecondaryMatteColor, iSecondaryMatteColor)
-            iSecondaryMetallicColor = New UIMenuItem(Helper.LocalizedColorGroupName(Helper.ColorType.Metallic), Game.GetGXTEntry("CMOD_MOD_6_D"))
+            iSecondaryMetallicColor = New UIMenuItem(LocalizedColorGroupName(ColorType.Metallic), Game.GetGXTEntry("CMOD_MOD_6_D"))
             mSecondaryColor.AddItem(iSecondaryMetallicColor)
             mSecondaryColor.BindMenuToItem(mSecondaryMetallicColor, iSecondaryMetallicColor)
-            iSecondaryMetalsColor = New UIMenuItem(Helper.LocalizedColorGroupName(Helper.ColorType.Metals), Game.GetGXTEntry("CMOD_MOD_6_D"))
+            iSecondaryMetalsColor = New UIMenuItem(LocalizedColorGroupName(ColorType.Metals), Game.GetGXTEntry("CMOD_MOD_6_D"))
             mSecondaryColor.AddItem(iSecondaryMetalsColor)
             mSecondaryColor.BindMenuToItem(mSecondaryMetalsColor, iSecondaryMetalsColor)
             mSecondaryColor.RefreshIndex()
@@ -1986,7 +2329,7 @@ Public Class BennysMenu
         Try
             menu.MenuItems.Clear()
             For Each col As VehicleColor In colorList
-                item = New UIMenuItem(Helper.GetLocalizedColorName(col))
+                item = New UIMenuItem(GetLocalizedColorName(col))
                 With item
                     .SubInteger1 = col
                     If prisecpear = "Primary" Then
@@ -2137,12 +2480,12 @@ Public Class BennysMenu
     Public Shared Sub RefreshModMenuForLivery2(ByRef menu As UIMenu, ByRef item As UIMenuItem)
         Try
             menu.MenuItems.Clear()
-            For i As Integer = 0 To Helper.GetTornadoCustomRoofCount(Bennys.veh) - 1
-                item = New UIMenuItem(Helper.LocalizedT5RoofName(i))
+            For i As Integer = 0 To Bennys.veh.Livery2Count - 1
+                item = New UIMenuItem(LocalizedT5RoofName(i))
                 With item
                     If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_ARM_0")
                     .SubInteger1 = i
-                    If Helper.GetTornadoCustomRoof(Bennys.veh) = i Then
+                    If Bennys.veh.GetLivery2 = i Then
                         item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Else
                         If Not i = -1 Then
@@ -2166,7 +2509,7 @@ Public Class BennysMenu
         Try
             menu.MenuItems.Clear()
             For i As Integer = -1 To Bennys.veh.GetModCount(vehmod) - 1
-                item = New UIMenuItem(Helper.GetLocalizedModName(i, Bennys.veh.GetModCount(vehmod), vehmod))
+                item = New UIMenuItem(GetLocalizedModName(i, Bennys.veh.GetModCount(vehmod), vehmod))
                 With item
                     If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_ARM_0")
                     .SubInteger1 = i
@@ -2194,14 +2537,14 @@ Public Class BennysMenu
         Try
             menu.MenuItems.Clear()
 
-            item = New UIMenuItem(Helper.LocalizedModTypeName(vehmod, True))
+            item = New UIMenuItem(LocalizedModTypeName(vehmod, True))
             With item
                 If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_ARM_0")
                 .SubInteger1 = 0
                 If Not Bennys.veh.IsToggleModOn(vehmod) Then item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
             End With
             menu.AddItem(item)
-            item = New UIMenuItem(Helper.LocalizedModTypeName(vehmod))
+            item = New UIMenuItem(LocalizedModTypeName(vehmod))
             With item
                 If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_ARM_0")
                 .SubInteger1 = 1
@@ -2215,6 +2558,220 @@ Public Class BennysMenu
             End With
             menu.AddItem(item)
 
+            menu.RefreshIndex()
+        Catch ex As Exception
+            Logger.Log(ex.Message & " " & ex.StackTrace)
+        End Try
+    End Sub
+
+    Public Shared Sub RefreshModMenuForHeadlightsColor(ByRef menu As UIMenu, ByRef item As UIMenuItem, ByRef vehmod As VehicleToggleMod)
+        Try
+            menu.MenuItems.Clear()
+
+            item = New UIMenuItem(Game.GetGXTEntry("CMOD_LGT_0"))
+            With item
+                If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_LGT_0")
+                .SubInteger1 = 0
+                .SubInteger3 = 255
+                If Not Bennys.veh.IsToggleModOn(vehmod) Then item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+            End With
+            menu.AddItem(item)
+            item = New UIMenuItem(LocalizedModTypeName(vehmod))
+            With item
+                If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_ARM_0")
+                .SubInteger1 = 1
+                .SubInteger3 = 255
+                If Bennys.veh.IsToggleModOn(vehmod) Then
+                    item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                Else
+                    Dim price As String = "$" & 1000.ToString("###,###")
+                    item.SetRightLabel(price)
+                    .SubInteger2 = 1000
+                End If
+            End With
+            menu.AddItem(item)
+            item = New UIMenuItem(Game.GetGXTEntry("collision_9vtlzex")) 'White
+            With item
+                If .Text = "NULL" Then .Text = Game.GetGXTEntry("collision_9vtlzex")
+                .SubInteger1 = 1
+                .SubInteger3 = 0
+                If Bennys.veh.GetXenonHeadlightsColor = 0 Then
+                    item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                Else
+                    Dim price As String = "$" & 3000.ToString("###,###")
+                    item.SetRightLabel(price)
+                    .SubInteger2 = 3000
+                End If
+            End With
+            menu.AddItem(item)
+            item = New UIMenuItem(Game.GetGXTEntry("collision_9vtlzey")) 'Blue
+            With item
+                If .Text = "NULL" Then .Text = Game.GetGXTEntry("collision_9vtlzey")
+                .SubInteger1 = 1
+                .SubInteger3 = 1
+                If Bennys.veh.GetXenonHeadlightsColor = 0 Then
+                    item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                Else
+                    Dim price As String = "$" & 3000.ToString("###,###")
+                    item.SetRightLabel(price)
+                    .SubInteger2 = 3000
+                End If
+            End With
+            menu.AddItem(item)
+            item = New UIMenuItem(Game.GetGXTEntry("collision_9vtlzez")) 'Electric Blue
+            With item
+                If .Text = "NULL" Then .Text = Game.GetGXTEntry("collision_9vtlzez")
+                .SubInteger1 = 1
+                .SubInteger3 = 2
+                If Bennys.veh.GetXenonHeadlightsColor = 0 Then
+                    item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                Else
+                    Dim price As String = "$" & 3000.ToString("###,###")
+                    item.SetRightLabel(price)
+                    .SubInteger2 = 3000
+                End If
+            End With
+            menu.AddItem(item)
+            item = New UIMenuItem(Game.GetGXTEntry("collision_8gbxm1p")) 'Mint Green
+            With item
+                If .Text = "NULL" Then .Text = Game.GetGXTEntry("collision_8gbxm1p")
+                .SubInteger1 = 1
+                .SubInteger3 = 3
+                If Bennys.veh.GetXenonHeadlightsColor = 0 Then
+                    item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                Else
+                    Dim price As String = "$" & 3000.ToString("###,###")
+                    item.SetRightLabel(price)
+                    .SubInteger2 = 3000
+                End If
+            End With
+            menu.AddItem(item)
+            item = New UIMenuItem(Game.GetGXTEntry("collision_8gbxm1q")) 'Lime Green
+            With item
+                If .Text = "NULL" Then .Text = Game.GetGXTEntry("collision_8gbxm1q")
+                .SubInteger1 = 1
+                .SubInteger3 = 4
+                If Bennys.veh.GetXenonHeadlightsColor = 0 Then
+                    item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                Else
+                    Dim price As String = "$" & 3000.ToString("###,###")
+                    item.SetRightLabel(price)
+                    .SubInteger2 = 3000
+                End If
+            End With
+            menu.AddItem(item)
+            item = New UIMenuItem(Game.GetGXTEntry("collision_8gbxm1r")) 'Yellow
+            With item
+                If .Text = "NULL" Then .Text = Game.GetGXTEntry("collision_8gbxm1r")
+                .SubInteger1 = 1
+                .SubInteger3 = 5
+                If Bennys.veh.GetXenonHeadlightsColor = 0 Then
+                    item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                Else
+                    Dim price As String = "$" & 3000.ToString("###,###")
+                    item.SetRightLabel(price)
+                    .SubInteger2 = 3000
+                End If
+            End With
+            menu.AddItem(item)
+            item = New UIMenuItem(Game.GetGXTEntry("collision_8gbxm1s")) 'Golden Shower
+            With item
+                If .Text = "NULL" Then .Text = Game.GetGXTEntry("collision_8gbxm1s")
+                .SubInteger1 = 1
+                .SubInteger3 = 6
+                If Bennys.veh.GetXenonHeadlightsColor = 0 Then
+                    item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                Else
+                    Dim price As String = "$" & 3000.ToString("###,###")
+                    item.SetRightLabel(price)
+                    .SubInteger2 = 3000
+                End If
+            End With
+            menu.AddItem(item)
+            item = New UIMenuItem(Game.GetGXTEntry("collision_7jh67le")) 'Orange
+            With item
+                If .Text = "NULL" Then .Text = Game.GetGXTEntry("collision_7jh67le")
+                .SubInteger1 = 1
+                .SubInteger3 = 7
+                If Bennys.veh.GetXenonHeadlightsColor = 0 Then
+                    item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                Else
+                    Dim price As String = "$" & 3000.ToString("###,###")
+                    item.SetRightLabel(price)
+                    .SubInteger2 = 3000
+                End If
+            End With
+            menu.AddItem(item)
+            item = New UIMenuItem(Game.GetGXTEntry("collision_8gbxm1t")) 'Red
+            With item
+                If .Text = "NULL" Then .Text = Game.GetGXTEntry("collision_8gbxm1t")
+                .SubInteger1 = 1
+                .SubInteger3 = 8
+                If Bennys.veh.GetXenonHeadlightsColor = 0 Then
+                    item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                Else
+                    Dim price As String = "$" & 3000.ToString("###,###")
+                    item.SetRightLabel(price)
+                    .SubInteger2 = 3000
+                End If
+            End With
+            menu.AddItem(item)
+            item = New UIMenuItem(Game.GetGXTEntry("collision_7jh67lg")) 'Pony Pink
+            With item
+                If .Text = "NULL" Then .Text = Game.GetGXTEntry("collision_7jh67lg")
+                .SubInteger1 = 1
+                .SubInteger3 = 9
+                If Bennys.veh.GetXenonHeadlightsColor = 0 Then
+                    item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                Else
+                    Dim price As String = "$" & 3000.ToString("###,###")
+                    item.SetRightLabel(price)
+                    .SubInteger2 = 3000
+                End If
+            End With
+            menu.AddItem(item)
+            item = New UIMenuItem(Game.GetGXTEntry("collision_7jh67lf")) 'Hot Pink
+            With item
+                If .Text = "NULL" Then .Text = Game.GetGXTEntry("collision_7jh67lf")
+                .SubInteger1 = 1
+                .SubInteger3 = 10
+                If Bennys.veh.GetXenonHeadlightsColor = 0 Then
+                    item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                Else
+                    Dim price As String = "$" & 3000.ToString("###,###")
+                    item.SetRightLabel(price)
+                    .SubInteger2 = 3000
+                End If
+            End With
+            menu.AddItem(item)
+            item = New UIMenuItem(Game.GetGXTEntry("collision_7jh67lh")) 'Blacklight
+            With item
+                If .Text = "NULL" Then .Text = Game.GetGXTEntry("collision_7jh67lh")
+                .SubInteger1 = 1
+                .SubInteger3 = 11
+                If Bennys.veh.GetXenonHeadlightsColor = 0 Then
+                    item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                Else
+                    Dim price As String = "$" & 3000.ToString("###,###")
+                    item.SetRightLabel(price)
+                    .SubInteger2 = 3000
+                End If
+            End With
+            menu.AddItem(item)
+            item = New UIMenuItem(Game.GetGXTEntry("collision_7jh67li")) 'Purple
+            With item
+                If .Text = "NULL" Then .Text = Game.GetGXTEntry("collision_7jh67li")
+                .SubInteger1 = 1
+                .SubInteger3 = 12
+                If Bennys.veh.GetXenonHeadlightsColor = 0 Then
+                    item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                Else
+                    Dim price As String = "$" & 3000.ToString("###,###")
+                    item.SetRightLabel(price)
+                    .SubInteger2 = 3000
+                End If
+            End With
+            menu.AddItem(item)
             menu.RefreshIndex()
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
@@ -2239,6 +2796,7 @@ Public Class BennysMenu
             Bennys.veh.SetMod(VehicleMod.FrontWheels, Bennys.lastVehMemory.FrontWheels, Bennys.lastVehMemory.WheelsVariation)
             Bennys.veh.SetMod(VehicleMod.BackWheels, Bennys.lastVehMemory.BackWheels, Bennys.lastVehMemory.WheelsVariation)
             Bennys.veh.ToggleMod(VehicleToggleMod.XenonHeadlights, Bennys.lastVehMemory.Headlights)
+            Bennys.veh.SetXenonHeadlightsColor(Bennys.lastVehMemory.HeadlightsColor, Bennys.veh.IsToggleModOn(VehicleToggleMod.XenonHeadlights))
             Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Back, Bennys.lastVehMemory.BackNeon)
             Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Front, Bennys.lastVehMemory.FrontNeon)
             Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Left, Bennys.lastVehMemory.LeftNeon)
@@ -2254,7 +2812,7 @@ Public Class BennysMenu
             Bennys.veh.SetMod(VehicleMod.Horns, Bennys.lastVehMemory.Horns, False)
             Bennys.veh.SetMod(VehicleMod.Hydraulics, Bennys.lastVehMemory.Hydraulics, False)
             Bennys.veh.SetMod(VehicleMod.Livery, Bennys.lastVehMemory.Livery, False)
-            Helper.SetTornadoCustomRoof(Bennys.veh, Bennys.lastVehMemory.Livery2)
+            Bennys.veh.SetLivery2(Bennys.lastVehMemory.Livery2)
             Bennys.veh.SetMod(VehicleMod.Plaques, Bennys.lastVehMemory.Plaques, False)
             Bennys.veh.SetMod(VehicleMod.Roof, Bennys.lastVehMemory.Roof, False)
             Bennys.veh.SetMod(VehicleMod.Speakers, Bennys.lastVehMemory.Speakers, False)
@@ -2328,6 +2886,87 @@ Public Class BennysMenu
                 i.SetRightBadge(UIMenuItem.BadgeStyle.None)
             Next
 
+            'Arena War Upgrade
+            If sender Is mUpgradeAW Then
+                Game.FadeScreenOut(1000)
+                Wait(1000)
+                Dim veh As Vehicle = World.CreateVehicle(selectedItem.SubString1, Bennys.veh.Position, Bennys.veh.Heading)
+                veh.IsPersistent = False
+                veh.PrimaryColor = Bennys.lastVehMemory.PrimaryColor
+                veh.SecondaryColor = Bennys.lastVehMemory.SecondaryColor
+                veh.DashboardColor = Bennys.lastVehMemory.LightsColor
+                veh.PearlescentColor = Bennys.lastVehMemory.PearlescentColor
+                veh.TrimColor = Bennys.lastVehMemory.TrimColor
+                veh.RimColor = Bennys.lastVehMemory.RimColor
+                veh.NeonLightsColor = Bennys.lastVehMemory.NeonLightsColor
+                veh.TireSmokeColor = Bennys.lastVehMemory.TireSmokeColor
+                veh.InstallModKit()
+                veh.WheelType = Bennys.lastVehMemory.WheelType
+                veh.SetMod(VehicleMod.Aerials, Bennys.lastVehMemory.Aerials, False)
+                veh.SetMod(VehicleMod.AirFilter, Bennys.lastVehMemory.AirFilter, False)
+                veh.SetMod(VehicleMod.ArchCover, Bennys.lastVehMemory.ArchCover, False)
+                veh.SetMod(VehicleMod.Armor, Bennys.lastVehMemory.Armor, False)
+                veh.SetMod(VehicleMod.BackWheels, Bennys.lastVehMemory.BackWheels, False)
+                veh.SetMod(VehicleMod.Brakes, Bennys.lastVehMemory.Brakes, False)
+                veh.SetMod(VehicleMod.ColumnShifterLevers, Bennys.lastVehMemory.ColumnShifterLevers, False)
+                veh.SetMod(VehicleMod.Dashboard, Bennys.lastVehMemory.Dashboard, False)
+                veh.SetMod(VehicleMod.DialDesign, Bennys.lastVehMemory.DialDesign, False)
+                veh.SetMod(VehicleMod.DoorSpeakers, Bennys.lastVehMemory.DoorSpeakers, False)
+                veh.SetMod(VehicleMod.Engine, Bennys.lastVehMemory.Engine, False)
+                veh.SetMod(VehicleMod.EngineBlock, Bennys.lastVehMemory.EngineBlock, False)
+                veh.SetMod(VehicleMod.Exhaust, Bennys.lastVehMemory.Exhaust, False)
+                veh.SetMod(VehicleMod.Fender, Bennys.lastVehMemory.Fender, False)
+                veh.SetMod(VehicleMod.Frame, Bennys.lastVehMemory.Frame, False)
+                veh.SetMod(VehicleMod.FrontBumper, Bennys.lastVehMemory.FrontBumper, False)
+                veh.SetMod(VehicleMod.FrontWheels, Bennys.lastVehMemory.FrontWheels, False)
+                veh.SetMod(VehicleMod.Grille, Bennys.lastVehMemory.Grille, False)
+                veh.SetMod(VehicleMod.Hood, Bennys.lastVehMemory.Hood, False)
+                veh.SetMod(VehicleMod.Horns, Bennys.lastVehMemory.Horns, False)
+                veh.SetMod(VehicleMod.Hydraulics, Bennys.lastVehMemory.Hydraulics, False)
+                veh.SetMod(VehicleMod.Livery, Bennys.lastVehMemory.Livery, False)
+                veh.SetLivery2(Bennys.lastVehMemory.Livery2)
+                veh.SetMod(VehicleMod.Ornaments, Bennys.lastVehMemory.Ornaments, False)
+                veh.SetMod(VehicleMod.Plaques, Bennys.lastVehMemory.Plaques, False)
+                veh.SetMod(VehicleMod.PlateHolder, Bennys.lastVehMemory.PlateHolder, False)
+                veh.SetMod(VehicleMod.RearBumper, Bennys.lastVehMemory.RearBumper, False)
+                veh.SetMod(VehicleMod.RightFender, Bennys.lastVehMemory.RightFender, False)
+                veh.SetMod(VehicleMod.Roof, Bennys.lastVehMemory.Roof, False)
+                veh.SetMod(VehicleMod.Seats, Bennys.lastVehMemory.Seats, False)
+                veh.SetMod(VehicleMod.SideSkirt, Bennys.lastVehMemory.SideSkirt, False)
+                veh.SetMod(VehicleMod.Speakers, Bennys.lastVehMemory.Speakers, False)
+                veh.SetMod(VehicleMod.Spoilers, Bennys.lastVehMemory.Spoilers, False)
+                veh.SetMod(VehicleMod.SteeringWheels, Bennys.lastVehMemory.SteeringWheels, False)
+                veh.SetMod(VehicleMod.Struts, Bennys.lastVehMemory.Struts, False)
+                veh.SetMod(VehicleMod.Suspension, Bennys.lastVehMemory.Suspension, False)
+                veh.SetMod(VehicleMod.Tank, Bennys.lastVehMemory.Tank, False)
+                veh.SetMod(VehicleMod.Transmission, Bennys.lastVehMemory.Transmission, False)
+                veh.SetMod(VehicleMod.Trim, Bennys.lastVehMemory.Trim, False)
+                veh.SetMod(VehicleMod.TrimDesign, Bennys.lastVehMemory.TrimDesign, False)
+                veh.SetMod(VehicleMod.Trunk, Bennys.lastVehMemory.Trunk, False)
+                veh.SetMod(VehicleMod.VanityPlates, Bennys.lastVehMemory.VanityPlates, False)
+                veh.SetMod(VehicleMod.Windows, Bennys.lastVehMemory.Windows, False)
+                veh.ToggleMod(VehicleToggleMod.TireSmoke, True)
+                veh.ToggleMod(VehicleToggleMod.Turbo, Bennys.lastVehMemory.Turbo)
+                veh.ToggleMod(VehicleToggleMod.XenonHeadlights, Bennys.lastVehMemory.Headlights)
+                veh.SetXenonHeadlightsColor(Bennys.lastVehMemory.HeadlightsColor, veh.IsToggleModOn(VehicleToggleMod.XenonHeadlights))
+                veh.NumberPlateType = Bennys.lastVehMemory.NumberPlate
+                veh.NumberPlate = Bennys.lastVehMemory.PlateNumbers
+                Bennys.veh.Delete()
+                Bennys.ply.Task.WarpIntoVehicle(veh, VehicleSeat.Driver)
+                Bennys.veh = veh
+                veh.InstallModKit()
+                MainMenu.MenuItems.Remove(iUpgradeAW)
+                isRepairing = True
+                RefreshMenus()
+                camera.RepositionFor(veh)
+                Wait(1000)
+                Game.FadeScreenIn(1000)
+                Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger1)
+                Native.Function.Call(Hash._START_SCREEN_EFFECT, "MP_corona_switch_supermod", 0, 1)
+                Native.Function.Call(Hash.PLAY_SOUND_FRONTEND, -1, "Lowrider_Upgrade", "Lowrider_Super_Mod_Garage_Sounds", 1)
+                PlaySpeech("LR_UPGRADE_SUPERMOD")
+            End If
+
             'Performance Mods
             If sender Is mSuspension Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2337,7 +2976,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Suspension = selectedItem.SubInteger1
-                    Helper.PlaySpeech("SHOP_SELL_SUSPENSION")
+                    PlaySpeech("SHOP_SELL_SUSPENSION")
                 End If
             ElseIf sender Is mArmor Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2347,7 +2986,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Armor = selectedItem.SubInteger1
-                    Helper.PlaySpeech("SHOP_SELL_ARMOUR")
+                    PlaySpeech("SHOP_SELL_ARMOUR")
                 End If
             ElseIf sender Is mBrakes Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2357,7 +2996,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Brakes = selectedItem.SubInteger1
-                    Helper.PlaySpeech("SHOP_SELL_BRAKES")
+                    PlaySpeech("SHOP_SELL_BRAKES")
                 End If
             ElseIf sender Is mTransmission Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2367,7 +3006,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Transmission = selectedItem.SubInteger1
-                    Helper.PlaySpeech("SHOP_SELL_TRANS_UPGRADE")
+                    PlaySpeech("SHOP_SELL_TRANS_UPGRADE")
                 End If
             ElseIf sender Is mEngine Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2377,7 +3016,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Engine = selectedItem.SubInteger1
-                    Helper.PlaySpeech("SHOP_SELL_ENGINE_UPGRADE")
+                    PlaySpeech("SHOP_SELL_ENGINE_UPGRADE")
                 End If
             End If
 
@@ -2390,7 +3029,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.FrontBumper = selectedItem.SubInteger1
-                    Helper.PlaySpeech("")
+                    PlaySpeech("")
                 End If
             ElseIf sender Is mRBumper Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2400,7 +3039,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.RearBumper = selectedItem.SubInteger1
-                    Helper.PlaySpeech("")
+                    PlaySpeech("")
                 End If
             ElseIf sender Is mSSkirt Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2410,7 +3049,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.SideSkirt = selectedItem.SubInteger1
-                    Helper.PlaySpeech("")
+                    PlaySpeech("")
                 End If
             ElseIf sender Is mNumberPlate Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2420,17 +3059,19 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.NumberPlate = selectedItem.SubInteger1
-                    Helper.PlaySpeech("")
+                    PlaySpeech("")
                 End If
             ElseIf sender Is mHeadlights Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.ToggleMod(VehicleToggleMod.XenonHeadlights, CBool(selectedItem.SubInteger1))
+                    If selectedItem.Text = Game.GetGXTEntry("CMOD_LGT_0") Then Bennys.veh.SetXenonHeadlightsColor(selectedItem.SubInteger3, False) Else Bennys.veh.SetXenonHeadlightsColor(selectedItem.SubInteger3, True)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Headlights = CBool(selectedItem.SubInteger1)
-                    Helper.PlaySpeech("")
+                    Bennys.lastVehMemory.HeadlightsColor = selectedItem.SubInteger3
+                    PlaySpeech("")
                 End If
             ElseIf sender Is mArchCover Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2440,7 +3081,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.ArchCover = selectedItem.SubInteger1
-                    Helper.PlaySpeech("SHOP_SELL_COSMETICS")
+                    PlaySpeech("SHOP_SELL_COSMETICS")
                 End If
             ElseIf sender Is mExhaust Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2450,7 +3091,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Exhaust = selectedItem.SubInteger1
-                    Helper.PlaySpeech("SHOP_SELL_EXHAUST")
+                    PlaySpeech("SHOP_SELL_EXHAUST")
                 End If
             ElseIf sender Is mFender Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2460,7 +3101,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Fender = selectedItem.SubInteger1
-                    Helper.PlaySpeech("")
+                    PlaySpeech("")
                 End If
             ElseIf sender Is mRFender Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2470,7 +3111,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.RightFender = selectedItem.SubInteger1
-                    Helper.PlaySpeech("")
+                    PlaySpeech("")
                 End If
             ElseIf sender Is mDoor Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2480,7 +3121,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.DoorSpeakers = selectedItem.SubInteger1
-                    Helper.PlaySpeech("")
+                    PlaySpeech("")
                 End If
             ElseIf sender Is mFrame Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2490,7 +3131,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Frame = selectedItem.SubInteger1
-                    Helper.PlaySpeech("LR_SELL_EXCHASSIS_MOD")
+                    PlaySpeech("LR_SELL_EXCHASSIS_MOD")
                 End If
             ElseIf sender Is mAerials Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2500,7 +3141,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Aerials = selectedItem.SubInteger1
-                    Helper.PlaySpeech("")
+                    PlaySpeech("")
                 End If
             ElseIf sender Is mTrim Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2510,7 +3151,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Trim = selectedItem.SubInteger1
-                    Helper.PlaySpeech("")
+                    PlaySpeech("")
                 End If
             ElseIf sender Is mEngineBlock Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2520,7 +3161,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.EngineBlock = selectedItem.SubInteger1
-                    Helper.PlaySpeech("LR_UPGRADE_ENGINE")
+                    PlaySpeech("LR_UPGRADE_ENGINE")
                 End If
             ElseIf sender Is mAirFilter Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2530,7 +3171,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.AirFilter = selectedItem.SubInteger1
-                    Helper.PlaySpeech("LR_UPGRADE_ENGINE")
+                    PlaySpeech("LR_UPGRADE_ENGINE")
                 End If
             ElseIf sender Is mStruts Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2540,7 +3181,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Struts = selectedItem.SubInteger1
-                    Helper.PlaySpeech("")
+                    PlaySpeech("")
                 End If
             ElseIf sender Is mColumnShifterLevers Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2550,7 +3191,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.ColumnShifterLevers = selectedItem.SubInteger1
-                    Helper.PlaySpeech("LR_UPGRADE_GEARKNOB")
+                    PlaySpeech("LR_UPGRADE_GEARKNOB")
                 End If
             ElseIf sender Is mDashboard Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2560,7 +3201,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Dashboard = selectedItem.SubInteger1
-                    Helper.PlaySpeech("LR_SELL_SUPERMOD_INTERIOR")
+                    PlaySpeech("LR_SELL_SUPERMOD_INTERIOR")
                 End If
             ElseIf sender Is mDialDesign Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2570,7 +3211,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.DialDesign = selectedItem.SubInteger1
-                    Helper.PlaySpeech("LR_SELL_SUPERMOD_INTERIOR")
+                    PlaySpeech("LR_SELL_SUPERMOD_INTERIOR")
                 End If
             ElseIf sender Is mOrnaments Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2580,7 +3221,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Ornaments = selectedItem.SubInteger1
-                    Helper.PlaySpeech("LR_SELL_DOLL")
+                    PlaySpeech("LR_SELL_DOLL")
                 End If
             ElseIf sender Is mSeats Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2590,7 +3231,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Seats = selectedItem.SubInteger1
-                    Helper.PlaySpeech("LR_SELL_SUPERMOD_INTERIOR")
+                    PlaySpeech("LR_SELL_SUPERMOD_INTERIOR")
                 End If
             ElseIf sender Is mSteeringWheels Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2600,7 +3241,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.SteeringWheels = selectedItem.SubInteger1
-                    Helper.PlaySpeech("LR_SELL_SUPERMOD_INTERIOR")
+                    PlaySpeech("LR_SELL_SUPERMOD_INTERIOR")
                 End If
             ElseIf sender Is mTrimDesign Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2610,7 +3251,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.TrimDesign = selectedItem.SubInteger1
-                    Helper.PlaySpeech("LR_SELL_SUPERMOD_INTERIOR")
+                    PlaySpeech("LR_SELL_SUPERMOD_INTERIOR")
                 End If
             ElseIf sender Is mPlateHolder Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2620,7 +3261,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.PlateHolder = selectedItem.SubInteger1
-                    Helper.PlaySpeech("LR_UPGRADE_PLATEHOLDER")
+                    PlaySpeech("LR_UPGRADE_PLATEHOLDER")
                 End If
             ElseIf sender Is mVanityPlates Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2630,7 +3271,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.VanityPlates = selectedItem.SubInteger1
-                    Helper.PlaySpeech("LR_SELL_VANITYPLATE")
+                    PlaySpeech("LR_SELL_VANITYPLATE")
                 End If
             ElseIf sender Is mGrille Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2640,7 +3281,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Grille = selectedItem.SubInteger1
-                    Helper.PlaySpeech("")
+                    PlaySpeech("")
                 End If
             ElseIf sender Is mHood Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2650,7 +3291,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Hood = selectedItem.SubInteger1
-                    Helper.PlaySpeech("")
+                    PlaySpeech("")
                 End If
             ElseIf sender Is mHorn Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2660,7 +3301,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Horns = selectedItem.SubInteger1
-                    Helper.PlaySpeech("SHOP_SELL_HORN")
+                    PlaySpeech("SHOP_SELL_HORN")
                 End If
             ElseIf sender Is mHydraulics Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2670,7 +3311,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Hydraulics = selectedItem.SubInteger1
-                    Helper.PlaySpeech("LR_UPGRADE_HYDRAULICS")
+                    PlaySpeech("LR_UPGRADE_HYDRAULICS")
                 End If
             ElseIf sender Is mLivery Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2680,17 +3321,17 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Livery = selectedItem.SubInteger1
-                    Helper.PlaySpeech("LR_SELL_LIVERY")
+                    PlaySpeech("LR_SELL_LIVERY")
                 End If
             ElseIf sender Is mTornadoC Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    Helper.SetTornadoCustomRoof(Bennys.veh, selectedItem.SubInteger1)
+                    Bennys.veh.SetLivery2(selectedItem.SubInteger1)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Livery2 = selectedItem.SubInteger1
-                    Helper.PlaySpeech("LR_SELL_LIVERY")
+                    PlaySpeech("LR_SELL_LIVERY")
                 End If
             ElseIf sender Is mPlaques Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2700,7 +3341,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Plaques = selectedItem.SubInteger1
-                    Helper.PlaySpeech("LR_UPGRADE_PLAQUE")
+                    PlaySpeech("LR_UPGRADE_PLAQUE")
                 End If
             ElseIf sender Is mRoof Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2710,7 +3351,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Roof = selectedItem.SubInteger1
-                    Helper.PlaySpeech("")
+                    PlaySpeech("")
                 End If
             ElseIf sender Is mSpeakers Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2720,7 +3361,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Speakers = selectedItem.SubInteger1
-                    Helper.PlaySpeech("LR_UPGRADE_ICE")
+                    PlaySpeech("LR_UPGRADE_ICE")
                 End If
             ElseIf sender Is mSpoilers Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2730,7 +3371,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Spoilers = selectedItem.SubInteger1
-                    Helper.PlaySpeech("")
+                    PlaySpeech("")
                 End If
             ElseIf sender Is mTank Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2740,7 +3381,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Tank = selectedItem.SubInteger1
-                    Helper.PlaySpeech("")
+                    PlaySpeech("")
                 End If
             ElseIf sender Is mTrunk Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2750,7 +3391,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Trunk = selectedItem.SubInteger1
-                    Helper.PlaySpeech("LR_UPGRADE_TRUNK")
+                    PlaySpeech("LR_UPGRADE_TRUNK")
                 End If
             ElseIf sender Is mWindow Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2760,7 +3401,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Windows = selectedItem.SubInteger1
-                    Helper.PlaySpeech("")
+                    PlaySpeech("")
                 End If
             ElseIf sender Is mTurbo Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2770,7 +3411,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Turbo = CBool(selectedItem.SubInteger1)
-                    Helper.PlaySpeech("SHOP_SELL_TURBO")
+                    PlaySpeech("SHOP_SELL_TURBO")
                 End If
             ElseIf sender Is mTint Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2780,7 +3421,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Tint = selectedItem.SubInteger1
-                    Helper.PlaySpeech("")
+                    PlaySpeech("")
                 End If
             End If
 
@@ -2793,7 +3434,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Fender = selectedItem.SubInteger1
-                    Helper.PlaySpeech("")
+                    PlaySpeech("")
                 End If
             ElseIf sender Is mFMudguard Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2803,7 +3444,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.FrontBumper = selectedItem.SubInteger1
-                    Helper.PlaySpeech("")
+                    PlaySpeech("")
                 End If
             ElseIf sender Is mBSeat Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2813,7 +3454,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Hood = selectedItem.SubInteger1
-                    Helper.PlaySpeech("")
+                    PlaySpeech("")
                 End If
             ElseIf sender Is mOilTank Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2823,7 +3464,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Grille = selectedItem.SubInteger1
-                    Helper.PlaySpeech("")
+                    PlaySpeech("")
                 End If
             ElseIf sender Is mRMudguard Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2833,7 +3474,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.RearBumper = selectedItem.SubInteger1
-                    Helper.PlaySpeech("")
+                    PlaySpeech("")
                 End If
             ElseIf sender Is mFuelTank Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2843,7 +3484,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Roof = selectedItem.SubInteger1
-                    Helper.PlaySpeech("")
+                    PlaySpeech("")
                 End If
             ElseIf sender Is mBeltDriveCovers Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2853,7 +3494,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Spoilers = selectedItem.SubInteger1
-                    Helper.PlaySpeech("")
+                    PlaySpeech("")
                 End If
             ElseIf sender Is mBEngineBlock Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2863,7 +3504,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Frame = selectedItem.SubInteger1
-                    Helper.PlaySpeech("")
+                    PlaySpeech("")
                 End If
             ElseIf sender Is mBAirFilter Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2873,7 +3514,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.SideSkirt = selectedItem.SubInteger1
-                    Helper.PlaySpeech("")
+                    PlaySpeech("")
                 End If
             ElseIf sender Is mBTank Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -2883,14 +3524,14 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Tank = selectedItem.SubInteger1
-                    Helper.PlaySpeech("")
+                    PlaySpeech("")
                 End If
             End If
 
             'Neons Mods
             If sender Is mNeon Then
                 Select Case selectedItem.SubInteger1
-                    Case Helper.NeonLayouts.None
+                    Case NeonLayouts.None
                         If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                             Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Back, False)
                             Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Front, False)
@@ -2905,7 +3546,7 @@ Public Class BennysMenu
                             Bennys.lastVehMemory.LeftNeon = False
                             Bennys.lastVehMemory.RightNeon = False
                         End If
-                    Case Helper.NeonLayouts.Front
+                    Case NeonLayouts.Front
                         If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                             Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Back, False)
                             Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Front, True)
@@ -2920,7 +3561,7 @@ Public Class BennysMenu
                             Bennys.lastVehMemory.LeftNeon = False
                             Bennys.lastVehMemory.RightNeon = False
                         End If
-                    Case Helper.NeonLayouts.Back
+                    Case NeonLayouts.Back
                         If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                             Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Back, True)
                             Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Front, False)
@@ -2935,7 +3576,7 @@ Public Class BennysMenu
                             Bennys.lastVehMemory.LeftNeon = False
                             Bennys.lastVehMemory.RightNeon = False
                         End If
-                    Case Helper.NeonLayouts.Sides
+                    Case NeonLayouts.Sides
                         If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                             Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Back, False)
                             Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Front, False)
@@ -2950,7 +3591,7 @@ Public Class BennysMenu
                             Bennys.lastVehMemory.LeftNeon = True
                             Bennys.lastVehMemory.RightNeon = True
                         End If
-                    Case Helper.NeonLayouts.FrontAndBack
+                    Case NeonLayouts.FrontAndBack
                         If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                             Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Back, True)
                             Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Front, True)
@@ -2965,7 +3606,7 @@ Public Class BennysMenu
                             Bennys.lastVehMemory.LeftNeon = False
                             Bennys.lastVehMemory.RightNeon = False
                         End If
-                    Case Helper.NeonLayouts.FrontAndSides
+                    Case NeonLayouts.FrontAndSides
                         If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                             Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Back, False)
                             Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Front, True)
@@ -2980,7 +3621,7 @@ Public Class BennysMenu
                             Bennys.lastVehMemory.LeftNeon = True
                             Bennys.lastVehMemory.RightNeon = True
                         End If
-                    Case Helper.NeonLayouts.BackAndSides
+                    Case NeonLayouts.BackAndSides
                         If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                             Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Back, True)
                             Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Front, False)
@@ -2995,7 +3636,7 @@ Public Class BennysMenu
                             Bennys.lastVehMemory.LeftNeon = True
                             Bennys.lastVehMemory.RightNeon = True
                         End If
-                    Case Helper.NeonLayouts.FrontBackAndSides
+                    Case NeonLayouts.FrontBackAndSides
                         If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                             Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Back, True)
                             Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Front, True)
@@ -3011,7 +3652,7 @@ Public Class BennysMenu
                             Bennys.lastVehMemory.RightNeon = True
                         End If
                 End Select
-                Helper.PlaySpeech("")
+                PlaySpeech("")
             End If
 
             'Wheels Mods
@@ -3029,7 +3670,7 @@ Public Class BennysMenu
                     Bennys.lastVehMemory.WheelType = Bennys.veh.WheelType
                     Bennys.lastVehMemory.FrontWheels = selectedItem.SubInteger1
                     Bennys.lastVehMemory.BackWheels = selectedItem.SubInteger1
-                    Helper.PlaySpeech("LR_UPGRADE_WHEEL")
+                    PlaySpeech("LR_UPGRADE_WHEEL")
                 End If
             ElseIf (sender Is mSHighEnd) Or (sender Is mSLowrider) Or (sender Is mSMuscle) Or (sender Is mSOffroad) Or (sender Is mSSport) Or (sender Is mSSUV) Or (sender Is mSTuner) Or (sender Is mCHighEnd) Or (sender Is mCLowrider) Or (sender Is mCMuscle) Or (sender Is mCOffroad) Or (sender Is mCSport) Or (sender Is mCSUV) Or (sender Is mCTuner) Or (sender Is mBennysOriginals) Or (sender Is mBespoke) Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -3040,7 +3681,7 @@ Public Class BennysMenu
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.WheelType = Bennys.veh.WheelType
                     Bennys.lastVehMemory.FrontWheels = selectedItem.SubInteger1
-                    Helper.PlaySpeech("LR_UPGRADE_WHEEL")
+                    PlaySpeech("LR_UPGRADE_WHEEL")
                 End If
             End If
             If sender Is mTires Then
@@ -3075,7 +3716,7 @@ Public Class BennysMenu
                             End If
                         End If
                 End Select
-                Helper.PlaySpeech("LR_UPGRADE_WHEEL")
+                PlaySpeech("LR_UPGRADE_WHEEL")
             End If
 
             'Wheel Type
@@ -3129,19 +3770,19 @@ Public Class BennysMenu
                 Bennys.veh.WheelType = VehicleWheelType.HighEnd
             ElseIf sender Is gmLowrider Then
                 Bennys.veh.WheelType = VehicleWheelType.Lowrider
-            ElseIf sender Is gmMuscle
+            ElseIf sender Is gmMuscle Then
                 Bennys.veh.WheelType = VehicleWheelType.Muscle
-            ElseIf sender Is gmOffroad
+            ElseIf sender Is gmOffroad Then
                 Bennys.veh.WheelType = VehicleWheelType.Offroad
-            ElseIf sender Is gmSport
+            ElseIf sender Is gmSport Then
                 Bennys.veh.WheelType = VehicleWheelType.Sport
-            ElseIf sender Is gmSUV
+            ElseIf sender Is gmSUV Then
                 Bennys.veh.WheelType = VehicleWheelType.SUV
-            ElseIf sender Is gmTuner
+            ElseIf sender Is gmTuner Then
                 Bennys.veh.WheelType = VehicleWheelType.Tuner
-            ElseIf sender Is mBennysOriginals
+            ElseIf sender Is mBennysOriginals Then
                 Bennys.veh.WheelType = 8
-            ElseIf sender Is mBespoke
+            ElseIf sender Is mBespoke Then
                 Bennys.veh.WheelType = 9
             End If
 
@@ -3154,7 +3795,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.LightsColor = selectedItem.SubInteger1
-                    Helper.PlaySpeech("SHOP_SELL_COSMETICS")
+                    PlaySpeech("SHOP_SELL_COSMETICS")
                 End If
             ElseIf sender Is mTrimColor Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -3164,7 +3805,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.TrimColor = selectedItem.SubInteger1
-                    Helper.PlaySpeech("SHOP_SELL_COSMETICS")
+                    PlaySpeech("SHOP_SELL_COSMETICS")
                 End If
             ElseIf sender Is mRimColor Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -3174,7 +3815,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.RimColor = selectedItem.SubInteger1
-                    Helper.PlaySpeech("SHOP_SELL_COSMETICS")
+                    PlaySpeech("SHOP_SELL_COSMETICS")
                 End If
             ElseIf (sender Is mPrimaryChromeColor) Or (sender Is mPrimaryClassicColor) Or (sender Is mPrimaryMatteColor) Or (sender Is mPrimaryMetalsColor) Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -3184,9 +3825,10 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.PrimaryColor = selectedItem.SubInteger1
-                    Helper.PlaySpeech("SHOP_SELL_COSMETICS")
+                    PlaySpeech("SHOP_SELL_COSMETICS")
                 End If
-            ElseIf sender Is mPrimaryMetallicColor
+            ElseIf sender Is mPrimaryMetallicColor Then
+
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.PrimaryColor = selectedItem.SubInteger1
                     Bennys.veh.PearlescentColor = selectedItem.SubInteger1
@@ -3196,7 +3838,7 @@ Public Class BennysMenu
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.PrimaryColor = selectedItem.SubInteger1
                     Bennys.lastVehMemory.PearlescentColor = selectedItem.SubInteger1
-                    Helper.PlaySpeech("SHOP_SELL_COSMETICS")
+                    PlaySpeech("SHOP_SELL_COSMETICS")
                 End If
             ElseIf sender Is mPrimaryPearlescentColor Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -3206,7 +3848,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.PearlescentColor = selectedItem.SubInteger1
-                    Helper.PlaySpeech("SHOP_SELL_COSMETICS")
+                    PlaySpeech("SHOP_SELL_COSMETICS")
                 End If
             ElseIf (sender Is mSecondaryChromeColor) Or (sender Is mSecondaryClassicColor) Or (sender Is mSecondaryMatteColor) Or (sender Is mSecondaryMetallicColor) Or (sender Is mSecondaryMetalsColor) Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -3216,7 +3858,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.SecondaryColor = selectedItem.SubInteger1
-                    Helper.PlaySpeech("SHOP_SELL_COSMETICS")
+                    PlaySpeech("SHOP_SELL_COSMETICS")
                 End If
             ElseIf sender Is mNeonColor Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -3226,7 +3868,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger4)
                     selectedItem.SubInteger4 = 0
                     Bennys.lastVehMemory.NeonLightsColor = Drawing.Color.FromArgb(selectedItem.SubInteger1, selectedItem.SubInteger2, selectedItem.SubInteger3)
-                    Helper.PlaySpeech("")
+                    PlaySpeech("")
                 End If
             ElseIf sender Is mTireSmoke Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
@@ -3237,7 +3879,7 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger4)
                     selectedItem.SubInteger4 = 0
                     Bennys.lastVehMemory.TireSmokeColor = Drawing.Color.FromArgb(selectedItem.SubInteger1, selectedItem.SubInteger2, selectedItem.SubInteger3)
-                    Helper.PlaySpeech("")
+                    PlaySpeech("")
                 End If
             End If
 
@@ -3260,7 +3902,8 @@ Public Class BennysMenu
                     Else
                         camera.MainCameraPosition = CameraPosition.Trunk
                     End If
-                ElseIf selectedItem Is giSSkirt
+                ElseIf selectedItem Is giSSkirt Then
+
                     Select Case Bennys.veh.Model
                         Case "barrage"
                             camera.MainCameraPosition = CameraPosition.Car
@@ -3356,6 +3999,7 @@ Public Class BennysMenu
                 Bennys.veh.NumberPlateType = sender.MenuItems(index).SubInteger1
             ElseIf sender Is mHeadlights Then
                 Bennys.veh.ToggleMod(VehicleToggleMod.XenonHeadlights, CBool(sender.MenuItems(index).SubInteger1))
+                If index = 0 Then Bennys.veh.SetXenonHeadlightsColor(sender.MenuItems(index).SubInteger3, False) Else Bennys.veh.SetXenonHeadlightsColor(sender.MenuItems(index).SubInteger3, True)
             ElseIf sender Is mArchCover Then
                 Bennys.veh.SetMod(VehicleMod.ArchCover, sender.MenuItems(index).SubInteger1, False)
             ElseIf sender Is mExhaust Then
@@ -3409,7 +4053,7 @@ Public Class BennysMenu
             ElseIf sender Is mLivery Then
                 Bennys.veh.SetMod(VehicleMod.Livery, sender.MenuItems(index).SubInteger1, False)
             ElseIf sender Is mTornadoC Then
-                Helper.SetTornadoCustomRoof(Bennys.veh, sender.MenuItems(index).SubInteger1)
+                Bennys.veh.SetLivery2(sender.MenuItems(index).SubInteger1)
             ElseIf sender Is mPlaques Then
                 Bennys.veh.SetMod(VehicleMod.Plaques, sender.MenuItems(index).SubInteger1, False)
             ElseIf sender Is mRoof Then
@@ -3426,7 +4070,7 @@ Public Class BennysMenu
                 Bennys.veh.SetMod(VehicleMod.Windows, sender.MenuItems(index).SubInteger1, False)
             ElseIf sender Is mTurbo Then
                 Bennys.veh.ToggleMod(VehicleToggleMod.Turbo, CBool(sender.MenuItems(index).SubInteger1))
-            ElseIf sender Is mTint
+            ElseIf sender Is mTint Then
                 Bennys.veh.WindowTint = sender.MenuItems(index).SubInteger1
             End If
 
@@ -3456,42 +4100,42 @@ Public Class BennysMenu
             'Neons Mods
             If sender Is mNeon Then
                 Select Case sender.MenuItems(index).SubInteger1
-                    Case Helper.NeonLayouts.None
+                    Case NeonLayouts.None
                         Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Back, False)
                         Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Front, False)
                         Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Left, False)
                         Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Right, False)
-                    Case Helper.NeonLayouts.Front
+                    Case NeonLayouts.Front
                         Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Back, False)
                         Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Front, True)
                         Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Left, False)
                         Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Right, False)
-                    Case Helper.NeonLayouts.Back
+                    Case NeonLayouts.Back
                         Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Back, True)
                         Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Front, False)
                         Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Left, False)
                         Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Right, False)
-                    Case Helper.NeonLayouts.Sides
+                    Case NeonLayouts.Sides
                         Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Back, False)
                         Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Front, False)
                         Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Left, True)
                         Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Right, True)
-                    Case Helper.NeonLayouts.FrontAndBack
+                    Case NeonLayouts.FrontAndBack
                         Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Back, True)
                         Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Front, True)
                         Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Left, False)
                         Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Right, False)
-                    Case Helper.NeonLayouts.FrontAndSides
+                    Case NeonLayouts.FrontAndSides
                         Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Back, False)
                         Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Front, True)
                         Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Left, True)
                         Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Right, True)
-                    Case Helper.NeonLayouts.BackAndSides
+                    Case NeonLayouts.BackAndSides
                         Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Back, True)
                         Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Front, False)
                         Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Left, True)
                         Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Right, True)
-                    Case Helper.NeonLayouts.FrontBackAndSides
+                    Case NeonLayouts.FrontBackAndSides
                         Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Back, True)
                         Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Front, True)
                         Bennys.veh.SetNeonLightsOn(VehicleNeonLight.Left, True)
@@ -3530,7 +4174,7 @@ Public Class BennysMenu
                 Bennys.veh.RimColor = sender.MenuItems(index).SubInteger1
             ElseIf (sender Is mPrimaryChromeColor) Or (sender Is mPrimaryClassicColor) Or (sender Is mPrimaryMatteColor) Or (sender Is mPrimaryMetalsColor) Then
                 Bennys.veh.PrimaryColor = sender.MenuItems(index).SubInteger1
-            ElseIf sender Is mPrimaryMetallicColor
+            ElseIf sender Is mPrimaryMetallicColor Then
                 Bennys.veh.PrimaryColor = sender.MenuItems(index).SubInteger1
                 Bennys.veh.PearlescentColor = sender.MenuItems(index).SubInteger1
             ElseIf sender Is mPrimaryPearlescentColor Then
@@ -3557,138 +4201,141 @@ Public Class BennysMenu
     End Sub
 
     Public Shared Sub CreateMenus()
-        Do Until (IO.File.Exists(".\scripts\BennysLang-" & Game.Language.ToString & ".ini"))
-            Threading.Thread.Sleep(1000)
-        Loop
-        Do Until Helper.IsNullorNothing = False
-            Helper.CreateTitleNames()
-        Loop
+        'Do Until (IO.File.Exists(".\scripts\BennysLang-" & Game.Language.ToString & ".ini"))
+        '    Threading.Thread.Sleep(1000)
+        'Loop
+        'Do Until IsNullorNothing() = False
+        '    CreateTitleNames()
+        'Loop
+        CreateQuitMenu()
         CreateMainMenu()
+        CreateArenaWarMenu()
         CreateBodyworkMenu()
-        CreateModMenuFor(mAerials, Helper.LocalizeModTitleName("AERIALS")) 'AERIALS
-        CreateModMenuFor(mTrim, Helper.LocalizeModTitleName("TRIM")) 'TRIM
-        CreateModMenuFor(mWindow, Helper.LocalizeModTitleName("WINDOWS")) 'WINDOWS
-        CreateModMenuFor(mArchCover, Helper.LocalizeModTitleName("ARCHCOVERS")) 'ARCH COVERS
+        CreateModMenuFor(mAerials, Game.GetGXTEntry("CMM_MOD_ST18")) 'AERIALS
+        CreateModMenuFor(mTrim, Game.GetGXTEntry("CMM_MOD_ST19")) 'TRIM
+        CreateModMenuFor(mWindow, Game.GetGXTEntry("CMM_MOD_ST21")) 'WINDOWS
+        CreateModMenuFor(mArchCover, Game.GetGXTEntry("CMM_MOD_ST17")) 'ARCH COVERS
         CreateEngineMenu()
-        CreatePerformanceMenuFor(mEngine, Helper.LocalizeModTitleName("ENGINE")) 'ENGINE
-        CreateModMenuFor(mEngineBlock, Helper.LocalizeModTitleName("ENGINEBLOCK")) 'ENGINE BLOCK
-        CreateModMenuFor(mAirFilter, Helper.LocalizeModTitleName("AIRFILTER")) 'AIR FILTER
-        CreateModMenuFor(mStruts, Helper.LocalizeModTitleName("STRUTS")) 'STRUTS
+        CreatePerformanceMenuFor(mEngine, Game.GetGXTEntry("CMM_MOD_GT3")) 'ENGINE
+        CreateModMenuFor(mEngineBlock, Game.GetGXTEntry("CMOD_EB_T")) 'ENGINE BLOCK
+        CreateModMenuFor(mAirFilter, Game.GetGXTEntry("CMM_MOD_ST15")) 'AIR FILTER
+        CreateModMenuFor(mStruts, Game.GetGXTEntry("CMM_MOD_ST16")) 'STRUTS
         CreateInteriorMenu()
-        CreateModMenuFor(mColumnShifterLevers, Helper.LocalizeModTitleName("COLUMNSHIFTERLEVERS")) 'COLUMN SHIFTER LEVERS
-        CreateModMenuFor(mDashboard, Helper.LocalizeModTitleName("DASHBOARD")) 'DASHBOARD
-        CreateColorMenuFor(mLightsColor, Helper.LocalizeModTitleName("LIGHTCOLOR"))
-        CreateModMenuFor(mDialDesign, Helper.LocalizeModTitleName("DIALDESIGN")) 'DIAL DESIGN
-        CreateModMenuFor(mOrnaments, Helper.LocalizeModTitleName("ORNAMENTS")) 'ORNAMENTS
-        CreateModMenuFor(mSeats, Helper.LocalizeModTitleName("SEATS")) 'SEATS
-        CreateModMenuFor(mSteeringWheels, Helper.LocalizeModTitleName("STEERINGWHEELS")) 'STEERING WHEELS
-        CreateModMenuFor(mTrimDesign, Helper.LocalizeModTitleName("TRIMDESIGN")) 'TRIM DESIGN
-        CreateColorMenuFor(mTrimColor, Helper.LocalizeModTitleName("TRIMCOLOR"))
-        CreateModMenuFor(mDoor, Helper.LocalizeModTitleName("DOORS")) 'DOORS
+        CreateModMenuFor(mColumnShifterLevers, Game.GetGXTEntry("CMM_MOD_ST9")) 'COLUMN SHIFTER LEVERS
+        CreateModMenuFor(mDashboard, Game.GetGXTEntry("CMM_MOD_ST4")) 'DASHBOARD
+        CreateColorMenuFor(mLightsColor, Game.GetGXTEntry("CMM_MOD_ST26").ToUpper)
+        CreateModMenuFor(mDialDesign, Game.GetGXTEntry("CMM_MOD_ST5")) 'DIAL DESIGN
+        CreateModMenuFor(mOrnaments, Game.GetGXTEntry("CMM_MOD_ST3")) 'ORNAMENTS
+        CreateModMenuFor(mSeats, Game.GetGXTEntry("CMM_MOD_ST7")) 'SEATS
+        CreateModMenuFor(mSteeringWheels, Game.GetGXTEntry("CMM_MOD_ST8")) 'STEERING WHEELS
+        CreateModMenuFor(mTrimDesign, Game.GetGXTEntry("CMM_MOD_ST2")) 'TRIM DESIGN
+        CreateColorMenuFor(mTrimColor, Game.GetGXTEntry("CMOD_MOD_TRIM2").ToUpper)
+        CreateModMenuFor(mDoor, Game.GetGXTEntry("CMM_MOD_ST6")) 'DOORS
         CreateBumperMenu()
-        CreateModMenuFor(mFBumper, Helper.LocalizeModTitleName("FRONTBUMPERS")) 'FRONT BUMPERS
-        CreateModMenuFor(mRBumper, Helper.LocalizeModTitleName("REARBUMPERS")) 'REAR BUMPERS
-        CreateModMenuFor(mSSkirt, Helper.LocalizeModTitleName("SIDESKIRT")) 'SIDE SKIRT
+        CreateModMenuFor(mFBumper, Game.GetGXTEntry("CMOD_BUMF_T")) 'FRONT BUMPERS
+        CreateModMenuFor(mRBumper, Game.GetGXTEntry("CMOD_BUMR_T")) 'REAR BUMPERS
+        CreateModMenuFor(mSSkirt, Game.GetGXTEntry("CMOD_SS_T")) 'SIDE SKIRT
         CreateWheelsMenu()
         CreateWheelTypeMenu()
 
-        CreateWheelRimMenu(gmBikeWheels, Helper.LocalizeModTitleName("BIKEWHEELS")) 'BIKE WHEELS
-        CreateModMenuFor(mSBikeWheels, Helper.LocalizeModTitleName("BIKEWHEELS")) 'STOCK RIMS
-        CreateModMenuFor(mCBikeWheels, Helper.LocalizeModTitleName("BIKEWHEELS")) 'CHROME RIMS
-        'CreateModMenuFor(gmBikeWheels, Helper.LocalizeModTitleName("BIKEWHEELS")) 'BIKE WHEELS
+        CreateWheelRimMenu(gmBikeWheels, GetLocalizedWheelTypeName(VehicleWheelType.BikeWheels).ToUpper) 'BIKE WHEELS
+        CreateModMenuFor(mSBikeWheels, GetLocalizedWheelTypeName(VehicleWheelType.BikeWheels).ToUpper) 'STOCK RIMS
+        CreateModMenuFor(mCBikeWheels, GetLocalizedWheelTypeName(VehicleWheelType.BikeWheels).ToUpper) 'CHROME RIMS
+        'CreateModMenuFor(gmBikeWheels, GetLocalizedWheelTypeName(VehicleWheelType.BikeWheels).ToUpper) 'BIKE WHEELS
 
-        CreateWheelRimMenu(gmHighEnd, Helper.LocalizeModTitleName("HIGHEND")) 'HIGH END
-        CreateModMenuFor(mSHighEnd, Helper.LocalizeModTitleName("HIGHEND")) 'STOCK RIMS
-        CreateModMenuFor(mCHighEnd, Helper.LocalizeModTitleName("HIGHEND")) 'CHROME RIMS
+        CreateWheelRimMenu(gmHighEnd, GetLocalizedWheelTypeName(VehicleWheelType.HighEnd).ToUpper) 'HIGH END
+        CreateModMenuFor(mSHighEnd, GetLocalizedWheelTypeName(VehicleWheelType.HighEnd).ToUpper) 'STOCK RIMS
+        CreateModMenuFor(mCHighEnd, GetLocalizedWheelTypeName(VehicleWheelType.HighEnd).ToUpper) 'CHROME RIMS
 
-        CreateWheelRimMenu(gmLowrider, Helper.LocalizeModTitleName("LOWRIDER")) 'LOWRIDER
-        CreateModMenuFor(mSLowrider, Helper.LocalizeModTitleName("LOWRIDER")) 'STOCK RIMS
-        CreateModMenuFor(mCLowrider, Helper.LocalizeModTitleName("LOWRIDER")) 'CHROME RIMS
+        CreateWheelRimMenu(gmLowrider, GetLocalizedWheelTypeName(VehicleWheelType.Lowrider).ToUpper) 'LOWRIDER
+        CreateModMenuFor(mSLowrider, GetLocalizedWheelTypeName(VehicleWheelType.Lowrider).ToUpper) 'STOCK RIMS
+        CreateModMenuFor(mCLowrider, GetLocalizedWheelTypeName(VehicleWheelType.Lowrider).ToUpper) 'CHROME RIMS
 
-        CreateWheelRimMenu(gmMuscle, Helper.LocalizeModTitleName("MUSCLE")) 'MUSCLE
-        CreateModMenuFor(mSMuscle, Helper.LocalizeModTitleName("MUSCLE")) 'STOCK RIMS
-        CreateModMenuFor(mCMuscle, Helper.LocalizeModTitleName("MUSCLE")) 'CHROME RIMS
+        CreateWheelRimMenu(gmMuscle, GetLocalizedWheelTypeName(VehicleWheelType.Muscle).ToUpper) 'MUSCLE
+        CreateModMenuFor(mSMuscle, GetLocalizedWheelTypeName(VehicleWheelType.Muscle).ToUpper) 'STOCK RIMS
+        CreateModMenuFor(mCMuscle, GetLocalizedWheelTypeName(VehicleWheelType.Muscle).ToUpper) 'CHROME RIMS
 
-        CreateWheelRimMenu(gmOffroad, Helper.LocalizeModTitleName("OFFROAD")) 'OFFROAD
-        CreateModMenuFor(mSOffroad, Helper.LocalizeModTitleName("OFFROAD")) 'STOCK RIMS
-        CreateModMenuFor(mCOffroad, Helper.LocalizeModTitleName("OFFROAD")) 'CHROME RIMS
+        CreateWheelRimMenu(gmOffroad, GetLocalizedWheelTypeName(VehicleWheelType.Offroad).ToUpper) 'OFFROAD
+        CreateModMenuFor(mSOffroad, GetLocalizedWheelTypeName(VehicleWheelType.Offroad).ToUpper) 'STOCK RIMS
+        CreateModMenuFor(mCOffroad, GetLocalizedWheelTypeName(VehicleWheelType.Offroad).ToUpper) 'CHROME RIMS
 
-        CreateWheelRimMenu(gmSport, Helper.LocalizeModTitleName("SPORT")) 'SPORT
-        CreateModMenuFor(mSSport, Helper.LocalizeModTitleName("SPORT")) 'STOCK RIMS
-        CreateModMenuFor(mCSport, Helper.LocalizeModTitleName("SPORT")) 'CHROME RIMS
+        CreateWheelRimMenu(gmSport, GetLocalizedWheelTypeName(VehicleWheelType.Sport).ToUpper) 'SPORT
+        CreateModMenuFor(mSSport, GetLocalizedWheelTypeName(VehicleWheelType.Sport).ToUpper) 'STOCK RIMS
+        CreateModMenuFor(mCSport, GetLocalizedWheelTypeName(VehicleWheelType.Sport).ToUpper) 'CHROME RIMS
 
-        CreateWheelRimMenu(gmSUV, Helper.LocalizeModTitleName("SUV")) 'SUV
-        CreateModMenuFor(mSSUV, Helper.LocalizeModTitleName("SUV")) 'STOCK RIMS
-        CreateModMenuFor(mCSUV, Helper.LocalizeModTitleName("SUV")) 'CHROME RIMS
+        CreateWheelRimMenu(gmSUV, GetLocalizedWheelTypeName(VehicleWheelType.SUV).ToUpper) 'SUV
+        CreateModMenuFor(mSSUV, GetLocalizedWheelTypeName(VehicleWheelType.SUV).ToUpper) 'STOCK RIMS
+        CreateModMenuFor(mCSUV, GetLocalizedWheelTypeName(VehicleWheelType.SUV).ToUpper) 'CHROME RIMS
 
-        CreateWheelRimMenu(gmTuner, Helper.LocalizeModTitleName("TUNER")) 'TUNER
-        CreateModMenuFor(mSTuner, Helper.LocalizeModTitleName("TUNER")) 'STOCK RIMS
-        CreateModMenuFor(mCTuner, Helper.LocalizeModTitleName("TUNER")) 'CHROME RIMS
+        CreateWheelRimMenu(gmTuner, GetLocalizedWheelTypeName(VehicleWheelType.Tuner).ToUpper) 'TUNER
+        CreateModMenuFor(mSTuner, GetLocalizedWheelTypeName(VehicleWheelType.Tuner).ToUpper) 'STOCK RIMS
+        CreateModMenuFor(mCTuner, GetLocalizedWheelTypeName(VehicleWheelType.Tuner).ToUpper) 'CHROME RIMS
 
-        CreateModMenuFor(mBennysOriginals, Helper.LocalizeModTitleName("BENNYS")) 'BENNY'S ORIGINALS
-        CreateModMenuFor(mBespoke, Helper.LocalizeModTitleName("BESPOKE")) 'BENNY'S BESPOKE
-        CreateColorMenuFor(mRimColor, Helper.LocalizedModGroupName(Helper.GroupName.WheelColor))
+        CreateModMenuFor(mBennysOriginals, GetLocalizedWheelTypeName(8).ToUpper) 'BENNY'S ORIGINALS
+        CreateModMenuFor(mBespoke, GetLocalizedWheelTypeName(9).ToUpper) 'BENNY'S BESPOKE
+        CreateColorMenuFor(mRimColor, LocalizedModGroupName(GroupName.WheelColor).ToUpper)
         CreateTyresMenu()
-        CreateModMenuFor(mTireSmoke, Helper.LocalizeModTitleName("TIRESMOKE"))
+        CreateModMenuFor(mTireSmoke, Game.GetGXTEntry("CMOD_MOD_TYR3").ToUpper)
         CreatePlateMenu()
-        CreateModMenuFor(mPlateHolder, Helper.LocalizeModTitleName("PLATEHOLDERS")) 'PLATE HOLDERS
-        CreateModMenuFor(mVanityPlates, Helper.LocalizeModTitleName("VANITYPLATES")) 'VANITY PLATES
+        CreateModMenuFor(mPlateHolder, Game.GetGXTEntry("CMOD_PLH_T")) 'PLATE HOLDERS
+        CreateModMenuFor(mVanityPlates, Game.GetGXTEntry("CMM_MOD_ST1")) 'VANITY PLATES
         CreatePlateNumberMenu()
         CreateLightsMenu()
-        CreateModMenuFor(mHeadlights, Helper.LocalizeModTitleName("HEADLIGHTS")) 'HEADLIGHTS
+        CreateModMenuFor(mHeadlights, Game.GetGXTEntry("CMOD_HED_T")) 'HEADLIGHTS
         CreateNeonKitsMenu()
         CreateNeonMenu()
-        CreateModMenuFor(mNeonColor, Helper.LocalizeModTitleName("NEONCOLOR"))
+        CreateModMenuFor(mNeonColor, Game.GetGXTEntry("CMOD_NEON_1").ToUpper)
         CreateResprayMenu()
-        CreateModMenuFor(mPrimaryColor, Helper.LocalizeModTitleName("COLORGROUPS"))
-        CreateModMenuFor(mPrimaryClassicColor, Helper.LocalizeModTitleName("PRIMARYCOLOR"))
-        CreateModMenuFor(mPrimaryChromeColor, Helper.LocalizeModTitleName("PRIMARYCOLOR"))
-        CreateModMenuFor(mPrimaryMetallicColor, Helper.LocalizeModTitleName("PRIMARYCOLOR"))
-        CreateModMenuFor(mPrimaryMetalsColor, Helper.LocalizeModTitleName("PRIMARYCOLOR"))
-        CreateModMenuFor(mPrimaryMatteColor, Helper.LocalizeModTitleName("PRIMARYCOLOR"))
-        CreateModMenuFor(mPrimaryPearlescentColor, Helper.LocalizeModTitleName("PRIMARYCOLOR"))
-        CreateModMenuFor(mSecondaryColor, Helper.LocalizeModTitleName("COLORGROUPS"))
-        CreateModMenuFor(mSecondaryClassicColor, Helper.LocalizeModTitleName("SECONDARYCOLOR"))
-        CreateModMenuFor(mSecondaryChromeColor, Helper.LocalizeModTitleName("SECONDARYCOLOR"))
-        CreateModMenuFor(mSecondaryMetallicColor, Helper.LocalizeModTitleName("SECONDARYCOLOR"))
-        CreateModMenuFor(mSecondaryMetalsColor, Helper.LocalizeModTitleName("SECONDARYCOLOR"))
-        CreateModMenuFor(mSecondaryMatteColor, Helper.LocalizeModTitleName("SECONDARYCOLOR"))
-        CreateModMenuFor(mExhaust, Helper.LocalizeModTitleName("EXHAUST")) 'EXHAUST
-        CreateModMenuFor(mFender, Helper.LocalizeModTitleName("FENDER")) 'FENDER
-        CreateModMenuFor(mRFender, Helper.LocalizeModTitleName("RIGHTFENDER")) 'RIGHT FENDER
-        CreateModMenuFor(mFrame, Helper.LocalizeModTitleName("ROLLCAGE")) 'ROLL CAGE
-        CreateModMenuFor(mGrille, Helper.LocalizeModTitleName("GRILLES")) 'GRILLES
-        CreateModMenuFor(mHood, Helper.LocalizeModTitleName("HOOD")) 'HOOD
-        CreateModMenuFor(mHorn, Helper.LocalizeModTitleName("HORN")) 'HORN
-        CreateModMenuFor(mHydraulics, Helper.LocalizeModTitleName("HYDRAULICS")) 'HYDRAULICS
-        CreateModMenuFor(mLivery, Helper.LocalizeModTitleName("LIVERY")) 'LIVERY
-        CreateModMenuFor(mTornadoC, Helper.LocalizeModTitleName("ROOF")) 'ROOF
-        CreateModMenuFor(mPlaques, Helper.LocalizeModTitleName("PLAQUES")) 'PLAQUES
-        CreateModMenuFor(mRoof, Helper.LocalizeModTitleName("ROOF")) 'ROOF
-        CreateModMenuFor(mSpeakers, Helper.LocalizeModTitleName("SPEAKERS")) 'SPEAKERS
-        CreateModMenuFor(mSpoilers, Helper.LocalizeModTitleName("SPOILER")) 'SPOILER
-        CreateModMenuFor(mTank, Helper.LocalizeModTitleName("TANK")) 'TANK
-        CreateModMenuFor(mTrunk, Helper.LocalizeModTitleName("TRUNKS")) 'TRUNKS
-        CreateModMenuFor(mTurbo, Helper.LocalizeModTitleName("TURBO")) 'TURBO
-        CreatePerformanceMenuFor(mSuspension, Helper.LocalizeModTitleName("SUSPENSIONS")) 'SUSPENSION
-        CreatePerformanceMenuFor(mArmor, Helper.LocalizeModTitleName("ARMOR")) 'ARMOR
-        CreatePerformanceMenuFor(mBrakes, Helper.LocalizeModTitleName("BRAKES")) 'BRAKES
-        CreatePerformanceMenuFor(mTransmission, Helper.LocalizeModTitleName("TRANSMISSION")) 'TRANSMISSION
+        CreateModMenuFor(mPrimaryColor, Game.GetGXTEntry("CMOD_COL1_T"))
+        CreateModMenuFor(mPrimaryClassicColor, Game.GetGXTEntry("CMOD_COL0_0").ToUpper)
+        CreateModMenuFor(mPrimaryChromeColor, Game.GetGXTEntry("CMOD_COL0_0").ToUpper)
+        CreateModMenuFor(mPrimaryMetallicColor, Game.GetGXTEntry("CMOD_COL0_0").ToUpper)
+        CreateModMenuFor(mPrimaryMetalsColor, Game.GetGXTEntry("CMOD_COL0_0").ToUpper)
+        CreateModMenuFor(mPrimaryMatteColor, Game.GetGXTEntry("CMOD_COL0_0").ToUpper)
+        CreateModMenuFor(mPrimaryPearlescentColor, Game.GetGXTEntry("CMOD_COL0_0").ToUpper)
+        CreateModMenuFor(mSecondaryColor, Game.GetGXTEntry("CMOD_COL1_T"))
+        CreateModMenuFor(mSecondaryClassicColor, Game.GetGXTEntry("CMOD_COL0_1").ToUpper)
+        CreateModMenuFor(mSecondaryChromeColor, Game.GetGXTEntry("CMOD_COL0_1").ToUpper)
+        CreateModMenuFor(mSecondaryMetallicColor, Game.GetGXTEntry("CMOD_COL0_1").ToUpper)
+        CreateModMenuFor(mSecondaryMetalsColor, Game.GetGXTEntry("CMOD_COL0_1").ToUpper)
+        CreateModMenuFor(mSecondaryMatteColor, Game.GetGXTEntry("CMOD_COL0_1").ToUpper)
+        CreateModMenuFor(mExhaust, Game.GetGXTEntry("CMOD_EXH_T")) 'EXHAUST
+        CreateModMenuFor(mFender, Game.GetGXTEntry("CMOD_WNG_T")) 'FENDER
+        CreateModMenuFor(mRFender, Game.GetGXTEntry("CMOD_WNG_T")) 'RIGHT FENDER
+        CreateModMenuFor(mFrame, Game.GetGXTEntry("CMOD_RC_T")) 'ROLL CAGE
+        CreateModMenuFor(mGrille, Game.GetGXTEntry("CMOD_GRL_T")) 'GRILLES
+        CreateModMenuFor(mHood, Game.GetGXTEntry("CMOD_BON_T")) 'HOOD
+        CreateModMenuFor(mHorn, Game.GetGXTEntry("CMOD_HRN_T")) 'HORN
+        CreateModMenuFor(mHydraulics, Game.GetGXTEntry("CMM_MOD_ST13")) 'HYDRAULICS
+        CreateModMenuFor(mLivery, Game.GetGXTEntry("CMM_MOD_ST23")) 'LIVERY
+        CreateModMenuFor(mTornadoC, Game.GetGXTEntry("CMOD_ROF_T")) 'ROOF
+        CreateModMenuFor(mPlaques, Game.GetGXTEntry("CMM_MOD_ST10")) 'PLAQUES
+        CreateModMenuFor(mRoof, Game.GetGXTEntry("CMOD_ROF_T")) 'ROOF
+        CreateModMenuFor(mSpeakers, Game.GetGXTEntry("CMM_MOD_S11")) 'SPEAKERS
+        CreateModMenuFor(mSpoilers, Game.GetGXTEntry("CMOD_SPO_T")) 'SPOILER
+        CreateModMenuFor(mTank, Game.GetGXTEntry("CMM_MOD_ST20")) 'TANK
+        CreateModMenuFor(mTrunk, Game.GetGXTEntry("CMOD_TR_T")) 'TRUNKS
+        CreateModMenuFor(mTurbo, Game.GetGXTEntry("CMOD_TUR_T")) 'TURBO
+        CreatePerformanceMenuFor(mSuspension, Game.GetGXTEntry("CMOD_SUS_T")) 'SUSPENSION
+        CreatePerformanceMenuFor(mArmor, Game.GetGXTEntry("CMOD_ARM_T")) 'ARMOR
+        CreatePerformanceMenuFor(mBrakes, Game.GetGXTEntry("CMOD_BRA_T")) 'BRAKES
+        CreatePerformanceMenuFor(mTransmission, Game.GetGXTEntry("CMOD_GBX_T")) 'TRANSMISSION
         CreateTintMenu()
         'Motorcycles
-        CreateModMenuFor(mShifter, Helper.LocalizeModTitleName("SHIFTER"))
-        CreateModMenuFor(mFMudguard, Helper.LocalizeModTitleName("FRONTMUDGUARD"))
-        CreateModMenuFor(mBSeat, Helper.LocalizeModTitleName("SEATS"))
-        CreateModMenuFor(mOilTank, Helper.LocalizeModTitleName("OILTANK"))
-        CreateModMenuFor(mRMudguard, Helper.LocalizeModTitleName("REARMUDGUARD"))
-        CreateModMenuFor(mFuelTank, Helper.LocalizeModTitleName("FUELTANK"))
-        CreateModMenuFor(mBeltDriveCovers, Helper.LocalizeModTitleName("BELTDRIVECOVER"))
-        CreateModMenuFor(mBEngineBlock, Helper.LocalizeModTitleName("ENGINEBLOCK"))
-        CreateModMenuFor(mBAirFilter, Helper.LocalizeModTitleName("AIRFILTER"))
-        CreateModMenuFor(mBTank, Helper.LocalizeModTitleName("TANK"))
+        CreateModMenuFor(mShifter, Game.GetGXTEntry("CMOD_SHIFTER_T"))
+        CreateModMenuFor(mFMudguard, Game.GetGXTEntry("CMOD_FMUD_T"))
+        CreateModMenuFor(mBSeat, Game.GetGXTEntry("CMM_MOD_ST7"))
+        CreateModMenuFor(mOilTank, Game.GetGXTEntry("CMM_MOD_ST29"))
+        CreateModMenuFor(mRMudguard, Game.GetGXTEntry("CMOD_RMUD_T"))
+        CreateModMenuFor(mFuelTank, Game.GetGXTEntry("CMOD_FUL_T"))
+        CreateModMenuFor(mBeltDriveCovers, Game.GetGXTEntry("CMOD_MOD_BLT").ToUpper)
+        CreateModMenuFor(mBEngineBlock, Game.GetGXTEntry("CMOD_EB_T"))
+        CreateModMenuFor(mBAirFilter, Game.GetGXTEntry("CMM_MOD_ST15"))
+        CreateModMenuFor(mBTank, Game.GetGXTEntry("CMM_MOD_ST20"))
     End Sub
 
     Public Shared Sub RefreshMenus()
+        RefreshArenaWarMenu()
         RefreshBodyworkMenu()
         RefreshModMenuFor(mAerials, iAerials, VehicleMod.Aerials)
         RefreshModMenuFor(mTrim, iTrim, VehicleMod.Trim)
@@ -3702,13 +4349,13 @@ Public Class BennysMenu
         RefreshInteriorMenu()
         RefreshModMenuFor(mColumnShifterLevers, iColumnShifterLevers, VehicleMod.ColumnShifterLevers)
         RefreshModMenuFor(mDashboard, iDashboard, VehicleMod.Dashboard)
-        RefreshEnumModMenuFor(mLightsColor, iLightsColor, Helper.EnumTypes.VehicleColorDashboard)
+        RefreshEnumModMenuFor(mLightsColor, iLightsColor, EnumTypes.VehicleColorDashboard)
         RefreshModMenuFor(mDialDesign, iDialDesign, VehicleMod.DialDesign)
         RefreshModMenuFor(mOrnaments, iOrnaments, VehicleMod.Ornaments)
         RefreshModMenuFor(mSeats, iSeats, VehicleMod.Seats)
         RefreshModMenuFor(mSteeringWheels, iSteeringWheels, VehicleMod.SteeringWheels)
         RefreshModMenuFor(mTrimDesign, iTrimDesign, VehicleMod.TrimDesign)
-        RefreshEnumModMenuFor(mTrimColor, iTrimColor, Helper.EnumTypes.VehicleColorTrim)
+        RefreshEnumModMenuFor(mTrimColor, iTrimColor, EnumTypes.VehicleColorTrim)
         RefreshModMenuFor(mDoor, iDoor, VehicleMod.DoorSpeakers)
         RefreshBumperMenu()
         RefreshModMenuFor(mFBumper, iFBumper, VehicleMod.FrontBumper)
@@ -3747,32 +4394,32 @@ Public Class BennysMenu
         RefreshChromeWheelsModMenuFor(mCTuner, iCTuner, VehicleMod.FrontWheels)
         RefreshLowriderDLCWheelsModMenuFor(mBennysOriginals, iBennys, VehicleMod.FrontWheels)
         RefreshLowriderDLCWheelsModMenuFor(mBespoke, iBespoke, VehicleMod.FrontWheels)
-        RefreshEnumModMenuFor(mRimColor, iRimColor, Helper.EnumTypes.VehicleColorRim)
+        RefreshEnumModMenuFor(mRimColor, iRimColor, EnumTypes.VehicleColorRim)
         RefreshTyresMenu()
         RefreshRGBColorMenuFor(mTireSmoke, iTireSmoke, "Smoke")
         RefreshPlateMenu()
         RefreshModMenuFor(mPlateHolder, iPlateHolder, VehicleMod.PlateHolder)
         RefreshModMenuFor(mVanityPlates, iVanityPlates, VehicleMod.VanityPlates)
-        RefreshEnumModMenuFor(mNumberPlate, iNumberPlate, Helper.EnumTypes.NumberPlateType)
+        RefreshEnumModMenuFor(mNumberPlate, iNumberPlate, EnumTypes.NumberPlateType)
         RefreshLightsMenu()
-        RefreshModMenuFor(mHeadlights, iHeadlights, VehicleToggleMod.XenonHeadlights)
+        RefreshModMenuForHeadlightsColor(mHeadlights, iHeadlights, VehicleToggleMod.XenonHeadlights)
         RefreshNeonKitsMenu()
         RefreshNeonMenu()
         RefreshRGBColorMenuFor(mNeonColor, iNeonColor, "Neon")
         RefreshResprayMenu()
         RefreshPrimaryColorMenu()
-        RefreshColorMenuFor(mPrimaryChromeColor, iPrimaryChromeColor, Helper.ChromeColor, "Primary")
-        RefreshColorMenuFor(mPrimaryClassicColor, iPrimaryClassicColor, Helper.ClassicColor, "Primary")
-        RefreshColorMenuFor(mPrimaryMetallicColor, iPrimaryMetallicColor, Helper.ClassicColor, "Primary")
-        RefreshColorMenuFor(mPrimaryMetalsColor, iPrimaryMetalsColor, Helper.MetalColor, "Primary")
-        RefreshColorMenuFor(mPrimaryMatteColor, iPrimaryMatteColor, Helper.MatteColor, "Primary")
-        RefreshColorMenuFor(mPrimaryPearlescentColor, iPrimaryPearlescentColor, Helper.PearlescentColor, "Pearlescent")
+        RefreshColorMenuFor(mPrimaryChromeColor, iPrimaryChromeColor, ChromeColor, "Primary")
+        RefreshColorMenuFor(mPrimaryClassicColor, iPrimaryClassicColor, ClassicColor, "Primary")
+        RefreshColorMenuFor(mPrimaryMetallicColor, iPrimaryMetallicColor, ClassicColor, "Primary")
+        RefreshColorMenuFor(mPrimaryMetalsColor, iPrimaryMetalsColor, MetalColor, "Primary")
+        RefreshColorMenuFor(mPrimaryMatteColor, iPrimaryMatteColor, MatteColor, "Primary")
+        RefreshColorMenuFor(mPrimaryPearlescentColor, iPrimaryPearlescentColor, PearlescentColor, "Pearlescent")
         RefreshSecondaryColorMenu()
-        RefreshColorMenuFor(mSecondaryChromeColor, iSecondaryChromeColor, Helper.ChromeColor, "Secondary")
-        RefreshColorMenuFor(mSecondaryClassicColor, iSecondaryClassicColor, Helper.ClassicColor, "Secondary")
-        RefreshColorMenuFor(mSecondaryMetallicColor, iSecondaryMetallicColor, Helper.ClassicColor, "Secondary")
-        RefreshColorMenuFor(mSecondaryMetalsColor, iSecondaryMetalsColor, Helper.MetalColor, "Secondary")
-        RefreshColorMenuFor(mSecondaryMatteColor, iSecondaryMatteColor, Helper.MatteColor, "Secondary")
+        RefreshColorMenuFor(mSecondaryChromeColor, iSecondaryChromeColor, ChromeColor, "Secondary")
+        RefreshColorMenuFor(mSecondaryClassicColor, iSecondaryClassicColor, ClassicColor, "Secondary")
+        RefreshColorMenuFor(mSecondaryMetallicColor, iSecondaryMetallicColor, ClassicColor, "Secondary")
+        RefreshColorMenuFor(mSecondaryMetalsColor, iSecondaryMetalsColor, MetalColor, "Secondary")
+        RefreshColorMenuFor(mSecondaryMatteColor, iSecondaryMatteColor, MatteColor, "Secondary")
         RefreshModMenuFor(mExhaust, iExhaust, VehicleMod.Exhaust)
         RefreshModMenuFor(mFender, iFender, VehicleMod.Fender)
         RefreshModMenuFor(mRFender, iRFender, VehicleMod.RightFender)
@@ -3794,7 +4441,7 @@ Public Class BennysMenu
         RefreshPerformanceMenuFor(mArmor, iArmor, VehicleMod.Armor, "CMOD_ARM_")
         RefreshPerformanceMenuFor(mBrakes, iBrakes, VehicleMod.Brakes, "CMOD_BRA_")
         RefreshPerformanceMenuFor(mTransmission, iTransmission, VehicleMod.Transmission, "CMOD_GBX_")
-        RefreshEnumModMenuFor(mTint, iTint, Helper.EnumTypes.VehicleWindowTint)
+        RefreshEnumModMenuFor(mTint, iTint, EnumTypes.VehicleWindowTint)
         'Motorcycles
         RefreshModMenuFor(mShifter, iShifter, VehicleMod.Fender)
         RefreshModMenuFor(mFMudguard, iFMudguard, VehicleMod.FrontBumper)
@@ -3811,45 +4458,37 @@ Public Class BennysMenu
 
     Public Sub OnTick(sender As Object, e As EventArgs) Handles Me.Tick
         Try
-            'UI.ShowSubtitle(Helper.GetVehTopSpeed(Bennys.veh) & ", " & Helper.GetVehAcceleration(Bennys.veh) & ", " & Helper.GetVehBraking(Bennys.veh) & ", " & Helper.GetVehTraction(Bennys.veh))
+            'UI.ShowSubtitle(GetVehTopSpeed(Bennys.veh) & ", " & GetVehAcceleration(Bennys.veh) & ", " & GetVehBraking(Bennys.veh) & ", " & GetVehTraction(Bennys.veh))
 
             _menuPool.ProcessMenus()
-            vehicleStats = Helper.GetVehicleStats(Bennys.veh)
+            If Not Bennys.veh = Nothing Then vehicleStats = GetVehicleStats(Bennys.veh)
             _menuPool.UpdateStats(vehicleStats.TopSpeed, vehicleStats.Acceleration, vehicleStats.Braking, vehicleStats.Traction)
 
             If Bennys.isCutscene Then
                 Native.Function.Call(Hash.HIDE_HUD_AND_RADAR_THIS_FRAME)
+                Dim sr = Size.Round(UIMenu.GetScreenResolutionMaintainRatio)
+                Dim sz = UIMenu.GetSafezoneBounds
+                Dim vname As String = $"{Bennys.veh.Brand} {Bennys.veh.FriendlyName}"
+                Dim vclass As String = GetClassDisplayName(Bennys.veh.ClassType)
+
                 Select Case Game.Language
-                    Case Language.Chinese, Language.Japanese, Language.Korean
-                        Dim make As String = Game.GetGXTEntry(GetVehicleMakeName(Bennys.veh.Model.Hash)) 'Game.GetGXTEntry(Helper.GetCarMakeNames(Bennys.veh))
-                        If make = "NULL" Then
-                            Helper.DrawText(Bennys.veh.FriendlyName, New Drawing.Point(0, 550), 2.0, Drawing.Color.White, Helper.GTAFont.UIDefault, Helper.GTAFontAlign.Right, Helper.GTAFontStyleOptions.DropShadow)
-                        Else
-                            Helper.DrawText(make & " " & Bennys.veh.FriendlyName, New Drawing.Point(0, 550), 2.0, Drawing.Color.White, Helper.GTAFont.UIDefault, Helper.GTAFontAlign.Right, Helper.GTAFontStyleOptions.DropShadow)
-                        End If
-                        Helper.DrawText(Helper.GetClassDisplayName(Bennys.veh.ClassType), New Drawing.Point(0, 600), 2.0, Drawing.Color.DodgerBlue, Helper.GTAFont.Script, Helper.GTAFontAlign.Right, Helper.GTAFontStyleOptions.DropShadow)
+                    Case Language.Chinese, Language.Japanese, Language.Korean, Language.ChineseSimplified
+                        Dim vn As New UIResText(vname, New Point(sr.Width - sz.X - 100, sr.Height - sz.Y - 240), 2.0F, Color.White, GTA.Font.ChaletLondon, UIResText.Alignment.Right) With {.DropShadow = True} : vn.Draw()
+                        Dim vc As New UIResText(vclass, New Point(sr.Width - sz.X, sr.Height - sz.Y - 170), 2.0F, Color.DodgerBlue, GTA.Font.HouseScript, UIResText.Alignment.Right) With {.DropShadow = True} : vc.Draw()
                     Case Else
-                        Dim make As String = Game.GetGXTEntry(GetVehicleMakeName(Bennys.veh.Model.Hash)) 'Game.GetGXTEntry(Helper.GetCarMakeNames(Bennys.veh))
-                        If make = "NULL" Then
-                            Helper.DrawText(Bennys.veh.FriendlyName, New Drawing.Point(0, 550), 2.0, Drawing.Color.White, Helper.GTAFont.Title, Helper.GTAFontAlign.Right, Helper.GTAFontStyleOptions.DropShadow)
-                        Else
-                            Helper.DrawText(make & " " & Bennys.veh.FriendlyName, New Drawing.Point(0, 550), 2.0, Drawing.Color.White, Helper.GTAFont.Title, Helper.GTAFontAlign.Right, Helper.GTAFontStyleOptions.DropShadow)
-                        End If
-                        Helper.DrawText(Helper.GetClassDisplayName(Bennys.veh.ClassType), New Drawing.Point(0, 600), 2.0, Drawing.Color.DodgerBlue, Helper.GTAFont.Script, Helper.GTAFontAlign.Right, Helper.GTAFontStyleOptions.DropShadow)
+                        Dim vn As New UIResText(vname, New Point(sr.Width - sz.X - 100, sr.Height - sz.Y - 240), 2.0F, Color.White, GTA.Font.ChaletComprimeCologne, UIResText.Alignment.Right) With {.DropShadow = True} : vn.Draw()
+                        Dim vc As New UIResText(vclass, New Point(sr.Width - sz.X, sr.Height - sz.Y - 170), 2.0F, Color.DodgerBlue, GTA.Font.HouseScript, UIResText.Alignment.Right) With {.DropShadow = True} : vc.Draw()
                 End Select
             End If
 
             If isRepairing Then
-                If Not MainMenu.Visible Then
-                    mArmor.GoBack()
-                    isRepairing = False
-                End If
+                _menuPool.CloseAllMenus()
+                MainMenu.Visible = True
+                isRepairing = False
             End If
 
             Select Case True
                 Case _menuPool.IsAnyMenuOpen()
-                    PlayStatScaleform()
-
                     Game.DisableControlThisFrame(0, Control.VehicleAccelerate)
                     Game.DisableControlThisFrame(0, Control.VehicleAim)
                     Game.DisableControlThisFrame(0, Control.VehicleAttack)
@@ -3882,19 +4521,5 @@ Public Class BennysMenu
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
         End Try
-    End Sub
-
-    Public Sub PlayStatScaleform()
-        'Dim acceleration As Single = Native.Function.Call(Of Single)(Hash.GET_VEHICLE_ACCELERATION, Bennys.veh) * 100.0!
-        'Dim braking As Single = Native.Function.Call(Of Single)(Hash.GET_VEHICLE_MAX_BRAKING, Bennys.veh) * 100.0!
-        'Dim traction As Single = Native.Function.Call(Of Single)(Hash.GET_VEHICLE_MAX_TRACTION, Bennys.veh) * 100.0!
-        'Dim topspeed As Single = Native.Function.Call(Of Single)(Hash._0x53AF99BAA671CA47, Bennys.veh) * 100.0!
-
-        'UI.ShowSubtitle(String.Format("ACC: {0} | BRK: {1} | TRK: {2} | TSP: {3}", acceleration, braking, traction, topspeed))
-        'If Not bennytext.IsLoaded Then bennytext = New Scaleform("mp_car_stats")
-
-        'bennytext.CallFunction("SET_VEHICLE_INFOR_AND_STATS", Bennys.veh.FriendlyName, Game.GetGXTEntry(Helper.GetCarMakeNames(Bennys.veh)), "MPCarHUD", Helper.GetCarMakeNames(Bennys.veh), Game.GetGXTEntry("CMOD_STAT_0"), Game.GetGXTEntry("CMOD_STAT_1"), Game.GetGXTEntry("CMOD_STAT_2"), Game.GetGXTEntry("CMOD_STAT_3"), topspeed, acceleration, braking, traction)
-        ''bennytext.Render2DScreenSpace(New Drawing.PointF(safe.X, safe.Y), New Drawing.PointF(425, 110))
-        'bennytext.Render3D(Bennys.veh.Position + New Vector3(0.0, 0.0, Bennys.veh.Model.GetDimensions().Z + 1.8), camera.Rotation, New Vector3(8, 4.5, 1))
     End Sub
 End Class

@@ -622,4 +622,14 @@
             _livery2 = value
         End Set
     End Property
+
+    Private _headlightscolor As Integer
+    Public Property HeadlightsColor() As Integer
+        Get
+            Return _headlightscolor
+        End Get
+        Set(value As Integer)
+            _headlightscolor = value
+        End Set
+    End Property
 End Class

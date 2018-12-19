@@ -1,12 +1,14 @@
-﻿Imports System.Runtime.InteropServices
+﻿Imports System.Runtime.CompilerServices
+Imports System.Runtime.InteropServices
 Imports System.Text
 Imports GTA
 Imports GTA.Math
 Imports GTA.Native
+Imports INMNativeUI
 
-Public Class Helper
+Public Module Helper
 
-    Public Shared Function CreateVehicle(VehicleModel As String, VehicleHash As Integer, Position As Vector3, Optional Heading As Single = 0) As Vehicle
+    Public Function CreateVehicle(VehicleModel As String, VehicleHash As Integer, Position As Vector3, Optional Heading As Single = 0) As Vehicle
         Dim Result As Vehicle = Nothing
         If VehicleModel = "" Then
             Dim model = New Model(VehicleHash)
@@ -32,7 +34,7 @@ Public Class Helper
         Return Result
     End Function
 
-    Public Shared Function WorldCreateVehicle(model As Model, position As Vector3, Optional heading As Single = 0F) As Vehicle
+    Public Function WorldCreateVehicle(model As Model, position As Vector3, Optional heading As Single = 0F) As Vehicle
         If Not model.IsVehicle OrElse Not model.Request(1000) Then
             Return Nothing
         End If
@@ -41,12 +43,13 @@ Public Class Helper
         False, False))
     End Function
 
-    Public Shared Sub LoadMPDLCMap()
+    Public Sub LoadMPDLCMap()
         Native.Function.Call(Hash._LOAD_MP_DLC_MAPS)
+        Native.Function.Call(Hash._LOWER_MAP_PROP_DENSITY, True)
         LoadMPDLCMapMissingObjects()
     End Sub
 
-    Public Shared Sub LoadMPDLCMapMissingObjects()
+    Public Sub LoadMPDLCMapMissingObjects()
         Dim TID2 As Integer = Native.Function.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, -1155.31005, -1518.5699, 10.6300001) 'Floyd Apartment
         Dim MID As Integer = Native.Function.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, -802.31097, 175.05599, 72.84459) 'Michael House
         Dim FID1 As Integer = Native.Function.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, -9.96562, -1438.54003, 31.101499) 'Franklin Aunt House
@@ -62,40 +65,40 @@ Public Class Helper
         Dim WMDID As Integer = Native.Function.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, 120.5, 549.952026367, 184.09700012207) '3677 Whispymound Drive
         Dim MWTDID As Integer = Native.Function.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, -1288, 440.74798583, 97.694602966) '2113 Mad Wayne Thunder Drive
 
-        Native.Function.Call(Hash._0x55E86AF2712B36A1, FID1, "V_57_FranklinStuff")
+        Native.Function.Call(Hash._ENABLE_INTERIOR_PROP, FID1, "V_57_FranklinStuff")
 
-        Native.Function.Call(Hash._0x55E86AF2712B36A1, TID2, "swap_clean_apt")
-        Native.Function.Call(Hash._0x55E86AF2712B36A1, TID2, "layer_whiskey")
-        Native.Function.Call(Hash._0x55E86AF2712B36A1, TID2, "layer_sextoys_a")
-        Native.Function.Call(Hash._0x55E86AF2712B36A1, TID2, "swap_mrJam_A")
-        Native.Function.Call(Hash._0x55E86AF2712B36A1, TID2, "swap_sofa_A")
+        Native.Function.Call(Hash._ENABLE_INTERIOR_PROP, TID2, "swap_clean_apt")
+        Native.Function.Call(Hash._ENABLE_INTERIOR_PROP, TID2, "layer_whiskey")
+        Native.Function.Call(Hash._ENABLE_INTERIOR_PROP, TID2, "layer_sextoys_a")
+        Native.Function.Call(Hash._ENABLE_INTERIOR_PROP, TID2, "swap_mrJam_A")
+        Native.Function.Call(Hash._ENABLE_INTERIOR_PROP, TID2, "swap_sofa_A")
 
-        Native.Function.Call(Hash._0x55E86AF2712B36A1, MID, "V_Michael_bed_tidy")
-        Native.Function.Call(Hash._0x55E86AF2712B36A1, MID, "V_Michael_L_Items")
-        Native.Function.Call(Hash._0x55E86AF2712B36A1, MID, "V_Michael_S_Items")
-        Native.Function.Call(Hash._0x55E86AF2712B36A1, MID, "V_Michael_D_Items")
-        Native.Function.Call(Hash._0x55E86AF2712B36A1, MID, "V_Michael_M_Items")
-        Native.Function.Call(Hash._0x55E86AF2712B36A1, MID, "Michael_premier")
-        Native.Function.Call(Hash._0x55E86AF2712B36A1, MID, "V_Michael_plane_ticket")
+        Native.Function.Call(Hash._ENABLE_INTERIOR_PROP, MID, "V_Michael_bed_tidy")
+        Native.Function.Call(Hash._ENABLE_INTERIOR_PROP, MID, "V_Michael_L_Items")
+        Native.Function.Call(Hash._ENABLE_INTERIOR_PROP, MID, "V_Michael_S_Items")
+        Native.Function.Call(Hash._ENABLE_INTERIOR_PROP, MID, "V_Michael_D_Items")
+        Native.Function.Call(Hash._ENABLE_INTERIOR_PROP, MID, "V_Michael_M_Items")
+        Native.Function.Call(Hash._ENABLE_INTERIOR_PROP, MID, "Michael_premier")
+        Native.Function.Call(Hash._ENABLE_INTERIOR_PROP, MID, "V_Michael_plane_ticket")
 
-        'Native.Function.Call(Hash._0x55E86AF2712B36A1, FID2, "showhome_only")
-        Native.Function.Call(Hash._0x55E86AF2712B36A1, FID2, "franklin_settled")
-        Native.Function.Call(Hash._0x55E86AF2712B36A1, FID2, "franklin_unpacking")
-        Native.Function.Call(Hash._0x55E86AF2712B36A1, FID2, "bong_and_wine")
-        Native.Function.Call(Hash._0x55E86AF2712B36A1, FID2, "progress_flyer")
-        Native.Function.Call(Hash._0x55E86AF2712B36A1, FID2, "progress_tshirt")
-        Native.Function.Call(Hash._0x55E86AF2712B36A1, FID2, "progress_tux")
-        Native.Function.Call(Hash._0x55E86AF2712B36A1, FID2, "unlocked")
+        'Native.Function.Call(Hash._ENABLE_INTERIOR_PROP, FID2, "showhome_only")
+        Native.Function.Call(Hash._ENABLE_INTERIOR_PROP, FID2, "franklin_settled")
+        Native.Function.Call(Hash._ENABLE_INTERIOR_PROP, FID2, "franklin_unpacking")
+        Native.Function.Call(Hash._ENABLE_INTERIOR_PROP, FID2, "bong_and_wine")
+        Native.Function.Call(Hash._ENABLE_INTERIOR_PROP, FID2, "progress_flyer")
+        Native.Function.Call(Hash._ENABLE_INTERIOR_PROP, FID2, "progress_tshirt")
+        Native.Function.Call(Hash._ENABLE_INTERIOR_PROP, FID2, "progress_tux")
+        Native.Function.Call(Hash._ENABLE_INTERIOR_PROP, FID2, "unlocked")
 
-        Native.Function.Call(Hash._0x55E86AF2712B36A1, WODID, "Stilts_Kitchen_Window")
-        Native.Function.Call(Hash._0x55E86AF2712B36A1, NCAID1, "Stilts_Kitchen_Window")
-        Native.Function.Call(Hash._0x55E86AF2712B36A1, NCAID2, "Stilts_Kitchen_Window")
-        Native.Function.Call(Hash._0x55E86AF2712B36A1, HCAID1, "Stilts_Kitchen_Window")
-        Native.Function.Call(Hash._0x55E86AF2712B36A1, HCAID2, "Stilts_Kitchen_Window")
-        Native.Function.Call(Hash._0x55E86AF2712B36A1, HCAID3, "Stilts_Kitchen_Window")
-        Native.Function.Call(Hash._0x55E86AF2712B36A1, MRID, "Stilts_Kitchen_Window")
-        Native.Function.Call(Hash._0x55E86AF2712B36A1, WMDID, "Stilts_Kitchen_Window")
-        Native.Function.Call(Hash._0x55E86AF2712B36A1, MWTDID, "Stilts_Kitchen_Window")
+        Native.Function.Call(Hash._ENABLE_INTERIOR_PROP, WODID, "Stilts_Kitchen_Window")
+        Native.Function.Call(Hash._ENABLE_INTERIOR_PROP, NCAID1, "Stilts_Kitchen_Window")
+        Native.Function.Call(Hash._ENABLE_INTERIOR_PROP, NCAID2, "Stilts_Kitchen_Window")
+        Native.Function.Call(Hash._ENABLE_INTERIOR_PROP, HCAID1, "Stilts_Kitchen_Window")
+        Native.Function.Call(Hash._ENABLE_INTERIOR_PROP, HCAID2, "Stilts_Kitchen_Window")
+        Native.Function.Call(Hash._ENABLE_INTERIOR_PROP, HCAID3, "Stilts_Kitchen_Window")
+        Native.Function.Call(Hash._ENABLE_INTERIOR_PROP, MRID, "Stilts_Kitchen_Window")
+        Native.Function.Call(Hash._ENABLE_INTERIOR_PROP, WMDID, "Stilts_Kitchen_Window")
+        Native.Function.Call(Hash._ENABLE_INTERIOR_PROP, MWTDID, "Stilts_Kitchen_Window")
 
         Native.Function.Call(Hash.REFRESH_INTERIOR, FID1)
         Native.Function.Call(Hash.REFRESH_INTERIOR, TID2)
@@ -113,7 +116,7 @@ Public Class Helper
         Native.Function.Call(Hash.REFRESH_INTERIOR, MWTDID)
     End Sub
 
-    Public Shared Sub DisplayHelpTextThisFrame(helpText As String, Optional Shape As Integer = -1)
+    Public Sub DisplayHelpTextThisFrame(helpText As String, Optional Shape As Integer = -1)
         Native.Function.Call(Hash._SET_TEXT_COMPONENT_FORMAT, "CELL_EMAIL_BCON")
         Const maxStringLength As Integer = 99
 
@@ -125,11 +128,11 @@ Public Class Helper
         Native.Function.Call(Hash._DISPLAY_HELP_TEXT_FROM_STRING_LABEL, 0, 0, 1, Shape)
     End Sub
 
-    Public Shared Function GetInteriorID(interior As Vector3) As Integer
+    Public Function GetInteriorID(interior As Vector3) As Integer
         Return Native.Function.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, interior.X, interior.Y, interior.Z)
     End Function
 
-    Public Shared Function LowriderUpgrade(model As Model) As Model
+    Public Function LowriderUpgrade(model As Model) As Model
         Dim result As Model = model
         Select Case model
             Case "banshee"
@@ -160,7 +163,7 @@ Public Class Helper
                 result = "primo2"
             Case "sabregt"
                 result = "sabregt2"
-            Case "slamvan"
+            Case "slamvan", "slamvan2"
                 result = "slamvan3"
             Case "specter"
                 result = "specter2"
@@ -268,11 +271,11 @@ Public Class Helper
         DontTazemeBro
     End Enum
 
-    Public Shared Sub ScreenEffectStart(effectName As ScreenEffect, Optional duration As Integer = 0, Optional looped As Boolean = False)
+    Public Sub ScreenEffectStart(effectName As ScreenEffect, Optional duration As Integer = 0, Optional looped As Boolean = False)
         Native.Function.Call(Hash._START_SCREEN_EFFECT, New InputArgument() {[Enum].GetName(GetType(ScreenEffect), effectName), duration, looped})
     End Sub
 
-    Public Shared Function LocalizedModTypeName(modType As VehicleMod) As String
+    Public Function LocalizedModTypeName(modType As VehicleMod) As String
         If Not Native.Function.Call(Of Boolean)(Hash.HAS_THIS_ADDITIONAL_TEXT_LOADED, "mod_mnu", 10) Then
             Native.Function.Call(Hash.CLEAR_ADDITIONAL_TEXT, 10, True)
             Native.Function.Call(Hash.REQUEST_ADDITIONAL_TEXT, "mod_mnu", 10)
@@ -520,10 +523,10 @@ Public Class Helper
         Return cur
     End Function
 
-    Public Shared Function LocalizeModTitleName(title As String) As String
-        Dim langConf As ScriptSettings = ScriptSettings.Load("scripts\BennysLang-" & Game.Language.ToString & ".ini")
-        Return langConf.GetValue("TITLE", title, "NULL")
-    End Function
+    'Public Function LocalizeModTitleName(title As String) As String
+    '    Dim langConf As ScriptSettings = ScriptSettings.Load("scripts\BennysLang-" & Game.Language.ToString & ".ini")
+    '    Return langConf.GetValue("TITLE", title, "NULL")
+    'End Function
 
     Enum GroupName
         NeonKits
@@ -543,6 +546,7 @@ Public Class Helper
         Wheels
         Windows
         Upgrade
+        Upgrade2
         Door
         Bodyworks
         Interior
@@ -558,7 +562,7 @@ Public Class Helper
         Livery
     End Enum
 
-    Public Shared Function LocalizedModGroupName(groupName As GroupName) As String
+    Public Function LocalizedModGroupName(groupName As GroupName) As String
         If Not Native.Function.Call(Of Boolean)(Hash.HAS_THIS_ADDITIONAL_TEXT_LOADED, "mod_mnu", 10) Then
             Native.Function.Call(Hash.CLEAR_ADDITIONAL_TEXT, 10, True)
             Native.Function.Call(Hash.REQUEST_ADDITIONAL_TEXT, "mod_mnu", 10)
@@ -611,6 +615,8 @@ Public Class Helper
             Case GroupName.Upgrade
                 cur = Game.GetGXTEntry("CMM_MOD_LOW")
                 Exit Select
+            Case GroupName.Upgrade2
+                cur = Game.GetGXTEntry("collision_85z9vzf")
             Case GroupName.Door
                 cur = Game.GetGXTEntry("CMM_MOD_S21")
                 Exit Select
@@ -674,7 +680,7 @@ Public Class Helper
         Crew
     End Enum
 
-    Public Shared Function LocalizedColorGroupName(colorTypeName As ColorType) As String
+    Public Function LocalizedColorGroupName(colorTypeName As ColorType) As String
         If Not Native.Function.Call(Of Boolean)(Hash.HAS_THIS_ADDITIONAL_TEXT_LOADED, "mod_mnu", 10) Then
             Native.Function.Call(Hash.CLEAR_ADDITIONAL_TEXT, 10, True)
             Native.Function.Call(Hash.REQUEST_ADDITIONAL_TEXT, "mod_mnu", 10)
@@ -706,7 +712,7 @@ Public Class Helper
         Return cur
     End Function
 
-    Public Shared Function LocalizedModTypeName(toggleModType As VehicleToggleMod, Optional stock As Boolean = False) As String
+    Public Function LocalizedModTypeName(toggleModType As VehicleToggleMod, Optional stock As Boolean = False) As String
         Dim result As String = Nothing
         If stock = True Then
             result = Game.GetGXTEntry("CMOD_ARM_0")
@@ -731,11 +737,11 @@ Public Class Helper
         Return result
     End Function
 
-    Public Shared Function DoesGXTEntryExist(entry As String) As Boolean
+    Public Function DoesGXTEntryExist(entry As String) As Boolean
         Return Native.Function.Call(Of Boolean)(Hash.DOES_TEXT_LABEL_EXIST, entry)
     End Function
 
-    Public Shared Function GetLocalizedModName(index As Integer, modCount As Integer, modType As VehicleMod) As String
+    Public Function GetLocalizedModName(index As Integer, modCount As Integer, modType As VehicleMod) As String
         'this still needs a little more work, but its better than what it used to be
         If modCount = 0 Then
             Return ""
@@ -813,7 +819,7 @@ Public Class Helper
         End If
     End Function
 
-    Public Shared Function LocalizedLicensePlate(plateType As GTA.NumberPlateType) As String
+    Public Function LocalizedLicensePlate(plateType As GTA.NumberPlateType) As String
         Dim result As String = Nothing
 
         Select Case plateType
@@ -840,11 +846,11 @@ Public Class Helper
         Return result
     End Function
 
-    Public Shared Function LocalizedT5RoofName(roofID As Integer) As String
+    Public Function LocalizedT5RoofName(roofID As Integer) As String
         Return Game.GetGXTEntry("T5_ROOF" & roofID)
     End Function
 
-    Public Shared Function LocalizedWindowsTint(tint As GTA.VehicleWindowTint) As String
+    Public Function LocalizedWindowsTint(tint As GTA.VehicleWindowTint) As String
         Dim result As String = Nothing
 
         Select Case tint
@@ -874,7 +880,7 @@ Public Class Helper
         Return result
     End Function
 
-    Public Shared Function GetLocalizedWheelTypeName(wheelType As VehicleWheelType) As String
+    Public Function GetLocalizedWheelTypeName(wheelType As VehicleWheelType) As String
         If Not Native.Function.Call(Of Boolean)(Hash.HAS_THIS_ADDITIONAL_TEXT_LOADED, "mod_mnu", 10) Then
             Native.Function.Call(Hash.CLEAR_ADDITIONAL_TEXT, 10, True)
             Native.Function.Call(Hash.REQUEST_ADDITIONAL_TEXT, "mod_mnu", 10)
@@ -888,7 +894,7 @@ Public Class Helper
         Throw New ArgumentException("Wheel Type Is undefined", "wheelType")
     End Function
 
-    Public Shared Function GetLocalizedColorName(vehColor As VehicleColor) As String
+    Public Function GetLocalizedColorName(vehColor As VehicleColor) As String
         If Not Native.Function.Call(Of Boolean)(Hash.HAS_THIS_ADDITIONAL_TEXT_LOADED, "mod_mnu", 10) Then
             Native.Function.Call(Hash.CLEAR_ADDITIONAL_TEXT, 10, True)
             Native.Function.Call(Hash.REQUEST_ADDITIONAL_TEXT, "mod_mnu", 10)
@@ -902,14 +908,14 @@ Public Class Helper
         Throw New ArgumentException("Vehicle Color Is undefined", "Vehicle Color")
     End Function
 
-    Public Shared ClassicColor As List(Of VehicleColor) = New List(Of VehicleColor) From {0, 147, 1, 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 27, 28, 29, 150, 30, 31, 32, 33, 34, 143, 35, 135, 137, 136, 36, 38, 138, 99, 90, 88, 89,
+    Public ClassicColor As List(Of VehicleColor) = New List(Of VehicleColor) From {0, 147, 1, 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 27, 28, 29, 150, 30, 31, 32, 33, 34, 143, 35, 135, 137, 136, 36, 38, 138, 99, 90, 88, 89,
         91, 49, 50, 51, 52, 53, 54, 92, 141, 61, 62, 63, 64, 65, 66, 67, 68, 69, 73, 70, 74, 96, 101, 95, 94, 97, 103, 104, 98, 100, 102, 99, 105, 106, 71, 72, 142, 145, 107, 111, 112}
-    Public Shared MatteColor As List(Of VehicleColor) = New List(Of VehicleColor) From {12, 13, 14, 131, 83, 82, 84, 149, 148, 39, 40, 41, 42, 55, 128, 151, 155, 152, 153, 154}
-    Public Shared MetalColor As List(Of VehicleColor) = New List(Of VehicleColor) From {117, 118, 119, 158, 159, 160}
-    Public Shared ChromeColor As List(Of VehicleColor) = New List(Of VehicleColor) From {120}
-    Public Shared PearlescentColor As List(Of VehicleColor) = New List(Of VehicleColor) From {0, 147, 1, 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 27, 28, 29, 150, 30, 31, 32, 33, 34, 143, 35, 135, 137, 136, 36, 38, 138, 99, 90, 88, 89, 91, 49, 50, 51, 52, 53, 54, 92, 141, 61, 62, 63, 64, 65, 66, 67, 68, 69, 73, 70, 74, 96, 101, 95, 94, 97, 103, 104, 98, 100, 102, 99, 105, 106, 71, 72, 142, 145, 107, 111, 112, 117, 118, 119, 158, 159, 160}
+    Public MatteColor As List(Of VehicleColor) = New List(Of VehicleColor) From {12, 13, 14, 131, 83, 82, 84, 149, 148, 39, 40, 41, 42, 55, 128, 151, 155, 152, 153, 154}
+    Public MetalColor As List(Of VehicleColor) = New List(Of VehicleColor) From {117, 118, 119, 158, 159, 160}
+    Public ChromeColor As List(Of VehicleColor) = New List(Of VehicleColor) From {120}
+    Public PearlescentColor As List(Of VehicleColor) = New List(Of VehicleColor) From {0, 147, 1, 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 27, 28, 29, 150, 30, 31, 32, 33, 34, 143, 35, 135, 137, 136, 36, 38, 138, 99, 90, 88, 89, 91, 49, 50, 51, 52, 53, 54, 92, 141, 61, 62, 63, 64, 65, 66, 67, 68, 69, 73, 70, 74, 96, 101, 95, 94, 97, 103, 104, 98, 100, 102, 99, 105, 106, 71, 72, 142, 145, 107, 111, 112, 117, 118, 119, 158, 159, 160}
 
-    Private Shared ReadOnly _colorNames As New Dictionary(Of Integer, Tuple(Of String, String))(New Dictionary(Of Integer, Tuple(Of String, String))() From {
+    Private ReadOnly _colorNames As New Dictionary(Of Integer, Tuple(Of String, String))(New Dictionary(Of Integer, Tuple(Of String, String))() From {
     {0, New Tuple(Of String, String)("BLACK", "MetallicBlack")},
     {1, New Tuple(Of String, String)("GRAPHITE", "MetallicGraphiteBlack")},
     {2, New Tuple(Of String, String)("BLACK_STEEL", "MetallicBlackSteel")},
@@ -1073,7 +1079,7 @@ Public Class Helper
     {160, New Tuple(Of String, String)("NULL", "SecretGold")}
     })
 
-    Private Shared ReadOnly _hornNames As New Dictionary(Of Integer, Tuple(Of String, String))(New Dictionary(Of Integer, Tuple(Of String, String))() From {
+    Private ReadOnly _hornNames As New Dictionary(Of Integer, Tuple(Of String, String))(New Dictionary(Of Integer, Tuple(Of String, String))() From {
     {-1, New Tuple(Of String, String)("CMOD_HRN_0", "Stock Horn")},
     {0, New Tuple(Of String, String)("CMOD_HRN_TRK", "Truck Horn")},
     {1, New Tuple(Of String, String)("CMOD_HRN_COP", "Cop Horn")},
@@ -1122,11 +1128,20 @@ Public Class Helper
     {44, New Tuple(Of String, String)("HORN_LOWRDER2", "Liberty City Loop")},
     {45, New Tuple(Of String, String)("HORN_LOWRDER2", "Liberty City Loop")},
     {46, New Tuple(Of String, String)("HORN_XM15_1", "Festive Loop 1")},
-    {47, New Tuple(Of String, String)("HORN_XM15_2", "Festive Loop 2")},
-    {48, New Tuple(Of String, String)("HORN_XM15_3", "Festive Loop 3")}
+    {47, New Tuple(Of String, String)("HORN_XM15_1", "Festive Loop 1")},
+    {48, New Tuple(Of String, String)("HORN_XM15_2", "Festive Loop 2")},
+    {49, New Tuple(Of String, String)("HORN_XM15_2", "Festive Loop 2")},
+    {50, New Tuple(Of String, String)("HORN_XM15_3", "Festive Loop 3")},
+    {51, New Tuple(Of String, String)("HORN_XM15_3", "Festive Loop 3")},
+    {52, New Tuple(Of String, String)("CMOD_AIRHORN_01", "Airhorn 1")},
+    {53, New Tuple(Of String, String)("CMOD_AIRHORN_01", "Airhorn 1")},
+    {54, New Tuple(Of String, String)("CMOD_AIRHORN_02", "Airhorn 2")},
+    {55, New Tuple(Of String, String)("CMOD_AIRHORN_02", "Airhorn 2")},
+    {56, New Tuple(Of String, String)("CMOD_AIRHORN_03", "Airhorn 3")},
+    {57, New Tuple(Of String, String)("CMOD_AIRHORN_03", "Airhorn 3")}
 })
 
-    Private Shared ReadOnly _wheelNames As New Dictionary(Of VehicleWheelType, Tuple(Of String, String))(New Dictionary(Of VehicleWheelType, Tuple(Of String, String))() From {
+    Private ReadOnly _wheelNames As New Dictionary(Of VehicleWheelType, Tuple(Of String, String))(New Dictionary(Of VehicleWheelType, Tuple(Of String, String))() From {
     {VehicleWheelType.BikeWheels, New Tuple(Of String, String)("CMOD_WHE1_0", "Bike")},
     {VehicleWheelType.HighEnd, New Tuple(Of String, String)("CMOD_WHE1_1", "High End")},
     {VehicleWheelType.Lowrider, New Tuple(Of String, String)("CMOD_WHE1_2", "Lowrider")},
@@ -1139,7 +1154,7 @@ Public Class Helper
     {9, New Tuple(Of String, String)("CMOD_WHE1_9", "Benny's Bespoke")}
 })
 
-    Public Shared Function IsCustomWheels() As Boolean
+    Public Function IsCustomWheels() As Boolean
         Return Native.Function.Call(Of Boolean)(Hash.GET_VEHICLE_MOD_VARIATION, Bennys.veh, VehicleMod.FrontWheels)
     End Function
 
@@ -1166,7 +1181,7 @@ Public Class Helper
         FrontBackAndSides = 15
     End Enum
 
-    Public Shared Function NeonLayout() As NeonLayouts
+    Public Function NeonLayout() As NeonLayouts
         Dim v As Vehicle = Bennys.veh
         Dim back As Boolean = v.IsNeonLightsOn(VehicleNeonLight.Back)
         Dim front As Boolean = v.IsNeonLightsOn(VehicleNeonLight.Front)
@@ -1195,293 +1210,12 @@ Public Class Helper
         Return result
     End Function
 
-    Public Enum GTAFont
-        ' Fields
-        Pricedown = 7
-        Script = 1
-        Symbols = 3
-        Symbols2 = 5
-        Title = 4
-        Title2 = 6
-        TitleWSymbols = 2
-        UIDefault = 0
-    End Enum
-
-    Public Enum GTAFontAlign
-        ' Fields
-        Center = 1
-        Left = 0
-        Right = 2
-    End Enum
-
-    Public Enum GTAFontStyleOptions
-        ' Fields
-        DropShadow = 1
-        None = 0
-        Outline = 2
-    End Enum
-
-    Public Shared Sub DrawText(ByVal [Text] As String, ByVal Position As Drawing.PointF, ByVal Scale As Single, ByVal color As Drawing.Color, ByVal Font As GTAFont, ByVal Alignment As GTAFontAlign, ByVal Options As GTAFontStyleOptions)
-        Dim arguments As InputArgument() = New InputArgument() {Font}
-        Native.Function.Call(Hash._0x66E0276CC5F6B9DA, arguments)
-        Dim argumentArray2 As InputArgument() = New InputArgument() {1.0!, Scale}
-        Native.Function.Call(Hash._0x07C837F9A01C34C9, argumentArray2)
-        Dim argumentArray3 As InputArgument() = New InputArgument() {color.R, color.G, color.B, color.A}
-        Native.Function.Call(Hash._0xBE6B23FFA53FB442, argumentArray3)
-        If Options.HasFlag(GTAFontStyleOptions.DropShadow) Then
-            Native.Function.Call(Hash._0x1CA3E9EAC9D93E5E, New InputArgument(0 - 1) {})
-        End If
-        If Options.HasFlag(GTAFontStyleOptions.Outline) Then
-            Native.Function.Call(Hash._0x2513DFB0FB8400FE, New InputArgument(0 - 1) {})
-        End If
-        If Alignment.HasFlag(GTAFontAlign.Center) Then
-            Dim argumentArray4 As InputArgument() = New InputArgument() {1}
-            Native.Function.Call(Hash._0xC02F4DBFB51D988B, argumentArray4)
-        ElseIf Alignment.HasFlag(GTAFontAlign.Right) Then
-            Dim argumentArray5 As InputArgument() = New InputArgument() {1}
-            Native.Function.Call(Hash._0x6B3C4650BC8BEE47, argumentArray5)
-        End If
-        Dim argumentArray6 As InputArgument() = New InputArgument() {"jamyfafi"}
-        Native.Function.Call(Hash._0x25FBB336DF1804CB, argumentArray6)
-        PushBigString([Text])
-        Dim argumentArray7 As InputArgument() = New InputArgument() {(Position.X / 1280.0!), (Position.Y / 720.0!)}
-        Native.Function.Call(Hash._0xCD015E5BB0D96A57, argumentArray7)
-    End Sub
-
-    Public Shared Sub PushBigString(ByVal [Text] As String)
-        Dim strArray As String() = SplitStringEveryNth([Text], &H63)
-        Dim i As Integer
-        For i = 0 To strArray.Length - 1
-            Dim arguments As InputArgument() = New InputArgument() {[Text].Substring((i * &H63), strArray(i).Length)}
-            Native.Function.Call(Hash._0x6C188BE134E074AA, arguments)
-        Next i
-    End Sub
-
-    Private Shared Function SplitStringEveryNth(ByVal [text] As String, ByVal Nth As Integer) As String()
-        Dim list As New List(Of String)
-        Dim item As String = ""
-        Dim num As Integer = 0
-        Dim i As Integer
-        For i = 0 To [text].Length - 1
-            item = (item & [text].Chars(i).ToString)
-            num += 1
-            If ((i <> 0) AndAlso (num = Nth)) Then
-                list.Add(item)
-                item = ""
-                num = 0
-            End If
-        Next i
-        If (item <> "") Then
-            list.Add(item)
-        End If
-        Return list.ToArray
-    End Function
-
-    Public Shared Function GetClassDisplayName(vehicleClass As VehicleClass) As String
+    Public Function GetClassDisplayName(vehicleClass As VehicleClass) As String
         Return Game.GetGXTEntry("VEH_CLASS_" + CInt(vehicleClass).ToString())
     End Function
 
-    Public Shared Sub CreateTitleNames()
-        Try
-            Dim langConf As ScriptSettings = ScriptSettings.Load("scripts\BennysLang-" & Game.Language.ToString & ".ini")
-            langConf.SetValue(Of String)("TITLE", "AERIALS", Game.GetGXTEntry("CMM_MOD_ST18"))
-            langConf.SetValue(Of String)("TITLE", "BODYWORK", Game.GetGXTEntry("CMOD_BW_T"))
-            langConf.SetValue(Of String)("TITLE", "DOORS", Game.GetGXTEntry("CMM_MOD_ST6"))
-            langConf.SetValue(Of String)("TITLE", "ENGINE", Game.GetGXTEntry("CMM_MOD_GT3"))
-            langConf.SetValue(Of String)("TITLE", "INTERIOR", Game.GetGXTEntry("CMM_MOD_GT1"))
-            langConf.SetValue(Of String)("TITLE", "BUMPERS", Game.GetGXTEntry("CMOD_BUM_T"))
-            langConf.SetValue(Of String)("TITLE", "WHEELS", Game.GetGXTEntry("CMOD_WHE0_T"))
-            langConf.SetValue(Of String)("TITLE", "WHEELTYPE", Game.GetGXTEntry("CMOD_WHE1_T"))
-            langConf.SetValue(Of String)("TITLE", "TIRES", Game.GetGXTEntry("CMOD_TYR_T"))
-            langConf.SetValue(Of String)("TITLE", "PLATES", Game.GetGXTEntry("CMM_MOD_GT2"))
-            langConf.SetValue(Of String)("TITLE", "TRIM", Game.GetGXTEntry("CMM_MOD_ST19"))
-            langConf.SetValue(Of String)("TITLE", "LIGHTS", Game.GetGXTEntry("CMOD_LGT_T"))
-            langConf.SetValue(Of String)("TITLE", "ENGINEBLOCK", Game.GetGXTEntry("CMOD_EB_T"))
-            langConf.SetValue(Of String)("TITLE", "AIRFILTER", Game.GetGXTEntry("CMM_MOD_ST15"))
-            langConf.SetValue(Of String)("TITLE", "RESPRAY", Game.GetGXTEntry("CMOD_COL0_T"))
-            langConf.SetValue(Of String)("TITLE", "STRUTS", Game.GetGXTEntry("CMM_MOD_ST16"))
-            langConf.SetValue(Of String)("TITLE", "COLUMNSHIFTERLEVERS", Game.GetGXTEntry("CMM_MOD_ST9"))
-            langConf.SetValue(Of String)("TITLE", "DASHBOARD", Game.GetGXTEntry("CMM_MOD_ST4"))
-            langConf.SetValue(Of String)("TITLE", "DIALDESIGN", Game.GetGXTEntry("CMM_MOD_ST5"))
-            langConf.SetValue(Of String)("TITLE", "ORNAMENTS", Game.GetGXTEntry("CMM_MOD_ST3"))
-            langConf.SetValue(Of String)("TITLE", "SEATS", Game.GetGXTEntry("CMM_MOD_ST7"))
-            langConf.SetValue(Of String)("TITLE", "STEERINGWHEELS", Game.GetGXTEntry("CMM_MOD_ST8"))
-            langConf.SetValue(Of String)("TITLE", "TRIMDESIGN", Game.GetGXTEntry("CMM_MOD_ST2"))
-            langConf.SetValue(Of String)("TITLE", "DOORS2", Game.GetGXTEntry("CMM_MOD_ST6"))
-            langConf.SetValue(Of String)("TITLE", "WINDOWS", Game.GetGXTEntry("CMM_MOD_ST21"))
-            langConf.SetValue(Of String)("TITLE", "FRONTBUMPERS", Game.GetGXTEntry("CMOD_BUMF_T"))
-            langConf.SetValue(Of String)("TITLE", "REARBUMPERS", Game.GetGXTEntry("CMOD_BUMR_T"))
-            langConf.SetValue(Of String)("TITLE", "SIDESKIRT", Game.GetGXTEntry("CMOD_SS_T"))
-            langConf.SetValue(Of String)("TITLE", "PLATEHOLDERS", Game.GetGXTEntry("CMOD_PLH_T"))
-            langConf.SetValue(Of String)("TITLE", "VANITYPLATES", Game.GetGXTEntry("CMM_MOD_ST1"))
-            langConf.SetValue(Of String)("TITLE", "HEADLIGHTS", Game.GetGXTEntry("CMOD_HED_T"))
-            langConf.SetValue(Of String)("TITLE", "ARCHCOVERS", Game.GetGXTEntry("CMM_MOD_ST17"))
-            langConf.SetValue(Of String)("TITLE", "EXHAUST", Game.GetGXTEntry("CMOD_EXH_T"))
-            langConf.SetValue(Of String)("TITLE", "FENDER", Game.GetGXTEntry("CMOD_WNG_T"))
-            langConf.SetValue(Of String)("TITLE", "RIGHTFENDER", Game.GetGXTEntry("CMOD_WNG_T"))
-            langConf.SetValue(Of String)("TITLE", "ROLLCAGE", Game.GetGXTEntry("CMOD_RC_T"))
-            langConf.SetValue(Of String)("TITLE", "GRILLES", Game.GetGXTEntry("CMOD_GRL_T"))
-            langConf.SetValue(Of String)("TITLE", "HOOD", Game.GetGXTEntry("CMOD_BON_T"))
-            langConf.SetValue(Of String)("TITLE", "HORN", Game.GetGXTEntry("CMOD_HRN_T"))
-            langConf.SetValue(Of String)("TITLE", "HYDRAULICS", Game.GetGXTEntry("CMM_MOD_ST13"))
-            langConf.SetValue(Of String)("TITLE", "LIVERY", Game.GetGXTEntry("CMM_MOD_ST23"))
-            langConf.SetValue(Of String)("TITLE", "PLAQUES", Game.GetGXTEntry("CMM_MOD_ST10"))
-            langConf.SetValue(Of String)("TITLE", "ROOF", Game.GetGXTEntry("CMOD_ROF_T"))
-            langConf.SetValue(Of String)("TITLE", "SPEAKERS", Game.GetGXTEntry("CMM_MOD_S11"))
-            langConf.SetValue(Of String)("TITLE", "SPOILER", Game.GetGXTEntry("CMOD_SPO_T"))
-            langConf.SetValue(Of String)("TITLE", "TANK", Game.GetGXTEntry("CMM_MOD_ST20"))
-            langConf.SetValue(Of String)("TITLE", "TRUNKS", Game.GetGXTEntry("CMOD_TR_T"))
-            langConf.SetValue(Of String)("TITLE", "TURBO", Game.GetGXTEntry("CMOD_TUR_T"))
-            langConf.SetValue(Of String)("TITLE", "SUSPENSIONS", Game.GetGXTEntry("CMOD_SUS_T"))
-            langConf.SetValue(Of String)("TITLE", "ARMOR", Game.GetGXTEntry("CMOD_ARM_T"))
-            langConf.SetValue(Of String)("TITLE", "BRAKES", Game.GetGXTEntry("CMOD_BRA_T"))
-            langConf.SetValue(Of String)("TITLE", "TRANSMISSION", Game.GetGXTEntry("CMOD_GBX_T"))
-            langConf.SetValue(Of String)("TITLE", "LICENSE", Game.GetGXTEntry("CMOD_MOD_PLA2").ToUpper)
-            langConf.SetValue(Of String)("TITLE", "NEONKITS", Game.GetGXTEntry("CMOD_MOD_LGT_N").ToUpper)
-            langConf.SetValue(Of String)("TITLE", "NEONLAYOUT", Game.GetGXTEntry("CMOD_NEON_0").ToUpper)
-            langConf.SetValue(Of String)("TITLE", "BIKEWHEELS", Helper.GetLocalizedWheelTypeName(VehicleWheelType.BikeWheels).ToUpper)
-            langConf.SetValue(Of String)("TITLE", "HIGHEND", Helper.GetLocalizedWheelTypeName(VehicleWheelType.HighEnd).ToUpper)
-            langConf.SetValue(Of String)("TITLE", "LOWRIDER", Helper.GetLocalizedWheelTypeName(VehicleWheelType.Lowrider).ToUpper)
-            langConf.SetValue(Of String)("TITLE", "MUSCLE", Helper.GetLocalizedWheelTypeName(VehicleWheelType.Muscle).ToUpper)
-            langConf.SetValue(Of String)("TITLE", "OFFROAD", Helper.GetLocalizedWheelTypeName(VehicleWheelType.Offroad).ToUpper)
-            langConf.SetValue(Of String)("TITLE", "SPORT", Helper.GetLocalizedWheelTypeName(VehicleWheelType.Sport).ToUpper)
-            langConf.SetValue(Of String)("TITLE", "SUV", Helper.GetLocalizedWheelTypeName(VehicleWheelType.SUV).ToUpper)
-            langConf.SetValue(Of String)("TITLE", "TUNER", Helper.GetLocalizedWheelTypeName(VehicleWheelType.Tuner).ToUpper)
-            langConf.SetValue(Of String)("TITLE", "BENNYS", Helper.GetLocalizedWheelTypeName(8).ToUpper)
-            langConf.SetValue(Of String)("TITLE", "BESPOKE", Helper.GetLocalizedWheelTypeName(9).ToUpper)
-            langConf.SetValue(Of String)("TITLE", "LIGHTCOLOR", Game.GetGXTEntry("CMM_MOD_ST26").ToUpper)
-            langConf.SetValue(Of String)("TITLE", "PRIMARYCOLOR", Game.GetGXTEntry("CMOD_COL0_0").ToUpper)
-            langConf.SetValue(Of String)("TITLE", "SECONDARYCOLOR", Game.GetGXTEntry("CMOD_COL0_1").ToUpper)
-            langConf.SetValue(Of String)("TITLE", "LIVERYCOLOR", Game.GetGXTEntry("CMOD_COL0_4").ToUpper)
-            langConf.SetValue(Of String)("TITLE", "COLORGROUPS", Game.GetGXTEntry("CMOD_COL1_T"))
-            langConf.SetValue(Of String)("TITLE", "WHEELCOLORS", Game.GetGXTEntry("CMOD_COL5_T"))
-            langConf.SetValue(Of String)("TITLE", "TINTS", Game.GetGXTEntry("CMOD_WIN_T"))
-            langConf.SetValue(Of String)("TITLE", "TRIMCOLOR", Game.GetGXTEntry("CMOD_MOD_TRIM2").ToUpper)
-            langConf.SetValue(Of String)("TITLE", "NEONCOLOR", Game.GetGXTEntry("CMOD_NEON_1").ToUpper)
-            langConf.SetValue(Of String)("TITLE", "TIRESMOKE", Game.GetGXTEntry("CMOD_MOD_TYR3").ToUpper)
-            langConf.SetValue(Of String)("TITLE", "CATEGORIES", Game.GetGXTEntry("CMOD_MOD_T"))
-            'Biker
-            langConf.SetValue(Of String)("TITLE", "SHIFTER", Game.GetGXTEntry("CMOD_SHIFTER_T"))
-            langConf.SetValue(Of String)("TITLE", "FRONTMUDGUARD", Game.GetGXTEntry("CMOD_FMUD_T"))
-            langConf.SetValue(Of String)("TITLE", "REARMUDGUARD", Game.GetGXTEntry("CMOD_RMUD_T"))
-            langConf.SetValue(Of String)("TITLE", "OILTANK", Game.GetGXTEntry("CMM_MOD_ST29"))
-            langConf.SetValue(Of String)("TITLE", "FUELTANK", Game.GetGXTEntry("CMOD_FUL_T"))
-            langConf.SetValue(Of String)("TITLE", "BELTDRIVECOVER", Game.GetGXTEntry("CMOD_MOD_BLT").ToUpper)
-            '1.4.1 update
-            langConf.SetValue(Of String)("TITLE", "STOCKRIMS", Game.GetGXTEntry("CMOD_WHE4_0").ToUpper)
-            langConf.SetValue(Of String)("TITLE", "CHROMERIMS", Game.GetGXTEntry("CMOD_WHE4_1").ToUpper)
-            langConf.Save()
-        Catch ex As Exception
-            Logger.Log(ex.Message & " " & ex.StackTrace)
-        End Try
-    End Sub
-
-    Public Shared Sub SaveTitleNames()
-        Dim langConf As ScriptSettings = ScriptSettings.Load("scripts\BennysLang-" & Game.Language.ToString & ".ini")
-        If langConf.GetValue("TITLE", "AERIALS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "AERIALS", Game.GetGXTEntry("CMM_MOD_ST18"))
-        If langConf.GetValue("TITLE", "BODYWORK") = "NULL" Then langConf.SetValue(Of String)("TITLE", "BODYWORK", Game.GetGXTEntry("CMOD_BW_T"))
-        If langConf.GetValue("TITLE", "DOORS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "DOORS", Game.GetGXTEntry("CMM_MOD_ST6"))
-        If langConf.GetValue("TITLE", "ENGINE") = "NULL" Then langConf.SetValue(Of String)("TITLE", "ENGINE", Game.GetGXTEntry("CMM_MOD_GT3"))
-        If langConf.GetValue("TITLE", "INTERIOR") = "NULL" Then langConf.SetValue(Of String)("TITLE", "INTERIOR", Game.GetGXTEntry("CMM_MOD_GT1"))
-        If langConf.GetValue("TITLE", "BUMPERS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "BUMPERS", Game.GetGXTEntry("CMOD_BUM_T"))
-        If langConf.GetValue("TITLE", "WHEELS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "WHEELS", Game.GetGXTEntry("CMOD_WHE0_T"))
-        If langConf.GetValue("TITLE", "WHEELTYPE") = "NULL" Then langConf.SetValue(Of String)("TITLE", "WHEELTYPE", Game.GetGXTEntry("CMOD_WHE1_T"))
-        If langConf.GetValue("TITLE", "TIRES") = "NULL" Then langConf.SetValue(Of String)("TITLE", "TIRES", Game.GetGXTEntry("CMOD_TYR_T"))
-        If langConf.GetValue("TITLE", "PLATES") = "NULL" Then langConf.SetValue(Of String)("TITLE", "PLATES", Game.GetGXTEntry("CMM_MOD_GT2"))
-        If langConf.GetValue("TITLE", "TRIM") = "NULL" Then langConf.SetValue(Of String)("TITLE", "TRIM", Game.GetGXTEntry("CMM_MOD_ST19"))
-        If langConf.GetValue("TITLE", "LIGHTS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "LIGHTS", Game.GetGXTEntry("CMOD_LGT_T"))
-        If langConf.GetValue("TITLE", "ENGINEBLOCK") = "NULL" Then langConf.SetValue(Of String)("TITLE", "ENGINEBLOCK", Game.GetGXTEntry("CMOD_EB_T"))
-        If langConf.GetValue("TITLE", "AIRFILTER") = "NULL" Then langConf.SetValue(Of String)("TITLE", "AIRFILTER", Game.GetGXTEntry("CMM_MOD_ST15"))
-        If langConf.GetValue("TITLE", "RESPRAY") = "NULL" Then langConf.SetValue(Of String)("TITLE", "RESPRAY", Game.GetGXTEntry("CMOD_COL0_T"))
-        If langConf.GetValue("TITLE", "STRUTS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "STRUTS", Game.GetGXTEntry("CMM_MOD_ST16"))
-        If langConf.GetValue("TITLE", "COLUMNSHIFTERLEVERS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "COLUMNSHIFTERLEVERS", Game.GetGXTEntry("CMM_MOD_ST9"))
-        If langConf.GetValue("TITLE", "DASHBOARD") = "NULL" Then langConf.SetValue(Of String)("TITLE", "DASHBOARD", Game.GetGXTEntry("CMM_MOD_ST4"))
-        If langConf.GetValue("TITLE", "DIALDESIGN") = "NULL" Then langConf.SetValue(Of String)("TITLE", "DIALDESIGN", Game.GetGXTEntry("CMM_MOD_ST5"))
-        If langConf.GetValue("TITLE", "ORNAMENTS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "ORNAMENTS", Game.GetGXTEntry("CMM_MOD_ST3"))
-        If langConf.GetValue("TITLE", "SEATS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "SEATS", Game.GetGXTEntry("CMM_MOD_ST7"))
-        If langConf.GetValue("TITLE", "STEERINGWHEELS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "STEERINGWHEELS", Game.GetGXTEntry("CMM_MOD_ST8"))
-        If langConf.GetValue("TITLE", "TRIMDESIGN") = "NULL" Then langConf.SetValue(Of String)("TITLE", "TRIMDESIGN", Game.GetGXTEntry("CMM_MOD_ST2"))
-        If langConf.GetValue("TITLE", "DOORS2") = "NULL" Then langConf.SetValue(Of String)("TITLE", "DOORS2", Game.GetGXTEntry("CMM_MOD_ST6"))
-        If langConf.GetValue("TITLE", "WINDOWS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "WINDOWS", Game.GetGXTEntry("CMM_MOD_ST21"))
-        If langConf.GetValue("TITLE", "FRONTBUMPERS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "FRONTBUMPERS", Game.GetGXTEntry("CMOD_BUMF_T"))
-        If langConf.GetValue("TITLE", "REARBUMPERS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "REARBUMPERS", Game.GetGXTEntry("CMOD_BUMR_T"))
-        If langConf.GetValue("TITLE", "SIDESKIRT") = "NULL" Then langConf.SetValue(Of String)("TITLE", "SIDESKIRT", Game.GetGXTEntry("CMOD_SS_T"))
-        If langConf.GetValue("TITLE", "PLATEHOLDERS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "PLATEHOLDERS", Game.GetGXTEntry("CMOD_PLH_T"))
-        If langConf.GetValue("TITLE", "VANITYPLATES") = "NULL" Then langConf.SetValue(Of String)("TITLE", "VANITYPLATES", Game.GetGXTEntry("CMM_MOD_ST1"))
-        If langConf.GetValue("TITLE", "HEADLIGHTS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "HEADLIGHTS", Game.GetGXTEntry("CMOD_HED_T"))
-        If langConf.GetValue("TITLE", "ARCHCOVERS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "ARCHCOVERS", Game.GetGXTEntry("CMM_MOD_ST17"))
-        If langConf.GetValue("TITLE", "EXHAUST") = "NULL" Then langConf.SetValue(Of String)("TITLE", "EXHAUST", Game.GetGXTEntry("CMOD_EXH_T"))
-        If langConf.GetValue("TITLE", "FENDER") = "NULL" Then langConf.SetValue(Of String)("TITLE", "FENDER", Game.GetGXTEntry("CMOD_WNG_T"))
-        If langConf.GetValue("TITLE", "RIGHTFENDER") = "NULL" Then langConf.SetValue(Of String)("TITLE", "RIGHTFENDER", Game.GetGXTEntry("CMOD_WNG_T"))
-        If langConf.GetValue("TITLE", "ROLLCAGE") = "NULL" Then langConf.SetValue(Of String)("TITLE", "ROLLCAGE", Game.GetGXTEntry("CMOD_RC_T"))
-        If langConf.GetValue("TITLE", "GRILLES") = "NULL" Then langConf.SetValue(Of String)("TITLE", "GRILLES", Game.GetGXTEntry("CMOD_GRL_T"))
-        If langConf.GetValue("TITLE", "HOOD") = "NULL" Then langConf.SetValue(Of String)("TITLE", "HOOD", Game.GetGXTEntry("CMOD_BON_T"))
-        If langConf.GetValue("TITLE", "HORN") = "NULL" Then langConf.SetValue(Of String)("TITLE", "HORN", Game.GetGXTEntry("CMOD_HRN_T"))
-        If langConf.GetValue("TITLE", "HYDRAULICS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "HYDRAULICS", Game.GetGXTEntry("CMM_MOD_ST13"))
-        If langConf.GetValue("TITLE", "LIVERY") = "NULL" Then langConf.SetValue(Of String)("TITLE", "LIVERY", Game.GetGXTEntry("CMM_MOD_ST23"))
-        If langConf.GetValue("TITLE", "PLAQUES") = "NULL" Then langConf.SetValue(Of String)("TITLE", "PLAQUES", Game.GetGXTEntry("CMM_MOD_ST10"))
-        If langConf.GetValue("TITLE", "ROOF") = "NULL" Then langConf.SetValue(Of String)("TITLE", "ROOF", Game.GetGXTEntry("CMOD_ROF_T"))
-        If langConf.GetValue("TITLE", "SPEAKERS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "SPEAKERS", Game.GetGXTEntry("CMM_MOD_S11"))
-        If langConf.GetValue("TITLE", "SPOILER") = "NULL" Then langConf.SetValue(Of String)("TITLE", "SPOILER", Game.GetGXTEntry("CMOD_SPO_T"))
-        If langConf.GetValue("TITLE", "TANK") = "NULL" Then langConf.SetValue(Of String)("TITLE", "TANK", Game.GetGXTEntry("CMM_MOD_ST20"))
-        If langConf.GetValue("TITLE", "TRUNKS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "TRUNKS", Game.GetGXTEntry("CMOD_TR_T"))
-        If langConf.GetValue("TITLE", "TURBO") = "NULL" Then langConf.SetValue(Of String)("TITLE", "TURBO", Game.GetGXTEntry("CMOD_TUR_T"))
-        If langConf.GetValue("TITLE", "SUSPENSIONS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "SUSPENSIONS", Game.GetGXTEntry("CMOD_SUS_T"))
-        If langConf.GetValue("TITLE", "ARMOR") = "NULL" Then langConf.SetValue(Of String)("TITLE", "ARMOR", Game.GetGXTEntry("CMOD_ARM_T"))
-        If langConf.GetValue("TITLE", "BRAKES") = "NULL" Then langConf.SetValue(Of String)("TITLE", "BRAKES", Game.GetGXTEntry("CMOD_BRA_T"))
-        If langConf.GetValue("TITLE", "TRANSMISSION") = "NULL" Then langConf.SetValue(Of String)("TITLE", "TRANSMISSION", Game.GetGXTEntry("CMOD_GBX_T"))
-        If langConf.GetValue("TITLE", "LICENSE") = "NULL" Then langConf.SetValue(Of String)("TITLE", "LICENSE", Game.GetGXTEntry("CMOD_MOD_PLA2").ToUpper)
-        If langConf.GetValue("TITLE", "NEONKITS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "NEONKITS", Game.GetGXTEntry("CMOD_MOD_LGT_N").ToUpper)
-        If langConf.GetValue("TITLE", "NEONLAYOUT") = "NULL" Then langConf.SetValue(Of String)("TITLE", "NEONLAYOUT", Game.GetGXTEntry("CMOD_NEON_0").ToUpper)
-        If langConf.GetValue("TITLE", "BIKEWHEELS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "BIKEWHEELS", Helper.GetLocalizedWheelTypeName(VehicleWheelType.BikeWheels).ToUpper)
-        If langConf.GetValue("TITLE", "HIGHEND") = "NULL" Then langConf.SetValue(Of String)("TITLE", "HIGHEND", Helper.GetLocalizedWheelTypeName(VehicleWheelType.HighEnd).ToUpper)
-        If langConf.GetValue("TITLE", "LOWRIDER") = "NULL" Then langConf.SetValue(Of String)("TITLE", "LOWRIDER", Helper.GetLocalizedWheelTypeName(VehicleWheelType.Lowrider).ToUpper)
-        If langConf.GetValue("TITLE", "MUSCLE") = "NULL" Then langConf.SetValue(Of String)("TITLE", "MUSCLE", Helper.GetLocalizedWheelTypeName(VehicleWheelType.Muscle).ToUpper)
-        If langConf.GetValue("TITLE", "OFFROAD") = "NULL" Then langConf.SetValue(Of String)("TITLE", "OFFROAD", Helper.GetLocalizedWheelTypeName(VehicleWheelType.Offroad).ToUpper)
-        If langConf.GetValue("TITLE", "SPORT") = "NULL" Then langConf.SetValue(Of String)("TITLE", "SPORT", Helper.GetLocalizedWheelTypeName(VehicleWheelType.Sport).ToUpper)
-        If langConf.GetValue("TITLE", "SUV") = "NULL" Then langConf.SetValue(Of String)("TITLE", "SUV", Helper.GetLocalizedWheelTypeName(VehicleWheelType.SUV).ToUpper)
-        If langConf.GetValue("TITLE", "TUNER") = "NULL" Then langConf.SetValue(Of String)("TITLE", "TUNER", Helper.GetLocalizedWheelTypeName(VehicleWheelType.Tuner).ToUpper)
-        If langConf.GetValue("TITLE", "BENNYS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "BENNYS", Helper.GetLocalizedWheelTypeName(8).ToUpper)
-        If langConf.GetValue("TITLE", "BESPOKE") = "NULL" Then langConf.SetValue(Of String)("TITLE", "BESPOKE", Helper.GetLocalizedWheelTypeName(9).ToUpper)
-        If langConf.GetValue("TITLE", "LIGHTCOLOR") = "NULL" Then langConf.SetValue(Of String)("TITLE", "LIGHTCOLOR", Game.GetGXTEntry("CMM_MOD_ST26").ToUpper)
-        If langConf.GetValue("TITLE", "PRIMARYCOLOR") = "NULL" Then langConf.SetValue(Of String)("TITLE", "PRIMARYCOLOR", Game.GetGXTEntry("CMOD_COL0_0").ToUpper)
-        If langConf.GetValue("TITLE", "SECONDARYCOLOR") = "NULL" Then langConf.SetValue(Of String)("TITLE", "SECONDARYCOLOR", Game.GetGXTEntry("CMOD_COL0_1").ToUpper)
-        If langConf.GetValue("TITLE", "LIVERYCOLOR") = "NULL" Then langConf.SetValue(Of String)("TITLE", "LIVERYCOLOR", Game.GetGXTEntry("CMOD_COL0_4").ToUpper)
-        If langConf.GetValue("TITLE", "COLORGROUPS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "COLORGROUPS", Game.GetGXTEntry("CMOD_COL1_T"))
-        If langConf.GetValue("TITLE", "WHEELCOLORS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "WHEELCOLORS", Game.GetGXTEntry("CMOD_COL5_T"))
-        If langConf.GetValue("TITLE", "TINTS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "TINTS", Game.GetGXTEntry("CMOD_WIN_T"))
-        If langConf.GetValue("TITLE", "TRIMCOLOR") = "NULL" Then langConf.SetValue(Of String)("TITLE", "TRIMCOLOR", Game.GetGXTEntry("CMOD_MOD_TRIM2").ToUpper)
-        If langConf.GetValue("TITLE", "NEONCOLOR") = "NULL" Then langConf.SetValue(Of String)("TITLE", "NEONCOLOR", Game.GetGXTEntry("CMOD_NEON_1").ToUpper)
-        If langConf.GetValue("TITLE", "TIRESMOKE") = "NULL" Then langConf.SetValue(Of String)("TITLE", "TIRESMOKE", Game.GetGXTEntry("CMOD_MOD_TYR3").ToUpper)
-        If langConf.GetValue("TITLE", "CATEGORIES") = "NULL" Then langConf.SetValue(Of String)("TITLE", "CATEGORIES", Game.GetGXTEntry("CMOD_MOD_T"))
-        'Bikers
-        If langConf.GetValue("TITLE", "SHIFTER") = "NULL" Then langConf.SetValue(Of String)("TITLE", "SHIFTER", Game.GetGXTEntry("CMOD_SHIFTER_T"))
-        If langConf.GetValue("TITLE", "FRONTMUDGUARD") = "NULL" Then langConf.SetValue(Of String)("TITLE", "FRONTMUDGUARD", Game.GetGXTEntry("CMOD_FMUD_T"))
-        If langConf.GetValue("TITLE", "REARMUDGUARD") = "NULL" Then langConf.SetValue(Of String)("TITLE", "REARMUDGUARD", Game.GetGXTEntry("CMOD_RMUD_T"))
-        If langConf.GetValue("TITLE", "OILTANK") = "NULL" Then langConf.SetValue(Of String)("TITLE", "OILTANK", Game.GetGXTEntry("CMM_MOD_ST29"))
-        If langConf.GetValue("TITLE", "FUELTANK") = "NULL" Then langConf.SetValue(Of String)("TITLE", "FUELTANK", Game.GetGXTEntry("CMOD_FUL_T"))
-        If langConf.GetValue("TITLE", "BELTDRIVECOVER") = "NULL" Then langConf.SetValue(Of String)("TITLE", "BELTDRIVECOVER", Game.GetGXTEntry("CMOD_MOD_BLT").ToUpper)
-        '1.4.1 update
-        If langConf.GetValue("TITLE", "STOCKRIMS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "STOCKRIMS", Game.GetGXTEntry("CMOD_WHE4_0").ToUpper)
-        If langConf.GetValue("TITLE", "CHROMERIMS") = "NULL" Then langConf.SetValue(Of String)("TITLE", "CHROMERIMS", Game.GetGXTEntry("CMOD_WHE4_1").ToUpper)
-        langConf.Save()
-    End Sub
-
-    Public Shared Function IsNullorNothing() As Boolean
-        Dim result As Boolean = False
-        Using reader As New IO.StreamReader(".\scripts\BennysLang-" & Game.Language.ToString & ".ini")
-            While Not reader.EndOfStream
-                Dim line As String = reader.ReadLine()
-                If line.Contains("NULL") Then
-                    result = True
-                    Exit While
-                End If
-            End While
-        End Using
-        Return result
-    End Function
-
-    Public Shared Function IsUpgradeModExist(vehDispName As String) As Boolean
+    <Extension()>
+    Public Function IsUpgradeModExist(vehDispName As String) As Boolean
         Dim result As Boolean = False
         Dim config As ScriptSettings = ScriptSettings.Load("scripts\BennysOriginalMotorWorks.ini")
         Dim v As String = config.GetValue(Of String)("UPGRADE", vehDispName.ToString.ToLower & "_Model", Nothing)
@@ -1493,18 +1227,21 @@ Public Class Helper
         Return result
     End Function
 
-    Public Shared Function GetUpgradeModVehicleInfo(vehDispName As String) As Tuple(Of String, Integer)
+    <Extension()>
+    Public Function GetUpgradeModVehicleInfo(vehDispName As String) As Tuple(Of String, Integer)
         Dim config As ScriptSettings = ScriptSettings.Load("scripts\BennysOriginalMotorWorks.ini")
         Dim newModel As String = config.GetValue(Of String)("UPGRADE", vehDispName.ToString.ToLower & "_Model", Nothing)
         Dim newPrice As Integer = config.GetValue(Of Integer)("UPGRADE", vehDispName.ToString.ToLower & "_Price", 0)
         Return New Tuple(Of String, Integer)(newModel, newPrice)
     End Function
 
-    Public Shared Function GetRepairPrice(vehicle As Vehicle) As Integer
+    <Extension()>
+    Public Function GetRepairPrice(vehicle As Vehicle) As Integer
         Return (vehicle.MaxHealth - vehicle.Health) * 4
     End Function
 
-    Public Shared Function GetUpgradePrice(vehicleModel As Model) As Integer
+    <Extension()>
+    Public Function GetUpgradePrice(vehicleModel As Model) As Integer
         Dim result As Integer = 0
         Select Case vehicleModel
             Case "banshee"
@@ -1535,7 +1272,7 @@ Public Class Helper
                 result = 400000
             Case "sabregt"
                 result = 490000
-            Case "slamvan"
+            Case "slamvan", "slamvan2"
                 result = 394250
             Case "specter"
                 result = 252000
@@ -1559,24 +1296,27 @@ Public Class Helper
         Return result
     End Function
 
-    Public Shared Sub PlaySpeech(speechName As String)
+    Public Sub PlaySpeech(speechName As String)
         If speechName = "" Then speechName = "LR_UPGRADE_GENERIC"
         Native.Function.Call(Hash._PLAY_AMBIENT_SPEECH_WITH_VOICE, Bennys.bennyPed, speechName, "BENNY", "SPEECH_PARAMS_FORCE_SHOUTED", 0)
     End Sub
 
-    Public Shared Sub SetTornadoCustomRoof(veh As Vehicle, liv As Integer)
+    <Extension()>
+    Public Sub SetLivery2(veh As Vehicle, liv As Integer)
         Native.Function.Call(DirectCast(&HA6D3A8750DC73270UL, Hash), veh.Handle, liv)
     End Sub
 
-    Public Shared Function GetTornadoCustomRoof(veh As Vehicle) As Integer
+    <Extension()>
+    Public Function GetLivery2(veh As Vehicle) As Integer
         Return Native.Function.Call(Of Integer)(DirectCast(&H60190048C0764A26UL, Hash), veh.Handle)
     End Function
 
-    Public Shared Function GetTornadoCustomRoofCount(veh As Vehicle) As Integer
+    <Extension()>
+    Public Function Livery2Count(veh As Vehicle) As Integer
         Return Native.Function.Call(Of Integer)(DirectCast(&H5ECB40269053C0D4UL, Hash), veh.Handle)
     End Function
 
-    Public Shared Function GetBennysOriginalRim(curRim As Integer) As Integer
+    Public Function GetBennysOriginalRim(curRim As Integer) As Integer
         Dim result As Integer = 0
 
         Dim totalWheelsCount As Integer = Bennys.veh.GetModCount(VehicleMod.FrontWheels) '217
@@ -1592,15 +1332,17 @@ Public Class Helper
         Return result
     End Function
 
-    Public Shared Function CanEnterBennysMotorwork(veh As Vehicle) As Boolean
+    Public Function CanEnterBennysMotorwork(veh As Vehicle) As Boolean
         Return Native.Function.Call(Of Boolean)(Hash._0x8D474C8FAEFF6CDE, veh)
     End Function
 
-    Public Shared Function IsVehicleAttachedToTrailer(veh As Vehicle) As Boolean
+    <Extension>
+    Public Function IsVehicleAttachedToTrailer(veh As Vehicle) As Boolean
         Return Native.Function.Call(Of Boolean)(Hash.IS_VEHICLE_ATTACHED_TO_TRAILER, veh)
     End Function
 
-    Public Shared Function GetVehicleTrailerVehicle(veh As Vehicle) As Vehicle
+    <Extension()>
+    Public Function GetVehicleTrailerVehicle(veh As Vehicle) As Vehicle
         Dim arg As New OutputArgument()
         Native.Function.Call(Hash.GET_VEHICLE_TRAILER_VEHICLE, veh, arg)
         Return arg.GetResult(Of Vehicle)()
@@ -1612,25 +1354,26 @@ Public Class Helper
         unk
     End Enum
 
-    Public Shared Function GetVehicleEnginePositionSingle(veh As Vehicle) As Single
+    Public Function GetVehicleEnginePositionSingle(veh As Vehicle) As Single
         Dim lfwheel As Vector3 = veh.GetBoneCoord("wheel_lf")
         Dim engine As Vector3 = veh.GetBoneCoord("engine")
         Return Vector3.Distance(lfwheel, engine)
     End Function
 
-    Public Shared Function GetVehicleHoodPositionSingle(veh As Vehicle) As Single
+    Public Function GetVehicleHoodPositionSingle(veh As Vehicle) As Single
         Dim lfwheel As Vector3 = veh.GetBoneCoord("wheel_lf")
         Dim bonnet As Vector3 = veh.GetBoneCoord("bonnet")
         Return Vector3.Distance(lfwheel, bonnet)
     End Function
 
-    Public Shared Function GetVehicleTrunkPositionSingle(veh As Vehicle) As Single
+    Public Function GetVehicleTrunkPositionSingle(veh As Vehicle) As Single
         Dim lfwheel As Vector3 = veh.GetBoneCoord("wheel_lf")
         Dim boot As Vector3 = veh.GetBoneCoord("boot")
         Return Vector3.Distance(lfwheel, boot)
     End Function
 
-    Public Shared Function GetVehEnginePos(veh As Vehicle) As EngineLoc
+    <Extension()>
+    Public Function GetVehEnginePos(veh As Vehicle) As EngineLoc
         Dim lfwheel As Vector3 = veh.GetBoneCoord("wheel_lf")
         Dim engine As Vector3 = veh.GetBoneCoord("engine")
         Dim result As EngineLoc = EngineLoc.unk
@@ -1646,7 +1389,8 @@ Public Class Helper
         Return result
     End Function
 
-    Public Shared Function GetVehHoodPos(veh As Vehicle) As EngineLoc
+    <Extension()>
+    Public Function GetVehHoodPos(veh As Vehicle) As EngineLoc
         Dim bonnet As Vector3 = veh.GetBoneCoord("bonnet")
         Dim lfwheel As Vector3 = veh.GetBoneCoord("wheel_lf")
         Dim result As EngineLoc = EngineLoc.unk
@@ -1662,7 +1406,8 @@ Public Class Helper
         Return result
     End Function
 
-    Public Shared Function GetVehTrunkPos(veh As Vehicle) As EngineLoc
+    <Extension()>
+    Public Function GetVehTrunkPos(veh As Vehicle) As EngineLoc
         Dim boot As Vector3 = veh.GetBoneCoord("boot")
         Dim lfwheel As Vector3 = veh.GetBoneCoord("wheel_lf")
         Dim result As EngineLoc = EngineLoc.unk
@@ -1678,7 +1423,7 @@ Public Class Helper
         Return result
     End Function
 
-    Public Shared Function GetVehicleStats(ByVal veh As Vehicle) As VehicleStats
+    Public Function GetVehicleStats(ByVal veh As Vehicle) As VehicleStats
         Dim stats As New VehicleStats
         stats.TopSpeed = ((Native.Function.Call(Of Single)(Hash._0x53AF99BAA671CA47, veh) * 3600) / 1609.344) * 1.9
         stats.Braking = Native.Function.Call(Of Single)(Hash.GET_VEHICLE_MAX_BRAKING, veh) * 70
@@ -1690,4 +1435,45 @@ Public Class Helper
         If stats.Traction >= 200 Then stats.Traction = 200
         Return stats
     End Function
-End Class
+
+    <Extension()>
+    Public Sub SetXenonHeadlightsColor(ByVal veh As Vehicle, colorID As Integer, toggleXenon As Boolean)
+        If toggleXenon Then veh.ToggleMod(VehicleToggleMod.XenonHeadlights, True)
+        Native.Function.Call(&HE41033B25D003A07UL, veh.Handle, colorID)
+    End Sub
+
+    <Extension()>
+    Public Function GetXenonHeadlightsColor(ByVal veh As Vehicle) As Integer
+        Return Native.Function.Call(Of Integer)(&H3DFF319A831E0CDB, veh.Handle)
+    End Function
+
+    <Extension()>
+    Public Function Brand(ByVal veh As Vehicle) As String
+        Dim result As String = Game.GetGXTEntry(GetVehicleMakeName(veh.Model.Hash))
+        If result = "NULL" Then result = ""
+        Return result
+    End Function
+
+    <Extension()>
+    Public Function GetHashKey(str As String) As Integer
+        Return Native.Function.Call(Of Integer)(Hash.GET_HASH_KEY, str)
+    End Function
+
+    Public Function IsArenaWarDLCInstalled() As Boolean
+        Return Native.Function.Call(Of Boolean)(Hash.IS_DLC_PRESENT, "mpchristmas2018".GetHashKey)
+    End Function
+
+    <Extension()>
+    Public Sub UpdateTitleCaption(ByVal menu As UIMenu, newCaption As String, Optional upper As Boolean = False)
+        Dim result As String = Game.GetGXTEntry(newCaption)
+        If upper Then result = Game.GetGXTEntry(newCaption).ToUpper()
+        If menu.Subtitle.Caption = "NULL" Then menu.Subtitle.Caption = result
+    End Sub
+
+    <Extension()>
+    Public Sub UpdateTitleCaption(ByVal menu As UIMenu, wheeltype As VehicleWheelType, Optional upper As Boolean = False)
+        Dim result As String = GetLocalizedWheelTypeName(wheeltype)
+        If upper Then result = GetLocalizedWheelTypeName(wheeltype).ToUpper()
+        If menu.Subtitle.Caption = "NULL" Then menu.Subtitle.Caption = result
+    End Sub
+End Module

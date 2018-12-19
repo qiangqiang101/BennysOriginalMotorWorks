@@ -17,42 +17,34 @@ Public Class Bennys
     Public Shared BennysBlip As Blip
     Public Shared bennyPed As Ped
     Public Shared isCutscene As Boolean = False
-    Public Shared scriptCam As ScriptedCamera
-    Public Shared unWelcome As List(Of VehicleClass) = New List(Of VehicleClass) From {VehicleClass.Commercial, VehicleClass.Boats, VehicleClass.Cycles, VehicleClass.Helicopters, VehicleClass.Planes}
-    Public Shared unWelcomeV As List(Of Model) = New List(Of Model) From {"firetruck", "pbus", "policeb", "riot", "dump", "cutter", "bulldozer", "flatbed", "handler", "mixer", "mixer2", "rubble", "tiptruck", "tiptruck2",
-        "ruiner3", "dune2", "marshall", "monster", "brickade", "airbus", "bus", "coach", "rallytruck", "rentalbus", "tourbus", "trash", "trash2", "wastelander", "airtug", "caddy", "caddy2", "docktug", "ripley", "mower",
-        "forklift", "scrap", "towtruck", "towtruck2", "tractor", "tractor2", "tractor3", "utillitruck", "utilitytruck2", "utillitruck3", "camper", "journey", "taco", "rhino", "barracks3", "barracks2", "barracks",
-        "chernobog", "riot2", "khanjari", "Thruster"}
+    Public Shared scriptCam As Camera 'ScriptedCamera
+    Public Shared unWelcome As List(Of VehicleClass) = New List(Of VehicleClass) From {VehicleClass.Boats, VehicleClass.Cycles, VehicleClass.Helicopters, VehicleClass.Planes}
+    'Public Shared unWelcomeV As List(Of Model) = New List(Of Model) From {"firetruck", "pbus", "policeb", "riot", "dump", "cutter", "bulldozer", "flatbed", "handler", "mixer", "mixer2", "rubble", "tiptruck", "tiptruck2",
+    '    "ruiner3", "dune2", "marshall", "monster", "brickade", "airbus", "bus", "coach", "rallytruck", "rentalbus", "tourbus", "trash", "trash2", "wastelander", "airtug", "caddy", "caddy2", "docktug", "ripley", "mower",
+    '    "forklift", "scrap", "towtruck", "towtruck2", "tractor", "tractor2", "tractor3", "utillitruck", "utilitytruck2", "utillitruck3", "camper", "journey", "taco", "rhino", "barracks3", "barracks2", "barracks",
+    '    "chernobog", "riot2", "khanjari", "Thruster"}
 
     Public Sub New()
         LoadSettings()
         bennyIntID = Helper.GetInteriorID(New Vector3(-211.798, -1324.292, 30.37535))
         CreateBlip()
-        If Not IO.File.Exists(".\scripts\BennysLang-" & Game.Language.ToString & ".ini") Then Helper.CreateTitleNames()
     End Sub
 
     Public Sub LoadSettings()
         Dim config As ScriptSettings = ScriptSettings.Load("scripts\BennysOriginalMotorWorks.ini")
         onlineMap = config.GetValue(Of Integer)("SETTINGS", "OnlineMap", 1)
         fixDoor = config.GetValue(Of Integer)("SETTINGS", "FixDoor", 1)
-
-        If onlineMap = 1 Then
-            Helper.LoadMPDLCMap()
-        End If
+        If onlineMap = 1 Then LoadMPDLCMap()
     End Sub
 
     Public Sub OnTick(sender As Object, e As EventArgs) Handles Me.Tick
         Try
             veh = Game.Player.Character.LastVehicle
             ply = Game.Player.Character
-            If Helper.IsVehicleAttachedToTrailer(veh) Then tra = Helper.GetVehicleTrailerVehicle(veh)
-
-            If Game.Version < GameVersion.VER_1_0_877_1_STEAM Then
-                Helper.DisplayHelpTextThisFrame("Un-supported GTA V version detected! SPB may not work properly on this version.")
-            End If
+            If veh.IsVehicleAttachedToTrailer Then tra = veh.GetVehicleTrailerVehicle
 
             If fixDoor = 1 Then
-                If Not unWelcome.Contains(veh.ClassType) AndAlso Not unWelcomeV.Contains(veh.Model) Then
+                If Not unWelcome.Contains(veh.ClassType) Then 'AndAlso Not unWelcomeV.Contains(veh.Model) Then
                     If veh.Position.DistanceTo(New Vector3(-205.6828, -1310.683, 30.29572)) <= 15 Then
                         Native.Function.Call(Hash._DOOR_CONTROL, -427498890, -205.6828, -1310.683, 30.29572, 0, 0.0, 50.0, 0)
                     Else
@@ -61,10 +53,16 @@ Public Class Bennys
                 End If
             End If
 
-            If Helper.GetInteriorID(ply.Position) = bennyIntID AndAlso (Not unWelcome.Contains(veh.ClassType) AndAlso Not unWelcomeV.Contains(veh.Model)) Then
+            If GetInteriorID(ply.Position) = bennyIntID Then
+                If Not IsArenaWarDLCInstalled() Then
+                    Helper.DisplayHelpTextThisFrame("Un-supported GTA V version detected! SPB may not work properly on this version.")
+                End If
+            End If
+
+            If Helper.GetInteriorID(ply.Position) = bennyIntID AndAlso Not unWelcome.Contains(veh.ClassType) Then 'AndAlso Not unWelcomeV.Contains(veh.Model)) Then
                 If Not isExiting Then
                     If veh.Position.DistanceTo(New Vector3(-205.6165, -1312.976, 31.1331)) <= 5 Then
-                        Helper.SaveTitleNames()
+                        UpdateTitleName()
                         PlayCutScene()
                         PutVehIntoShop()
                     Else
@@ -133,12 +131,14 @@ Public Class Bennys
             veh.Heading = 180.3224
             Wait(1000)
             Game.FadeScreenIn(1000)
-            scriptCam = New ScriptedCamera()
-            ScriptedCamera.EnableCamera()
-            ScriptedCamera.prevPos = New Vector4(New Vector3(-201.1808, -1321.512, 32.20821))
-            ScriptedCamera.TransitionToPoint(New Vector4(New Vector3(-200.7804, -1316.474, 32.08001)), 5000)
-            ScriptedCamera.CameraShake(CameraShake.Hand, 0.4)
-            ScriptedCamera.PointAt(veh)
+            scriptCam = World.CreateCamera(New Vector3(-201.1808, -1321.512, 32.20821), Vector3.Zero, GameplayCamera.FieldOfView)
+            Dim interpCam As Camera = World.CreateCamera(New Vector3(-200.7804, -1316.474, 32.08001), Vector3.Zero, GameplayCamera.FieldOfView)
+            World.RenderingCamera = scriptCam
+            scriptCam.InterpTo(interpCam, 5000, True, True)
+            World.RenderingCamera = interpCam
+            interpCam.Shake(CameraShake.Hand, 0.4F)
+            interpCam.PointAt(veh)
+
             ply.Task.DriveTo(veh, New Vector3(-207.155, -1320.521, 30.8904), 0.1, 2.3)
             Wait(2000)
             Helper.PlaySpeech("SHOP_NICE_VEHICLE")
@@ -148,7 +148,7 @@ Public Class Bennys
             Game.FadeScreenOut(1000)
             Wait(1000)
             World.DestroyAllCameras()
-            ScriptedCamera.DisableCamera()
+            World.RenderingCamera = Nothing
             isExiting = False
             isCutscene = False
         Catch ex As Exception
@@ -205,7 +205,7 @@ Public Class Bennys
                 .Horns = veh.GetMod(VehicleMod.Horns),
                 .Hydraulics = veh.GetMod(VehicleMod.Hydraulics),
                 .Livery = veh.GetMod(VehicleMod.Livery),
-                .Livery2 = Helper.GetTornadoCustomRoof(veh),
+                .Livery2 = veh.GetLivery2,
                 .Plaques = veh.GetMod(VehicleMod.Plaques),
                 .Roof = veh.GetMod(VehicleMod.Roof),
                 .Speakers = veh.GetMod(VehicleMod.Speakers),
@@ -222,6 +222,7 @@ Public Class Bennys
                 .TireSmokeColor = veh.TireSmokeColor,
                 .NeonLightsColor = veh.NeonLightsColor,
                 .PlateNumbers = veh.NumberPlate,
+                .HeadlightsColor = veh.GetXenonHeadlightsColor,
                 .Suspension = veh.GetMod(VehicleMod.Suspension)}
             veh.Position = New Vector3(-211.798, -1324.292, 30.37535)
             veh.Heading = 150.2801 '358.6677

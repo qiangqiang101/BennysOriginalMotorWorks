@@ -26,7 +26,7 @@ Public Class BennysMenu
     Public Shared iRepair, iHorn, iArmor, iBrakes, iFBumper, iExhaust, iFender, iRollcage, iRoof, iTransmission, iEngine, iPlate, iLights, iTint, iTurbo, iRespray, iWheels, iSuspension, iEngineBlock, iAerials, iAirFilter,
         iArchCover, iDoor, iFrame, iGrille, iHood, iHydraulics, iLivery, iPlaques, iRFender, iSpeaker, iSpoilers, iTank, iTrunk, iWindows, iTrim, iUpgrade, iUpgradeMod, iUpgradeAW, iUpgradeAWV, iStruts, iTrimColor, iColumnShifterLevers, iDashboard, iDialDesign,
         iOrnaments, iSeats, iSteeringWheels, iTrimDesign, iRBumper, iSideSkirt, iRimColor, iPlateHolder, iVanityPlates, iHeadlights, iDashboardColor, iNumberPlate, iBikeWheels, iHighEnd, iLowrider, iMuscle, iOffroad,
-        iSport, iSUV, iTuner, iBennys, iBespoke, iTires, iNeon, iTireSmoke, iNeonColor, iLightsColor, iPrimaryCol, iSecondaryCol, iPrimaryChromeColor, iPrimaryClassicColor, iPrimaryMetallicColor, iPrimaryMetalsColor,
+        iSport, iSUV, iTuner, iBennys, iBespoke, iTires, iBPTires, iNeon, iTireSmoke, iNeonColor, iLightsColor, iPrimaryCol, iSecondaryCol, iPrimaryChromeColor, iPrimaryClassicColor, iPrimaryMetallicColor, iPrimaryMetalsColor,
         iPrimaryMatteColor, iPrimaryPearlescentColor, iSecondaryChromeColor, iSecondaryClassicColor, iSecondaryMetallicColor, iSecondaryMetalsColor, iSecondaryMatteColor, iSecondaryPearlescentColor, iPlaceholder, iTornadoC As UIMenuItem
     Public Shared giBodywork, giEngine, giInterior, giPlate, giLights, giRespray, giWheels, giBumper, giWheelType, giTires, giNeonKits, giPrimaryCol, giSecondaryCol, giBikeWheels, giHighEndWheels, giDoor,
         giLowriderWheels, giMuscleWheels, giOffroadWheels, giSportWheels, giSUVWheels, giTunerWheels, giBennysWheels, giBespokeWheels, giFBumper, giRBumper, giSSkirt, giNumberPlate, giVanityPlate, giPlateHolder,
@@ -35,10 +35,12 @@ Public Class BennysMenu
     Public Shared iShifter, iFMudguard, iBSeat, iOilTank, iRMudguard, iFuelTank, iBeltDriveCovers, iBEngineBlock, iBAirFilter, iBTank As UIMenuItem
     Public Shared giShifter, giFMudguard, giOilTank, giRMudguard, giFuelTank, giBeltDriveCovers, giBEngineBlock, giBAirFilter, giBTank As UIMenuItem
     Public Shared mShifter, mFMudguard, mBSeat, mOilTank, mRMudguard, mFuelTank, mBeltDriveCovers, mBEngineBlock, mBAirFilter, mBTank, gmTrailer As UIMenu
+    Public Shared BtnZoom As InstructionalButton
     Public Shared _menuPool As MenuPool
     Public Shared camera As WorkshopCamera
     Public Shared isRepairing As Boolean = False
     Public Shared vehicleStats As VehicleStats
+    Public Shared arenaVehImage As String = "brusier_apoc"
 
     Public Shared Sub UpdateTitleName()
         QuitMenu.UpdateTitleCaption("CMOD_MOD_E")
@@ -109,7 +111,7 @@ Public Class BennysMenu
         mWindow.UpdateTitleCaption("CMM_MOD_ST21")
         mTurbo.UpdateTitleCaption("CMOD_TUR_T")
         mTint.UpdateTitleCaption("CMOD_WIN_T")
-        mLightsColor.UpdateTitleCaption("CMM_MOD_ST26", True)
+        mLightsColor.UpdateTitleCaption("CMM_MOD_ST26")
         mTrimColor.UpdateTitleCaption("CMOD_MOD_TRIM2", True)
         mRimColor.UpdateTitleCaption("CMOD_COL5_T")
         mPrimaryClassicColor.UpdateTitleCaption("CMOD_COL0_0", True)
@@ -151,6 +153,7 @@ Public Class BennysMenu
             QuitMenu = New UIMenu("", Game.GetGXTEntry("CMOD_MOD_E"))
             QuitMenu.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             QuitMenu.MouseEdgeEnabled = False
+            QuitMenu.AddInstructionalButton(BtnZoom)
             _menuPool.Add(QuitMenu)
             QuitMenu.AddItem(New UIMenuItem(Game.GetGXTEntry("ITEM_EXIT"), Game.GetGXTEntry("collision_6p1r1v")))
             QuitMenu.RefreshIndex()
@@ -166,6 +169,7 @@ Public Class BennysMenu
             MainMenu = New UIMenu("", Game.GetGXTEntry("CMOD_MOD_T"), True)
             MainMenu.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             MainMenu.MouseEdgeEnabled = False
+            MainMenu.AddInstructionalButton(BtnZoom)
             _menuPool.Add(MainMenu)
             MainMenu.AddItem(New UIMenuItem("Noting"))
             MainMenu.RefreshIndex()
@@ -184,7 +188,7 @@ Public Class BennysMenu
             If Bennys.veh.IsDamaged Then
                 iRepair = New UIMenuItem(LocalizedModGroupName(GroupName.Repair), Game.GetGXTEntry("CMOD_MOD_0_D")) 'Repair
                 With iRepair
-                    .SetRightLabel("$" & Bennys.veh.GetRepairPrice.ToString("###,###"))
+                    .SetRightLabel("$" & Bennys.veh.GetRepairPrice)
                     .SubInteger1 = Bennys.veh.GetRepairPrice
                 End With
                 MainMenu.AddItem(iRepair)
@@ -195,7 +199,7 @@ Public Class BennysMenu
                 If lowriders.Contains(Bennys.veh.Model) Then
                     iUpgrade = New UIMenuItem(LocalizedModGroupName(GroupName.Upgrade), Game.GetGXTEntry("CMOD_MOD_100_D")) 'Upgrade
                     With iUpgrade
-                        .SetRightLabel("$" & Bennys.veh.Model.GetUpgradePrice.ToString("###,###"))
+                        .SetRightLabel("$" & Bennys.veh.Model.GetUpgradePrice)
                         .SubInteger1 = Bennys.veh.Model.GetUpgradePrice
                     End With
                     MainMenu.AddItem(iUpgrade)
@@ -204,7 +208,7 @@ Public Class BennysMenu
                     Dim upgrade2 As Tuple(Of String, Integer) = Bennys.veh.DisplayName.GetUpgradeModVehicleInfo
                     iUpgradeMod = New UIMenuItem(LocalizedModGroupName(GroupName.Upgrade), Game.GetGXTEntry("CMOD_MOD_100_D"))
                     With iUpgradeMod
-                        .SetRightLabel("$" & upgrade2.Item2.ToString("###,###"))
+                        .SetRightLabel("$" & upgrade2.Item2)
                         .SubInteger1 = upgrade2.Item2
                     End With
                     MainMenu.AddItem(iUpgradeMod)
@@ -307,7 +311,7 @@ Public Class BennysMenu
                 If lowriders.Contains(Bennys.veh.Model) Then
                     iUpgrade = New UIMenuItem(LocalizedModGroupName(GroupName.Upgrade), Game.GetGXTEntry("CMOD_MOD_100_D")) 'Upgrade
                     With iUpgrade
-                        .SetRightLabel("$" & Bennys.veh.Model.GetUpgradePrice.ToString("###,###"))
+                        .SetRightLabel("$" & Bennys.veh.Model.GetUpgradePrice)
                         .SubInteger1 = Bennys.veh.Model.GetUpgradePrice
                     End With
                     MainMenu.AddItem(iUpgrade)
@@ -316,7 +320,7 @@ Public Class BennysMenu
                     Dim upgrade2 As Tuple(Of String, Integer) = Bennys.veh.DisplayName.GetUpgradeModVehicleInfo
                     iUpgradeMod = New UIMenuItem(LocalizedModGroupName(GroupName.Upgrade), Game.GetGXTEntry("CMOD_MOD_100_D"))
                     With iUpgradeMod
-                        .SetRightLabel("$" & upgrade2.Item2.ToString("###,###"))
+                        .SetRightLabel("$" & upgrade2.Item2)
                         .SubInteger1 = upgrade2.Item2
                     End With
                     MainMenu.AddItem(iUpgradeMod)
@@ -499,6 +503,7 @@ Public Class BennysMenu
                 If selectedItem Is iRepair Then
                     isRepairing = True
                     Bennys.veh.Repair()
+                    Bennys.veh.Wash()
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger1)
                     RefreshMenus()
                 ElseIf selectedItem Is iUpgrade Then
@@ -565,6 +570,7 @@ Public Class BennysMenu
                     veh.SetXenonHeadlightsColor(Bennys.lastVehMemory.HeadlightsColor, veh.IsToggleModOn(VehicleToggleMod.XenonHeadlights))
                     veh.NumberPlateType = Bennys.lastVehMemory.NumberPlate
                     veh.NumberPlate = Bennys.lastVehMemory.PlateNumbers
+                    veh.CanTiresBurst = Bennys.lastVehMemory.BulletProofTires
                     Bennys.veh.Delete()
                     Bennys.ply.Task.WarpIntoVehicle(veh, VehicleSeat.Driver)
                     Bennys.veh = veh
@@ -658,6 +664,9 @@ Public Class BennysMenu
                     Native.Function.Call(Hash._START_SCREEN_EFFECT, "MP_corona_switch_supermod", 0, 1)
                     Native.Function.Call(Hash.PLAY_SOUND_FRONTEND, -1, "Lowrider_Upgrade", "Lowrider_Super_Mod_Garage_Sounds", 1)
                     PlaySpeech("LR_UPGRADE_SUPERMOD")
+                ElseIf selectedItem Is iUpgradeAW Then
+                    Dim sitem = mUpgradeAW.MenuItems.First
+                    arenaVehImage = sitem.SubString2
                 ElseIf selectedItem Is giEngine Then
                     Select Case Bennys.veh.Model
                         Case "alpha"
@@ -863,22 +872,7 @@ Public Class BennysMenu
                 End If
             ElseIf sender Is QuitMenu Then
                 QuitMenu.Visible = False
-                Game.FadeScreenOut(1000)
-                Wait(1000)
-                Bennys.isExiting = True
-                camera.Stop()
-                Bennys.veh.Position = New Vector3(-205.8678, -1321.805, 30.41191)
-                Bennys.veh.Heading = 358.6677
-                Bennys.ply.Task.DriveTo(Bennys.veh, New Vector3(-205.743, -1303.657, 30.84998), 0.5, 5)
-                Wait(1000)
-                Game.FadeScreenIn(1000)
-                PlaySpeech("SHOP_GOODBYE")
-                Wait(7000)
-                Bennys.ply.Task.ClearAll()
-                Bennys.isExiting = False
-                If Native.Function.Call(Of Boolean)(Hash.IS_AUDIO_SCENE_ACTIVE, "CAR_MOD_RADIO_MUTE_SCENE") Then
-                    Native.Function.Call(Hash.STOP_AUDIO_SCENE, "CAR_MOD_RADIO_MUTE_SCENE")
-                End If
+                Bennys.PlayExitCutScene()
             End If
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
@@ -887,13 +881,15 @@ Public Class BennysMenu
 
     Public Shared Sub CreateArenaWarMenu()
         Try
-            mUpgradeAW = New UIMenu("", Game.GetGXTEntry("collision_9znude7"), True) 'ARENA WAR
+            mUpgradeAW = New UIMenu("", Game.GetGXTEntry("collision_9znude7"), False) 'ARENA WAR
             mUpgradeAW.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             mUpgradeAW.MouseEdgeEnabled = False
+            mUpgradeAW.AddInstructionalButton(BtnZoom)
             _menuPool.Add(mUpgradeAW)
             mUpgradeAW.AddItem(New UIMenuItem("Nothing"))
             mUpgradeAW.RefreshIndex()
             AddHandler mUpgradeAW.OnItemSelect, AddressOf ModsMenuItemSelectHandler
+            AddHandler mUpgradeAW.OnIndexChange, AddressOf ArenaWarMenuIndexChangedHandler
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
         End Try
@@ -908,24 +904,27 @@ Public Class BennysMenu
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("bruiser"))
                     With iUpgradeAWV
                         .SubString1 = "bruiser"
+                        .SubString2 = "bruiser_apoc"
                         .SubInteger1 = 1609000
-                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        Dim price As String = "$" & .SubInteger1
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("bruiser2"))
                     With iUpgradeAWV
                         .SubString1 = "bruiser2"
+                        .SubString2 = "bruiser_scifi"
                         .SubInteger1 = 1609000
-                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        Dim price As String = "$" & .SubInteger1
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("bruiser3"))
                     With iUpgradeAWV
                         .SubString1 = "bruiser3"
+                        .SubString2 = "bruiser_cons"
                         .SubInteger1 = 1609000
-                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        Dim price As String = "$" & .SubInteger1
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
@@ -933,24 +932,27 @@ Public Class BennysMenu
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("deathbike"))
                     With iUpgradeAWV
                         .SubString1 = "deathbike"
+                        .SubString2 = "deathbike_apoc"
                         .SubInteger1 = 1269000
-                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        Dim price As String = "$" & .SubInteger1
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("deathbike2"))
                     With iUpgradeAWV
                         .SubString1 = "deathbike2"
+                        .SubString2 = "deathbike_scifi"
                         .SubInteger1 = 1269000
-                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        Dim price As String = "$" & .SubInteger1
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("deathbike3"))
                     With iUpgradeAWV
                         .SubString1 = "deathbike3"
+                        .SubString2 = "deathbike_cons"
                         .SubInteger1 = 1269000
-                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        Dim price As String = "$" & .SubInteger1
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
@@ -958,24 +960,27 @@ Public Class BennysMenu
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("dominator4"))
                     With iUpgradeAWV
                         .SubString1 = "dominator4"
+                        .SubString2 = "dominator_apoc"
                         .SubInteger1 = 1132000
-                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        Dim price As String = "$" & .SubInteger1
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("dominator5"))
                     With iUpgradeAWV
                         .SubString1 = "dominator5"
+                        .SubString2 = "dominator_scifi"
                         .SubInteger1 = 1132000
-                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        Dim price As String = "$" & .SubInteger1
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("dominator6"))
                     With iUpgradeAWV
                         .SubString1 = "dominator6"
+                        .SubString2 = "dominator_cons"
                         .SubInteger1 = 1132000
-                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        Dim price As String = "$" & .SubInteger1
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
@@ -983,24 +988,27 @@ Public Class BennysMenu
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("impaler2"))
                     With iUpgradeAWV
                         .SubString1 = "impaler2"
+                        .SubString2 = "impaler_apoc"
                         .SubInteger1 = 1209500
-                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        Dim price As String = "$" & .SubInteger1
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("impaler3"))
                     With iUpgradeAWV
                         .SubString1 = "impaler3"
+                        .SubString2 = "impaler_scifi"
                         .SubInteger1 = 1209500
-                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        Dim price As String = "$" & .SubInteger1
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("impaler4"))
                     With iUpgradeAWV
                         .SubString1 = "impaler4"
+                        .SubString2 = "impaler_cons"
                         .SubInteger1 = 1209500
-                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        Dim price As String = "$" & .SubInteger1
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
@@ -1008,24 +1016,27 @@ Public Class BennysMenu
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("issi4"))
                     With iUpgradeAWV
                         .SubString1 = "issi4"
+                        .SubString2 = "issi_apoc"
                         .SubInteger1 = 1089000
-                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        Dim price As String = "$" & .SubInteger1
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("issi5"))
                     With iUpgradeAWV
                         .SubString1 = "issi5"
+                        .SubString2 = "issi_scifi"
                         .SubInteger1 = 1089000
-                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        Dim price As String = "$" & .SubInteger1
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("issi6"))
                     With iUpgradeAWV
                         .SubString1 = "issi6"
+                        .SubString2 = "issi_cons"
                         .SubInteger1 = 1089000
-                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        Dim price As String = "$" & .SubInteger1
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
@@ -1033,24 +1044,27 @@ Public Class BennysMenu
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("monster3"))
                     With iUpgradeAWV
                         .SubString1 = "monster3"
+                        .SubString2 = "sasquatch_apoc"
                         .SubInteger1 = 1530875
-                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        Dim price As String = "$" & .SubInteger1
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("monster4"))
                     With iUpgradeAWV
                         .SubString1 = "monster4"
+                        .SubString2 = "sasquatch_scifi"
                         .SubInteger1 = 1530875
-                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        Dim price As String = "$" & .SubInteger1
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("monster5"))
                     With iUpgradeAWV
                         .SubString1 = "monster5"
+                        .SubString2 = "sasquatch_cons"
                         .SubInteger1 = 1530875
-                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        Dim price As String = "$" & .SubInteger1
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
@@ -1058,24 +1072,27 @@ Public Class BennysMenu
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("slamvan4"))
                     With iUpgradeAWV
                         .SubString1 = "slamvan4"
+                        .SubString2 = "slamvan_apoc"
                         .SubInteger1 = 1321875
-                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        Dim price As String = "$" & .SubInteger1
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("slamvan5"))
                     With iUpgradeAWV
                         .SubString1 = "slamvan5"
+                        .SubString2 = "slamvan_scifi"
                         .SubInteger1 = 1321875
-                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        Dim price As String = "$" & .SubInteger1
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("slamvan6"))
                     With iUpgradeAWV
                         .SubString1 = "slamvan6"
+                        .SubString2 = "slamvan_cons"
                         .SubInteger1 = 1321875
-                        Dim price As String = "$" & .SubInteger1.ToString("###,###")
+                        Dim price As String = "$" & .SubInteger1
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
@@ -1092,6 +1109,7 @@ Public Class BennysMenu
             gmBodywork = New UIMenu("", Game.GetGXTEntry("CMOD_BW_T"), True) 'BODYWORK
             gmBodywork.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmBodywork.MouseEdgeEnabled = False
+            gmBodywork.AddInstructionalButton(BtnZoom)
             _menuPool.Add(gmBodywork)
             gmBodywork.AddItem(New UIMenuItem("Nothing"))
             gmBodywork.RefreshIndex()
@@ -1185,6 +1203,7 @@ Public Class BennysMenu
             gmEngine = New UIMenu("", Game.GetGXTEntry("CMM_MOD_GT3"), True) 'ENGINE
             gmEngine.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmEngine.MouseEdgeEnabled = False
+            gmEngine.AddInstructionalButton(BtnZoom)
             _menuPool.Add(gmEngine)
             gmEngine.AddItem(New UIMenuItem("Nothing"))
             gmEngine.RefreshIndex()
@@ -1249,6 +1268,7 @@ Public Class BennysMenu
             gmInterior = New UIMenu("", Game.GetGXTEntry("CMM_MOD_GT1"), True) 'INTERIOR
             gmInterior.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmInterior.MouseEdgeEnabled = False
+            gmInterior.AddInstructionalButton(BtnZoom)
             _menuPool.Add(gmInterior)
             gmInterior.AddItem(New UIMenuItem("Nothing"))
             gmInterior.RefreshIndex()
@@ -1326,6 +1346,7 @@ Public Class BennysMenu
             gmBumper = New UIMenu("", Game.GetGXTEntry("CMOD_BUM_T"), True) 'BUMPERS
             gmBumper.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmBumper.MouseEdgeEnabled = False
+            gmBumper.AddInstructionalButton(BtnZoom)
             _menuPool.Add(gmBumper)
             gmBumper.AddItem(New UIMenuItem("Nothing"))
             gmBumper.RefreshIndex()
@@ -1364,11 +1385,12 @@ Public Class BennysMenu
             gmWheels = New UIMenu("", Game.GetGXTEntry("CMOD_WHE0_T"), True) 'WHEELS
             gmWheels.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmWheels.MouseEdgeEnabled = False
+            gmWheels.AddInstructionalButton(BtnZoom)
             _menuPool.Add(gmWheels)
             gmWheels.AddItem(New UIMenuItem("Nothing"))
             gmWheels.RefreshIndex()
             AddHandler gmWheels.OnMenuClose, AddressOf ModsMenuCloseHandler
-            AddHandler gmWheels.OnItemSelect, AddressOf ModsMenuItemSelectHandler
+            AddHandler gmWheels.OnItemSelect, AddressOf WheelsMenuItemSelectHandler
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
         End Try
@@ -1389,6 +1411,18 @@ Public Class BennysMenu
             iTireSmoke = New UIMenuItem(LocalizedModTypeName(VehicleToggleMod.TireSmoke), Game.GetGXTEntry("CMOD_IE_25_D"))
             gmWheels.AddItem(iTireSmoke)
             gmWheels.BindMenuToItem(mTireSmoke, iTireSmoke)
+            iBPTires = New UIMenuItem(Game.GetGXTEntry("CMOD_GLD2_1"))
+            With iBPTires
+                If Not Bennys.veh.CanTiresBurst Then
+                    .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                Else
+                    Dim value As Integer = 4000
+                    Dim price As String = $"${value}"
+                    .SetRightLabel(price)
+                    .SubInteger2 = 4000
+                End If
+            End With
+            gmWheels.AddItem(iBPTires)
             gmWheels.RefreshIndex()
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
@@ -1459,6 +1493,7 @@ Public Class BennysMenu
             menu = New UIMenu("", title, True)
             menu.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             menu.MouseEdgeEnabled = False
+            menu.AddInstructionalButton(BtnZoom)
             _menuPool.Add(menu)
             menu.AddItem(New UIMenuItem("Nothing"))
             menu.RefreshIndex()
@@ -1500,7 +1535,7 @@ Public Class BennysMenu
                         If Not i = -1 Then
                             Dim ii = i + 1
                             Dim value As Integer = 200 * ii
-                            Dim price As String = "$" & value.ToString("###,###")
+                            Dim price As String = "$" & value
                             item.SetRightLabel(price)
                             .SubInteger2 = 200 * ii
                         End If
@@ -1528,7 +1563,7 @@ Public Class BennysMenu
                     item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
                     Dim value As Integer = 200
-                    Dim price As String = "$" & value.ToString("###,###")
+                    Dim price As String = "$" & value
                     item.SetRightLabel(price)
                     .SubInteger2 = 200
                 End If
@@ -1546,7 +1581,7 @@ Public Class BennysMenu
                         If Not i = -1 Then
                             Dim ii = i + 1
                             Dim value As Integer = 200 * ii
-                            Dim price As String = "$" & value.ToString("###,###")
+                            Dim price As String = "$" & value
                             item.SetRightLabel(price)
                             .SubInteger2 = 200 * ii
                         End If
@@ -1577,7 +1612,7 @@ Public Class BennysMenu
                         If Not i = -1 Then
                             Dim ii = i + 1
                             Dim value As Integer = 200 * ii
-                            Dim price As String = "$" & value.ToString("###,###")
+                            Dim price As String = "$" & value
                             item.SetRightLabel(price)
                             .SubInteger2 = 200 * ii
                         End If
@@ -1610,7 +1645,7 @@ Public Class BennysMenu
                             If Not i = -1 Then
                                 Dim ii = i + 1
                                 Dim value As Integer = 200 * ii
-                                Dim price As String = "$" & value.ToString("###,###")
+                                Dim price As String = "$" & value
                                 item.SetRightLabel(price)
                                 .SubInteger2 = 200 * ii
                             End If
@@ -1630,7 +1665,7 @@ Public Class BennysMenu
                             If Not i = -1 Then
                                 Dim ii = i + 1
                                 Dim value As Integer = 200 * ii
-                                Dim price As String = "$" & value.ToString("###,###")
+                                Dim price As String = "$" & value
                                 item.SetRightLabel(price)
                                 .SubInteger2 = 200 * ii
                             End If
@@ -1651,6 +1686,7 @@ Public Class BennysMenu
             mTires = New UIMenu("", Game.GetGXTEntry("CMOD_TYR_T"), True) 'TIRES
             mTires.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             mTires.MouseEdgeEnabled = False
+            mTires.AddInstructionalButton(BtnZoom)
             _menuPool.Add(mTires)
             mTires.AddItem(New UIMenuItem("Nothing"))
             mTires.RefreshIndex()
@@ -1674,7 +1710,7 @@ Public Class BennysMenu
                         .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     Else
                         Dim value As Integer = 100
-                        Dim price As String = "$" & value.ToString("###,###")
+                        Dim price As String = "$" & value
                         .SetRightLabel(price)
                         .SubInteger2 = 100
                     End If
@@ -1695,7 +1731,7 @@ Public Class BennysMenu
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
                                 Dim value As Integer = 100
-                                Dim price As String = "$" & value.ToString("###,###")
+                                Dim price As String = "$" & value
                                 .SetRightLabel(price)
                                 .SubInteger2 = 100
                             End If
@@ -1709,7 +1745,7 @@ Public Class BennysMenu
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
                                 Dim value As Integer = 200
-                                Dim price As String = "$" & value.ToString("###,###")
+                                Dim price As String = "$" & value
                                 .SetRightLabel(price)
                                 .SubInteger2 = 200
                             End If
@@ -1723,7 +1759,7 @@ Public Class BennysMenu
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
                                 Dim value As Integer = 300
-                                Dim price As String = "$" & value.ToString("###,###")
+                                Dim price As String = "$" & value
                                 .SetRightLabel(price)
                                 .SubInteger2 = 300
                             End If
@@ -1737,7 +1773,7 @@ Public Class BennysMenu
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
                                 Dim value As Integer = 400
-                                Dim price As String = "$" & value.ToString("###,###")
+                                Dim price As String = "$" & value
                                 .SetRightLabel(price)
                                 .SubInteger2 = 400
                             End If
@@ -1750,7 +1786,7 @@ Public Class BennysMenu
                             If Bennys.veh.GetMod(VehicleMod.FrontWheels) = newid Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
-                                Dim price As String = "$" & 500.ToString("###,###")
+                                Dim price As String = "$" & 500
                                 .SetRightLabel(price)
                                 .SubInteger2 = 500
                             End If
@@ -1764,7 +1800,7 @@ Public Class BennysMenu
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
                                 Dim value As Integer = 600
-                                Dim price As String = "$" & value.ToString("###,###")
+                                Dim price As String = "$" & value
                                 .SetRightLabel(price)
                                 .SubInteger2 = 600
                             End If
@@ -1778,7 +1814,7 @@ Public Class BennysMenu
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
                                 Dim value As Integer = 700
-                                Dim price As String = "$" & value.ToString("###,###")
+                                Dim price As String = "$" & value
                                 .SetRightLabel(price)
                                 .SubInteger2 = 700
                             End If
@@ -1792,7 +1828,7 @@ Public Class BennysMenu
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
                                 Dim value As Integer = 100
-                                Dim price As String = "$" & value.ToString("###,###")
+                                Dim price As String = "$" & value
                                 .SetRightLabel(price)
                                 .SubInteger2 = 100
                             End If
@@ -1805,7 +1841,7 @@ Public Class BennysMenu
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
                                 Dim value As Integer = 700
-                                Dim price As String = "$" & value.ToString("###,###")
+                                Dim price As String = "$" & value
                                 .SetRightLabel(price)
                                 .SubInteger2 = 700
                             End If
@@ -1824,6 +1860,7 @@ Public Class BennysMenu
             gmPlate = New UIMenu("", Game.GetGXTEntry("CMM_MOD_GT2"), True) 'PLATES
             gmPlate.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmPlate.MouseEdgeEnabled = False
+            gmPlate.AddInstructionalButton(BtnZoom)
             _menuPool.Add(gmPlate)
             gmPlate.AddItem(New UIMenuItem("Nothing"))
             gmPlate.RefreshIndex()
@@ -1861,6 +1898,7 @@ Public Class BennysMenu
             mNumberPlate = New UIMenu("", Game.GetGXTEntry("CMOD_MOD_PLA2").ToUpper, True) 'LICENSE PLATE
             mNumberPlate.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             mNumberPlate.MouseEdgeEnabled = False
+            mNumberPlate.AddInstructionalButton(BtnZoom)
             _menuPool.Add(mNumberPlate)
             mNumberPlate.AddItem(New UIMenuItem("Nothing"))
             mNumberPlate.RefreshIndex()
@@ -1877,6 +1915,7 @@ Public Class BennysMenu
             mTint = New UIMenu("", Game.GetGXTEntry("CMOD_WIN_T"), True) 'TINTS
             mTint.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             mTint.MouseEdgeEnabled = False
+            mTint.AddInstructionalButton(BtnZoom)
             _menuPool.Add(mTint)
             mTint.AddItem(New UIMenuItem("Nothing"))
             mTint.RefreshIndex()
@@ -1893,6 +1932,7 @@ Public Class BennysMenu
             menu = New UIMenu("", title, True)
             menu.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             menu.MouseEdgeEnabled = False
+            menu.AddInstructionalButton(BtnZoom)
             _menuPool.Add(menu)
             menu.AddItem(New UIMenuItem("Nothing"))
             menu.RefreshIndex()
@@ -1920,7 +1960,7 @@ Public Class BennysMenu
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
                                 Dim value As Integer = 200
-                                Dim price As String = "$" & value.ToString("###,###")
+                                Dim price As String = "$" & value
                                 item.SetRightLabel(price)
                                 .SubInteger2 = 200
                             End If
@@ -1937,7 +1977,7 @@ Public Class BennysMenu
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
                                 Dim value As Integer = 2000
-                                Dim price As String = "$" & value.ToString("###,###")
+                                Dim price As String = "$" & value
                                 item.SetRightLabel(price)
                                 .SubInteger2 = 2000
                             End If
@@ -1954,7 +1994,7 @@ Public Class BennysMenu
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
                                 Dim value As Integer = 2000
-                                Dim price As String = "$" & value.ToString("###,###")
+                                Dim price As String = "$" & value
                                 item.SetRightLabel(price)
                                 .SubInteger2 = 2000
                             End If
@@ -1971,7 +2011,7 @@ Public Class BennysMenu
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
                                 Dim value As Integer = 2000
-                                Dim price As String = "$" & value.ToString("###,###")
+                                Dim price As String = "$" & value
                                 item.SetRightLabel(price)
                                 .SubInteger2 = 2000
                             End If
@@ -1988,7 +2028,7 @@ Public Class BennysMenu
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
                                 Dim value As Integer = 2000
-                                Dim price As String = "$" & value.ToString("###,###")
+                                Dim price As String = "$" & value
                                 item.SetRightLabel(price)
                                 .SubInteger2 = 2000
                             End If
@@ -2005,7 +2045,7 @@ Public Class BennysMenu
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
                                 Dim value As Integer = 2000
-                                Dim price As String = "$" & value.ToString("###,###")
+                                Dim price As String = "$" & value
                                 item.SetRightLabel(price)
                                 .SubInteger2 = 2000
                             End If
@@ -2022,7 +2062,7 @@ Public Class BennysMenu
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
                                 Dim value As Integer = 2000
-                                Dim price As String = "$" & value.ToString("###,###")
+                                Dim price As String = "$" & value
                                 item.SetRightLabel(price)
                                 .SubInteger2 = 2000
                             End If
@@ -2039,7 +2079,7 @@ Public Class BennysMenu
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
                                 Dim value As Integer = 2000
-                                Dim price As String = "$" & value.ToString("###,###")
+                                Dim price As String = "$" & value
                                 item.SetRightLabel(price)
                                 .SubInteger2 = 2000
                             End If
@@ -2058,6 +2098,7 @@ Public Class BennysMenu
             gmLights = New UIMenu("", Game.GetGXTEntry("CMOD_LGT_T"), True) 'LIGHTS
             gmLights.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmLights.MouseEdgeEnabled = False
+            gmLights.AddInstructionalButton(BtnZoom)
             _menuPool.Add(gmLights)
             gmLights.AddItem(New UIMenuItem("Nothing"))
             gmLights.RefreshIndex()
@@ -2089,6 +2130,7 @@ Public Class BennysMenu
             gmNeonKits = New UIMenu("", Game.GetGXTEntry("CMOD_MOD_LGT_N").ToUpper, True) 'NEON KITS
             gmNeonKits.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmNeonKits.MouseEdgeEnabled = False
+            gmNeonKits.AddInstructionalButton(BtnZoom)
             _menuPool.Add(gmNeonKits)
             gmNeonKits.AddItem(New UIMenuItem("Nothing"))
             gmNeonKits.RefreshIndex()
@@ -2119,6 +2161,7 @@ Public Class BennysMenu
             mNeon = New UIMenu("", Game.GetGXTEntry("CMOD_NEON_0").ToUpper, True) 'NEON LAYOUT
             mNeon.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             mNeon.MouseEdgeEnabled = False
+            mNeon.AddInstructionalButton(BtnZoom)
             _menuPool.Add(mNeon)
             mNeon.AddItem(New UIMenuItem("Nothing"))
             mNeon.RefreshIndex()
@@ -2147,7 +2190,7 @@ Public Class BennysMenu
                     .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
                     Dim value As Integer = 1000
-                    Dim price As String = "$" & value.ToString("###,###")
+                    Dim price As String = "$" & value
                     .SetRightLabel(price)
                     .SubInteger2 = 1000
                 End If
@@ -2160,7 +2203,7 @@ Public Class BennysMenu
                     .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
                     Dim value As Integer = 1000
-                    Dim price As String = "$" & value.ToString("###,###")
+                    Dim price As String = "$" & value
                     .SetRightLabel(price)
                     .SubInteger2 = 1000
                 End If
@@ -2173,7 +2216,7 @@ Public Class BennysMenu
                     .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
                     Dim value As Integer = 1250
-                    Dim price As String = "$" & value.ToString("###,###")
+                    Dim price As String = "$" & value
                     .SetRightLabel(price)
                     .SubInteger2 = 1250
                 End If
@@ -2186,7 +2229,7 @@ Public Class BennysMenu
                     .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
                     Dim value As Integer = 1800
-                    Dim price As String = "$" & value.ToString("###,###")
+                    Dim price As String = "$" & value
                     .SetRightLabel(price)
                     .SubInteger2 = 1800
                 End If
@@ -2199,7 +2242,7 @@ Public Class BennysMenu
                     .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
                     Dim value As Integer = 2000
-                    Dim price As String = "$" & value.ToString("###,###")
+                    Dim price As String = "$" & value
                     .SetRightLabel(price)
                     .SubInteger2 = 2000
                 End If
@@ -2212,7 +2255,7 @@ Public Class BennysMenu
                     .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
                     Dim value As Integer = 2000
-                    Dim price As String = "$" & value.ToString("###,###")
+                    Dim price As String = "$" & value
                     .SetRightLabel(price)
                     .SubInteger2 = 2000
                 End If
@@ -2225,7 +2268,7 @@ Public Class BennysMenu
                     .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
                     Dim value As Integer = 3000
-                    Dim price As String = "$" & value.ToString("###,###")
+                    Dim price As String = "$" & value
                     .SetRightLabel(price)
                     .SubInteger2 = 3000
                 End If
@@ -2243,6 +2286,7 @@ Public Class BennysMenu
             gmRespray = New UIMenu("", Game.GetGXTEntry("CMOD_COL0_T"), True) 'RESPRAY
             gmRespray.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmRespray.MouseEdgeEnabled = False
+            gmRespray.AddInstructionalButton(BtnZoom)
             _menuPool.Add(gmRespray)
             gmRespray.AddItem(New UIMenuItem("Nothing"))
             gmRespray.RefreshIndex()
@@ -2337,7 +2381,7 @@ Public Class BennysMenu
                             .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                         Else
                             Dim value As Integer = 2000
-                            Dim price As String = "$" & value.ToString("###,###")
+                            Dim price As String = "$" & value
                             item.SetRightLabel(price)
                             .SubInteger2 = 2000
                         End If
@@ -2346,7 +2390,7 @@ Public Class BennysMenu
                             .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                         Else
                             Dim value As Integer = 2000
-                            Dim price As String = "$" & value.ToString("###,###")
+                            Dim price As String = "$" & value
                             item.SetRightLabel(price)
                             .SubInteger2 = 2000
                         End If
@@ -2355,7 +2399,7 @@ Public Class BennysMenu
                             .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                         Else
                             Dim value As Integer = 2000
-                            Dim price As String = "$" & value.ToString("###,###")
+                            Dim price As String = "$" & value
                             item.SetRightLabel(price)
                             .SubInteger2 = 2000
                         End If
@@ -2385,7 +2429,7 @@ Public Class BennysMenu
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
                                 Dim value As Integer = 200
-                                Dim price As String = "$" & value.ToString("###,###")
+                                Dim price As String = "$" & value
                                 item.SetRightLabel(price)
                                 .SubInteger4 = 200
                             End If
@@ -2394,7 +2438,7 @@ Public Class BennysMenu
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             Else
                                 Dim value As Integer = 200
-                                Dim price As String = "$" & value.ToString("###,###")
+                                Dim price As String = "$" & value
                                 item.SetRightLabel(price)
                                 .SubInteger4 = 200
                             End If
@@ -2415,6 +2459,7 @@ Public Class BennysMenu
             menu = New UIMenu("", title, True)
             menu.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             menu.MouseEdgeEnabled = False
+            menu.AddInstructionalButton(BtnZoom)
             _menuPool.Add(menu)
             menu.AddItem(New UIMenuItem("Nothing"))
             menu.RefreshIndex()
@@ -2447,7 +2492,7 @@ Public Class BennysMenu
                         If Not i = -1 Then
                             Dim ii = i + 1
                             Dim value As Integer = 2000 * ii
-                            Dim price As String = "$" & value.ToString("###,###")
+                            Dim price As String = "$" & value
                             item.SetRightLabel(price)
                             .SubInteger2 = 2000 * ii
                         End If
@@ -2466,6 +2511,7 @@ Public Class BennysMenu
             menu = New UIMenu("", title, True)
             menu.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             menu.MouseEdgeEnabled = False
+            menu.AddInstructionalButton(BtnZoom)
             _menuPool.Add(menu)
             menu.AddItem(New UIMenuItem("Nothing"))
             menu.RefreshIndex()
@@ -2491,7 +2537,7 @@ Public Class BennysMenu
                         If Not i = -1 Then
                             Dim ii = i + 1
                             Dim value As Integer = 200 * ii
-                            Dim price As String = "$" & value.ToString("###,###")
+                            Dim price As String = "$" & value
                             item.SetRightLabel(price)
                             .SubInteger2 = 200 * ii
                         End If
@@ -2519,7 +2565,7 @@ Public Class BennysMenu
                         If Not i = -1 Then
                             Dim ii = i + 1
                             Dim value As Integer = 200 * ii
-                            Dim price As String = "$" & value.ToString("###,###")
+                            Dim price As String = "$" & value
                             item.SetRightLabel(price)
                             .SubInteger2 = 200 * ii
                         End If
@@ -2551,7 +2597,7 @@ Public Class BennysMenu
                 If Bennys.veh.IsToggleModOn(vehmod) Then
                     item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
-                    Dim price As String = "$" & 1000.ToString("###,###")
+                    Dim price As String = "$" & 1000
                     item.SetRightLabel(price)
                     .SubInteger2 = 1000
                 End If
@@ -2584,7 +2630,7 @@ Public Class BennysMenu
                 If Bennys.veh.IsToggleModOn(vehmod) Then
                     item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
-                    Dim price As String = "$" & 1000.ToString("###,###")
+                    Dim price As String = "$" & 1000
                     item.SetRightLabel(price)
                     .SubInteger2 = 1000
                 End If
@@ -2598,7 +2644,7 @@ Public Class BennysMenu
                 If Bennys.veh.GetXenonHeadlightsColor = 0 Then
                     item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
-                    Dim price As String = "$" & 3000.ToString("###,###")
+                    Dim price As String = "$" & 3000
                     item.SetRightLabel(price)
                     .SubInteger2 = 3000
                 End If
@@ -2612,7 +2658,7 @@ Public Class BennysMenu
                 If Bennys.veh.GetXenonHeadlightsColor = 0 Then
                     item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
-                    Dim price As String = "$" & 3000.ToString("###,###")
+                    Dim price As String = "$" & 3000
                     item.SetRightLabel(price)
                     .SubInteger2 = 3000
                 End If
@@ -2626,7 +2672,7 @@ Public Class BennysMenu
                 If Bennys.veh.GetXenonHeadlightsColor = 0 Then
                     item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
-                    Dim price As String = "$" & 3000.ToString("###,###")
+                    Dim price As String = "$" & 3000
                     item.SetRightLabel(price)
                     .SubInteger2 = 3000
                 End If
@@ -2640,7 +2686,7 @@ Public Class BennysMenu
                 If Bennys.veh.GetXenonHeadlightsColor = 0 Then
                     item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
-                    Dim price As String = "$" & 3000.ToString("###,###")
+                    Dim price As String = "$" & 3000
                     item.SetRightLabel(price)
                     .SubInteger2 = 3000
                 End If
@@ -2654,7 +2700,7 @@ Public Class BennysMenu
                 If Bennys.veh.GetXenonHeadlightsColor = 0 Then
                     item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
-                    Dim price As String = "$" & 3000.ToString("###,###")
+                    Dim price As String = "$" & 3000
                     item.SetRightLabel(price)
                     .SubInteger2 = 3000
                 End If
@@ -2668,7 +2714,7 @@ Public Class BennysMenu
                 If Bennys.veh.GetXenonHeadlightsColor = 0 Then
                     item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
-                    Dim price As String = "$" & 3000.ToString("###,###")
+                    Dim price As String = "$" & 3000
                     item.SetRightLabel(price)
                     .SubInteger2 = 3000
                 End If
@@ -2682,7 +2728,7 @@ Public Class BennysMenu
                 If Bennys.veh.GetXenonHeadlightsColor = 0 Then
                     item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
-                    Dim price As String = "$" & 3000.ToString("###,###")
+                    Dim price As String = "$" & 3000
                     item.SetRightLabel(price)
                     .SubInteger2 = 3000
                 End If
@@ -2696,7 +2742,7 @@ Public Class BennysMenu
                 If Bennys.veh.GetXenonHeadlightsColor = 0 Then
                     item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
-                    Dim price As String = "$" & 3000.ToString("###,###")
+                    Dim price As String = "$" & 3000
                     item.SetRightLabel(price)
                     .SubInteger2 = 3000
                 End If
@@ -2710,7 +2756,7 @@ Public Class BennysMenu
                 If Bennys.veh.GetXenonHeadlightsColor = 0 Then
                     item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
-                    Dim price As String = "$" & 3000.ToString("###,###")
+                    Dim price As String = "$" & 3000
                     item.SetRightLabel(price)
                     .SubInteger2 = 3000
                 End If
@@ -2724,7 +2770,7 @@ Public Class BennysMenu
                 If Bennys.veh.GetXenonHeadlightsColor = 0 Then
                     item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
-                    Dim price As String = "$" & 3000.ToString("###,###")
+                    Dim price As String = "$" & 3000
                     item.SetRightLabel(price)
                     .SubInteger2 = 3000
                 End If
@@ -2738,7 +2784,7 @@ Public Class BennysMenu
                 If Bennys.veh.GetXenonHeadlightsColor = 0 Then
                     item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
-                    Dim price As String = "$" & 3000.ToString("###,###")
+                    Dim price As String = "$" & 3000
                     item.SetRightLabel(price)
                     .SubInteger2 = 3000
                 End If
@@ -2752,7 +2798,7 @@ Public Class BennysMenu
                 If Bennys.veh.GetXenonHeadlightsColor = 0 Then
                     item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
-                    Dim price As String = "$" & 3000.ToString("###,###")
+                    Dim price As String = "$" & 3000
                     item.SetRightLabel(price)
                     .SubInteger2 = 3000
                 End If
@@ -2766,7 +2812,7 @@ Public Class BennysMenu
                 If Bennys.veh.GetXenonHeadlightsColor = 0 Then
                     item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
-                    Dim price As String = "$" & 3000.ToString("###,###")
+                    Dim price As String = "$" & 3000
                     item.SetRightLabel(price)
                     .SubInteger2 = 3000
                 End If
@@ -2836,6 +2882,7 @@ Public Class BennysMenu
             Bennys.veh.SetMod(VehicleMod.Windows, Bennys.lastVehMemory.Windows, False)
             Bennys.veh.ToggleMod(VehicleToggleMod.Turbo, Bennys.lastVehMemory.Turbo)
             Bennys.veh.WindowTint = Bennys.lastVehMemory.Tint
+            Bennys.veh.CanTiresBurst = Bennys.lastVehMemory.BulletProofTires
 
             'Color
             Bennys.veh.DashboardColor = Bennys.lastVehMemory.LightsColor
@@ -2878,6 +2925,26 @@ Public Class BennysMenu
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
         End Try
+    End Sub
+
+    Public Shared Sub WheelsMenuItemSelectHandler(sender As UIMenu, selectedItem As UIMenuItem, index As Integer)
+        If sender Is gmWheels Then
+            RefreshTyresMenu()
+            If selectedItem Is iBPTires Then
+                If iBPTires.RightBadge = UIMenuItem.BadgeStyle.Car Then
+                    Bennys.veh.CanTiresBurst = True
+                    selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.None)
+                    Bennys.lastVehMemory.BulletProofTires = True
+                Else
+                    Bennys.veh.CanTiresBurst = False
+                    selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    Bennys.lastVehMemory.BulletProofTires = False
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
+                End If
+            End If
+        End If
     End Sub
 
     Public Shared Sub ModsMenuItemSelectHandler(sender As UIMenu, selectedItem As UIMenuItem, index As Integer)
@@ -2951,6 +3018,7 @@ Public Class BennysMenu
                 veh.SetXenonHeadlightsColor(Bennys.lastVehMemory.HeadlightsColor, veh.IsToggleModOn(VehicleToggleMod.XenonHeadlights))
                 veh.NumberPlateType = Bennys.lastVehMemory.NumberPlate
                 veh.NumberPlate = Bennys.lastVehMemory.PlateNumbers
+                veh.CanTiresBurst = Bennys.lastVehMemory.BulletProofTires
                 Bennys.veh.Delete()
                 Bennys.ply.Task.WarpIntoVehicle(veh, VehicleSeat.Driver)
                 Bennys.veh = veh
@@ -3655,10 +3723,7 @@ Public Class BennysMenu
                 PlaySpeech("")
             End If
 
-            'Wheels Mods
-            If sender Is gmWheels Then
-                RefreshTyresMenu()
-            End If
+            'Wheels Mods           
             If (sender Is mSBikeWheels) Or (sender Is mCBikeWheels) Then 'gmBikeWheels
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Bennys.veh.SetMod(VehicleMod.FrontWheels, selectedItem.SubInteger1, False)
@@ -3717,10 +3782,10 @@ Public Class BennysMenu
                         End If
                 End Select
                 PlaySpeech("LR_UPGRADE_WHEEL")
-            End If
+                End If
 
-            'Wheel Type
-            If sender Is gmWheelType Then
+                'Wheel Type
+                If sender Is gmWheelType Then
                 If selectedItem Is giBikeWheels Then
                     Bennys.veh.WheelType = VehicleWheelType.BikeWheels
                     ''RefreshModMenuFor(gmBikeWheels, iBikeWheels, VehicleMod.BackWheels)
@@ -3973,6 +4038,11 @@ Public Class BennysMenu
         End Try
     End Sub
 
+    Public Shared Sub ArenaWarMenuIndexChangedHandler(sender As UIMenu, index As Integer)
+        Dim selecteditem As UIMenuItem = sender.MenuItems(index)
+        arenaVehImage = selecteditem.SubString2
+    End Sub
+
     Public Shared Sub ModsMenuIndexChangedHandler(sender As UIMenu, index As Integer)
         Try
             'Performance
@@ -4195,6 +4265,7 @@ Public Class BennysMenu
     Public Sub New()
         _menuPool = New MenuPool()
         camera = New WorkshopCamera
+        BtnZoom = New InstructionalButton(GTA.Control.VehicleSubAscend, Game.GetGXTEntry("CELL_284"))
         CreateMenus()
         Native.Function.Call(Hash.REQUEST_SCRIPT_AUDIO_BANK, "VEHICLE_SHOP_HUD_1", False, -1)
         Native.Function.Call(Hash.REQUEST_SCRIPT_AUDIO_BANK, "VEHICLE_SHOP_HUD_2", False, -1)
@@ -4223,7 +4294,7 @@ Public Class BennysMenu
         CreateInteriorMenu()
         CreateModMenuFor(mColumnShifterLevers, Game.GetGXTEntry("CMM_MOD_ST9")) 'COLUMN SHIFTER LEVERS
         CreateModMenuFor(mDashboard, Game.GetGXTEntry("CMM_MOD_ST4")) 'DASHBOARD
-        CreateColorMenuFor(mLightsColor, Game.GetGXTEntry("CMM_MOD_ST26").ToUpper)
+        CreateColorMenuFor(mLightsColor, Game.GetGXTEntry("CMM_MOD_ST26"))
         CreateModMenuFor(mDialDesign, Game.GetGXTEntry("CMM_MOD_ST5")) 'DIAL DESIGN
         CreateModMenuFor(mOrnaments, Game.GetGXTEntry("CMM_MOD_ST3")) 'ORNAMENTS
         CreateModMenuFor(mSeats, Game.GetGXTEntry("CMM_MOD_ST7")) 'SEATS
@@ -4463,6 +4534,15 @@ Public Class BennysMenu
             _menuPool.ProcessMenus()
             If Not Bennys.veh = Nothing Then vehicleStats = GetVehicleStats(Bennys.veh)
             _menuPool.UpdateStats(vehicleStats.TopSpeed, vehicleStats.Acceleration, vehicleStats.Braking, vehicleStats.Traction)
+
+            If mUpgradeAW.Visible Then
+                Dim spr As New Sprite("aw_upg_vehs", arenaVehImage, mUpgradeAW.GetUIMenuOffset, New Size(431, 216), 0F, Color.White) : spr.Draw()
+            End If
+
+            If _menuPool.IsAnyMenuOpen Then
+                Native.Function.Call(Hash.HIDE_HUD_AND_RADAR_THIS_FRAME)
+                If BtnZoom.Text = "NULL" Then BtnZoom.Text = Game.GetGXTEntry("CELL_284")
+            End If
 
             If Bennys.isCutscene Then
                 Native.Function.Call(Hash.HIDE_HUD_AND_RADAR_THIS_FRAME)

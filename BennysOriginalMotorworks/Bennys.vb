@@ -63,7 +63,7 @@ Public Class Bennys
                 If Not isExiting Then
                     If veh.Position.DistanceTo(New Vector3(-205.6165, -1312.976, 31.1331)) <= 5 Then
                         UpdateTitleName()
-                        PlayCutScene()
+                        PlayEnterCutScene()
                         PutVehIntoShop()
                     Else
                         If veh.Position.DistanceTo(New Vector3(-211.798, -1324.292, 30.37535)) <= 5 Then
@@ -76,7 +76,9 @@ Public Class Bennys
                         End If
                     End If
                 End If
-                If isExiting Then Native.Function.Call(Hash.HIDE_HUD_AND_RADAR_THIS_FRAME)
+                If isExiting Then
+                    Native.Function.Call(Hash.HIDE_HUD_AND_RADAR_THIS_FRAME)
+                End If
             End If
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
@@ -102,6 +104,22 @@ Public Class Bennys
         '    Dim brand As String = GetVehicleMakeName(Game.Player.LastVehicle.Model.Hash)
         '    UI.ShowSubtitle(String.Format("Engine: {0}, Hood: {1}, Trunk: {2}, Brand: {3}", engine, hood, trunk, brand))
         'End If
+
+        If Game.IsControlJustReleased(0, GTA.Control.VehicleSubAscend) Then
+            If BennysMenu.camera.MainCameraPosition = CameraPosition.Car Then
+                If BennysMenu.camera.CameraZoom = 5.0 Then
+                    Do While BennysMenu.camera.CameraZoom > 3.5
+                        Wait(1)
+                        BennysMenu.camera.CameraZoom -= 0.1
+                    Loop
+                Else
+                    Do While BennysMenu.camera.CameraZoom < 5.0
+                        Wait(1)
+                        BennysMenu.camera.CameraZoom += 0.1
+                    Loop
+                End If
+            End If
+        End If
     End Sub
 
     Public Shared Sub CreateBlip()
@@ -112,7 +130,7 @@ Public Class Bennys
         BennysBlip.Name = Game.GetGXTEntry("S_MO_09")
     End Sub
 
-    Public Shared Sub PlayCutScene()
+    Public Shared Sub PlayEnterCutScene()
         Try
             If Not Native.Function.Call(Of Boolean)(Hash.IS_AUDIO_SCENE_ACTIVE, "CAR_MOD_RADIO_MUTE_SCENE") Then Native.Function.Call(Hash.START_AUDIO_SCENE, "CAR_MOD_RADIO_MUTE_SCENE")
             Game.FadeScreenOut(1000)
@@ -151,6 +169,44 @@ Public Class Bennys
             World.RenderingCamera = Nothing
             isExiting = False
             isCutscene = False
+        Catch ex As Exception
+            Logger.Log(ex.Message & " " & ex.StackTrace)
+        End Try
+    End Sub
+
+    Public Shared Sub PlayExitCutScene()
+        Try
+            If Not Native.Function.Call(Of Boolean)(Hash.IS_AUDIO_SCENE_ACTIVE, "CAR_MOD_RADIO_MUTE_SCENE") Then Native.Function.Call(Hash.START_AUDIO_SCENE, "CAR_MOD_RADIO_MUTE_SCENE")
+            isExiting = True
+
+            Game.FadeScreenOut(1000)
+            Wait(1000)
+            BennysMenu.camera.Stop()
+            veh.Position = New Vector3(-205.8678, -1321.805, 30.41191)
+            veh.Heading = 358.6677
+            ply.Task.DriveTo(veh, New Vector3(-205.743, -1303.657, 30.84998), 0.5, 5)
+            Wait(1000)
+            Game.FadeScreenIn(1000)
+            PlaySpeech("SHOP_GOODBYE")
+            scriptCam = World.CreateCamera(New Vector3(-201.1865, -1299.761, 31.41244), Vector3.Zero, GameplayCamera.FieldOfView)
+            Dim interpCam As Camera = World.CreateCamera(New Vector3(-197.5533, -1297.754, 32.29234), Vector3.Zero, GameplayCamera.FieldOfView)
+            World.RenderingCamera = scriptCam
+            scriptCam.PointAt(veh)
+            scriptCam.InterpTo(interpCam, 5000, True, True)
+            World.RenderingCamera = interpCam
+            interpCam.Shake(CameraShake.Hand, 0.4F)
+            interpCam.PointAt(veh)
+            Wait(2800)
+            ply.Task.DriveTo(veh, New Vector3(-200.2561, -1303.021, 30.66544), 0.1, 2)
+            Wait(4000)
+            ply.Task.ClearAll()
+            World.DestroyAllCameras()
+            World.RenderingCamera = Nothing
+            ply.Task.ClearAll()
+            isExiting = False
+            If Native.Function.Call(Of Boolean)(Hash.IS_AUDIO_SCENE_ACTIVE, "CAR_MOD_RADIO_MUTE_SCENE") Then
+                Native.Function.Call(Hash.STOP_AUDIO_SCENE, "CAR_MOD_RADIO_MUTE_SCENE")
+            End If
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
         End Try

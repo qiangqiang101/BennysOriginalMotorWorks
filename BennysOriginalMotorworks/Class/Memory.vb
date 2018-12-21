@@ -632,4 +632,16 @@
             _headlightscolor = value
         End Set
     End Property
+
+    Private _bulletprooftires As Boolean
+    Public Property BulletProofTires() As Boolean
+        Get
+            Return _bulletprooftires
+        End Get
+        Set(value As Boolean)
+            _bulletprooftires = value
+        End Set
+    End Property
+
+
 End Class

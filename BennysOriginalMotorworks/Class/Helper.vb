@@ -1,4 +1,5 @@
-﻿Imports System.Runtime.CompilerServices
+﻿Imports System.Drawing
+Imports System.Runtime.CompilerServices
 Imports System.Runtime.InteropServices
 Imports System.Text
 Imports GTA
@@ -282,6 +283,12 @@ Public Module Helper
         End If
         Dim cur As String = Nothing
         Select Case modType
+            Case VehicleMod.FrontBumper
+                cur = Game.GetGXTEntry("CMOD_MOD_BUMF")
+                Exit Select
+            Case VehicleMod.RearBumper
+                cur = Game.GetGXTEntry("CMOD_MOD_BUMR")
+                Exit Select
             Case VehicleMod.Armor
                 cur = Game.GetGXTEntry("CMOD_MOD_ARM")
                 Exit Select
@@ -1237,7 +1244,9 @@ Public Module Helper
 
     <Extension()>
     Public Function GetRepairPrice(vehicle As Vehicle) As Integer
-        Return (vehicle.MaxHealth - vehicle.Health) * 4
+        Dim price As Integer = System.Math.Round(vehicle.MaxHealth - vehicle.Health) * 10
+        If price = 0 Then price = 1
+        Return price
     End Function
 
     <Extension()>
@@ -1476,4 +1485,11 @@ Public Module Helper
         If upper Then result = GetLocalizedWheelTypeName(wheeltype).ToUpper()
         If menu.Subtitle.Caption = "NULL" Then menu.Subtitle.Caption = result
     End Sub
+
+    <Extension()>
+    Public Function GetUIMenuOffset(ByVal menu As UIMenu) As Point
+        Dim banner = 107, subtitle = 37, stat = 9
+        Dim sizeHeight = (38 * menu.Size) + banner + subtitle + stat
+        Return New Point(UIMenu.GetSafezoneBounds.X, UIMenu.GetSafezoneBounds.Y + sizeHeight)
+    End Function
 End Module

@@ -23,6 +23,7 @@ Public Class Bennys
     '    "ruiner3", "dune2", "marshall", "monster", "brickade", "airbus", "bus", "coach", "rallytruck", "rentalbus", "tourbus", "trash", "trash2", "wastelander", "airtug", "caddy", "caddy2", "docktug", "ripley", "mower",
     '    "forklift", "scrap", "towtruck", "towtruck2", "tractor", "tractor2", "tractor3", "utillitruck", "utilitytruck2", "utillitruck3", "camper", "journey", "taco", "rhino", "barracks3", "barracks2", "barracks",
     '    "chernobog", "riot2", "khanjari", "Thruster"}
+    Public Shared lastCameraPos As CameraPosition
 
     Public Sub New()
         LoadSettings()
@@ -107,17 +108,29 @@ Public Class Bennys
 
         If Game.IsControlJustReleased(0, GTA.Control.VehicleSubAscend) Then
             If BennysMenu.camera.MainCameraPosition = CameraPosition.Car Then
-                If BennysMenu.camera.CameraZoom = 5.0 Then
-                    Do While BennysMenu.camera.CameraZoom > 3.5
+                If BennysMenu.camera.CameraZoom = (5.0 + BennysMenu.camera.Dimension) Then
+                    Do While BennysMenu.camera.CameraZoom > (3.5 + BennysMenu.camera.Dimension)
                         Wait(1)
                         BennysMenu.camera.CameraZoom -= 0.1
                     Loop
                 Else
-                    Do While BennysMenu.camera.CameraZoom < 5.0
+                    Do While BennysMenu.camera.CameraZoom < (5.0 + BennysMenu.camera.Dimension)
                         Wait(1)
                         BennysMenu.camera.CameraZoom += 0.1
                     Loop
                 End If
+            End If
+        End If
+        If Game.IsControlJustReleased(0, GTA.Control.VehiclePushbikeSprint) Then
+            lastCameraPos = BennysMenu.camera.MainCameraPosition
+            If BennysMenu.camera.MainCameraPosition = CameraPosition.Interior Then
+                If lastCameraPos = CameraPosition.Interior Then
+                    BennysMenu.camera.MainCameraPosition = CameraPosition.Car
+                Else
+                    BennysMenu.camera.MainCameraPosition = lastCameraPos
+                End If
+            Else
+                BennysMenu.camera.MainCameraPosition = CameraPosition.Interior
             End If
         End If
     End Sub

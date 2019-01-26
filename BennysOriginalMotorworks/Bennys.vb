@@ -3,6 +3,7 @@ Imports GTA.Native
 Imports GTA.Math
 Imports BennysOriginalMotorworks.BennysMenu
 Imports System.Windows.Forms
+Imports System.Drawing
 
 Public Class Bennys
     Inherits Script
@@ -29,6 +30,7 @@ Public Class Bennys
         LoadSettings()
         bennyIntID = Helper.GetInteriorID(New Vector3(-211.798, -1324.292, 30.37535))
         CreateBlip()
+        Game.Globals(GetGlobalValue).SetInt(1)
     End Sub
 
     Public Sub LoadSettings()
@@ -106,31 +108,51 @@ Public Class Bennys
         '    UI.ShowSubtitle(String.Format("Engine: {0}, Hood: {1}, Trunk: {2}, Brand: {3}", engine, hood, trunk, brand))
         'End If
 
-        If Game.IsControlJustReleased(0, GTA.Control.VehicleSubAscend) Then
-            If BennysMenu.camera.MainCameraPosition = CameraPosition.Car Then
-                If BennysMenu.camera.CameraZoom = (5.0 + BennysMenu.camera.Dimension) Then
-                    Do While BennysMenu.camera.CameraZoom > (3.5 + BennysMenu.camera.Dimension)
-                        Wait(1)
-                        BennysMenu.camera.CameraZoom -= 0.1
-                    Loop
+        If _menuPool.IsAnyMenuOpen Then
+            'If Game.IsControlJustReleased(0, GTA.Control.VehicleSubAscend) Then
+            '    If BennysMenu.camera.MainCameraPosition = CameraPosition.Car Then
+            '        If BennysMenu.camera.CameraZoom = (5.0 + BennysMenu.camera.Dimension) Then
+            '            Do While BennysMenu.camera.CameraZoom > (3.5 + BennysMenu.camera.Dimension)
+            '                Wait(1)
+            '                BennysMenu.camera.CameraZoom -= 0.1
+            '            Loop
+            '        Else
+            '            Do While BennysMenu.camera.CameraZoom < (5.0 + BennysMenu.camera.Dimension)
+            '                Wait(1)
+            '                BennysMenu.camera.CameraZoom += 0.1
+            '            Loop
+            '        End If
+            '    End If
+            'End If
+
+            If Game.IsControlPressed(0, GTA.Control.VehicleSubAscend) Then
+                Dim max As New PointF(6.0F + BennysMenu.camera.Dimension, 3.0F + BennysMenu.camera.Dimension)
+                If Not BennysMenu.camera.CameraZoom <= max.Y Then
+                    BennysMenu.camera.CameraZoom -= 0.1
                 Else
-                    Do While BennysMenu.camera.CameraZoom < (5.0 + BennysMenu.camera.Dimension)
-                        Wait(1)
-                        BennysMenu.camera.CameraZoom += 0.1
-                    Loop
+                    BennysMenu.camera.CameraZoom = max.Y
                 End If
             End If
-        End If
-        If Game.IsControlJustReleased(0, GTA.Control.VehiclePushbikeSprint) Then
-            lastCameraPos = BennysMenu.camera.MainCameraPosition
-            If BennysMenu.camera.MainCameraPosition = CameraPosition.Interior Then
-                If lastCameraPos = CameraPosition.Interior Then
-                    BennysMenu.camera.MainCameraPosition = CameraPosition.Car
+            If Game.IsControlPressed(0, GTA.Control.VehicleSubDescend) Then
+                Dim max As New PointF(6.0F + BennysMenu.camera.Dimension, 3.0F + BennysMenu.camera.Dimension)
+                If Not BennysMenu.camera.CameraZoom >= max.X Then
+                    BennysMenu.camera.CameraZoom += 0.1
                 Else
-                    BennysMenu.camera.MainCameraPosition = lastCameraPos
+                    BennysMenu.camera.CameraZoom = max.X
                 End If
-            Else
-                BennysMenu.camera.MainCameraPosition = CameraPosition.Interior
+            End If
+
+            If Game.IsControlJustReleased(0, GTA.Control.NextCamera) Then
+                lastCameraPos = BennysMenu.camera.MainCameraPosition
+                If BennysMenu.camera.MainCameraPosition = CameraPosition.Interior Then
+                    If lastCameraPos = CameraPosition.Interior Then
+                        BennysMenu.camera.MainCameraPosition = CameraPosition.Car
+                    Else
+                        BennysMenu.camera.MainCameraPosition = lastCameraPos
+                    End If
+                Else
+                    BennysMenu.camera.MainCameraPosition = CameraPosition.Interior
+                End If
             End If
         End If
     End Sub
@@ -216,6 +238,15 @@ Public Class Bennys
             World.DestroyAllCameras()
             World.RenderingCamera = Nothing
             ply.Task.ClearAll()
+            If Not veh.Position.DistanceTo2D(New Vector3(-200.2561, -1303.021, 30.66544)) <= 4.0F Then
+                Game.FadeScreenOut(1000)
+                Wait(1000)
+                veh.Position = New Vector3(-200.2561, -1303.021, 30.66544)
+                veh.Heading = 312.8701
+                Wait(1000)
+                veh.Repair()
+                Game.FadeScreenIn(1000)
+            End If
             isExiting = False
             If Native.Function.Call(Of Boolean)(Hash.IS_AUDIO_SCENE_ACTIVE, "CAR_MOD_RADIO_MUTE_SCENE") Then
                 Native.Function.Call(Hash.STOP_AUDIO_SCENE, "CAR_MOD_RADIO_MUTE_SCENE")

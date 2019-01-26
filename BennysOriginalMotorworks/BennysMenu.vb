@@ -36,7 +36,7 @@ Public Class BennysMenu
     Public Shared iShifter, iFMudguard, iBSeat, iOilTank, iRMudguard, iFuelTank, iBeltDriveCovers, iBEngineBlock, iBAirFilter, iBTank As UIMenuItem
     Public Shared giShifter, giFMudguard, giOilTank, giRMudguard, giFuelTank, giBeltDriveCovers, giBEngineBlock, giBAirFilter, giBTank As UIMenuItem
     Public Shared mShifter, mFMudguard, mBSeat, mOilTank, mRMudguard, mFuelTank, mBeltDriveCovers, mBEngineBlock, mBAirFilter, mBTank, gmTrailer As UIMenu
-    Public Shared BtnZoom, BtnFirstPerson As InstructionalButton
+    Public Shared BtnZoom, BtnZoomOut, BtnFirstPerson As InstructionalButton
     Public Shared _menuPool As MenuPool
     Public Shared camera As WorkshopCamera
     Public Shared isRepairing As Boolean = False
@@ -157,6 +157,7 @@ Public Class BennysMenu
             QuitMenu.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             QuitMenu.MouseEdgeEnabled = False
             QuitMenu.AddInstructionalButton(BtnZoom)
+            QuitMenu.AddInstructionalButton(BtnZoomOut)
             QuitMenu.AddInstructionalButton(BtnFirstPerson)
             _menuPool.Add(QuitMenu)
             QuitMenu.AddItem(New UIMenuItem(Game.GetGXTEntry("ITEM_EXIT"), Game.GetGXTEntry("collision_6p1r1v")))
@@ -174,6 +175,7 @@ Public Class BennysMenu
             MainMenu.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             MainMenu.MouseEdgeEnabled = False
             MainMenu.AddInstructionalButton(BtnZoom)
+            MainMenu.AddInstructionalButton(BtnZoomOut)
             MainMenu.AddInstructionalButton(BtnFirstPerson)
             _menuPool.Add(MainMenu)
             MainMenu.AddItem(New UIMenuItem("Noting"))
@@ -900,6 +902,7 @@ Public Class BennysMenu
             mUpgradeAW.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             mUpgradeAW.MouseEdgeEnabled = False
             mUpgradeAW.AddInstructionalButton(BtnZoom)
+            mUpgradeAW.AddInstructionalButton(BtnZoomOut)
             mUpgradeAW.AddInstructionalButton(BtnFirstPerson)
             _menuPool.Add(mUpgradeAW)
             mUpgradeAW.AddItem(New UIMenuItem("Nothing"))
@@ -1126,6 +1129,7 @@ Public Class BennysMenu
             gmBodywork.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmBodywork.MouseEdgeEnabled = False
             gmBodywork.AddInstructionalButton(BtnZoom)
+            gmBodywork.AddInstructionalButton(BtnZoomOut)
             gmBodywork.AddInstructionalButton(BtnFirstPerson)
             _menuPool.Add(gmBodywork)
             gmBodywork.AddItem(New UIMenuItem("Nothing"))
@@ -1221,6 +1225,7 @@ Public Class BennysMenu
             gmBodyworkArena.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmBodyworkArena.MouseEdgeEnabled = False
             gmBodyworkArena.AddInstructionalButton(BtnZoom)
+            gmBodyworkArena.AddInstructionalButton(BtnZoomOut)
             gmBodyworkArena.AddInstructionalButton(BtnFirstPerson)
             _menuPool.Add(gmBodyworkArena)
             gmBodyworkArena.AddItem(New UIMenuItem("Nothing"))
@@ -1306,6 +1311,7 @@ Public Class BennysMenu
             gmWeapon.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmWeapon.MouseEdgeEnabled = False
             gmWeapon.AddInstructionalButton(BtnZoom)
+            gmWeapon.AddInstructionalButton(BtnZoomOut)
             gmWeapon.AddInstructionalButton(BtnFirstPerson)
             _menuPool.Add(gmWeapon)
             gmWeapon.AddItem(New UIMenuItem("Nothing"))
@@ -1361,6 +1367,7 @@ Public Class BennysMenu
             gmEngine.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmEngine.MouseEdgeEnabled = False
             gmEngine.AddInstructionalButton(BtnZoom)
+            gmEngine.AddInstructionalButton(BtnZoomOut)
             gmEngine.AddInstructionalButton(BtnFirstPerson)
             _menuPool.Add(gmEngine)
             gmEngine.AddItem(New UIMenuItem("Nothing"))
@@ -1429,6 +1436,7 @@ Public Class BennysMenu
             gmInterior.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmInterior.MouseEdgeEnabled = False
             gmInterior.AddInstructionalButton(BtnZoom)
+            gmInterior.AddInstructionalButton(BtnZoomOut)
             gmInterior.AddInstructionalButton(BtnFirstPerson)
             _menuPool.Add(gmInterior)
             gmInterior.AddItem(New UIMenuItem("Nothing"))
@@ -1510,6 +1518,7 @@ Public Class BennysMenu
             gmBumper.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmBumper.MouseEdgeEnabled = False
             gmBumper.AddInstructionalButton(BtnZoom)
+            gmBumper.AddInstructionalButton(BtnZoomOut)
             gmBumper.AddInstructionalButton(BtnFirstPerson)
             _menuPool.Add(gmBumper)
             gmBumper.AddItem(New UIMenuItem("Nothing"))
@@ -1550,6 +1559,7 @@ Public Class BennysMenu
             gmWheels.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmWheels.MouseEdgeEnabled = False
             gmWheels.AddInstructionalButton(BtnZoom)
+            gmWheels.AddInstructionalButton(BtnZoomOut)
             gmWheels.AddInstructionalButton(BtnFirstPerson)
             _menuPool.Add(gmWheels)
             gmWheels.AddItem(New UIMenuItem("Nothing"))
@@ -1659,6 +1669,7 @@ Public Class BennysMenu
             menu.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             menu.MouseEdgeEnabled = False
             menu.AddInstructionalButton(BtnZoom)
+            menu.AddInstructionalButton(BtnZoomOut)
             menu.AddInstructionalButton(BtnFirstPerson)
             _menuPool.Add(menu)
             menu.AddItem(New UIMenuItem("Nothing"))
@@ -1853,6 +1864,7 @@ Public Class BennysMenu
             mTires.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             mTires.MouseEdgeEnabled = False
             mTires.AddInstructionalButton(BtnZoom)
+            mTires.AddInstructionalButton(BtnZoomOut)
             mTires.AddInstructionalButton(BtnFirstPerson)
             _menuPool.Add(mTires)
             mTires.AddItem(New UIMenuItem("Nothing"))
@@ -2028,6 +2040,7 @@ Public Class BennysMenu
             gmPlate.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmPlate.MouseEdgeEnabled = False
             gmPlate.AddInstructionalButton(BtnZoom)
+            gmPlate.AddInstructionalButton(BtnZoomOut)
             gmPlate.AddInstructionalButton(BtnFirstPerson)
             _menuPool.Add(gmPlate)
             gmPlate.AddItem(New UIMenuItem("Nothing"))
@@ -2069,6 +2082,7 @@ Public Class BennysMenu
             mNumberPlate.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             mNumberPlate.MouseEdgeEnabled = False
             mNumberPlate.AddInstructionalButton(BtnZoom)
+            mNumberPlate.AddInstructionalButton(BtnZoomOut)
             mNumberPlate.AddInstructionalButton(BtnFirstPerson)
             _menuPool.Add(mNumberPlate)
             mNumberPlate.AddItem(New UIMenuItem("Nothing"))
@@ -2087,6 +2101,7 @@ Public Class BennysMenu
             mTint.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             mTint.MouseEdgeEnabled = False
             mTint.AddInstructionalButton(BtnZoom)
+            mTint.AddInstructionalButton(BtnZoomOut)
             mTint.AddInstructionalButton(BtnFirstPerson)
             _menuPool.Add(mTint)
             mTint.AddItem(New UIMenuItem("Nothing"))
@@ -2105,6 +2120,7 @@ Public Class BennysMenu
             menu.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             menu.MouseEdgeEnabled = False
             menu.AddInstructionalButton(BtnZoom)
+            menu.AddInstructionalButton(BtnZoomOut)
             menu.AddInstructionalButton(BtnFirstPerson)
             _menuPool.Add(menu)
             menu.AddItem(New UIMenuItem("Nothing"))
@@ -2272,6 +2288,7 @@ Public Class BennysMenu
             gmLights.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmLights.MouseEdgeEnabled = False
             gmLights.AddInstructionalButton(BtnZoom)
+            gmLights.AddInstructionalButton(BtnZoomOut)
             gmLights.AddInstructionalButton(BtnFirstPerson)
             _menuPool.Add(gmLights)
             gmLights.AddItem(New UIMenuItem("Nothing"))
@@ -2305,6 +2322,7 @@ Public Class BennysMenu
             gmNeonKits.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmNeonKits.MouseEdgeEnabled = False
             gmNeonKits.AddInstructionalButton(BtnZoom)
+            gmNeonKits.AddInstructionalButton(BtnZoomOut)
             gmNeonKits.AddInstructionalButton(BtnFirstPerson)
             _menuPool.Add(gmNeonKits)
             gmNeonKits.AddItem(New UIMenuItem("Nothing"))
@@ -2337,6 +2355,7 @@ Public Class BennysMenu
             mNeon.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             mNeon.MouseEdgeEnabled = False
             mNeon.AddInstructionalButton(BtnZoom)
+            mNeon.AddInstructionalButton(BtnZoomOut)
             _menuPool.Add(mNeon)
             mNeon.AddItem(New UIMenuItem("Nothing"))
             mNeon.RefreshIndex()
@@ -2462,6 +2481,7 @@ Public Class BennysMenu
             gmRespray.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             gmRespray.MouseEdgeEnabled = False
             gmRespray.AddInstructionalButton(BtnZoom)
+            gmRespray.AddInstructionalButton(BtnZoomOut)
             gmRespray.AddInstructionalButton(BtnFirstPerson)
             _menuPool.Add(gmRespray)
             gmRespray.AddItem(New UIMenuItem("Nothing"))
@@ -2636,6 +2656,7 @@ Public Class BennysMenu
             menu.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             menu.MouseEdgeEnabled = False
             menu.AddInstructionalButton(BtnZoom)
+            menu.AddInstructionalButton(BtnZoomOut)
             menu.AddInstructionalButton(BtnFirstPerson)
             _menuPool.Add(menu)
             menu.AddItem(New UIMenuItem("Nothing"))
@@ -2689,6 +2710,7 @@ Public Class BennysMenu
             menu.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
             menu.MouseEdgeEnabled = False
             menu.AddInstructionalButton(BtnZoom)
+            menu.AddInstructionalButton(BtnZoomOut)
             menu.AddInstructionalButton(BtnFirstPerson)
             _menuPool.Add(menu)
             menu.AddItem(New UIMenuItem("Nothing"))
@@ -4496,10 +4518,16 @@ Public Class BennysMenu
     End Sub
 
     Public Sub New()
+        If Not Native.Function.Call(Of Boolean)(Hash.HAS_THIS_ADDITIONAL_TEXT_LOADED, "mod_mnu", 19) Then
+            Native.Function.Call(Hash.CLEAR_ADDITIONAL_TEXT, 19, True)
+            Native.Function.Call(Hash.REQUEST_ADDITIONAL_TEXT, "mod_mnu", 19)
+        End If
+
         _menuPool = New MenuPool()
         camera = New WorkshopCamera
-        BtnZoom = New InstructionalButton(GTA.Control.VehicleSubAscend, Game.GetGXTEntry("CELL_284"))
-        BtnFirstPerson = New InstructionalButton(GTA.Control.VehiclePushbikeSprint, Game.GetGXTEntry("MO_ZOOM_FIRST")) 'MO_ZOOM_FIRST   LOB_FCP_1
+        BtnFirstPerson = New InstructionalButton(GTA.Control.NextCamera, Game.GetGXTEntry("MO_ZOOM_FIRST")) 'MO_ZOOM_FIRST   LOB_FCP_1
+        BtnZoom = New InstructionalButton(GTA.Control.VehicleSubAscend, Game.GetGXTEntry("INPUT_CREATOR_ZOOM_IN_DISPLAYONLY")) 'CELL_284
+        BtnZoomOut = New InstructionalButton(Control.VehicleSubDescend, Game.GetGXTEntry("INPUT_CREATOR_ZOOM_OUT_DISPLAYONLY"))
         CreateMenus()
         Native.Function.Call(Hash.REQUEST_SCRIPT_AUDIO_BANK, "VEHICLE_SHOP_HUD_1", False, -1)
         Native.Function.Call(Hash.REQUEST_SCRIPT_AUDIO_BANK, "VEHICLE_SHOP_HUD_2", False, -1)
@@ -4777,7 +4805,8 @@ Public Class BennysMenu
 
             If _menuPool.IsAnyMenuOpen Then
                 Native.Function.Call(Hash.HIDE_HUD_AND_RADAR_THIS_FRAME)
-                If BtnZoom.Text = "NULL" Then BtnZoom.Text = Game.GetGXTEntry("CELL_284")
+                If BtnZoom.Text = "NULL" Then BtnZoom.Text = Game.GetGXTEntry("INPUT_CREATOR_ZOOM_IN_DISPLAYONLY")
+                If BtnZoomOut.Text = "NULL" Then BtnZoom.Text = Game.GetGXTEntry("INPUT_CREATOR_ZOOM_OUT_DISPLAYONLY")
                 If BtnFirstPerson.Text = "NULL" Then BtnFirstPerson.Text = Game.GetGXTEntry("MO_ZOOM_FIRST")
             End If
 
@@ -4834,6 +4863,7 @@ Public Class BennysMenu
                     Game.DisableControlThisFrame(0, Control.VehicleGunLeft)
                     Game.DisableControlThisFrame(0, Control.VehicleGunRight)
                     Game.DisableControlThisFrame(0, Control.VehicleCinematicLeftRight)
+                    Game.DisableControlThisFrame(0, Control.NextCamera)
             End Select
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)

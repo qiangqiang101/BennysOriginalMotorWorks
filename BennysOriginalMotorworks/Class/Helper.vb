@@ -1608,4 +1608,48 @@ Public Module Helper
                 End If
         End Select
     End Sub
+
+    'open shop_controller.ysc and search for "!= 999"
+    Public Enum GlobalValue
+        b1_0_757_4 = &H271803
+        b1_0_791_2 = &H272A34
+        b1_0_877_1 = &H2750BD
+        b1_0_944_2 = &H279476
+        'b1_0_1011_1 = ?
+        b1_0_1032_1 = 2593970
+        b1_0_1103_2 = 2599337
+        b1_0_1180_2 = 2606794
+        'b1_0_1290_1 = ?
+        b1_0_1365_1 = 4265719
+        'b1_0_1493_0 = ?
+        b1_0_1493_1 = 4266042
+        b1_0_1604_0 = 4266905
+    End Enum
+
+    Public Function GetGlobalValue() As GlobalValue
+        Select Case Game.Version
+            Case GameVersion.VER_1_0_757_4_NOSTEAM
+                Return GlobalValue.b1_0_757_4
+            Case GameVersion.VER_1_0_791_2_NOSTEAM, GameVersion.VER_1_0_791_2_STEAM
+                Return GlobalValue.b1_0_791_2
+            Case GameVersion.VER_1_0_877_1_NOSTEAM, GameVersion.VER_1_0_877_1_STEAM
+                Return GlobalValue.b1_0_877_1
+            Case GameVersion.VER_1_0_944_2_NOSTEAM, GameVersion.VER_1_0_944_2_STEAM
+                Return GlobalValue.b1_0_944_2
+            Case GameVersion.VER_1_0_1032_1_NOSTEAM, GameVersion.VER_1_0_1032_1_STEAM
+                Return GlobalValue.b1_0_1032_1
+            Case GameVersion.VER_1_0_1103_2_NOSTEAM, GameVersion.VER_1_0_1103_2_STEAM
+                Return GlobalValue.b1_0_1103_2
+            Case GameVersion.VER_1_0_1180_2_NOSTEAM, GameVersion.VER_1_0_1180_2_STEAM
+                Return GlobalValue.b1_0_1180_2
+            Case GameVersion.VER_1_0_1365_1_NOSTEAM, GameVersion.VER_1_0_1365_1_STEAM
+                Return GlobalValue.b1_0_1365_1
+            Case GameVersion.VER_1_0_1493_1_NOSTEAM, GameVersion.VER_1_0_1493_1_STEAM
+                Return GlobalValue.b1_0_1493_1
+            Case 47, 48 'GameVersion.VER_1_0_1604_0_NOSTEAM, GameVersion.VER_1_0_1604_0_STEAM
+                Return GlobalValue.b1_0_1604_0
+            Case Else
+                Return GlobalValue.b1_0_1604_0
+        End Select
+    End Function
 End Module

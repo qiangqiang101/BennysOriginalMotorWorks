@@ -774,7 +774,7 @@ Public Class BennysMenu
                             camera.MainCameraPosition = CameraPosition.Hood
                         Case Else
                             If Not Bennys.veh.ClassType = VehicleClass.Motorcycles Or Bennys.veh.Model = "blazer4" Then
-                                HoodCamera()
+                                HoodCamera(True)
                             Else
                                 camera.MainCameraPosition = CameraPosition.Wheels
                             End If
@@ -819,7 +819,7 @@ Public Class BennysMenu
                             camera.MainCameraPosition = CameraPosition.Grille
                     End Select
                 ElseIf selectedItem Is giHood Then
-                    HoodCamera()
+                    HoodCamera(False)
                 ElseIf selectedItem Is giHydraulics Then
                     Bennys.veh.OpenDoor(VehicleDoor.Trunk, False, False)
                     camera.MainCameraPosition = CameraPosition.Trunk
@@ -867,7 +867,7 @@ Public Class BennysMenu
                         Case "zr380", "zr3802", "zr3803", "issi4", "issi5", "issi6"
                             camera.MainCameraPosition = CameraPosition.Boost
                         Case Else
-                            HoodCamera()
+                            HoodCamera(True)
                     End Select
                 ElseIf selectedItem Is giNumberPlate Then
                     If Bennys.veh.HasBone("platelight") Then
@@ -2934,7 +2934,7 @@ Public Class BennysMenu
                 End If
             End With
             menu.AddItem(item)
-            item = New UIMenuItem(Game.GetGXTEntry("collision_7jh67le")) 'Orange
+            item = New UIMenuItem(Game.GetGXTEntry("collision_8gbxm1t")) 'Orange
             With item
                 If .Text = "NULL" Then .Text = Game.GetGXTEntry("collision_7jh67le")
                 .SubInteger1 = 1
@@ -2948,7 +2948,7 @@ Public Class BennysMenu
                 End If
             End With
             menu.AddItem(item)
-            item = New UIMenuItem(Game.GetGXTEntry("collision_8gbxm1t")) 'Red
+            item = New UIMenuItem(Game.GetGXTEntry("collision_7jh67le")) 'Red
             With item
                 If .Text = "NULL" Then .Text = Game.GetGXTEntry("collision_8gbxm1t")
                 .SubInteger1 = 1
@@ -3120,8 +3120,13 @@ Public Class BennysMenu
             If (sender Is gmInterior) Or (sender Is gmEngine) Or (sender Is mFBumper) Or (sender Is mRBumper) Or (sender Is mSSkirt) Or (sender Is mNumberPlate) Or (sender Is mPlateHolder) Or (sender Is mSpoilers) Or
                 (sender Is mVanityPlates) Or (sender Is gmWheels) Or (sender Is mExhaust) Or (sender Is mBrakes) Or (sender Is mGrille) Or (sender Is mHood) Or (sender Is mHydraulics) Or (sender Is mPlaques) Or
                 (sender Is mTank) Or (sender Is mShifter) Or (sender Is mFMudguard) Or (sender Is mOilTank) Or (sender Is mRMudguard) Or (sender Is mFuelTank) Or (sender Is mBeltDriveCovers) Or (sender Is mBTank) Or
-                (sender Is mTrunk) Or (sender Is mArchCover) Or (sender Is mRoof) Or (sender Is mStruts) Or (sender Is mAirFilter) Then
+                (sender Is mTrunk) Or (sender Is mArchCover) Or (sender Is mRoof) Then
                 camera.MainCameraPosition = CameraPosition.Car
+            End If
+            If Not sender.ParentMenu Is gmEngine Then
+                If (sender Is mStruts) Or (sender Is mAirFilter) Then
+                    camera.MainCameraPosition = CameraPosition.Car
+                End If
             End If
             If Not sender.ParentMenu Is gmInterior Then
                 If sender Is mOrnaments Then
@@ -4260,7 +4265,7 @@ Public Class BennysMenu
                             camera.MainCameraPosition = CameraPosition.FrontBumper
                     End Select
                 ElseIf selectedItem Is giTank Then
-                    HoodCamera()
+                    HoodCamera(False)
                 ElseIf selectedItem Is giRoof Then
                     If Bennys.veh.HasBone("boot") Then
                         If Bennys.veh.GetVehTrunkPos = EngineLoc.rear Then
@@ -4525,9 +4530,9 @@ Public Class BennysMenu
 
         _menuPool = New MenuPool()
         camera = New WorkshopCamera
-        BtnFirstPerson = New InstructionalButton(GTA.Control.NextCamera, Game.GetGXTEntry("MO_ZOOM_FIRST")) 'MO_ZOOM_FIRST   LOB_FCP_1
-        BtnZoom = New InstructionalButton(GTA.Control.VehicleSubAscend, Game.GetGXTEntry("INPUT_CREATOR_ZOOM_IN_DISPLAYONLY")) 'CELL_284
-        BtnZoomOut = New InstructionalButton(Control.VehicleSubDescend, Game.GetGXTEntry("INPUT_CREATOR_ZOOM_OUT_DISPLAYONLY"))
+        BtnFirstPerson = New InstructionalButton(Bennys.fpcKey, Game.GetGXTEntry("MO_ZOOM_FIRST")) 'MO_ZOOM_FIRST   LOB_FCP_1
+        BtnZoom = New InstructionalButton(Bennys.zinKey, Game.GetGXTEntry("INPUT_CREATOR_ZOOM_IN_DISPLAYONLY")) 'CELL_284
+        BtnZoomOut = New InstructionalButton(Bennys.zoutKey, Game.GetGXTEntry("INPUT_CREATOR_ZOOM_OUT_DISPLAYONLY"))
         CreateMenus()
         Native.Function.Call(Hash.REQUEST_SCRIPT_AUDIO_BANK, "VEHICLE_SHOP_HUD_1", False, -1)
         Native.Function.Call(Hash.REQUEST_SCRIPT_AUDIO_BANK, "VEHICLE_SHOP_HUD_2", False, -1)
@@ -4670,10 +4675,13 @@ Public Class BennysMenu
     End Sub
 
     Public Shared Sub RefreshMenus()
-        RefreshArenaWarMenu()
-        RefreshBodyworkMenu()
-        RefreshBodyworkArenaMenu()
-        RefreshWeaponMenu()
+        If arenavehicle.Contains(Bennys.veh.Model) Then
+            RefreshArenaWarMenu()
+            RefreshBodyworkArenaMenu()
+            RefreshWeaponMenu()
+        Else
+            RefreshBodyworkMenu()
+        End If
         RefreshModMenuFor(mAerials, iAerials, VehicleMod.Aerials)
         RefreshModMenuFor(mTrim, iTrim, VehicleMod.Trim)
         RefreshModMenuFor(mWindow, iWindows, VehicleMod.Windows)

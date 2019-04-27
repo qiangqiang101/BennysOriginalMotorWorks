@@ -1548,29 +1548,100 @@ Public Module Helper
 
     Public Sub HoodCamera()
         Dim camera = BennysMenu.camera
+        If Bennys.veh.HasBone("bonnet") AndAlso Bennys.veh.HasBone("boot") Then 'has hood and trunk
+            If Bennys.veh.GetVehEnginePos = EngineLoc.front Then 'front engine
+                If Bennys.veh.GetVehHoodPos = EngineLoc.front Then 'front hood
+                    Camera.MainCameraPosition = CameraPosition.Hood
+                ElseIf Bennys.veh.GetVehHoodPos = EngineLoc.rear Then 'rear hood
+                    Camera.MainCameraPosition = CameraPosition.RearHood
+                End If
+            ElseIf Bennys.veh.GetVehEnginePos = EngineLoc.rear Then 'rear engine
+                If Bennys.veh.GetVehHoodPos = EngineLoc.front Then 'front hood
+                    camera.MainCameraPosition = CameraPosition.Hood
+                ElseIf Bennys.veh.GetVehHoodPos = EngineLoc.rear Then 'rear hood
+                    If Bennys.veh.GetVehTrunkPos = EngineLoc.front Then
+                        Camera.MainCameraPosition = CameraPosition.FrontTrunk
+                    Else
+                        Camera.MainCameraPosition = CameraPosition.FrontBumper
+                    End If
+                End If
+            End If
+        ElseIf Bennys.veh.HasBone("bonnet") Then 'has hood only
+            If Bennys.veh.GetVehEnginePos = EngineLoc.front Then 'front engine
+                If Bennys.veh.GetVehHoodPos = EngineLoc.front Then 'front hood
+                    Camera.MainCameraPosition = CameraPosition.Hood
+                ElseIf Bennys.veh.GetVehHoodPos = EngineLoc.rear Then 'rear hood
+                    Camera.MainCameraPosition = CameraPosition.RearHood
+                End If
+            ElseIf Bennys.veh.GetVehEnginePos = EngineLoc.rear Then 'rear engine
+                If Bennys.veh.GetVehHoodPos = EngineLoc.front Then 'front hood
+                    Camera.MainCameraPosition = CameraPosition.Hood
+                ElseIf Bennys.veh.GetVehHoodPos = EngineLoc.rear Then 'rear hood
+                    Camera.MainCameraPosition = CameraPosition.FrontBumper
+                End If
+            End If
+
+        ElseIf Bennys.veh.HasBone("boot") Then 'has trunk only
+            If Bennys.veh.GetVehEnginePos = EngineLoc.front Then 'front engine
+                If Bennys.veh.GetVehTrunkPos = EngineLoc.front Then 'front trunk
+                    Camera.MainCameraPosition = CameraPosition.FrontTrunk
+                ElseIf Bennys.veh.GetVehTrunkPos = EngineLoc.rear Then 'rear trunk
+                    Camera.MainCameraPosition = CameraPosition.FrontBumper
+                End If
+            ElseIf Bennys.veh.GetVehEnginePos = EngineLoc.rear Then 'rear engine
+                If Bennys.veh.GetVehTrunkPos = EngineLoc.front Then 'front trunk
+                    Camera.MainCameraPosition = CameraPosition.FrontTrunk
+                ElseIf Bennys.veh.GetVehTrunkPos = EngineLoc.rear Then 'rear trunk
+                    Camera.MainCameraPosition = CameraPosition.FrontBumper
+                End If
+            End If
+        Else 'no hood and trunk
+            If Bennys.veh.GetVehEnginePos = EngineLoc.rear Then 'rear engine
+                Camera.MainCameraPosition = CameraPosition.FrontBumper
+            ElseIf Bennys.veh.GetVehEnginePos = EngineLoc.front Then 'front engine
+                Camera.MainCameraPosition = CameraPosition.Engine
+            End If
+        End If
+    End Sub
+
+    Public Sub HoodCamera(opendoor As Boolean)
+        Dim camera = BennysMenu.camera
         Select Case Bennys.veh.Model
             Case "monster3", "monster4", "monster5"
                 camera.MainCameraPosition = CameraPosition.Car
             Case Else
+                If Not opendoor Then
+                    HoodCamera()
+                    Exit Sub
+                End If
                 If Bennys.veh.HasBone("bonnet") AndAlso Bennys.veh.HasBone("boot") Then 'has hood and trunk
                     If Bennys.veh.GetVehEnginePos = EngineLoc.front Then 'front engine
+                        If opendoor Then Bennys.veh.OpenDoor(VehicleDoor.Hood, False, False)
                         If Bennys.veh.GetVehHoodPos = EngineLoc.front Then 'front hood
                             camera.MainCameraPosition = CameraPosition.Hood
                         ElseIf Bennys.veh.GetVehHoodPos = EngineLoc.rear Then 'rear hood
                             camera.MainCameraPosition = CameraPosition.RearHood
                         End If
                     ElseIf Bennys.veh.GetVehEnginePos = EngineLoc.rear Then 'rear engine
-                        If Bennys.veh.GetVehHoodPos = EngineLoc.front Then 'front hood
-                            camera.MainCameraPosition = CameraPosition.Hood
-                        ElseIf Bennys.veh.GetVehHoodPos = EngineLoc.rear Then 'rear hood
-                            If Bennys.veh.GetVehTrunkPos = EngineLoc.front Then
-                                camera.MainCameraPosition = CameraPosition.FrontTrunk
-                            Else
-                                camera.MainCameraPosition = CameraPosition.FrontBumper
+                        If Bennys.veh.GetVehHoodPos = EngineLoc.rear AndAlso Bennys.veh.GetVehTrunkPos = EngineLoc.front Then
+                            'eg: comet3
+                            If opendoor Then Bennys.veh.OpenDoor(VehicleDoor.Hood, False, False)
+                            camera.MainCameraPosition = CameraPosition.RearEngine
+                        ElseIf Bennys.veh.GetVehHoodPos = EngineLoc.front AndAlso Bennys.veh.GetVehTrunkPos = EngineLoc.rear Then
+                            If opendoor Then Bennys.veh.OpenDoor(VehicleDoor.Trunk, False, False)
+                            If Bennys.veh.GetVehHoodPos = EngineLoc.front Then 'front hood
+                                camera.MainCameraPosition = CameraPosition.Trunk
+                            ElseIf Bennys.veh.GetVehHoodPos = EngineLoc.rear Then 'rear hood
+                                If Bennys.veh.GetVehTrunkPos = EngineLoc.front Then
+                                    camera.MainCameraPosition = CameraPosition.FrontTrunk
+                                Else
+                                    camera.MainCameraPosition = CameraPosition.FrontBumper
+                                End If
                             End If
                         End If
                     End If
                 ElseIf Bennys.veh.HasBone("bonnet") Then 'has hood only
+                    If opendoor Then Bennys.veh.OpenDoor(VehicleDoor.Hood, False, False)
                     If Bennys.veh.GetVehEnginePos = EngineLoc.front Then 'front engine
                         If Bennys.veh.GetVehHoodPos = EngineLoc.front Then 'front hood
                             camera.MainCameraPosition = CameraPosition.Hood
@@ -1586,6 +1657,7 @@ Public Module Helper
                     End If
 
                 ElseIf Bennys.veh.HasBone("boot") Then 'has trunk only
+                    If opendoor Then Bennys.veh.OpenDoor(VehicleDoor.Trunk, False, False)
                     If Bennys.veh.GetVehEnginePos = EngineLoc.front Then 'front engine
                         If Bennys.veh.GetVehTrunkPos = EngineLoc.front Then 'front trunk
                             camera.MainCameraPosition = CameraPosition.FrontTrunk

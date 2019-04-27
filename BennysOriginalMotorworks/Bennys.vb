@@ -20,6 +20,7 @@ Public Class Bennys
     Public Shared isCutscene As Boolean = False
     Public Shared scriptCam As Camera 'ScriptedCamera
     Public Shared unWelcome As List(Of VehicleClass) = New List(Of VehicleClass) From {VehicleClass.Boats, VehicleClass.Cycles, VehicleClass.Helicopters, VehicleClass.Planes}
+    Public Shared fpcKey, zoutKey, zinKey As GTA.Control
     'Public Shared unWelcomeV As List(Of Model) = New List(Of Model) From {"firetruck", "pbus", "policeb", "riot", "dump", "cutter", "bulldozer", "flatbed", "handler", "mixer", "mixer2", "rubble", "tiptruck", "tiptruck2",
     '    "ruiner3", "dune2", "marshall", "monster", "brickade", "airbus", "bus", "coach", "rallytruck", "rentalbus", "tourbus", "trash", "trash2", "wastelander", "airtug", "caddy", "caddy2", "docktug", "ripley", "mower",
     '    "forklift", "scrap", "towtruck", "towtruck2", "tractor", "tractor2", "tractor3", "utillitruck", "utilitytruck2", "utillitruck3", "camper", "journey", "taco", "rhino", "barracks3", "barracks2", "barracks",
@@ -37,6 +38,9 @@ Public Class Bennys
         Dim config As ScriptSettings = ScriptSettings.Load("scripts\BennysOriginalMotorWorks.ini")
         onlineMap = config.GetValue(Of Integer)("SETTINGS", "OnlineMap", 1)
         fixDoor = config.GetValue(Of Integer)("SETTINGS", "FixDoor", 1)
+        fpcKey = config.GetValue(Of GTA.Control)("CONTROLS", "FirstPerson", GTA.Control.NextCamera)
+        zoutKey = config.GetValue(Of GTA.Control)("CONTROLS", "ZoomOut", GTA.Control.VehicleSubDescend)
+        zinKey = config.GetValue(Of GTA.Control)("CONTROLS", "ZoomIn", GTA.Control.VehicleSubAscend)
         If onlineMap = 1 Then LoadMPDLCMap()
     End Sub
 
@@ -125,7 +129,9 @@ Public Class Bennys
             '    End If
             'End If
 
-            If Game.IsControlPressed(0, GTA.Control.VehicleSubAscend) Then
+            'UI.ShowSubtitle($"E: {veh.GetVehEnginePos} H: {veh.GetVehHoodPos} T: {veh.GetVehTrunkPos} | Has Hood: {Bennys.veh.HasBone("bonnet")} Has Trunk: {Bennys.veh.HasBone("boot")}") 'Bennys.veh.HasBone("bonnet") AndAlso Bennys.veh.HasBone("boot")
+
+            If Game.IsControlPressed(0, zinKey) Then
                 Dim max As New PointF(6.0F + BennysMenu.camera.Dimension, 3.0F + BennysMenu.camera.Dimension)
                 If Not BennysMenu.camera.CameraZoom <= max.Y Then
                     BennysMenu.camera.CameraZoom -= 0.1
@@ -133,7 +139,7 @@ Public Class Bennys
                     BennysMenu.camera.CameraZoom = max.Y
                 End If
             End If
-            If Game.IsControlPressed(0, GTA.Control.VehicleSubDescend) Then
+            If Game.IsControlPressed(0, zoutKey) Then
                 Dim max As New PointF(6.0F + BennysMenu.camera.Dimension, 3.0F + BennysMenu.camera.Dimension)
                 If Not BennysMenu.camera.CameraZoom >= max.X Then
                     BennysMenu.camera.CameraZoom += 0.1
@@ -142,7 +148,7 @@ Public Class Bennys
                 End If
             End If
 
-            If Game.IsControlJustReleased(0, GTA.Control.NextCamera) Then
+            If Game.IsControlJustReleased(0, fpcKey) Then
                 lastCameraPos = BennysMenu.camera.MainCameraPosition
                 If BennysMenu.camera.MainCameraPosition = CameraPosition.Interior Then
                     If lastCameraPos = CameraPosition.Interior Then

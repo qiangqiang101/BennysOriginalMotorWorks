@@ -866,6 +866,10 @@ Public Class BennysMenu
                     Select Case Bennys.veh.Model
                         Case "zr380", "zr3802", "zr3803", "issi4", "issi5", "issi6"
                             camera.MainCameraPosition = CameraPosition.Boost
+                        Case "bruiser", "bruiser2", "bruiser3", "cerberus", "cerberus2", "cerberus3", "deathbike", "deathbike2", "deathbike3", "dominator4", "dominator5", "dominator6",
+                             "impaler2", "impaler3", "impaler4", "imperator", "imperator2", "imperator3", "monster3", "monster4", "monster5", "slamvan4", "slamvan5", "slamvan6",
+                             "brutus", "brutus2", "brutus3", "scarab", "scarab2", "scarab3"
+                            HoodCamera(False)
                         Case Else
                             HoodCamera(True)
                     End Select
@@ -4676,9 +4680,10 @@ Public Class BennysMenu
 
     Public Shared Sub RefreshMenus()
         If arenavehicle.Contains(Bennys.veh.Model) Then
-            RefreshArenaWarMenu()
             RefreshBodyworkArenaMenu()
             RefreshWeaponMenu()
+        ElseIf arenawar.Contains(Bennys.veh.Model) Then
+            RefreshArenaWarMenu()
         Else
             RefreshBodyworkMenu()
         End If
@@ -4819,6 +4824,7 @@ Public Class BennysMenu
             End If
 
             If Bennys.isCutscene Then
+                SuspendKeys()
                 Native.Function.Call(Hash.HIDE_HUD_AND_RADAR_THIS_FRAME)
                 Dim sr = Size.Round(UIMenu.GetScreenResolutionMaintainRatio)
                 Dim sz = UIMenu.GetSafezoneBounds
@@ -4843,38 +4849,11 @@ Public Class BennysMenu
 
             Select Case True
                 Case _menuPool.IsAnyMenuOpen()
-                    Game.DisableControlThisFrame(0, Control.VehicleAccelerate)
-                    Game.DisableControlThisFrame(0, Control.VehicleAim)
-                    Game.DisableControlThisFrame(0, Control.VehicleAttack)
-                    Game.DisableControlThisFrame(0, Control.VehicleAttack2)
-                    Game.DisableControlThisFrame(0, Control.VehicleBrake)
-                    Game.DisableControlThisFrame(0, Control.VehicleCinCam)
-                    Game.DisableControlThisFrame(0, Control.VehicleDuck)
-                    Game.DisableControlThisFrame(0, Control.VehicleExit)
-                    Game.DisableControlThisFrame(0, Control.VehicleHeadlight)
-                    Game.DisableControlThisFrame(0, Control.VehicleHorn)
-                    Game.DisableControlThisFrame(0, Control.VehicleMoveLeftOnly)
-                    Game.DisableControlThisFrame(0, Control.VehicleMoveRightOnly)
-                    Game.DisableControlThisFrame(0, Control.VehicleMoveLeft)
-                    Game.DisableControlThisFrame(0, Control.VehicleMoveRight)
-                    Game.DisableControlThisFrame(0, Control.VehicleSubTurnLeftRight)
-                    Game.DisableControlThisFrame(0, Control.VehicleSubTurnLeftOnly)
-                    Game.DisableControlThisFrame(0, Control.VehicleSubTurnRightOnly)
-                    Game.DisableControlThisFrame(0, Control.VehicleSubTurnHardLeft)
-                    Game.DisableControlThisFrame(0, Control.VehicleSubTurnHardRight)
-                    Game.DisableControlThisFrame(0, Control.VehicleMoveLeftRight)
-                    Game.DisableControlThisFrame(0, Control.VehicleLookLeft)
-                    Game.DisableControlThisFrame(0, Control.VehicleLookRight)
-                    Game.DisableControlThisFrame(0, Control.VehicleHotwireLeft)
-                    Game.DisableControlThisFrame(0, Control.VehicleHotwireRight)
-                    Game.DisableControlThisFrame(0, Control.VehicleGunLeftRight)
-                    Game.DisableControlThisFrame(0, Control.VehicleGunLeft)
-                    Game.DisableControlThisFrame(0, Control.VehicleGunRight)
-                    Game.DisableControlThisFrame(0, Control.VehicleCinematicLeftRight)
-                    Game.DisableControlThisFrame(0, Control.NextCamera)
+                    SuspendKeys()
             End Select
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
         End Try
     End Sub
+
 End Class

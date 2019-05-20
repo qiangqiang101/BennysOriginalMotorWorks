@@ -1724,4 +1724,41 @@ Public Module Helper
                 Return GlobalValue.b1_0_1604_0
         End Select
     End Function
+
+    Public Sub SuspendKeys()
+        Game.DisableControlThisFrame(0, GTA.Control.VehicleAccelerate)
+        Game.DisableControlThisFrame(0, GTA.Control.VehicleAim)
+        Game.DisableControlThisFrame(0, GTA.Control.VehicleAttack)
+        Game.DisableControlThisFrame(0, GTA.Control.VehicleAttack2)
+        Game.DisableControlThisFrame(0, GTA.Control.VehicleBrake)
+        Game.DisableControlThisFrame(0, GTA.Control.VehicleCinCam)
+        Game.DisableControlThisFrame(0, GTA.Control.VehicleDuck)
+        Game.DisableControlThisFrame(0, GTA.Control.VehicleExit)
+        Game.DisableControlThisFrame(0, GTA.Control.VehicleHeadlight)
+        Game.DisableControlThisFrame(0, GTA.Control.VehicleHorn)
+        Game.DisableControlThisFrame(0, GTA.Control.VehicleMoveLeftOnly)
+        Game.DisableControlThisFrame(0, GTA.Control.VehicleMoveRightOnly)
+        Game.DisableControlThisFrame(0, GTA.Control.VehicleMoveLeft)
+        Game.DisableControlThisFrame(0, GTA.Control.VehicleMoveRight)
+        Game.DisableControlThisFrame(0, GTA.Control.VehicleSubTurnLeftRight)
+        Game.DisableControlThisFrame(0, GTA.Control.VehicleSubTurnLeftOnly)
+        Game.DisableControlThisFrame(0, GTA.Control.VehicleSubTurnRightOnly)
+        Game.DisableControlThisFrame(0, GTA.Control.VehicleSubTurnHardLeft)
+        Game.DisableControlThisFrame(0, GTA.Control.VehicleSubTurnHardRight)
+        Game.DisableControlThisFrame(0, GTA.Control.VehicleMoveLeftRight)
+        Game.DisableControlThisFrame(0, GTA.Control.VehicleLookLeft)
+        Game.DisableControlThisFrame(0, GTA.Control.VehicleLookRight)
+        Game.DisableControlThisFrame(0, GTA.Control.VehicleHotwireLeft)
+        Game.DisableControlThisFrame(0, GTA.Control.VehicleHotwireRight)
+        Game.DisableControlThisFrame(0, GTA.Control.VehicleGunLeftRight)
+        Game.DisableControlThisFrame(0, GTA.Control.VehicleGunLeft)
+        Game.DisableControlThisFrame(0, GTA.Control.VehicleGunRight)
+        Game.DisableControlThisFrame(0, GTA.Control.VehicleCinematicLeftRight)
+        Game.DisableControlThisFrame(0, GTA.Control.NextCamera)
+    End Sub
+
+    Public Sub PlayerVehicleHalt(Optional distance As Single = 1.0F)
+        Native.Function.Call(Hash._TASK_BRING_VEHICLE_TO_HALT, Game.Player.LastVehicle, distance, 1, 0)
+    End Sub
+
 End Module

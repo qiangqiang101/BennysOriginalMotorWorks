@@ -69,6 +69,7 @@ Public Class Bennys
             If Helper.GetInteriorID(ply.Position) = bennyIntID AndAlso Not unWelcome.Contains(veh.ClassType) Then 'AndAlso Not unWelcomeV.Contains(veh.Model)) Then
                 If Not isExiting Then
                     If veh.Position.DistanceTo(New Vector3(-205.6165, -1312.976, 31.1331)) <= 5 Then
+                        PlayerVehicleHalt()
                         UpdateTitleName()
                         PlayEnterCutScene()
                         PutVehIntoShop()
@@ -85,6 +86,7 @@ Public Class Bennys
                 End If
                 If isExiting Then
                     Native.Function.Call(Hash.HIDE_HUD_AND_RADAR_THIS_FRAME)
+                    SuspendKeys()
                 End If
             End If
         Catch ex As Exception

@@ -6,8 +6,11 @@ Imports GTA
 Imports GTA.Math
 Imports GTA.Native
 Imports INMNativeUI
+Imports Metadata
 
 Public Module Helper
+
+    Public nitroMod As String = "inm_nitro_active"
 
     Public Function CreateVehicle(VehicleModel As String, VehicleHash As Integer, Position As Vector3, Optional Heading As Single = 0) As Vehicle
         Dim Result As Vehicle = Nothing
@@ -331,7 +334,7 @@ Public Module Helper
             Case VehicleMod.VanityPlates
                 If Bennys.veh.Model = "elegy" Then
                     cur = Game.GetGXTEntry("CMM_MOD_S40")
-                ElseIf BennysMenu.arenavehicle.Contains(Bennys.veh.model) Then
+                ElseIf BennysMenu.arenavehicle.Contains(Bennys.veh.Model) Then
                     cur = Game.GetGXTEntry("collision_yzkcrh").ToLower.UppercaseFirstLetter 'Rear Wibbles
                 Else
                     cur = Game.GetGXTEntry("CMM_MOD_S1")
@@ -419,7 +422,7 @@ Public Module Helper
             Case VehicleMod.ArchCover
                 If Bennys.veh.Model = "sultanrs" Then
                     cur = Game.GetGXTEntry("CMM_MOD_S17b")
-                ElseIf BennysMenu.arenavehicle.Contains(Bennys.veh.model) Then
+                ElseIf BennysMenu.arenavehicle.Contains(Bennys.veh.Model) Then
                     cur = Game.GetGXTEntry("collision_h1pzbg").ToLower.UppercaseFirstLetter
                 Else
                     cur = Game.GetGXTEntry("CMM_MOD_S17")
@@ -430,7 +433,7 @@ Public Module Helper
                     cur = Game.GetGXTEntry("CMM_MOD_S18b")
                 ElseIf Bennys.veh.Model = "btype3" Then
                     cur = Game.GetGXTEntry("CMM_MOD_S18c")
-                ElseIf BennysMenu.arenavehicle.Contains(Bennys.veh.model) Then
+                ElseIf BennysMenu.arenavehicle.Contains(Bennys.veh.Model) Then
                     cur = Game.GetGXTEntry("BLIP_320") 'spikes
                 Else
                     cur = Game.GetGXTEntry("CMM_MOD_S18")
@@ -443,7 +446,7 @@ Public Module Helper
                     cur = Game.GetGXTEntry("CMM_MOD_S19c")
                 ElseIf Bennys.veh.Model = "virgo2" Then
                     cur = Game.GetGXTEntry("CMM_MOD_S19d")
-                ElseIf BennysMenu.arenavehicle.Contains(Bennys.veh.model) Then
+                ElseIf BennysMenu.arenavehicle.Contains(Bennys.veh.Model) Then
                     cur = Game.GetGXTEntry("collision_84p91l0").ToLower.UppercaseFirstLetter 'blades
                 Else
                     cur = Game.GetGXTEntry("CMM_MOD_S19")
@@ -452,7 +455,7 @@ Public Module Helper
             Case VehicleMod.Tank
                 If Bennys.veh.Model = "slamvan3" Then
                     cur = Game.GetGXTEntry("CMM_MOD_S27")
-                ElseIf BennysMenu.arenavehicle.Contains(Bennys.veh.model) Then
+                ElseIf BennysMenu.arenavehicle.Contains(Bennys.veh.Model) Then
                     cur = Game.GetGXTEntry("collision_6w0cd59")
                 Else
                     cur = Game.GetGXTEntry("CMM_MOD_S20")
@@ -549,7 +552,7 @@ Public Module Helper
                         cur = Game.GetGXTEntry("CMM_MOD_S43")
                     ElseIf Bennys.veh.Model = "blazer4" Then
                         cur = Game.GetGXTEntry("CMM_MOD_S17")
-                    ElseIf BennysMenu.arenavehicle.Contains(Bennys.veh.model) Then
+                    ElseIf BennysMenu.arenavehicle.Contains(Bennys.veh.Model) Then
                         cur = Game.GetGXTEntry("CMOD_SEWEAP_N")
                     Else
                         cur = Game.GetGXTEntry("CMOD_MOD_ROF")
@@ -1519,9 +1522,13 @@ Public Module Helper
 
     <Extension()>
     Public Sub UpdateTitleCaption(ByVal menu As UIMenu, newCaption As String, Optional upper As Boolean = False)
-        Dim result As String = Game.GetGXTEntry(newCaption)
-        If upper Then result = Game.GetGXTEntry(newCaption).ToUpper()
-        If menu.Subtitle.Caption = "NULL" Then menu.Subtitle.Caption = result
+        Try
+            Dim result As String = Game.GetGXTEntry(newCaption)
+            If upper Then result = Game.GetGXTEntry(newCaption).ToUpper()
+            If menu.Subtitle.Caption = "NULL" Then menu.Subtitle.Caption = result
+        Catch ex As Exception
+            Logger.Log(ex.Message & ex.StackTrace)
+        End Try
     End Sub
 
     <Extension()>
@@ -1551,55 +1558,55 @@ Public Module Helper
         If Bennys.veh.HasBone("bonnet") AndAlso Bennys.veh.HasBone("boot") Then 'has hood and trunk
             If Bennys.veh.GetVehEnginePos = EngineLoc.front Then 'front engine
                 If Bennys.veh.GetVehHoodPos = EngineLoc.front Then 'front hood
-                    Camera.MainCameraPosition = CameraPosition.Hood
+                    camera.MainCameraPosition = CameraPosition.Hood
                 ElseIf Bennys.veh.GetVehHoodPos = EngineLoc.rear Then 'rear hood
-                    Camera.MainCameraPosition = CameraPosition.RearHood
+                    camera.MainCameraPosition = CameraPosition.RearHood
                 End If
             ElseIf Bennys.veh.GetVehEnginePos = EngineLoc.rear Then 'rear engine
                 If Bennys.veh.GetVehHoodPos = EngineLoc.front Then 'front hood
                     camera.MainCameraPosition = CameraPosition.Hood
                 ElseIf Bennys.veh.GetVehHoodPos = EngineLoc.rear Then 'rear hood
                     If Bennys.veh.GetVehTrunkPos = EngineLoc.front Then
-                        Camera.MainCameraPosition = CameraPosition.FrontTrunk
+                        camera.MainCameraPosition = CameraPosition.FrontTrunk
                     Else
-                        Camera.MainCameraPosition = CameraPosition.FrontBumper
+                        camera.MainCameraPosition = CameraPosition.FrontBumper
                     End If
                 End If
             End If
         ElseIf Bennys.veh.HasBone("bonnet") Then 'has hood only
             If Bennys.veh.GetVehEnginePos = EngineLoc.front Then 'front engine
                 If Bennys.veh.GetVehHoodPos = EngineLoc.front Then 'front hood
-                    Camera.MainCameraPosition = CameraPosition.Hood
+                    camera.MainCameraPosition = CameraPosition.Hood
                 ElseIf Bennys.veh.GetVehHoodPos = EngineLoc.rear Then 'rear hood
-                    Camera.MainCameraPosition = CameraPosition.RearHood
+                    camera.MainCameraPosition = CameraPosition.RearHood
                 End If
             ElseIf Bennys.veh.GetVehEnginePos = EngineLoc.rear Then 'rear engine
                 If Bennys.veh.GetVehHoodPos = EngineLoc.front Then 'front hood
-                    Camera.MainCameraPosition = CameraPosition.Hood
+                    camera.MainCameraPosition = CameraPosition.Hood
                 ElseIf Bennys.veh.GetVehHoodPos = EngineLoc.rear Then 'rear hood
-                    Camera.MainCameraPosition = CameraPosition.FrontBumper
+                    camera.MainCameraPosition = CameraPosition.FrontBumper
                 End If
             End If
 
         ElseIf Bennys.veh.HasBone("boot") Then 'has trunk only
             If Bennys.veh.GetVehEnginePos = EngineLoc.front Then 'front engine
                 If Bennys.veh.GetVehTrunkPos = EngineLoc.front Then 'front trunk
-                    Camera.MainCameraPosition = CameraPosition.FrontTrunk
+                    camera.MainCameraPosition = CameraPosition.FrontTrunk
                 ElseIf Bennys.veh.GetVehTrunkPos = EngineLoc.rear Then 'rear trunk
-                    Camera.MainCameraPosition = CameraPosition.FrontBumper
+                    camera.MainCameraPosition = CameraPosition.FrontBumper
                 End If
             ElseIf Bennys.veh.GetVehEnginePos = EngineLoc.rear Then 'rear engine
                 If Bennys.veh.GetVehTrunkPos = EngineLoc.front Then 'front trunk
-                    Camera.MainCameraPosition = CameraPosition.FrontTrunk
+                    camera.MainCameraPosition = CameraPosition.FrontTrunk
                 ElseIf Bennys.veh.GetVehTrunkPos = EngineLoc.rear Then 'rear trunk
-                    Camera.MainCameraPosition = CameraPosition.FrontBumper
+                    camera.MainCameraPosition = CameraPosition.FrontBumper
                 End If
             End If
         Else 'no hood and trunk
             If Bennys.veh.GetVehEnginePos = EngineLoc.rear Then 'rear engine
-                Camera.MainCameraPosition = CameraPosition.FrontBumper
+                camera.MainCameraPosition = CameraPosition.FrontBumper
             ElseIf Bennys.veh.GetVehEnginePos = EngineLoc.front Then 'front engine
-                Camera.MainCameraPosition = CameraPosition.Engine
+                camera.MainCameraPosition = CameraPosition.Engine
             End If
         End If
     End Sub
@@ -1760,5 +1767,20 @@ Public Module Helper
     Public Sub PlayerVehicleHalt(Optional distance As Single = 1.0F)
         Native.Function.Call(Hash._TASK_BRING_VEHICLE_TO_HALT, Game.Player.LastVehicle, distance, 1, 0)
     End Sub
+
+    Public Function IsNitroModInstalled() As Boolean
+        Return Decor.Registered(nitroMod, Decor.eDecorType.Bool)
+    End Function
+
+    <Extension>
+    Public Function CanInstallNitroMod(v As Vehicle) As Boolean
+        Dim result As Boolean = True
+        If v.HasRocketBoost Then result = False
+        If v.HasRam Then result = False
+        If v.HasScoop Then result = False
+        If v.HasSpike Then result = False
+        If Not IsNitroModInstalled() Then result = False
+        Return result
+    End Function
 
 End Module

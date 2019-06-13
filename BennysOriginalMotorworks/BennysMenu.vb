@@ -4,6 +4,7 @@ Imports GTA.Native
 Imports GTA.Math
 Imports System.Text
 Imports System.Drawing
+Imports Metadata
 
 Public Class BennysMenu
     Inherits Script
@@ -23,12 +24,12 @@ Public Class BennysMenu
     mArchCover, mExhaust, mFender, mRFender, mDoor, mFrame, mGrille, mHood, mHorn, mHydraulics, mLivery, mPlaques, mRoof, mSpeakers, mSpoilers, mTank, mTrunk, mWindow, mTurbo, mTint, mLightsColor, mTrimColor, mRimColor,
     mPrimaryClassicColor, mPrimaryChromeColor, mPrimaryMetallicColor, mPrimaryMetalsColor, mPrimaryMatteColor, mPrimaryPearlescentColor, mPrimaryColor, mSecondaryColor, mSecondaryClassicColor, mSecondaryChromeColor,
     mSecondaryMetallicColor, mSecondaryMetalsColor, mSecondaryMatteColor, mTireSmoke, mTornadoC, mSBikeWheels, mCBikeWheels, mSHighEnd, mCHighEnd, mSLowrider, mCLowrider, mSMuscle, mCMuscle, mSOffroad, mCOffroad,
-    mSSport, mCSport, mSSUV, mCSUV, mSTuner, mCTuner, mUpgradeAW As UIMenu
+    mSSport, mCSport, mSSUV, mCSUV, mSTuner, mCTuner, mUpgradeAW, mNitro As UIMenu
     Public Shared iRepair, iHorn, iArmor, iBrakes, iFBumper, iExhaust, iFender, iRollcage, iRoof, iTransmission, iEngine, iPlate, iLights, iTint, iTurbo, iRespray, iWheels, iSuspension, iEngineBlock, iAerials, iAirFilter,
         iArchCover, iDoor, iFrame, iGrille, iHood, iHydraulics, iLivery, iPlaques, iRFender, iSpeaker, iSpoilers, iTank, iTrunk, iWindows, iTrim, iUpgrade, iUpgradeMod, iUpgradeAW, iUpgradeAWV, iStruts, iTrimColor, iColumnShifterLevers, iDashboard, iDialDesign,
         iOrnaments, iSeats, iSteeringWheels, iTrimDesign, iRBumper, iSideSkirt, iRimColor, iPlateHolder, iVanityPlates, iHeadlights, iDashboardColor, iNumberPlate, iBikeWheels, iHighEnd, iLowrider, iMuscle, iOffroad,
         iSport, iSUV, iTuner, iBennys, iBespoke, iTires, iBPTires, iNeon, iTireSmoke, iNeonColor, iLightsColor, iPrimaryCol, iSecondaryCol, iPrimaryChromeColor, iPrimaryClassicColor, iPrimaryMetallicColor, iPrimaryMetalsColor,
-        iPrimaryMatteColor, iPrimaryPearlescentColor, iSecondaryChromeColor, iSecondaryClassicColor, iSecondaryMetallicColor, iSecondaryMetalsColor, iSecondaryMatteColor, iSecondaryPearlescentColor, iTornadoC As UIMenuItem
+        iPrimaryMatteColor, iPrimaryPearlescentColor, iSecondaryChromeColor, iSecondaryClassicColor, iSecondaryMetallicColor, iSecondaryMetalsColor, iSecondaryMatteColor, iSecondaryPearlescentColor, iTornadoC, iNitro As UIMenuItem
     Public Shared giBodywork, giBodyworkArena, giEngine, giInterior, giPlate, giLights, giRespray, giWheels, giBumper, giWheelType, giTires, giNeonKits, giPrimaryCol, giSecondaryCol, giBikeWheels, giHighEndWheels, giDoor,
         giLowriderWheels, giMuscleWheels, giOffroadWheels, giSportWheels, giSUVWheels, giTunerWheels, giBennysWheels, giBespokeWheels, giFBumper, giRBumper, giSSkirt, giNumberPlate, giVanityPlate, giPlateHolder,
         giExhaust, giBrakes, giGrille, giHood, giHydraulics, giPlaques, giSpoilers, giTank, giTrunk, giStruts, iSBikeWheels, iCBikeWheels, iSHighEnd, iCHighEnd, iSLowrider, iCLowrider, iSMuscle, iCMuscle, iSOffroad, iCOffroad,
@@ -60,6 +61,7 @@ Public Class BennysMenu
         mArmor.UpdateTitleCaption("CMOD_ARM_T")
         mBrakes.UpdateTitleCaption("CMOD_BRA_T")
         mEngine.UpdateTitleCaption("CMM_MOD_GT3")
+        mNitro.UpdateTitleCaption("CMM_MOD_TBOS")
         mTransmission.UpdateTitleCaption("CMOD_GBX_T")
         mFBumper.UpdateTitleCaption("CMOD_BUMF_T")
         mRBumper.UpdateTitleCaption("CMOD_BUMR_T")
@@ -276,7 +278,7 @@ Public Class BennysMenu
                         MainMenu.AddItem(giBodywork)
                         MainMenu.BindMenuToItem(gmBodywork, giBodywork)
                     End If
-                    If (Bennys.veh.GetModCount(VehicleMod.Engine) <> 0 Or Bennys.veh.GetModCount(VehicleMod.Frame) <> 0 Or Bennys.veh.GetModCount(VehicleMod.SideSkirt) <> 0) Then
+                    If (Bennys.veh.GetModCount(VehicleMod.Engine) <> 0 Or Bennys.veh.GetModCount(VehicleMod.Frame) <> 0 Or Bennys.veh.GetModCount(VehicleMod.SideSkirt) <> 0) Or Bennys.veh.CanInstallNitroMod Then
                         giEngine = New UIMenuItem(LocalizedModGroupName(GroupName.Engine), Game.GetGXTEntry("CMOD_SMOD_2_D")) 'engine
                         MainMenu.AddItem(giEngine)
                         MainMenu.BindMenuToItem(gmEngine, giEngine)
@@ -431,7 +433,7 @@ Public Class BennysMenu
                         MainMenu.AddItem(giBodywork)
                         MainMenu.BindMenuToItem(gmBodywork, giBodywork)
                     End If
-                    If (Bennys.veh.GetModCount(VehicleMod.Engine) <> 0 Or Bennys.veh.GetModCount(VehicleMod.EngineBlock) <> 0 Or Bennys.veh.GetModCount(VehicleMod.AirFilter) <> 0 Or Bennys.veh.GetModCount(VehicleMod.Struts) <> 0) Then
+                    If (Bennys.veh.GetModCount(VehicleMod.Engine) <> 0 Or Bennys.veh.GetModCount(VehicleMod.EngineBlock) <> 0 Or Bennys.veh.GetModCount(VehicleMod.AirFilter) <> 0 Or Bennys.veh.GetModCount(VehicleMod.Struts) <> 0) Or Bennys.veh.CanInstallNitroMod Then
                         giEngine = New UIMenuItem(LocalizedModGroupName(GroupName.Engine), Game.GetGXTEntry("CMOD_SMOD_2_D")) 'engine
                         MainMenu.AddItem(giEngine)
                         MainMenu.BindMenuToItem(gmEngine, giEngine)
@@ -671,6 +673,7 @@ Public Class BennysMenu
                     veh.NumberPlateType = Bennys.lastVehMemory.NumberPlate
                     veh.NumberPlate = Bennys.lastVehMemory.PlateNumbers
                     veh.CanTiresBurst = Bennys.lastVehMemory.BulletProofTires
+                    If IsNitroModInstalled() Then veh.SetBool(nitroMod, Bennys.lastVehMemory.Nitro)
                     Bennys.veh.Delete()
                     Bennys.ply.Task.WarpIntoVehicle(veh, VehicleSeat.Driver)
                     Bennys.veh = veh
@@ -750,6 +753,8 @@ Public Class BennysMenu
                     veh.SetXenonHeadlightsColor(Bennys.lastVehMemory.HeadlightsColor, veh.IsToggleModOn(VehicleToggleMod.XenonHeadlights))
                     veh.NumberPlateType = Bennys.lastVehMemory.NumberPlate
                     veh.NumberPlate = Bennys.lastVehMemory.PlateNumbers
+                    veh.CanTiresBurst = Bennys.lastVehMemory.BulletProofTires
+                    If IsNitroModInstalled() Then veh.SetBool(nitroMod, Bennys.lastVehMemory.Nitro)
                     Bennys.veh.Delete()
                     Bennys.ply.Task.WarpIntoVehicle(veh, VehicleSeat.Driver)
                     Bennys.veh = veh
@@ -862,7 +867,7 @@ Public Class BennysMenu
                         Case Else
                             camera.MainCameraPosition = CameraPosition.Tank
                     End Select
-                ElseIf (selectedItem Is giAirFilter) Or (selectedItem Is giStruts) Then
+                ElseIf (selectedItem Is giAirfilter) Or (selectedItem Is giStruts) Then
                     Select Case Bennys.veh.Model
                         Case "zr380", "zr3802", "zr3803", "issi4", "issi5", "issi6"
                             camera.MainCameraPosition = CameraPosition.Boost
@@ -1403,6 +1408,11 @@ Public Class BennysMenu
                     gmEngine.AddItem(giBAirFilter)
                     gmEngine.BindMenuToItem(mBAirFilter, giBAirFilter)
                 End If
+                If Bennys.veh.CanInstallNitroMod Then
+                    iNitro = New UIMenuItem(Game.GetGXTEntry("CMM_MOD_NJBOS"), Game.GetGXTEntry("SMOD_ENGINE_2"))
+                    gmEngine.AddItem(iNitro)
+                    gmEngine.BindMenuToItem(mNitro, iNitro)
+                End If
             Else
                 If Bennys.veh.GetModCount(VehicleMod.Engine) <> 0 Then
                     iEngine = New UIMenuItem(LocalizedModTypeName(VehicleMod.Engine), Game.GetGXTEntry("SMOD_ENGINE_4"))
@@ -1413,6 +1423,11 @@ Public Class BennysMenu
                     iEngineBlock = New UIMenuItem(LocalizedModTypeName(VehicleMod.EngineBlock), Game.GetGXTEntry("SMOD_ENGINE_1"))
                     gmEngine.AddItem(iEngineBlock)
                     gmEngine.BindMenuToItem(mEngineBlock, iEngineBlock)
+                End If
+                If Bennys.veh.CanInstallNitroMod Then
+                    iNitro = New UIMenuItem(Game.GetGXTEntry("CMM_MOD_NJBOS"), Game.GetGXTEntry("SMOD_ENGINE_2"))
+                    gmEngine.AddItem(iNitro)
+                    gmEngine.BindMenuToItem(mNitro, iNitro)
                 End If
                 If Not arenavehicle.Contains(Bennys.veh.Model) Then
                     If Bennys.veh.GetModCount(VehicleMod.AirFilter) <> 0 Then
@@ -2320,6 +2335,57 @@ Public Class BennysMenu
         End Try
     End Sub
 
+    Public Shared Sub CreateNitroMenu()
+        Try
+            mNitro = New UIMenu("", Game.GetGXTEntry("CMM_MOD_TBOS"), True) 'BOOST
+            mNitro.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
+            mNitro.MouseEdgeEnabled = False
+            mNitro.AddInstructionalButton(BtnZoom)
+            mNitro.AddInstructionalButton(BtnZoomOut)
+            mNitro.AddInstructionalButton(BtnFirstPerson)
+            _menuPool.Add(mNitro)
+            mNitro.AddItem(New UIMenuItem("Nothing"))
+            mNitro.RefreshIndex()
+            AddHandler mNitro.OnMenuClose, AddressOf ModsMenuCloseHandler
+            AddHandler mNitro.OnItemSelect, AddressOf ModsMenuItemSelectHandler
+            AddHandler mNitro.OnIndexChange, AddressOf ModsMenuIndexChangedHandler
+        Catch ex As Exception
+            Logger.Log(ex.Message & " " & ex.StackTrace)
+        End Try
+    End Sub
+
+    Public Shared Sub RefreshNitroMenu()
+        Try
+            mNitro.MenuItems.Clear()
+
+            iNitro = New UIMenuItem(Game.GetGXTEntry("CMOD_ARM_0"))
+            With iNitro
+                If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_ARM_0")
+                .SubInteger1 = CInt(False)
+                If Not Bennys.veh.GetBool(nitroMod) Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+            End With
+            mNitro.AddItem(iNitro)
+            iNitro = New UIMenuItem(Game.GetGXTEntry("collision_57fffph")) 'Upgrade 100%
+            With iNitro
+                If .Text = "NULL" Then .Text = Game.GetGXTEntry("collision_57fffph")
+                .SubInteger1 = CInt(True)
+                If Bennys.veh.GetBool(nitroMod) Then
+                    .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                Else
+                    Dim value As Integer = 30000
+                    Dim price As String = $"${value}"
+                    .SetRightLabel(price)
+                    .SubInteger2 = 30000
+                End If
+            End With
+            mNitro.AddItem(iNitro)
+
+            mNitro.RefreshIndex()
+        Catch ex As Exception
+            Logger.Log(ex.Message & " " & ex.StackTrace)
+        End Try
+    End Sub
+
     Public Shared Sub CreateNeonKitsMenu()
         Try
             gmNeonKits = New UIMenu("", Game.GetGXTEntry("CMOD_MOD_LGT_N").ToUpper, True) 'NEON KITS
@@ -3036,6 +3102,7 @@ Public Class BennysMenu
             Bennys.veh.SetMod(VehicleMod.Brakes, Bennys.lastVehMemory.Brakes, False)
             Bennys.veh.SetMod(VehicleMod.Transmission, Bennys.lastVehMemory.Transmission, False)
             Bennys.veh.SetMod(VehicleMod.Engine, Bennys.lastVehMemory.Engine, False)
+            If IsNitroModInstalled() Then Bennys.veh.SetBool(nitroMod, Bennys.lastVehMemory.Nitro)
 
             'Mods
             Bennys.veh.SetMod(VehicleMod.FrontBumper, Bennys.lastVehMemory.FrontBumper, False)
@@ -3299,6 +3366,16 @@ Public Class BennysMenu
                     Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
                     selectedItem.SubInteger2 = 0
                     Bennys.lastVehMemory.Engine = selectedItem.SubInteger1
+                    PlaySpeech("SHOP_SELL_ENGINE_UPGRADE")
+                End If
+            ElseIf sender Is mNitro Then
+                If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
+                    Bennys.veh.SetBool(nitroMod, CBool(selectedItem.SubInteger1))
+                    selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    selectedItem.SetRightLabel(Nothing)
+                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
+                    selectedItem.SubInteger2 = 0
+                    Bennys.lastVehMemory.Nitro = CBool(selectedItem.SubInteger1)
                     PlaySpeech("SHOP_SELL_ENGINE_UPGRADE")
                 End If
             End If
@@ -3997,10 +4074,10 @@ Public Class BennysMenu
                         End If
                 End Select
                 PlaySpeech("LR_UPGRADE_WHEEL")
-                End If
+            End If
 
-                'Wheel Type
-                If sender Is gmWheelType Then
+            'Wheel Type
+            If sender Is gmWheelType Then
                 If selectedItem Is giBikeWheels Then
                     Bennys.veh.WheelType = VehicleWheelType.BikeWheels
                     ''RefreshModMenuFor(gmBikeWheels, iBikeWheels, VehicleMod.BackWheels)
@@ -4320,6 +4397,8 @@ Public Class BennysMenu
                 Bennys.veh.SetMod(VehicleMod.Transmission, sender.MenuItems(index).SubInteger1, False)
             ElseIf sender Is mEngine Then
                 Bennys.veh.SetMod(VehicleMod.Engine, sender.MenuItems(index).SubInteger1, False)
+            ElseIf sender Is mNitro Then
+                Bennys.veh.SetBool(nitroMod, CBool(sender.MenuItems(index).SubInteger1))
             End If
 
             'Mod
@@ -4543,12 +4622,6 @@ Public Class BennysMenu
     End Sub
 
     Public Shared Sub CreateMenus()
-        'Do Until (IO.File.Exists(".\scripts\BennysLang-" & Game.Language.ToString & ".ini"))
-        '    Threading.Thread.Sleep(1000)
-        'Loop
-        'Do Until IsNullorNothing() = False
-        '    CreateTitleNames()
-        'Loop
         CreateQuitMenu()
         CreateMainMenu()
         CreateArenaWarMenu()
@@ -4561,6 +4634,7 @@ Public Class BennysMenu
         CreateModMenuFor(mArchCover, Game.GetGXTEntry("CMM_MOD_ST17")) 'ARCH COVERS
         CreateEngineMenu()
         CreatePerformanceMenuFor(mEngine, Game.GetGXTEntry("CMM_MOD_GT3")) 'ENGINE
+        CreateNitroMenu() 'NITRO
         CreateModMenuFor(mEngineBlock, Game.GetGXTEntry("CMOD_EB_T")) 'ENGINE BLOCK
         CreateModMenuFor(mAirFilter, Game.GetGXTEntry("CMM_MOD_ST15")) 'AIR FILTER
         CreateModMenuFor(mStruts, Game.GetGXTEntry("CMM_MOD_ST16")) 'STRUTS
@@ -4693,6 +4767,7 @@ Public Class BennysMenu
         RefreshModMenuFor(mArchCover, iArchCover, VehicleMod.ArchCover)
         RefreshEngineMenu()
         RefreshPerformanceMenuFor(mEngine, iEngine, VehicleMod.Engine, "CMOD_ENG_")
+        RefreshNitroMenu()
         RefreshModMenuFor(mEngineBlock, iEngineBlock, VehicleMod.EngineBlock)
         RefreshModMenuFor(mAirFilter, iAirFilter, VehicleMod.AirFilter)
         RefreshModMenuFor(mStruts, iStruts, VehicleMod.Struts)

@@ -224,6 +224,7 @@ Public Class Bennys
 
             Game.FadeScreenOut(1000)
             Wait(1000)
+            Game.Player.Character.Alpha = 255
             BennysMenu.camera.Stop()
             veh.Position = New Vector3(-205.8678, -1321.805, 30.41191)
             veh.Heading = 358.6677

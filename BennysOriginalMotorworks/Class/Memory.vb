@@ -643,5 +643,14 @@
         End Set
     End Property
 
+    Private _nitro As Boolean
+    Public Property Nitro() As Boolean
+        Get
+            Return _nitro
+        End Get
+        Set(value As Boolean)
+            _nitro = value
+        End Set
+    End Property
 
 End Class

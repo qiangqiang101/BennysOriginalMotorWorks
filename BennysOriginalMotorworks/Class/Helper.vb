@@ -1762,6 +1762,9 @@ Public Module Helper
         Game.DisableControlThisFrame(0, GTA.Control.VehicleGunRight)
         Game.DisableControlThisFrame(0, GTA.Control.VehicleCinematicLeftRight)
         Game.DisableControlThisFrame(0, GTA.Control.NextCamera)
+        Game.DisableControlThisFrame(0, Control.VehicleRocketBoost)
+        Game.DisableControlThisFrame(0, Control.VehicleJump)
+        Game.DisableControlThisFrame(0, Control.VehicleCarJump)
     End Sub
 
     Public Sub PlayerVehicleHalt(Optional distance As Single = 1.0F)
@@ -1779,6 +1782,7 @@ Public Module Helper
         If v.HasRam Then result = False
         If v.HasScoop Then result = False
         If v.HasSpike Then result = False
+        If v.GetModCount(VehicleMod.AirFilter) >= 2 Then result = False
         If Not IsNitroModInstalled() Then result = False
         Return result
     End Function

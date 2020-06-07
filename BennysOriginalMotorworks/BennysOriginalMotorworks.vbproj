@@ -10,7 +10,8 @@
     <AssemblyName>BennysOriginalMotorWorks</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -99,6 +100,7 @@
   <ItemGroup>
     <Compile Include="Bennys.vb" />
     <Compile Include="BennysMenu.vb" />
+    <Compile Include="Class\ArenaWarVehicle.vb" />
     <Compile Include="Class\CameraClamp.vb" />
     <Compile Include="Class\CutsceneManager.vb" />
     <Compile Include="Class\Helper.vb" />

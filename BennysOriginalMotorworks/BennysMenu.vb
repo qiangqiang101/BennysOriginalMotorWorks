@@ -198,7 +198,7 @@ Public Class BennysMenu
                 iRepair = New UIMenuItem(LocalizedModGroupName(GroupName.Repair), Game.GetGXTEntry("CMOD_MOD_0_D")) 'Repair
                 With iRepair
                     .SetRightLabel("$" & Bennys.veh.GetRepairPrice)
-                    .SubInteger1 = Bennys.veh.GetRepairPrice
+                    .Tag = Bennys.veh.GetRepairPrice
                 End With
                 MainMenu.AddItem(iRepair)
                 MainMenu.RefreshIndex()
@@ -209,7 +209,7 @@ Public Class BennysMenu
                     iUpgrade = New UIMenuItem(LocalizedModGroupName(GroupName.Upgrade), Game.GetGXTEntry("CMOD_MOD_100_D")) 'Upgrade
                     With iUpgrade
                         .SetRightLabel("$" & Bennys.veh.Model.GetUpgradePrice)
-                        .SubInteger1 = Bennys.veh.Model.GetUpgradePrice
+                        .Tag = Bennys.veh.Model.GetUpgradePrice
                     End With
                     MainMenu.AddItem(iUpgrade)
                 End If
@@ -218,7 +218,7 @@ Public Class BennysMenu
                     iUpgradeMod = New UIMenuItem(LocalizedModGroupName(GroupName.Upgrade), Game.GetGXTEntry("CMOD_MOD_100_D"))
                     With iUpgradeMod
                         .SetRightLabel("$" & upgrade2.Item2)
-                        .SubInteger1 = upgrade2.Item2
+                        .Tag = upgrade2.Item2
                     End With
                     MainMenu.AddItem(iUpgradeMod)
                 End If
@@ -364,7 +364,7 @@ Public Class BennysMenu
                     iUpgrade = New UIMenuItem(LocalizedModGroupName(GroupName.Upgrade), Game.GetGXTEntry("CMOD_MOD_100_D")) 'Upgrade
                     With iUpgrade
                         .SetRightLabel("$" & Bennys.veh.Model.GetUpgradePrice)
-                        .SubInteger1 = Bennys.veh.Model.GetUpgradePrice
+                        .Tag = CInt(Bennys.veh.Model.GetUpgradePrice)
                     End With
                     MainMenu.AddItem(iUpgrade)
                 End If
@@ -373,7 +373,7 @@ Public Class BennysMenu
                     iUpgradeMod = New UIMenuItem(LocalizedModGroupName(GroupName.Upgrade), Game.GetGXTEntry("CMOD_MOD_100_D"))
                     With iUpgradeMod
                         .SetRightLabel("$" & upgrade2.Item2)
-                        .SubInteger1 = upgrade2.Item2
+                        .Tag = upgrade2.Item2
                     End With
                     MainMenu.AddItem(iUpgradeMod)
                 End If
@@ -606,7 +606,7 @@ Public Class BennysMenu
                     isRepairing = True
                     Bennys.veh.Repair()
                     Bennys.veh.Wash()
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger1)
+                    Game.Player.Money = (Game.Player.Money - CInt(selectedItem.Tag))
                     RefreshMenus()
                 ElseIf selectedItem Is iUpgrade Then
                     Game.FadeScreenOut(1000)
@@ -684,7 +684,7 @@ Public Class BennysMenu
                     camera.RepositionFor(veh)
                     Wait(1000)
                     Game.FadeScreenIn(1000)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger1)
+                    Game.Player.Money = (Game.Player.Money - CInt(selectedItem.Tag))
                     Native.Function.Call(Hash._START_SCREEN_EFFECT, "MP_corona_switch_supermod", 0, 1)
                     Native.Function.Call(Hash.PLAY_SOUND_FRONTEND, -1, "Lowrider_Upgrade", "Lowrider_Super_Mod_Garage_Sounds", 1)
                     PlaySpeech("LR_UPGRADE_SUPERMOD")
@@ -765,13 +765,13 @@ Public Class BennysMenu
                     camera.RepositionFor(veh)
                     Wait(1000)
                     Game.FadeScreenIn(1000)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger1)
+                    Game.Player.Money = (Game.Player.Money - CInt(selectedItem.Tag))
                     Native.Function.Call(Hash._START_SCREEN_EFFECT, "MP_corona_switch_supermod", 0, 1)
                     Native.Function.Call(Hash.PLAY_SOUND_FRONTEND, -1, "Lowrider_Upgrade", "Lowrider_Super_Mod_Garage_Sounds", 1)
                     PlaySpeech("LR_UPGRADE_SUPERMOD")
                 ElseIf selectedItem Is iUpgradeAW Then
                     Dim sitem = mUpgradeAW.MenuItems.First
-                    arenaVehImage = sitem.SubString2
+                    arenaVehImage = CType(sitem.Tag, ArenaWarVehicle).Image
                 ElseIf selectedItem Is giEngine Then
                     Select Case Bennys.veh.Model
                         Case "alpha"
@@ -931,196 +931,154 @@ Public Class BennysMenu
                 Case "glendale"
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("bruiser"))
                     With iUpgradeAWV
-                        .SubString1 = "bruiser"
-                        .SubString2 = "bruiser_apoc"
-                        .SubInteger1 = 1609000
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("bruiser", "bruiser_apoc", 1609000)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("bruiser2"))
                     With iUpgradeAWV
-                        .SubString1 = "bruiser2"
-                        .SubString2 = "bruiser_scifi"
-                        .SubInteger1 = 1609000
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("bruiser2", "bruiser_scifi", 1609000)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("bruiser3"))
                     With iUpgradeAWV
-                        .SubString1 = "bruiser3"
-                        .SubString2 = "bruiser_cons"
-                        .SubInteger1 = 1609000
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("bruiser3", "bruiser_cons", 1609000)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                 Case "gargoyle"
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("deathbike"))
                     With iUpgradeAWV
-                        .SubString1 = "deathbike"
-                        .SubString2 = "deathbike_apoc"
-                        .SubInteger1 = 1269000
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("deathbike", "deathbike_apoc", 1269000)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("deathbike2"))
                     With iUpgradeAWV
-                        .SubString1 = "deathbike2"
-                        .SubString2 = "deathbike_scifi"
-                        .SubInteger1 = 1269000
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("deathbike2", "deathbike_scifi", 1269000)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("deathbike3"))
                     With iUpgradeAWV
-                        .SubString1 = "deathbike3"
-                        .SubString2 = "deathbike_cons"
-                        .SubInteger1 = 1269000
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("deathbike3", "deathbike_cons", 1269000)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                 Case "dominator", "dominator2"
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("dominator4"))
                     With iUpgradeAWV
-                        .SubString1 = "dominator4"
-                        .SubString2 = "dominator_apoc"
-                        .SubInteger1 = 1132000
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("dominator4", "dominator_apoc", 1132000)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("dominator5"))
                     With iUpgradeAWV
-                        .SubString1 = "dominator5"
-                        .SubString2 = "dominator_scifi"
-                        .SubInteger1 = 1132000
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("dominator5", "dominator_scifi", 1132000)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("dominator6"))
                     With iUpgradeAWV
-                        .SubString1 = "dominator6"
-                        .SubString2 = "dominator_cons"
-                        .SubInteger1 = 1132000
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("dominator6", "dominator_cons", 1132000)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                 Case "impaler"
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("impaler2"))
                     With iUpgradeAWV
-                        .SubString1 = "impaler2"
-                        .SubString2 = "impaler_apoc"
-                        .SubInteger1 = 1209500
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("impaler2", "impaler_apoc", 1209500)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("impaler3"))
                     With iUpgradeAWV
-                        .SubString1 = "impaler3"
-                        .SubString2 = "impaler_scifi"
-                        .SubInteger1 = 1209500
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("impaler3", "impaler_scifi", 1209500)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("impaler4"))
                     With iUpgradeAWV
-                        .SubString1 = "impaler4"
-                        .SubString2 = "impaler_cons"
-                        .SubInteger1 = 1209500
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("impaler4", "impaler_cons", 1209500)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                 Case "issi3"
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("issi4"))
                     With iUpgradeAWV
-                        .SubString1 = "issi4"
-                        .SubString2 = "issi_apoc"
-                        .SubInteger1 = 1089000
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("issi4", "issi_apoc", 1089000)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("issi5"))
                     With iUpgradeAWV
-                        .SubString1 = "issi5"
-                        .SubString2 = "issi_scifi"
-                        .SubInteger1 = 1089000
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("issi5", "issi_scifi", 1089000)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("issi6"))
                     With iUpgradeAWV
-                        .SubString1 = "issi6"
-                        .SubString2 = "issi_cons"
-                        .SubInteger1 = 1089000
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("issi6", "issi_cons", 1089000)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                 Case "ratloader", "ratloader2"
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("monster3"))
                     With iUpgradeAWV
-                        .SubString1 = "monster3"
-                        .SubString2 = "sasquatch_apoc"
-                        .SubInteger1 = 1530875
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("monster3", "sasquatch_apoc", 1530875)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("monster4"))
                     With iUpgradeAWV
-                        .SubString1 = "monster4"
-                        .SubString2 = "sasquatch_scifi"
-                        .SubInteger1 = 1530875
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("monster4", "sasquatch_scifi", 1530875)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("monster5"))
                     With iUpgradeAWV
-                        .SubString1 = "monster5"
-                        .SubString2 = "sasquatch_cons"
-                        .SubInteger1 = 1530875
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("monster5", "sasquatch_cons", 1530875)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                 Case "slamvan", "slamvan2", "slamvan3"
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("slamvan4"))
                     With iUpgradeAWV
-                        .SubString1 = "slamvan4"
-                        .SubString2 = "slamvan_apoc"
-                        .SubInteger1 = 1321875
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("slamvan4", "slamvan_apoc", 1321875)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("slamvan5"))
                     With iUpgradeAWV
-                        .SubString1 = "slamvan5"
-                        .SubString2 = "slamvan_scifi"
-                        .SubInteger1 = 1321875
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("slamvan5", "slamvan_scifi", 1321875)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("slamvan6"))
                     With iUpgradeAWV
-                        .SubString1 = "slamvan6"
-                        .SubString2 = "slamvan_cons"
-                        .SubInteger1 = 1321875
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("slamvan6", "slamvan_cons", 1321875)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
@@ -3239,7 +3197,7 @@ Public Class BennysMenu
             If sender Is mUpgradeAW Then
                 Game.FadeScreenOut(1000)
                 Wait(1000)
-                Dim veh As Vehicle = World.CreateVehicle(selectedItem.SubString1, Bennys.veh.Position, Bennys.veh.Heading)
+                Dim veh As Vehicle = World.CreateVehicle(CType(selectedItem.Tag, ArenaWarVehicle).Model, Bennys.veh.Position, Bennys.veh.Heading)
                 veh.IsPersistent = False
                 veh.PrimaryColor = Bennys.lastVehMemory.PrimaryColor
                 veh.SecondaryColor = Bennys.lastVehMemory.SecondaryColor
@@ -3311,7 +3269,7 @@ Public Class BennysMenu
                 camera.RepositionFor(veh)
                 Wait(1000)
                 Game.FadeScreenIn(1000)
-                Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger1)
+                Game.Player.Money = (Game.Player.Money - CType(selectedItem.Tag, ArenaWarVehicle).Price)
                 Native.Function.Call(Hash._START_SCREEN_EFFECT, "MP_corona_switch_supermod", 0, 1)
                 Native.Function.Call(Hash.PLAY_SOUND_FRONTEND, -1, "Lowrider_Upgrade", "Lowrider_Super_Mod_Garage_Sounds", 1)
                 PlaySpeech("LR_UPGRADE_SUPERMOD")
@@ -4381,7 +4339,7 @@ Public Class BennysMenu
 
     Public Shared Sub ArenaWarMenuIndexChangedHandler(sender As UIMenu, index As Integer)
         Dim selecteditem As UIMenuItem = sender.MenuItems(index)
-        arenaVehImage = selecteditem.SubString2
+        arenaVehImage = CType(selecteditem.Tag, ArenaWarVehicle).Image
     End Sub
 
     Public Shared Sub ModsMenuIndexChangedHandler(sender As UIMenu, index As Integer)

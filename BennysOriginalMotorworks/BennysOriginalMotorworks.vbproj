@@ -68,13 +68,13 @@
   <ItemGroup>
     <Reference Include="INMNativeUI, Version=1.6.2.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Grand Theft Auto V\scripts\INMNativeUI.dll</HintPath>
+      <HintPath>D:\Program Files (x86)\Steam\steamapps\common\Grand Theft Auto V\scripts\INMNativeUI.dll</HintPath>
     </Reference>
     <Reference Include="Metadata">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Grand Theft Auto V\scripts\Metadata.dll</HintPath>
+      <HintPath>D:\Program Files (x86)\Steam\steamapps\common\Grand Theft Auto V\scripts\Metadata.dll</HintPath>
     </Reference>
     <Reference Include="ScriptHookVDotNet2">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Grand Theft Auto V\ScriptHookVDotNet2.dll</HintPath>
+      <HintPath>D:\Program Files (x86)\Steam\steamapps\common\Grand Theft Auto V\ScriptHookVDotNet2.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -100,7 +100,7 @@
   <ItemGroup>
     <Compile Include="Bennys.vb" />
     <Compile Include="BennysMenu.vb" />
-    <Compile Include="Class\ArenaWarVehicle.vb" />
+    <Compile Include="Class\ModClasses.vb" />
     <Compile Include="Class\CameraClamp.vb" />
     <Compile Include="Class\CutsceneManager.vb" />
     <Compile Include="Class\Helper.vb" />

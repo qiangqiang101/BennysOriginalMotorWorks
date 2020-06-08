@@ -584,11 +584,11 @@
     End Property
 
     Private _lightscolor As GTA.VehicleColor
-    Public Property LightsColor() As Integer
+    Public Property LightsColor() As GTA.VehicleColor
         Get
             Return _lightscolor
         End Get
-        Set(value As Integer)
+        Set(value As GTA.VehicleColor)
             _lightscolor = value
         End Set
     End Property

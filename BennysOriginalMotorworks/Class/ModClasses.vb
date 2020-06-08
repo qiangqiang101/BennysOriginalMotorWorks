@@ -35,6 +35,20 @@ Public Class ModClass
 
 End Class
 
+Public Class ToggleModClass
+
+    Public ModToggle As Boolean
+    Public ModID As Integer
+    Public Price As Integer
+
+    Public Sub New(mt As Boolean, m As Integer, p As Integer)
+        ModToggle = mt
+        ModID = m
+        Price = p
+    End Sub
+
+End Class
+
 Public Class RGBModClass
 
     Public Alpha As Integer

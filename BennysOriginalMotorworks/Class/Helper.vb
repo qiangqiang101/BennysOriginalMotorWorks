@@ -12,6 +12,15 @@ Public Module Helper
 
     Public nitroMod As String = "inm_nitro_active"
 
+    Public lowriders As New List(Of Model) From {"banshee", "Buccaneer", "chino", "diablous", "comet2", "faction", "faction2", "fcr", "italigtb", "minivan", "moonbeam", "nero", "primo", "sabregt",
+        "slamvan", "specter", "sultan", "tornado", "tornado2", "tornado3", "virgo3", "voodoo2", "elegy2", "technical", "insurgent"}
+    Public arenawar As New List(Of Model) From {"glendale", "gargoyle", "dominator", "dominator2", "impaler", "issi3", "ratloader", "ratloader2", "slamvan", "slamvan2", "slamvan3"}
+    Public bennysvehicle As New List(Of Model) From {"banshee2", "buccaneer2", "chino2", "diabolus2", "comet3", "faction2", "faction3", "fcr2", "italigtb2", "minivan2", "moonbeam2", "nero2", "primo2",
+        "sabregt2", "specter2", "sultanrs", "tornado5", "virgo2", "voodoo", "elegy", "technical3", "insurgent3"}
+    Public arenavehicle As New List(Of Model) From {"bruiser", "bruiser2", "bruiser3", "cerberus", "cerberus2", "cerberus3", "deathbike", "deathbike2", "deathbike3", "dominator4", "dominator5",
+        "dominator6", "impaler2", "impaler3", "impaler4", "imperator", "imperator2", "imperator3", "issi4", "issi5", "issi6", "monster3", "monster4", "monster5", "slamvan4", "slamvan5", "slamvan6", "brutus", "brutus2", "brutus3", "scarab", "scarab2",
+        "scarab3", "zr380", "zr3802", "zr3803"}
+
     Public Function CreateVehicle(VehicleModel As String, VehicleHash As Integer, Position As Vector3, Optional Heading As Single = 0) As Vehicle
         Dim Result As Vehicle = Nothing
         If VehicleModel = "" Then
@@ -334,7 +343,7 @@ Public Module Helper
             Case VehicleMod.VanityPlates
                 If Bennys.veh.Model = "elegy" Then
                     cur = Game.GetGXTEntry("CMM_MOD_S40")
-                ElseIf BennysMenu.arenavehicle.Contains(Bennys.veh.Model) Then
+                ElseIf arenavehicle.Contains(Bennys.veh.Model) Then
                     cur = Game.GetGXTEntry("collision_yzkcrh").ToLower.UppercaseFirstLetter 'Rear Wibbles
                 Else
                     cur = Game.GetGXTEntry("CMM_MOD_S1")
@@ -348,7 +357,7 @@ Public Module Helper
                 End If
                 Exit Select
             Case VehicleMod.Ornaments
-                If BennysMenu.arenavehicle.Contains(Bennys.veh.Model) Then
+                If arenavehicle.Contains(Bennys.veh.Model) Then
                     cur = Game.GetGXTEntry("CMM_MOD_S27")
                 Else
                     cur = Game.GetGXTEntry("CMM_MOD_S3")
@@ -373,14 +382,14 @@ Public Module Helper
                 cur = Game.GetGXTEntry("CMM_MOD_S9")
                 Exit Select
             Case VehicleMod.Plaques
-                If BennysMenu.arenavehicle.Contains(Bennys.veh.Model) Then
+                If arenavehicle.Contains(Bennys.veh.Model) Then
                     cur = Game.GetGXTEntry("collision_8itszix").ToLower.UppercaseFirstLetter 'Decorations
                 Else
                     cur = Game.GetGXTEntry("CMM_MOD_S10")
                     Exit Select
                 End If
             Case VehicleMod.Speakers
-                If BennysMenu.arenavehicle.Contains(Bennys.veh.Model) Then
+                If arenavehicle.Contains(Bennys.veh.Model) Then
                     cur = Game.GetGXTEntry("MNU_WBAR") 'Wheelie Bar
                 Else
                     cur = Game.GetGXTEntry("CMM_MOD_S11")
@@ -396,7 +405,7 @@ Public Module Helper
                 cur = Game.GetGXTEntry("CMM_MOD_S14")
                 Exit Select
             Case VehicleMod.AirFilter
-                If BennysMenu.arenavehicle.Contains(Bennys.veh.Model) Then
+                If arenavehicle.Contains(Bennys.veh.Model) Then
                     cur = Game.GetGXTEntry("WT_BOOST")
                 Else
                     Select Case Bennys.veh.Model
@@ -408,7 +417,7 @@ Public Module Helper
                 End If
                 Exit Select
             Case VehicleMod.Struts
-                If BennysMenu.arenavehicle.Contains(Bennys.veh.Model) Then
+                If arenavehicle.Contains(Bennys.veh.Model) Then
                     cur = Game.GetGXTEntry("collision_64bkrs4") 'vertical jump
                 Else
                     Select Case Bennys.veh.Model
@@ -422,7 +431,7 @@ Public Module Helper
             Case VehicleMod.ArchCover
                 If Bennys.veh.Model = "sultanrs" Then
                     cur = Game.GetGXTEntry("CMM_MOD_S17b")
-                ElseIf BennysMenu.arenavehicle.Contains(Bennys.veh.Model) Then
+                ElseIf arenavehicle.Contains(Bennys.veh.Model) Then
                     cur = Game.GetGXTEntry("collision_h1pzbg").ToLower.UppercaseFirstLetter
                 Else
                     cur = Game.GetGXTEntry("CMM_MOD_S17")
@@ -433,7 +442,7 @@ Public Module Helper
                     cur = Game.GetGXTEntry("CMM_MOD_S18b")
                 ElseIf Bennys.veh.Model = "btype3" Then
                     cur = Game.GetGXTEntry("CMM_MOD_S18c")
-                ElseIf BennysMenu.arenavehicle.Contains(Bennys.veh.Model) Then
+                ElseIf arenavehicle.Contains(Bennys.veh.Model) Then
                     cur = Game.GetGXTEntry("BLIP_320") 'spikes
                 Else
                     cur = Game.GetGXTEntry("CMM_MOD_S18")
@@ -446,7 +455,7 @@ Public Module Helper
                     cur = Game.GetGXTEntry("CMM_MOD_S19c")
                 ElseIf Bennys.veh.Model = "virgo2" Then
                     cur = Game.GetGXTEntry("CMM_MOD_S19d")
-                ElseIf BennysMenu.arenavehicle.Contains(Bennys.veh.Model) Then
+                ElseIf arenavehicle.Contains(Bennys.veh.Model) Then
                     cur = Game.GetGXTEntry("collision_84p91l0").ToLower.UppercaseFirstLetter 'blades
                 Else
                     cur = Game.GetGXTEntry("CMM_MOD_S19")
@@ -455,7 +464,7 @@ Public Module Helper
             Case VehicleMod.Tank
                 If Bennys.veh.Model = "slamvan3" Then
                     cur = Game.GetGXTEntry("CMM_MOD_S27")
-                ElseIf BennysMenu.arenavehicle.Contains(Bennys.veh.Model) Then
+                ElseIf arenavehicle.Contains(Bennys.veh.Model) Then
                     cur = Game.GetGXTEntry("collision_6w0cd59")
                 Else
                     cur = Game.GetGXTEntry("CMM_MOD_S20")
@@ -504,12 +513,12 @@ Public Module Helper
                 Exit Select
             Case VehicleMod.Frame
                 If Bennys.veh.ClassType = VehicleClass.Motorcycles Then
-                    If BennysMenu.arenavehicle.Contains(Bennys.veh.Model) Then
+                    If arenavehicle.Contains(Bennys.veh.Model) Then
                         cur = Game.GetGXTEntry("CMOD_ARMPL_N") 'Armor Plating
                     Else
                         cur = Game.GetGXTEntry("CMM_MOD_S14")
                     End If
-                ElseIf BennysMenu.arenavehicle.Contains(Bennys.veh.Model) Then
+                ElseIf arenavehicle.Contains(Bennys.veh.Model) Then
                     cur = Game.GetGXTEntry("CMOD_ARMPL_N") 'Armor Plating
                 Else
                     If Bennys.veh.Model = "sultanrs" Then
@@ -552,7 +561,7 @@ Public Module Helper
                         cur = Game.GetGXTEntry("CMM_MOD_S43")
                     ElseIf Bennys.veh.Model = "blazer4" Then
                         cur = Game.GetGXTEntry("CMM_MOD_S17")
-                    ElseIf BennysMenu.arenavehicle.Contains(Bennys.veh.Model) Then
+                    ElseIf arenavehicle.Contains(Bennys.veh.Model) Then
                         cur = Game.GetGXTEntry("CMOD_SEWEAP_N")
                     Else
                         cur = Game.GetGXTEntry("CMOD_MOD_ROF")
@@ -1788,7 +1797,7 @@ Public Module Helper
         If v.HasRam Then result = False
         If v.HasScoop Then result = False
         If v.HasSpike Then result = False
-        If v.GetModCount(VehicleMod.AirFilter) >= 2 Then result = False
+        If v.GetModCount(VehicleMod.AirFilter) >= 2 AndAlso Not bennysvehicle.Contains(v.Model) Then result = False
         If Not IsNitroModInstalled() Then result = False
         Return result
     End Function

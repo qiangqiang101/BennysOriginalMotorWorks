@@ -59,7 +59,7 @@ Public Class CutsceneManager
         Dim character As Entity = Game.Player.Character
         Dim vector2 As Vector3 = (CutsceneManager.ScreenRelToWorld(camPos, camRot, screenCoord) - vector)
         vector2.Normalize()
-        Dim result As RaycastResult = World.Raycast((vector + DirectCast((vector2 * 1.0!), Vector3)), (vector + DirectCast((vector2 * 100.0!), Vector3)), (IntersectOptions.Vegetation Or (IntersectOptions.Objects Or (IntersectOptions.Peds1 Or (IntersectOptions.Mission_Entities Or IntersectOptions.Map)))), character)
+        Dim result As RaycastResult = World.Raycast((vector + (vector2 * 1.0!)), (vector + (vector2 * 100.0!)), (IntersectOptions.Vegetation Or (IntersectOptions.Objects Or (IntersectOptions.Peds1 Or (IntersectOptions.Mission_Entities Or IntersectOptions.Map)))), character)
         If result.DitHitEntity Then
             Return result.HitEntity
         End If
@@ -77,11 +77,11 @@ Public Class CutsceneManager
         End If
         Dim vector5 As Vector3 = (vector3 - vector4)
         vector5.Normalize()
-        Dim result As RaycastResult = World.Raycast((vector4 + DirectCast((vector5 * 1.0!), Vector3)), (vector4 + DirectCast((vector5 * 100.0!), Vector3)), (IntersectOptions.Vegetation Or (IntersectOptions.Objects Or (IntersectOptions.Peds1 Or (IntersectOptions.Mission_Entities Or IntersectOptions.Map)))), character)
+        Dim result As RaycastResult = World.Raycast((vector4 + (vector5 * 1.0!)), (vector4 + (vector5 * 100.0!)), (IntersectOptions.Vegetation Or (IntersectOptions.Objects Or (IntersectOptions.Peds1 Or (IntersectOptions.Mission_Entities Or IntersectOptions.Map)))), character)
         If result.DitHitAnything Then
             Return result.HitCoords
         End If
-        Return (position + DirectCast((vector5 * 100.0!), Vector3))
+        Return (position + (vector5 * 100.0!))
     End Function
 
     Public Shared Function RaycastEverything(ByVal screenCoord As Vector2, ByVal camPos As Vector3, ByVal camRot As Vector3, ByVal toIgnore As Entity) As Vector3
@@ -89,11 +89,11 @@ Public Class CutsceneManager
         Dim ignoreEntity As Entity = toIgnore
         Dim vector2 As Vector3 = (CutsceneManager.ScreenRelToWorld(camPos, camRot, screenCoord) - vector)
         vector2.Normalize()
-        Dim result As RaycastResult = World.Raycast((vector + DirectCast((vector2 * 1.0!), Vector3)), (vector + DirectCast((vector2 * 100.0!), Vector3)), (IntersectOptions.Vegetation Or (IntersectOptions.Objects Or (IntersectOptions.Peds1 Or (IntersectOptions.Mission_Entities Or IntersectOptions.Map)))), ignoreEntity)
+        Dim result As RaycastResult = World.Raycast((vector + (vector2 * 1.0!)), (vector + (vector2 * 100.0!)), (IntersectOptions.Vegetation Or (IntersectOptions.Objects Or (IntersectOptions.Peds1 Or (IntersectOptions.Mission_Entities Or IntersectOptions.Map)))), ignoreEntity)
         If result.DitHitAnything Then
             Return result.HitCoords
         End If
-        Return (camPos + DirectCast((vector2 * 100.0!), Vector3))
+        Return (camPos + (vector2 * 100.0!))
     End Function
 
     Public Shared Function RotationToDirection(ByVal rotation As Vector3) As Vector3
@@ -117,20 +117,20 @@ Public Class CutsceneManager
         Dim vector5 As Vector3 = (CutsceneManager.RotationToDirection(rotation) - CutsceneManager.RotationToDirection(vector3))
         Dim d As Double = -CutsceneManager.DegToRad(CDbl(camRot.Y))
         Dim vector1 As Vector3 = (CutsceneManager.RotationToDirection((camRot + New Vector3(0!, 0!, 10.0!))) - CutsceneManager.RotationToDirection(vector4))
-        Dim vector6 As Vector3 = DirectCast(((vector1 * CSng(Math.Cos(d))) - (vector5 * CSng(Math.Sin(d)))), Vector3)
-        Dim vector7 As Vector3 = DirectCast(((vector1 * CSng(Math.Sin(d))) + (vector5 * CSng(Math.Cos(d)))), Vector3)
-        If Not CutsceneManager.WorldToScreenRel((((camPos + DirectCast((vector * 10.0!), Vector3)) + vector6) + vector7), vector8) Then
-            Return (camPos + DirectCast((vector * 10.0!), Vector3))
+        Dim vector6 As Vector3 = ((vector1 * CSng(Math.Cos(d))) - (vector5 * CSng(Math.Sin(d))))
+        Dim vector7 As Vector3 = ((vector1 * CSng(Math.Sin(d))) + (vector5 * CSng(Math.Cos(d))))
+        If Not CutsceneManager.WorldToScreenRel((((camPos + (vector * 10.0!)) + vector6) + vector7), vector8) Then
+            Return (camPos + (vector * 10.0!))
         End If
-        If Not CutsceneManager.WorldToScreenRel((camPos + DirectCast((vector * 10.0!), Vector3)), vector9) Then
-            Return (camPos + DirectCast((vector * 10.0!), Vector3))
+        If Not CutsceneManager.WorldToScreenRel((camPos + (vector * 10.0!)), vector9) Then
+            Return (camPos + (vector * 10.0!))
         End If
         If ((Math.Abs(CSng((vector8.X - vector9.X))) < 0.001) OrElse (Math.Abs(CSng((vector8.Y - vector9.Y))) < 0.001)) Then
-            Return (camPos + DirectCast((vector * 10.0!), Vector3))
+            Return (camPos + (vector * 10.0!))
         End If
         Dim num2 As Single = ((coord.X - vector9.X) / (vector8.X - vector9.X))
         Dim num3 As Single = ((coord.Y - vector9.Y) / (vector8.Y - vector9.Y))
-        Return DirectCast((((camPos + (vector * 10.0!)) + (vector6 * num2)) + (vector7 * num3)), Vector3)
+        Return (((camPos + (vector * 10.0!)) + (vector6 * num2)) + (vector7 * num3))
     End Function
 
     Public Shared Function WorldToScreenRel(ByVal worldCoords As Vector3, <Out> ByRef screenCoords As Vector2) As Boolean

@@ -4,6 +4,7 @@ Imports GTA.Math
 Imports BennysOriginalMotorworks.BennysMenu
 Imports System.Windows.Forms
 Imports System.Drawing
+Imports Metadata
 
 Public Class Bennys
     Inherits Script
@@ -39,8 +40,8 @@ Public Class Bennys
         onlineMap = config.GetValue(Of Integer)("SETTINGS", "OnlineMap", 1)
         fixDoor = config.GetValue(Of Integer)("SETTINGS", "FixDoor", 1)
         fpcKey = config.GetValue(Of GTA.Control)("CONTROLS", "FirstPerson", GTA.Control.NextCamera)
-        zoutKey = config.GetValue(Of GTA.Control)("CONTROLS", "ZoomOut", GTA.Control.VehicleSubDescend)
-        zinKey = config.GetValue(Of GTA.Control)("CONTROLS", "ZoomIn", GTA.Control.VehicleSubAscend)
+        zoutKey = config.GetValue(Of GTA.Control)("CONTROLS", "ZoomOut", GTA.Control.FrontendLt)
+        zinKey = config.GetValue(Of GTA.Control)("CONTROLS", "ZoomIn", GTA.Control.FrontendRt)
         If onlineMap = 1 Then LoadMPDLCMap()
     End Sub
 
@@ -86,7 +87,7 @@ Public Class Bennys
                 End If
                 If isExiting Then
                     Native.Function.Call(Hash.HIDE_HUD_AND_RADAR_THIS_FRAME)
-                    SuspendKeys()
+                    Game.DisableAllControlsThisFrame(0)
                 End If
             End If
         Catch ex As Exception
@@ -133,7 +134,7 @@ Public Class Bennys
 
             'UI.ShowSubtitle($"E: {veh.GetVehEnginePos} H: {veh.GetVehHoodPos} T: {veh.GetVehTrunkPos} | Has Hood: {Bennys.veh.HasBone("bonnet")} Has Trunk: {Bennys.veh.HasBone("boot")}") 'Bennys.veh.HasBone("bonnet") AndAlso Bennys.veh.HasBone("boot")
 
-            If Game.IsControlPressed(0, zinKey) Then
+            If Game.IsControlPressed(0, zinKey) AndAlso BennysMenu.camera.MainCameraPosition <> CameraPosition.Interior Then
                 Dim max As New PointF(6.0F + BennysMenu.camera.Dimension, 3.0F + BennysMenu.camera.Dimension)
                 If Not BennysMenu.camera.CameraZoom <= max.Y Then
                     BennysMenu.camera.CameraZoom -= 0.1
@@ -141,7 +142,7 @@ Public Class Bennys
                     BennysMenu.camera.CameraZoom = max.Y
                 End If
             End If
-            If Game.IsControlPressed(0, zoutKey) Then
+            If Game.IsControlPressed(0, zoutKey) AndAlso BennysMenu.camera.MainCameraPosition <> CameraPosition.Interior Then
                 Dim max As New PointF(6.0F + BennysMenu.camera.Dimension, 3.0F + BennysMenu.camera.Dimension)
                 If Not BennysMenu.camera.CameraZoom >= max.X Then
                     BennysMenu.camera.CameraZoom += 0.1
@@ -332,7 +333,9 @@ Public Class Bennys
                 .NeonLightsColor = veh.NeonLightsColor,
                 .PlateNumbers = veh.NumberPlate,
                 .HeadlightsColor = veh.GetXenonHeadlightsColor,
-                .Suspension = veh.GetMod(VehicleMod.Suspension)}
+                .Suspension = veh.GetMod(VehicleMod.Suspension),
+                .Nitro = veh.GetBool(nitroMod),
+                .BulletProofTires = veh.CanTiresBurst}
             veh.Position = New Vector3(-211.798, -1324.292, 30.37535)
             veh.Heading = 150.2801 '358.6677
             BennysMenu.MainMenu.Visible = Not BennysMenu.MainMenu.Visible

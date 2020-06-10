@@ -629,7 +629,7 @@ Public Class WorkshopCamera
                     Game.Player.Character.Alpha = 255
                     RotationMode = CameraRotationMode.Around
 
-                    Select Case Bennys.veh.Model
+                    Select Case veh.Model
                         Case "buccaneer2", "faction2", "moonbeam2", "slamvan3", "faction3"
                             _targetPos = GetBonePosition(_target, "misc_h")
                         Case "voodoo", "chino2"

@@ -1,4 +1,5 @@
 ﻿Imports System.Drawing
+Imports System.Runtime.CompilerServices
 Imports System.Text
 Imports GTA
 Imports GTA.Native
@@ -2229,134 +2230,124 @@ Module MenuHelper
 #End Region
 
     Public Sub CreateMenus()
-        CreateQuitMenu()
-        CreateMainMenu()
-        CreateArenaWarMenu()
-        CreateBodyworkMenu()
-        CreateBodyworkArenaMenu()
-        CreateWeaponMenu()
-        CreateModMenuFor(mAerials, Game.GetGXTEntry("CMM_MOD_ST18")) 'AERIALS
-        CreateModMenuFor(mTrim, Game.GetGXTEntry("CMM_MOD_ST19")) 'TRIM
-        CreateModMenuFor(mWindow, Game.GetGXTEntry("CMM_MOD_ST21")) 'WINDOWS
-        CreateModMenuFor(mArchCover, Game.GetGXTEntry("CMM_MOD_ST17")) 'ARCH COVERS
-        CreateEngineMenu()
-        CreatePerformanceMenuFor(mEngine, Game.GetGXTEntry("CMM_MOD_GT3")) 'ENGINE
-        CreateNitroMenu() 'NITRO
-        CreateModMenuFor(mEngineBlock, Game.GetGXTEntry("CMOD_EB_T")) 'ENGINE BLOCK
-        CreateModMenuFor(mAirFilter, Game.GetGXTEntry("CMM_MOD_ST15")) 'AIR FILTER
-        CreateModMenuFor(mStruts, Game.GetGXTEntry("CMM_MOD_ST16")) 'STRUTS
-        CreateInteriorMenu()
-        CreateModMenuFor(mColumnShifterLevers, Game.GetGXTEntry("CMM_MOD_ST9")) 'COLUMN SHIFTER LEVERS
-        CreateModMenuFor(mDashboard, Game.GetGXTEntry("CMM_MOD_ST4")) 'DASHBOARD
-        CreateColorMenuFor(mLightsColor, Game.GetGXTEntry("CMM_MOD_ST26"))
-        CreateModMenuFor(mDialDesign, Game.GetGXTEntry("CMM_MOD_ST5")) 'DIAL DESIGN
-        CreateModMenuFor(mOrnaments, Game.GetGXTEntry("CMM_MOD_ST3")) 'ORNAMENTS
-        CreateModMenuFor(mSeats, Game.GetGXTEntry("CMM_MOD_ST7")) 'SEATS
-        CreateModMenuFor(mSteeringWheels, Game.GetGXTEntry("CMM_MOD_ST8")) 'STEERING WHEELS
-        CreateModMenuFor(mTrimDesign, Game.GetGXTEntry("CMM_MOD_ST2")) 'TRIM DESIGN
-        CreateColorMenuFor(mTrimColor, Game.GetGXTEntry("CMOD_MOD_TRIM2").ToUpper)
-        CreateModMenuFor(mDoor, Game.GetGXTEntry("CMM_MOD_ST6")) 'DOORS
-        CreateBumperMenu()
-        CreateModMenuFor(mFBumper, Game.GetGXTEntry("CMOD_BUMF_T")) 'FRONT BUMPERS
-        CreateModMenuFor(mRBumper, Game.GetGXTEntry("CMOD_BUMR_T")) 'REAR BUMPERS
-        CreateModMenuFor(mSSkirt, Game.GetGXTEntry("CMOD_SS_T")) 'SIDE SKIRT
-        CreateWheelsMenu()
-        CreateWheelTypeMenu()
-
-        CreateWheelRimMenu(gmBikeWheels, GetLocalizedWheelTypeName(VehicleWheelType.BikeWheels).ToUpper) 'BIKE WHEELS
-        CreateModMenuFor(mSBikeWheels, GetLocalizedWheelTypeName(VehicleWheelType.BikeWheels).ToUpper) 'STOCK RIMS
-        CreateModMenuFor(mCBikeWheels, GetLocalizedWheelTypeName(VehicleWheelType.BikeWheels).ToUpper) 'CHROME RIMS
-        'CreateModMenuFor(gmBikeWheels, GetLocalizedWheelTypeName(VehicleWheelType.BikeWheels).ToUpper) 'BIKE WHEELS
-
-        CreateWheelRimMenu(gmHighEnd, GetLocalizedWheelTypeName(VehicleWheelType.HighEnd).ToUpper) 'HIGH END
-        CreateModMenuFor(mSHighEnd, GetLocalizedWheelTypeName(VehicleWheelType.HighEnd).ToUpper) 'STOCK RIMS
-        CreateModMenuFor(mCHighEnd, GetLocalizedWheelTypeName(VehicleWheelType.HighEnd).ToUpper) 'CHROME RIMS
-
-        CreateWheelRimMenu(gmLowrider, GetLocalizedWheelTypeName(VehicleWheelType.Lowrider).ToUpper) 'LOWRIDER
-        CreateModMenuFor(mSLowrider, GetLocalizedWheelTypeName(VehicleWheelType.Lowrider).ToUpper) 'STOCK RIMS
-        CreateModMenuFor(mCLowrider, GetLocalizedWheelTypeName(VehicleWheelType.Lowrider).ToUpper) 'CHROME RIMS
-
-        CreateWheelRimMenu(gmMuscle, GetLocalizedWheelTypeName(VehicleWheelType.Muscle).ToUpper) 'MUSCLE
-        CreateModMenuFor(mSMuscle, GetLocalizedWheelTypeName(VehicleWheelType.Muscle).ToUpper) 'STOCK RIMS
-        CreateModMenuFor(mCMuscle, GetLocalizedWheelTypeName(VehicleWheelType.Muscle).ToUpper) 'CHROME RIMS
-
-        CreateWheelRimMenu(gmOffroad, GetLocalizedWheelTypeName(VehicleWheelType.Offroad).ToUpper) 'OFFROAD
-        CreateModMenuFor(mSOffroad, GetLocalizedWheelTypeName(VehicleWheelType.Offroad).ToUpper) 'STOCK RIMS
-        CreateModMenuFor(mCOffroad, GetLocalizedWheelTypeName(VehicleWheelType.Offroad).ToUpper) 'CHROME RIMS
-
-        CreateWheelRimMenu(gmSport, GetLocalizedWheelTypeName(VehicleWheelType.Sport).ToUpper) 'SPORT
-        CreateModMenuFor(mSSport, GetLocalizedWheelTypeName(VehicleWheelType.Sport).ToUpper) 'STOCK RIMS
-        CreateModMenuFor(mCSport, GetLocalizedWheelTypeName(VehicleWheelType.Sport).ToUpper) 'CHROME RIMS
-
-        CreateWheelRimMenu(gmSUV, GetLocalizedWheelTypeName(VehicleWheelType.SUV).ToUpper) 'SUV
-        CreateModMenuFor(mSSUV, GetLocalizedWheelTypeName(VehicleWheelType.SUV).ToUpper) 'STOCK RIMS
-        CreateModMenuFor(mCSUV, GetLocalizedWheelTypeName(VehicleWheelType.SUV).ToUpper) 'CHROME RIMS
-
-        CreateWheelRimMenu(gmTuner, GetLocalizedWheelTypeName(VehicleWheelType.Tuner).ToUpper) 'TUNER
-        CreateModMenuFor(mSTuner, GetLocalizedWheelTypeName(VehicleWheelType.Tuner).ToUpper) 'STOCK RIMS
-        CreateModMenuFor(mCTuner, GetLocalizedWheelTypeName(VehicleWheelType.Tuner).ToUpper) 'CHROME RIMS
-
-        CreateModMenuFor(mBennysOriginals, GetLocalizedWheelTypeName(8).ToUpper) 'BENNY'S ORIGINALS
-        CreateModMenuFor(mBespoke, GetLocalizedWheelTypeName(9).ToUpper) 'BENNY'S BESPOKE
-        CreateColorMenuFor(mRimColor, LocalizedModGroupName(GroupName.WheelColor).ToUpper)
-        CreateTyresMenu()
-        CreateModMenuFor(mTireSmoke, Game.GetGXTEntry("CMOD_MOD_TYR3").ToUpper)
-        CreatePlateMenu()
-        CreateModMenuFor(mPlateHolder, Game.GetGXTEntry("CMOD_PLH_T")) 'PLATE HOLDERS
-        CreateModMenuFor(mVanityPlates, Game.GetGXTEntry("CMM_MOD_ST1")) 'VANITY PLATES
-        CreatePlateNumberMenu()
-        CreateLightsMenu()
-        CreateModMenuFor(mHeadlights, Game.GetGXTEntry("CMOD_HED_T")) 'HEADLIGHTS
-        CreateNeonKitsMenu()
-        CreateNeonMenu()
-        CreateModMenuFor(mNeonColor, Game.GetGXTEntry("CMOD_NEON_1").ToUpper)
-        CreateResprayMenu()
-        CreateModMenuFor(mPrimaryColor, Game.GetGXTEntry("CMOD_COL1_T"))
-        CreateModMenuFor(mPrimaryClassicColor, Game.GetGXTEntry("CMOD_COL0_0").ToUpper)
-        CreateModMenuFor(mPrimaryChromeColor, Game.GetGXTEntry("CMOD_COL0_0").ToUpper)
-        CreateModMenuFor(mPrimaryMetallicColor, Game.GetGXTEntry("CMOD_COL0_0").ToUpper)
-        CreateModMenuFor(mPrimaryMetalsColor, Game.GetGXTEntry("CMOD_COL0_0").ToUpper)
-        CreateModMenuFor(mPrimaryMatteColor, Game.GetGXTEntry("CMOD_COL0_0").ToUpper)
-        CreateModMenuFor(mPrimaryPearlescentColor, Game.GetGXTEntry("CMOD_COL0_0").ToUpper)
-        CreateModMenuFor(mSecondaryColor, Game.GetGXTEntry("CMOD_COL1_T"))
-        CreateModMenuFor(mSecondaryClassicColor, Game.GetGXTEntry("CMOD_COL0_1").ToUpper)
-        CreateModMenuFor(mSecondaryChromeColor, Game.GetGXTEntry("CMOD_COL0_1").ToUpper)
-        CreateModMenuFor(mSecondaryMetallicColor, Game.GetGXTEntry("CMOD_COL0_1").ToUpper)
-        CreateModMenuFor(mSecondaryMetalsColor, Game.GetGXTEntry("CMOD_COL0_1").ToUpper)
-        CreateModMenuFor(mSecondaryMatteColor, Game.GetGXTEntry("CMOD_COL0_1").ToUpper)
-        CreateModMenuFor(mExhaust, Game.GetGXTEntry("CMOD_EXH_T")) 'EXHAUST
-        CreateModMenuFor(mFender, Game.GetGXTEntry("CMOD_WNG_T")) 'FENDER
-        CreateModMenuFor(mRFender, Game.GetGXTEntry("CMOD_WNG_T")) 'RIGHT FENDER
-        CreateModMenuFor(mFrame, Game.GetGXTEntry("CMOD_RC_T")) 'ROLL CAGE
-        CreateModMenuFor(mGrille, Game.GetGXTEntry("CMOD_GRL_T")) 'GRILLES
-        CreateModMenuFor(mHood, Game.GetGXTEntry("CMOD_BON_T")) 'HOOD
-        CreateModMenuFor(mHorn, Game.GetGXTEntry("CMOD_HRN_T")) 'HORN
-        CreateModMenuFor(mHydraulics, Game.GetGXTEntry("CMM_MOD_ST13")) 'HYDRAULICS
-        CreateModMenuFor(mLivery, Game.GetGXTEntry("CMM_MOD_ST23")) 'LIVERY
-        CreateModMenuFor(mTornadoC, Game.GetGXTEntry("CMOD_ROF_T")) 'ROOF
-        CreateModMenuFor(mPlaques, Game.GetGXTEntry("CMM_MOD_ST10")) 'PLAQUES
-        CreateModMenuFor(mRoof, Game.GetGXTEntry("CMOD_ROF_T")) 'ROOF
-        CreateModMenuFor(mSpeakers, Game.GetGXTEntry("CMM_MOD_S11")) 'SPEAKERS
-        CreateModMenuFor(mSpoilers, Game.GetGXTEntry("CMOD_SPO_T")) 'SPOILER
-        CreateModMenuFor(mTank, Game.GetGXTEntry("CMM_MOD_ST20")) 'TANK
-        CreateModMenuFor(mTrunk, Game.GetGXTEntry("CMOD_TR_T")) 'TRUNKS
-        CreateModMenuFor(mTurbo, Game.GetGXTEntry("CMOD_TUR_T")) 'TURBO
-        CreatePerformanceMenuFor(mSuspension, Game.GetGXTEntry("CMOD_SUS_T")) 'SUSPENSION
-        CreatePerformanceMenuFor(mArmor, Game.GetGXTEntry("CMOD_ARM_T")) 'ARMOR
-        CreatePerformanceMenuFor(mBrakes, Game.GetGXTEntry("CMOD_BRA_T")) 'BRAKES
-        CreatePerformanceMenuFor(mTransmission, Game.GetGXTEntry("CMOD_GBX_T")) 'TRANSMISSION
-        CreateTintMenu()
+        QuitMenu = QuitMenu.NewUIMenu("CMOD_MOD_E", False, False, AddressOf MainMenuCloseHandler, AddressOf MainMenuItemSelectHandler, itemName:=Game.GetGXTEntry("ITEM_EXIT"), itemDesc:=Game.GetGXTEntry("collision_6p1r1v"))
+        MainMenu = MainMenu.NewUIMenu("CMOD_MOD_T", False, True, AddressOf MainMenuCloseHandler, AddressOf MainMenuItemSelectHandler)
+        mUpgradeAW = mUpgradeAW.NewUIMenu("collision_9znude7", False, False, selectHandler:=AddressOf ModsMenuItemSelectHandler, indexChangeHandler:=AddressOf ArenaWarMenuIndexChangedHandler)
+        gmBodywork = gmBodywork.NewUIMenu("CMOD_BW_T", False, True, selectHandler:=AddressOf ModsMenuItemSelectHandler)
+        gmBodyworkArena = gmBodyworkArena.NewUIMenu("CMOD_BW_T", False, True, selectHandler:=AddressOf ModsMenuItemSelectHandler)
+        gmWeapon = gmWeapon.NewUIMenu("PM_SCR_WEA", False, True, selectHandler:=AddressOf ModsMenuItemSelectHandler)
+        mAerials = mAerials.NewUIMenu("CMM_MOD_ST18", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mTrim = mTrim.NewUIMenu("CMM_MOD_ST19", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mWindow = mWindow.NewUIMenu("CMM_MOD_ST21", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mArchCover = mArchCover.NewUIMenu("CMM_MOD_ST17", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        gmEngine = gmEngine.NewUIMenu("CMM_MOD_GT3", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler)
+        mEngine = mEngine.NewUIMenu("CMM_MOD_GT3", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mNitro = mNitro.NewUIMenu("CMM_MOD_TBOS", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mEngineBlock = mEngineBlock.NewUIMenu("CMOD_EB_T", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mAirFilter = mAirFilter.NewUIMenu("CMM_MOD_ST15", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mStruts = mStruts.NewUIMenu("CMM_MOD_ST16", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        gmInterior = gmInterior.NewUIMenu("CMM_MOD_GT1", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler)
+        mColumnShifterLevers = mColumnShifterLevers.NewUIMenu("CMM_MOD_ST9", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mDashboard = mDashboard.NewUIMenu("CMM_MOD_ST4", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mLightsColor = mLightsColor.NewUIMenu("CMM_MOD_ST26", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mDialDesign = mDialDesign.NewUIMenu("CMM_MOD_ST5", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mOrnaments = mOrnaments.NewUIMenu("CMM_MOD_ST3", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mSeats = mSeats.NewUIMenu("CMM_MOD_ST7", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mSteeringWheels = mSteeringWheels.NewUIMenu("CMM_MOD_ST8", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mTrimDesign = mTrimDesign.NewUIMenu("CMM_MOD_ST2", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mTrimColor = mTrimColor.NewUIMenu("CMOD_MOD_TRIM2", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mDoor = mDoor.NewUIMenu("CMM_MOD_ST6", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        gmBumper = gmBumper.NewUIMenu("CMOD_BUM_T", False, True, selectHandler:=AddressOf ModsMenuItemSelectHandler)
+        mFBumper = mFBumper.NewUIMenu("CMOD_BUMF_T", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mRBumper = mRBumper.NewUIMenu("CMOD_BUMR_T", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mSSkirt = mSSkirt.NewUIMenu("CMOD_SS_T", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        gmWheels = gmWheels.NewUIMenu("CMOD_WHE0_T", False, True, AddressOf ModsMenuCloseHandler, AddressOf WheelsMenuItemSelectHandler)
+        gmWheelType = gmWheelType.NewUIMenu("CMOD_WHE1_T", False, True, selectHandler:=AddressOf ModsMenuItemSelectHandler)
+        gmBikeWheels = gmBikeWheels.NewUIMenu(GetLocalizedWheelTypeName(VehicleWheelType.BikeWheels).ToUpper, True, selectHandler:=AddressOf ModsMenuItemSelectHandler)
+        mSBikeWheels = mSBikeWheels.NewUIMenu(GetLocalizedWheelTypeName(VehicleWheelType.BikeWheels).ToUpper, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mCBikeWheels = mCBikeWheels.NewUIMenu(GetLocalizedWheelTypeName(VehicleWheelType.BikeWheels).ToUpper, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        gmHighEnd = gmHighEnd.NewUIMenu(GetLocalizedWheelTypeName(VehicleWheelType.HighEnd).ToUpper, True, selectHandler:=AddressOf ModsMenuItemSelectHandler)
+        mSHighEnd = mSHighEnd.NewUIMenu(GetLocalizedWheelTypeName(VehicleWheelType.HighEnd).ToUpper, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mCHighEnd = mCHighEnd.NewUIMenu(GetLocalizedWheelTypeName(VehicleWheelType.HighEnd).ToUpper, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        gmLowrider = gmLowrider.NewUIMenu(GetLocalizedWheelTypeName(VehicleWheelType.Lowrider).ToUpper, True, selectHandler:=AddressOf ModsMenuItemSelectHandler)
+        mSLowrider = mSLowrider.NewUIMenu(GetLocalizedWheelTypeName(VehicleWheelType.Lowrider).ToUpper, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mCLowrider = mCLowrider.NewUIMenu(GetLocalizedWheelTypeName(VehicleWheelType.Lowrider).ToUpper, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        gmMuscle = gmMuscle.NewUIMenu(GetLocalizedWheelTypeName(VehicleWheelType.Muscle).ToUpper, True, selectHandler:=AddressOf ModsMenuItemSelectHandler)
+        mSMuscle = mSMuscle.NewUIMenu(GetLocalizedWheelTypeName(VehicleWheelType.Muscle).ToUpper, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mCMuscle = mCMuscle.NewUIMenu(GetLocalizedWheelTypeName(VehicleWheelType.Muscle).ToUpper, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        gmOffroad = gmOffroad.NewUIMenu(GetLocalizedWheelTypeName(VehicleWheelType.Offroad).ToUpper, True, selectHandler:=AddressOf ModsMenuItemSelectHandler)
+        mSOffroad = mSOffroad.NewUIMenu(GetLocalizedWheelTypeName(VehicleWheelType.Offroad).ToUpper, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mCOffroad = mCOffroad.NewUIMenu(GetLocalizedWheelTypeName(VehicleWheelType.Offroad).ToUpper, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        gmSport = gmSport.NewUIMenu(GetLocalizedWheelTypeName(VehicleWheelType.Sport).ToUpper, True, selectHandler:=AddressOf ModsMenuItemSelectHandler)
+        mSSport = mSSport.NewUIMenu(GetLocalizedWheelTypeName(VehicleWheelType.Sport).ToUpper, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mCSport = mCSport.NewUIMenu(GetLocalizedWheelTypeName(VehicleWheelType.Sport).ToUpper, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        gmSUV = gmSUV.NewUIMenu(GetLocalizedWheelTypeName(VehicleWheelType.SUV).ToUpper, True, selectHandler:=AddressOf ModsMenuItemSelectHandler)
+        mSSUV = mSSUV.NewUIMenu(GetLocalizedWheelTypeName(VehicleWheelType.SUV).ToUpper, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mCSUV = mCSUV.NewUIMenu(GetLocalizedWheelTypeName(VehicleWheelType.SUV).ToUpper, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        gmTuner = gmTuner.NewUIMenu(GetLocalizedWheelTypeName(VehicleWheelType.Tuner).ToUpper, True, selectHandler:=AddressOf ModsMenuItemSelectHandler)
+        mSTuner = mSTuner.NewUIMenu(GetLocalizedWheelTypeName(VehicleWheelType.Tuner).ToUpper, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mCTuner = mCTuner.NewUIMenu(GetLocalizedWheelTypeName(VehicleWheelType.Tuner).ToUpper, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mBennysOriginals = mBennysOriginals.NewUIMenu(GetLocalizedWheelTypeName(8).ToUpper, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mBespoke = mBespoke.NewUIMenu(GetLocalizedWheelTypeName(9).ToUpper, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mRimColor = mRimColor.NewUIMenu(LocalizedModGroupName(GroupName.WheelColor).ToUpper, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mTires = mTires.NewUIMenu("CMOD_TYR_T", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mTireSmoke = mTireSmoke.NewUIMenu("CMOD_MOD_TYR3", True, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        gmPlate = gmPlate.NewUIMenu("CMM_MOD_GT2", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler)
+        mPlateHolder = mPlateHolder.NewUIMenu("CMOD_PLH_T", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mVanityPlates = mVanityPlates.NewUIMenu("CMM_MOD_ST1", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mNumberPlate = mNumberPlate.NewUIMenu("CMOD_MOD_PLA2", True, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        gmLights = gmLights.NewUIMenu("CMOD_LGT_T", False, True, AddressOf ModsMenuCloseHandler)
+        mHeadlights = mHeadlights.NewUIMenu("CMOD_HED_T", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        gmNeonKits = gmNeonKits.NewUIMenu("CMOD_MOD_LGT_N", True, True)
+        mNeon = mNeon.NewUIMenu("CMOD_NEON_0", True, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mNeonColor = mNeonColor.NewUIMenu("CMOD_NEON_1", True, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        gmRespray = gmRespray.NewUIMenu("CMOD_COL0_T", False, True)
+        mPrimaryColor = mPrimaryColor.NewUIMenu("CMOD_COL1_T", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mPrimaryClassicColor = mPrimaryClassicColor.NewUIMenu("CMOD_COL0_0", True, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mPrimaryChromeColor = mPrimaryChromeColor.NewUIMenu("CMOD_COL0_0", True, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mPrimaryMetallicColor = mPrimaryMetallicColor.NewUIMenu("CMOD_COL0_0", True, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mPrimaryMetalsColor = mPrimaryMetalsColor.NewUIMenu("CMOD_COL0_0", True, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mPrimaryMatteColor = mPrimaryMatteColor.NewUIMenu("CMOD_COL0_0", True, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mPrimaryPearlescentColor = mPrimaryPearlescentColor.NewUIMenu("CMOD_COL0_0", True, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mSecondaryColor = mSecondaryColor.NewUIMenu("CMOD_COL1_T", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mSecondaryClassicColor = mSecondaryClassicColor.NewUIMenu("CMOD_COL0_1", True, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mSecondaryChromeColor = mSecondaryChromeColor.NewUIMenu("CMOD_COL0_1", True, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mSecondaryMetallicColor = mSecondaryMetallicColor.NewUIMenu("CMOD_COL0_1", True, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mSecondaryMetalsColor = mSecondaryMetalsColor.NewUIMenu("CMOD_COL0_1", True, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mSecondaryMatteColor = mSecondaryMatteColor.NewUIMenu("CMOD_COL0_1", True, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mExhaust = mExhaust.NewUIMenu("CMOD_EXH_T", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mFender = mFender.NewUIMenu("CMOD_WNG_T", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mRFender = mRFender.NewUIMenu("CMOD_WNG_T", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mFrame = mFrame.NewUIMenu("CMOD_RC_T", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mGrille = mGrille.NewUIMenu("CMOD_GRL_T", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mHood = mHood.NewUIMenu("CMOD_BON_T", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mHorn = mHorn.NewUIMenu("CMOD_HRN_T", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mHydraulics = mHydraulics.NewUIMenu("CMM_MOD_ST13", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mLivery = mLivery.NewUIMenu("CMM_MOD_ST23", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mTornadoC = mTornadoC.NewUIMenu("CMOD_ROF_T", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mPlaques = mPlaques.NewUIMenu("CMM_MOD_ST10", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mRoof = mRoof.NewUIMenu("CMOD_ROF_T", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mSpeakers = mSpeakers.NewUIMenu("CMM_MOD_S11", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mSpoilers = mSpoilers.NewUIMenu("CMOD_SPO_T", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mTank = mTank.NewUIMenu("CMM_MOD_ST20", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mTrunk = mTrunk.NewUIMenu("CMOD_TR_T", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mTurbo = mTurbo.NewUIMenu("CMOD_TUR_T", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mSuspension = mSuspension.NewUIMenu("CMOD_SUS_T", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mArmor = mArmor.NewUIMenu("CMOD_ARM_T", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mBrakes = mBrakes.NewUIMenu("CMOD_BRA_T", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mTransmission = mTransmission.NewUIMenu("CMOD_GBX_T", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mTint = mTint.NewUIMenu("CMOD_WIN_T", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
         'Motorcycles
-        CreateModMenuFor(mShifter, Game.GetGXTEntry("CMOD_SHIFTER_T"))
-        CreateModMenuFor(mFMudguard, Game.GetGXTEntry("CMOD_FMUD_T"))
-        CreateModMenuFor(mBSeat, Game.GetGXTEntry("CMM_MOD_ST7"))
-        CreateModMenuFor(mOilTank, Game.GetGXTEntry("CMM_MOD_ST29"))
-        CreateModMenuFor(mRMudguard, Game.GetGXTEntry("CMOD_RMUD_T"))
-        CreateModMenuFor(mFuelTank, Game.GetGXTEntry("CMOD_FUL_T"))
-        CreateModMenuFor(mBeltDriveCovers, Game.GetGXTEntry("CMOD_MOD_BLT").ToUpper)
-        CreateModMenuFor(mBEngineBlock, Game.GetGXTEntry("CMOD_EB_T"))
-        CreateModMenuFor(mBAirFilter, Game.GetGXTEntry("CMM_MOD_ST15"))
-        CreateModMenuFor(mBTank, Game.GetGXTEntry("CMM_MOD_ST20"))
+        mShifter = mShifter.NewUIMenu("CMOD_SHIFTER_T", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mFMudguard = mFMudguard.NewUIMenu("CMOD_FMUD_T", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mBSeat = mBSeat.NewUIMenu("CMM_MOD_ST7", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mOilTank = mOilTank.NewUIMenu("CMM_MOD_ST29", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mRMudguard = mRMudguard.NewUIMenu("CMOD_RMUD_T", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mFuelTank = mFuelTank.NewUIMenu("CMOD_FUL_T", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mBeltDriveCovers = mBeltDriveCovers.NewUIMenu("CMOD_MOD_BLT", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mBEngineBlock = mBEngineBlock.NewUIMenu("CMOD_EB_T", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mBAirFilter = mBAirFilter.NewUIMenu("CMM_MOD_ST15", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mBTank = mBTank.NewUIMenu("CMM_MOD_ST20", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
     End Sub
 
 #Region "Menu Event Handlers"
@@ -4151,436 +4142,6 @@ Module MenuHelper
         End Try
     End Sub
 
-#End Region
-
-#Region "Create Menu"
-
-    Public Sub CreateQuitMenu()
-        Try
-            QuitMenu = New UIMenu("", Game.GetGXTEntry("CMOD_MOD_E"))
-            QuitMenu.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
-            QuitMenu.MouseEdgeEnabled = False
-            QuitMenu.AddInstructionalButton(BtnZoom)
-            QuitMenu.AddInstructionalButton(BtnZoomOut)
-            QuitMenu.AddInstructionalButton(BtnFirstPerson)
-            _menuPool.Add(QuitMenu)
-            QuitMenu.AddItem(New UIMenuItem(Game.GetGXTEntry("ITEM_EXIT"), Game.GetGXTEntry("collision_6p1r1v")))
-            QuitMenu.RefreshIndex()
-            AddHandler QuitMenu.OnMenuClose, AddressOf MainMenuCloseHandler
-            AddHandler QuitMenu.OnItemSelect, AddressOf MainMenuItemSelectHandler
-        Catch ex As Exception
-            Logger.Log(ex.Message & " " & ex.StackTrace)
-        End Try
-    End Sub
-
-    Public Sub CreateMainMenu()
-        Try
-            MainMenu = New UIMenu("", Game.GetGXTEntry("CMOD_MOD_T"), True)
-            MainMenu.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
-            MainMenu.MouseEdgeEnabled = False
-            MainMenu.AddInstructionalButton(BtnZoom)
-            MainMenu.AddInstructionalButton(BtnZoomOut)
-            MainMenu.AddInstructionalButton(BtnFirstPerson)
-            _menuPool.Add(MainMenu)
-            MainMenu.AddItem(New UIMenuItem("Noting"))
-            MainMenu.RefreshIndex()
-            AddHandler MainMenu.OnMenuClose, AddressOf MainMenuCloseHandler
-            AddHandler MainMenu.OnItemSelect, AddressOf MainMenuItemSelectHandler
-            'QuitMenu.BindMenuToItem(MainMenu, QuitMenu.MenuItems.FirstOrDefault)
-        Catch ex As Exception
-            Logger.Log(ex.Message & " " & ex.StackTrace)
-        End Try
-    End Sub
-
-    Public Sub CreateArenaWarMenu()
-        Try
-            mUpgradeAW = New UIMenu("", Game.GetGXTEntry("collision_9znude7"), False) 'ARENA WAR
-            mUpgradeAW.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
-            mUpgradeAW.MouseEdgeEnabled = False
-            mUpgradeAW.AddInstructionalButton(BtnZoom)
-            mUpgradeAW.AddInstructionalButton(BtnZoomOut)
-            mUpgradeAW.AddInstructionalButton(BtnFirstPerson)
-            _menuPool.Add(mUpgradeAW)
-            mUpgradeAW.AddItem(New UIMenuItem("Nothing"))
-            mUpgradeAW.RefreshIndex()
-            AddHandler mUpgradeAW.OnItemSelect, AddressOf ModsMenuItemSelectHandler
-            AddHandler mUpgradeAW.OnIndexChange, AddressOf ArenaWarMenuIndexChangedHandler
-        Catch ex As Exception
-            Logger.Log(ex.Message & " " & ex.StackTrace)
-        End Try
-    End Sub
-
-    Public Sub CreateBodyworkMenu()
-        Try
-            gmBodywork = New UIMenu("", Game.GetGXTEntry("CMOD_BW_T"), True) 'BODYWORK
-            gmBodywork.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
-            gmBodywork.MouseEdgeEnabled = False
-            gmBodywork.AddInstructionalButton(BtnZoom)
-            gmBodywork.AddInstructionalButton(BtnZoomOut)
-            gmBodywork.AddInstructionalButton(BtnFirstPerson)
-            _menuPool.Add(gmBodywork)
-            gmBodywork.AddItem(New UIMenuItem("Nothing"))
-            gmBodywork.RefreshIndex()
-            AddHandler gmBodywork.OnItemSelect, AddressOf ModsMenuItemSelectHandler
-        Catch ex As Exception
-            Logger.Log(ex.Message & " " & ex.StackTrace)
-        End Try
-    End Sub
-
-    Public Sub CreateBodyworkArenaMenu()
-        Try
-            gmBodyworkArena = New UIMenu("", Game.GetGXTEntry("CMOD_BW_T"), True) 'BODYWORK
-            gmBodyworkArena.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
-            gmBodyworkArena.MouseEdgeEnabled = False
-            gmBodyworkArena.AddInstructionalButton(BtnZoom)
-            gmBodyworkArena.AddInstructionalButton(BtnZoomOut)
-            gmBodyworkArena.AddInstructionalButton(BtnFirstPerson)
-            _menuPool.Add(gmBodyworkArena)
-            gmBodyworkArena.AddItem(New UIMenuItem("Nothing"))
-            gmBodyworkArena.RefreshIndex()
-            AddHandler gmBodyworkArena.OnItemSelect, AddressOf ModsMenuItemSelectHandler
-        Catch ex As Exception
-            Logger.Log(ex.Message & " " & ex.StackTrace)
-        End Try
-    End Sub
-
-    Public Sub CreateWeaponMenu()
-        Try
-            gmWeapon = New UIMenu("", Game.GetGXTEntry("PM_SCR_WEA"), True) 'WEAPONS
-            gmWeapon.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
-            gmWeapon.MouseEdgeEnabled = False
-            gmWeapon.AddInstructionalButton(BtnZoom)
-            gmWeapon.AddInstructionalButton(BtnZoomOut)
-            gmWeapon.AddInstructionalButton(BtnFirstPerson)
-            _menuPool.Add(gmWeapon)
-            gmWeapon.AddItem(New UIMenuItem("Nothing"))
-            gmWeapon.RefreshIndex()
-            AddHandler gmWeapon.OnItemSelect, AddressOf ModsMenuItemSelectHandler
-        Catch ex As Exception
-            Logger.Log(ex.Message & " " & ex.StackTrace)
-        End Try
-    End Sub
-
-    Public Sub CreateEngineMenu()
-        Try
-            gmEngine = New UIMenu("", Game.GetGXTEntry("CMM_MOD_GT3"), True) 'ENGINE
-            gmEngine.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
-            gmEngine.MouseEdgeEnabled = False
-            gmEngine.AddInstructionalButton(BtnZoom)
-            gmEngine.AddInstructionalButton(BtnZoomOut)
-            gmEngine.AddInstructionalButton(BtnFirstPerson)
-            _menuPool.Add(gmEngine)
-            gmEngine.AddItem(New UIMenuItem("Nothing"))
-            gmEngine.RefreshIndex()
-            AddHandler gmEngine.OnItemSelect, AddressOf ModsMenuItemSelectHandler
-            AddHandler gmEngine.OnMenuClose, AddressOf ModsMenuCloseHandler
-        Catch ex As Exception
-            Logger.Log(ex.Message & " " & ex.StackTrace)
-        End Try
-    End Sub
-
-    Public Sub CreateInteriorMenu()
-        Try
-            gmInterior = New UIMenu("", Game.GetGXTEntry("CMM_MOD_GT1"), True) 'INTERIOR
-            gmInterior.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
-            gmInterior.MouseEdgeEnabled = False
-            gmInterior.AddInstructionalButton(BtnZoom)
-            gmInterior.AddInstructionalButton(BtnZoomOut)
-            gmInterior.AddInstructionalButton(BtnFirstPerson)
-            _menuPool.Add(gmInterior)
-            gmInterior.AddItem(New UIMenuItem("Nothing"))
-            gmInterior.RefreshIndex()
-            AddHandler gmInterior.OnItemSelect, AddressOf ModsMenuItemSelectHandler
-            AddHandler gmInterior.OnMenuClose, AddressOf ModsMenuCloseHandler
-        Catch ex As Exception
-            Logger.Log(ex.Message & " " & ex.StackTrace)
-        End Try
-    End Sub
-
-    Public Sub CreateBumperMenu()
-        Try
-            gmBumper = New UIMenu("", Game.GetGXTEntry("CMOD_BUM_T"), True) 'BUMPERS
-            gmBumper.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
-            gmBumper.MouseEdgeEnabled = False
-            gmBumper.AddInstructionalButton(BtnZoom)
-            gmBumper.AddInstructionalButton(BtnZoomOut)
-            gmBumper.AddInstructionalButton(BtnFirstPerson)
-            _menuPool.Add(gmBumper)
-            gmBumper.AddItem(New UIMenuItem("Nothing"))
-            gmBumper.RefreshIndex()
-            AddHandler gmBumper.OnItemSelect, AddressOf ModsMenuItemSelectHandler
-        Catch ex As Exception
-            Logger.Log(ex.Message & " " & ex.StackTrace)
-        End Try
-    End Sub
-
-    Public Sub CreateWheelsMenu()
-        Try
-            gmWheels = New UIMenu("", Game.GetGXTEntry("CMOD_WHE0_T"), True) 'WHEELS
-            gmWheels.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
-            gmWheels.MouseEdgeEnabled = False
-            gmWheels.AddInstructionalButton(BtnZoom)
-            gmWheels.AddInstructionalButton(BtnZoomOut)
-            gmWheels.AddInstructionalButton(BtnFirstPerson)
-            _menuPool.Add(gmWheels)
-            gmWheels.AddItem(New UIMenuItem("Nothing"))
-            gmWheels.RefreshIndex()
-            AddHandler gmWheels.OnMenuClose, AddressOf ModsMenuCloseHandler
-            AddHandler gmWheels.OnItemSelect, AddressOf WheelsMenuItemSelectHandler
-        Catch ex As Exception
-            Logger.Log(ex.Message & " " & ex.StackTrace)
-        End Try
-    End Sub
-
-    Public Sub CreateWheelTypeMenu()
-        Try
-            gmWheelType = New UIMenu("", Game.GetGXTEntry("CMOD_WHE1_T"), True) 'WHEEL TYPE
-            gmWheelType.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
-            gmWheelType.MouseEdgeEnabled = False
-            _menuPool.Add(gmWheelType)
-            gmWheelType.AddItem(New UIMenuItem("Nothing"))
-            gmWheelType.RefreshIndex()
-            AddHandler gmWheelType.OnItemSelect, AddressOf ModsMenuItemSelectHandler
-        Catch ex As Exception
-            Logger.Log(ex.Message & " " & ex.StackTrace)
-        End Try
-    End Sub
-
-    Public Sub CreateWheelRimMenu(ByRef menu As UIMenu, ByRef title As String)
-        Try
-            menu = New UIMenu("", title, True)
-            menu.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
-            menu.MouseEdgeEnabled = False
-            menu.AddInstructionalButton(BtnZoom)
-            menu.AddInstructionalButton(BtnZoomOut)
-            menu.AddInstructionalButton(BtnFirstPerson)
-            _menuPool.Add(menu)
-            menu.AddItem(New UIMenuItem("Nothing"))
-            menu.RefreshIndex()
-            AddHandler menu.OnItemSelect, AddressOf ModsMenuItemSelectHandler
-        Catch ex As Exception
-            Logger.Log(ex.Message & " " & ex.StackTrace)
-        End Try
-    End Sub
-
-    Public Sub CreateTyresMenu()
-        Try
-            mTires = New UIMenu("", Game.GetGXTEntry("CMOD_TYR_T"), True) 'TIRES
-            mTires.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
-            mTires.MouseEdgeEnabled = False
-            mTires.AddInstructionalButton(BtnZoom)
-            mTires.AddInstructionalButton(BtnZoomOut)
-            mTires.AddInstructionalButton(BtnFirstPerson)
-            _menuPool.Add(mTires)
-            mTires.AddItem(New UIMenuItem("Nothing"))
-            mTires.RefreshIndex()
-            AddHandler mTires.OnMenuClose, AddressOf ModsMenuCloseHandler
-            AddHandler mTires.OnItemSelect, AddressOf ModsMenuItemSelectHandler
-            AddHandler mTires.OnIndexChange, AddressOf ModsMenuIndexChangedHandler
-        Catch ex As Exception
-            Logger.Log(ex.Message & " " & ex.StackTrace)
-        End Try
-    End Sub
-
-    Public Sub CreatePlateMenu()
-        Try
-            gmPlate = New UIMenu("", Game.GetGXTEntry("CMM_MOD_GT2"), True) 'PLATES
-            gmPlate.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
-            gmPlate.MouseEdgeEnabled = False
-            gmPlate.AddInstructionalButton(BtnZoom)
-            gmPlate.AddInstructionalButton(BtnZoomOut)
-            gmPlate.AddInstructionalButton(BtnFirstPerson)
-            _menuPool.Add(gmPlate)
-            gmPlate.AddItem(New UIMenuItem("Nothing"))
-            gmPlate.RefreshIndex()
-            AddHandler gmPlate.OnMenuClose, AddressOf ModsMenuCloseHandler
-            AddHandler gmPlate.OnItemSelect, AddressOf ModsMenuItemSelectHandler
-        Catch ex As Exception
-            Logger.Log(ex.Message & " " & ex.StackTrace)
-        End Try
-    End Sub
-
-    Public Sub CreatePlateNumberMenu()
-        Try
-            mNumberPlate = New UIMenu("", Game.GetGXTEntry("CMOD_MOD_PLA2").ToUpper, True) 'LICENSE PLATE
-            mNumberPlate.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
-            mNumberPlate.MouseEdgeEnabled = False
-            mNumberPlate.AddInstructionalButton(BtnZoom)
-            mNumberPlate.AddInstructionalButton(BtnZoomOut)
-            mNumberPlate.AddInstructionalButton(BtnFirstPerson)
-            _menuPool.Add(mNumberPlate)
-            mNumberPlate.AddItem(New UIMenuItem("Nothing"))
-            mNumberPlate.RefreshIndex()
-            AddHandler mNumberPlate.OnMenuClose, AddressOf ModsMenuCloseHandler
-            AddHandler mNumberPlate.OnItemSelect, AddressOf ModsMenuItemSelectHandler
-            AddHandler mNumberPlate.OnIndexChange, AddressOf ModsMenuIndexChangedHandler
-        Catch ex As Exception
-            Logger.Log(ex.Message & " " & ex.StackTrace)
-        End Try
-    End Sub
-
-    Public Sub CreateTintMenu()
-        Try
-            mTint = New UIMenu("", Game.GetGXTEntry("CMOD_WIN_T"), True) 'TINTS
-            mTint.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
-            mTint.MouseEdgeEnabled = False
-            mTint.AddInstructionalButton(BtnZoom)
-            mTint.AddInstructionalButton(BtnZoomOut)
-            mTint.AddInstructionalButton(BtnFirstPerson)
-            _menuPool.Add(mTint)
-            mTint.AddItem(New UIMenuItem("Nothing"))
-            mTint.RefreshIndex()
-            AddHandler mTint.OnMenuClose, AddressOf ModsMenuCloseHandler
-            AddHandler mTint.OnItemSelect, AddressOf ModsMenuItemSelectHandler
-            AddHandler mTint.OnIndexChange, AddressOf ModsMenuIndexChangedHandler
-        Catch ex As Exception
-            Logger.Log(ex.Message & " " & ex.StackTrace)
-        End Try
-    End Sub
-
-    Public Sub CreateColorMenuFor(ByRef menu As UIMenu, ByRef title As String)
-        Try
-            menu = New UIMenu("", title, True)
-            menu.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
-            menu.MouseEdgeEnabled = False
-            menu.AddInstructionalButton(BtnZoom)
-            menu.AddInstructionalButton(BtnZoomOut)
-            menu.AddInstructionalButton(BtnFirstPerson)
-            _menuPool.Add(menu)
-            menu.AddItem(New UIMenuItem("Nothing"))
-            menu.RefreshIndex()
-            AddHandler menu.OnMenuClose, AddressOf ModsMenuCloseHandler
-            AddHandler menu.OnItemSelect, AddressOf ModsMenuItemSelectHandler
-            AddHandler menu.OnIndexChange, AddressOf ModsMenuIndexChangedHandler
-        Catch ex As Exception
-            Logger.Log(ex.Message & " " & ex.StackTrace)
-        End Try
-    End Sub
-
-    Public Sub CreateLightsMenu()
-        Try
-            gmLights = New UIMenu("", Game.GetGXTEntry("CMOD_LGT_T"), True) 'LIGHTS
-            gmLights.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
-            gmLights.MouseEdgeEnabled = False
-            gmLights.AddInstructionalButton(BtnZoom)
-            gmLights.AddInstructionalButton(BtnZoomOut)
-            gmLights.AddInstructionalButton(BtnFirstPerson)
-            _menuPool.Add(gmLights)
-            gmLights.AddItem(New UIMenuItem("Nothing"))
-            gmLights.RefreshIndex()
-            AddHandler gmLights.OnMenuClose, AddressOf ModsMenuCloseHandler
-        Catch ex As Exception
-            Logger.Log(ex.Message & " " & ex.StackTrace)
-        End Try
-    End Sub
-
-    Public Sub CreateNitroMenu()
-        Try
-            mNitro = New UIMenu("", Game.GetGXTEntry("CMM_MOD_TBOS"), True) 'BOOST
-            mNitro.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
-            mNitro.MouseEdgeEnabled = False
-            mNitro.AddInstructionalButton(BtnZoom)
-            mNitro.AddInstructionalButton(BtnZoomOut)
-            mNitro.AddInstructionalButton(BtnFirstPerson)
-            _menuPool.Add(mNitro)
-            mNitro.AddItem(New UIMenuItem("Nothing"))
-            mNitro.RefreshIndex()
-            AddHandler mNitro.OnMenuClose, AddressOf ModsMenuCloseHandler
-            AddHandler mNitro.OnItemSelect, AddressOf ModsMenuItemSelectHandler
-            AddHandler mNitro.OnIndexChange, AddressOf ModsMenuIndexChangedHandler
-        Catch ex As Exception
-            Logger.Log(ex.Message & " " & ex.StackTrace)
-        End Try
-    End Sub
-
-    Public Sub CreateNeonKitsMenu()
-        Try
-            gmNeonKits = New UIMenu("", Game.GetGXTEntry("CMOD_MOD_LGT_N").ToUpper, True) 'NEON KITS
-            gmNeonKits.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
-            gmNeonKits.MouseEdgeEnabled = False
-            gmNeonKits.AddInstructionalButton(BtnZoom)
-            gmNeonKits.AddInstructionalButton(BtnZoomOut)
-            gmNeonKits.AddInstructionalButton(BtnFirstPerson)
-            _menuPool.Add(gmNeonKits)
-            gmNeonKits.AddItem(New UIMenuItem("Nothing"))
-            gmNeonKits.RefreshIndex()
-        Catch ex As Exception
-            Logger.Log(ex.Message & " " & ex.StackTrace)
-        End Try
-    End Sub
-
-    Public Sub CreateNeonMenu()
-        Try
-            mNeon = New UIMenu("", Game.GetGXTEntry("CMOD_NEON_0").ToUpper, True) 'NEON LAYOUT
-            mNeon.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
-            mNeon.MouseEdgeEnabled = False
-            mNeon.AddInstructionalButton(BtnZoom)
-            mNeon.AddInstructionalButton(BtnZoomOut)
-            _menuPool.Add(mNeon)
-            mNeon.AddItem(New UIMenuItem("Nothing"))
-            mNeon.RefreshIndex()
-            AddHandler mNeon.OnMenuClose, AddressOf ModsMenuCloseHandler
-            AddHandler mNeon.OnItemSelect, AddressOf ModsMenuItemSelectHandler
-            AddHandler mNeon.OnIndexChange, AddressOf ModsMenuIndexChangedHandler
-        Catch ex As Exception
-            Logger.Log(ex.Message & " " & ex.StackTrace)
-        End Try
-    End Sub
-
-    Public Sub CreateResprayMenu()
-        Try
-            gmRespray = New UIMenu("", Game.GetGXTEntry("CMOD_COL0_T"), True) 'RESPRAY
-            gmRespray.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
-            gmRespray.MouseEdgeEnabled = False
-            gmRespray.AddInstructionalButton(BtnZoom)
-            gmRespray.AddInstructionalButton(BtnZoomOut)
-            gmRespray.AddInstructionalButton(BtnFirstPerson)
-            _menuPool.Add(gmRespray)
-            gmRespray.AddItem(New UIMenuItem("Nothing"))
-            gmRespray.RefreshIndex()
-        Catch ex As Exception
-            Logger.Log(ex.Message & " " & ex.StackTrace)
-        End Try
-    End Sub
-
-    Public Sub CreatePerformanceMenuFor(ByRef menu As UIMenu, ByRef title As String)
-        Try
-            menu = New UIMenu("", title, True)
-            menu.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
-            menu.MouseEdgeEnabled = False
-            menu.AddInstructionalButton(BtnZoom)
-            menu.AddInstructionalButton(BtnZoomOut)
-            menu.AddInstructionalButton(BtnFirstPerson)
-            _menuPool.Add(menu)
-            menu.AddItem(New UIMenuItem("Nothing"))
-            menu.RefreshIndex()
-            AddHandler menu.OnMenuClose, AddressOf ModsMenuCloseHandler
-            AddHandler menu.OnItemSelect, AddressOf ModsMenuItemSelectHandler
-            AddHandler menu.OnIndexChange, AddressOf ModsMenuIndexChangedHandler
-        Catch ex As Exception
-            Logger.Log(ex.Message & " " & ex.StackTrace)
-        End Try
-    End Sub
-
-    Public Sub CreateModMenuFor(ByRef menu As UIMenu, ByRef title As String)
-        Try
-            menu = New UIMenu("", title, True)
-            menu.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
-            menu.MouseEdgeEnabled = False
-            menu.AddInstructionalButton(BtnZoom)
-            menu.AddInstructionalButton(BtnZoomOut)
-            menu.AddInstructionalButton(BtnFirstPerson)
-            _menuPool.Add(menu)
-            menu.AddItem(New UIMenuItem("Nothing"))
-            menu.RefreshIndex()
-            AddHandler menu.OnMenuClose, AddressOf ModsMenuCloseHandler
-            AddHandler menu.OnItemSelect, AddressOf ModsMenuItemSelectHandler
-            AddHandler menu.OnIndexChange, AddressOf ModsMenuIndexChangedHandler
-        Catch ex As Exception
-            Logger.Log(ex.Message & " " & ex.StackTrace)
-        End Try
-    End Sub
-
     Public Sub ModsMenuCloseHandler(sender As UIMenu)
         Try
             'Performance Mods
@@ -4697,5 +4258,34 @@ Module MenuHelper
     End Sub
 
 #End Region
+
+    <Extension>
+    Public Function NewUIMenu(ByRef menu As UIMenu, gxt As String, gxtUpper As Boolean, showStats As Boolean, Optional closeHandler As MenuCloseEvent = Nothing, Optional selectHandler As ItemSelectEvent = Nothing,
+                              Optional indexChangeHandler As IndexChangedEvent = Nothing, Optional itemName As String = "Nothing", Optional itemDesc As String = Nothing) As UIMenu
+        Return menu.NewUIMenu(If(gxtUpper, Game.GetGXTEntry(gxt).ToUpper, Game.GetGXTEntry(gxt)), showStats, closeHandler, selectHandler, indexChangeHandler, itemName, itemDesc)
+    End Function
+
+    <Extension>
+    Public Function NewUIMenu(ByRef menu As UIMenu, title As String, showStats As Boolean, Optional closeHandler As MenuCloseEvent = Nothing, Optional selectHandler As ItemSelectEvent = Nothing,
+                              Optional indexChangeHandler As IndexChangedEvent = Nothing, Optional itemName As String = "Nothing", Optional itemDesc As String = Nothing) As UIMenu
+        Try
+            menu = New UIMenu("", title, showStats)
+            menu.SetBannerType(New Sprite("shopui_title_supermod", "shopui_title_supermod", Nothing, Nothing))
+            menu.MouseEdgeEnabled = False
+            menu.AddInstructionalButton(BtnZoom)
+            menu.AddInstructionalButton(BtnZoomOut)
+            menu.AddInstructionalButton(BtnFirstPerson)
+            _menuPool.Add(menu)
+            menu.AddItem(New UIMenuItem(itemName, itemDesc))
+            menu.RefreshIndex()
+            If Not closeHandler = Nothing Then AddHandler menu.OnMenuClose, closeHandler
+            If Not selectHandler = Nothing Then AddHandler menu.OnItemSelect, selectHandler
+            If Not indexChangeHandler = Nothing Then AddHandler menu.OnIndexChange, indexChangeHandler
+        Catch ex As Exception
+            Logger.Log(ex.Message & " " & ex.StackTrace)
+        End Try
+
+        Return menu
+    End Function
 
 End Module

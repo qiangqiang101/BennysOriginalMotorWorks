@@ -1951,6 +1951,7 @@ Public Module Helper
 
     Public Sub PlayEnterCutScene()
         Try
+            Dim rt As New RealTimer()
             If Not Native.Function.Call(Of Boolean)(Hash.IS_AUDIO_SCENE_ACTIVE, "CAR_MOD_RADIO_MUTE_SCENE") Then Native.Function.Call(Hash.START_AUDIO_SCENE, "CAR_MOD_RADIO_MUTE_SCENE")
             Game.FadeScreenOut(1000)
             Script.Wait(1000)
@@ -1976,11 +1977,21 @@ Public Module Helper
             interpCam.Shake(CameraShake.Hand, 0.4F)
             interpCam.PointAt(veh)
 
+            While Not rt.TotalSeconds(2)
+                Script.Wait(50)
+            End While
             ply.Task.DriveTo(veh, New Vector3(-207.155, -1320.521, 30.8904), 0.1, 2.3)
-            Script.Wait(2000)
             Helper.PlaySpeech("SHOP_NICE_VEHICLE")
+
+            While Not rt.TotalSeconds(4)
+                Script.Wait(50)
+            End While
             ply.Task.DriveTo(veh, New Vector3(-211.798, -1324.292, 30.37535), 0.1, 2)
-            Script.Wait(4000)
+
+            While Not rt.TotalSeconds(8)
+                Script.Wait(50)
+            End While
+
             ply.Task.ClearAll()
             Game.FadeScreenOut(1000)
             Script.Wait(1000)
@@ -1995,6 +2006,7 @@ Public Module Helper
 
     Public Sub PlayExitCutScene()
         Try
+            Dim rt As New RealTimer
             If Not Native.Function.Call(Of Boolean)(Hash.IS_AUDIO_SCENE_ACTIVE, "CAR_MOD_RADIO_MUTE_SCENE") Then Native.Function.Call(Hash.START_AUDIO_SCENE, "CAR_MOD_RADIO_MUTE_SCENE")
             isExiting = True
 
@@ -2016,14 +2028,18 @@ Public Module Helper
             World.RenderingCamera = interpCam
             interpCam.Shake(CameraShake.Hand, 0.4F)
             interpCam.PointAt(veh)
-            Script.Wait(2800)
+            While Not rt.TotalSeconds(5)
+                Script.Wait(50)
+            End While
             ply.Task.DriveTo(veh, New Vector3(-200.2561, -1303.021, 30.66544), 0.1, 2)
-            Script.Wait(4000)
+            While Not rt.TotalSeconds(9)
+                Script.Wait(50)
+            End While
             ply.Task.ClearAll()
             World.DestroyAllCameras()
             World.RenderingCamera = Nothing
             ply.Task.ClearAll()
-            If Not veh.Position.DistanceTo2D(New Vector3(-200.2561, -1303.021, 30.66544)) <= 4.0F Then
+            If Not veh.Position.DistanceToSquared(New Vector3(-200.2561, -1303.021, 30.66544)) <= 4.0F Then
                 Game.FadeScreenOut(1000)
                 Script.Wait(1000)
                 veh.Position = New Vector3(-200.2561, -1303.021, 30.66544)

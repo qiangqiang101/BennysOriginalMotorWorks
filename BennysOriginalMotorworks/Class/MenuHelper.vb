@@ -9,21 +9,24 @@ Imports Metadata
 Module MenuHelper
 
     Public QuitMenu, MainMenu, gmBodywork, gmBodyworkArena, gmEngine, gmInterior, gmPlate, gmLights, gmRespray, gmWheels, gmBumper, gmWheelType, gmNeonKits, gmWeapon As UIMenu
-    Public mAerials, mSuspension, mArmor, mBrakes, mEngine, mTransmission, mFBumper, mRBumper, mSSkirt, mTrim, mEngineBlock, mAirFilter, mStruts, mColumnShifterLevers, mDashboard, mDialDesign, mOrnaments, mSeats,
-        mSteeringWheels, mTrimDesign, mPlateHolder, mVanityPlates, mNumberPlate, gmBikeWheels, gmHighEnd, gmLowrider, gmMuscle, gmOffroad, gmSport, gmSUV, gmTuner, mBennysOriginals, mBespoke, mTires, mHeadlights, mNeon, mNeonColor,
-    mArchCover, mExhaust, mFender, mRFender, mDoor, mFrame, mGrille, mHood, mHorn, mHydraulics, mLivery, mPlaques, mRoof, mSpeakers, mSpoilers, mTank, mTrunk, mWindow, mTurbo, mTint, mLightsColor, mTrimColor, mRimColor,
-    mPrimaryClassicColor, mPrimaryChromeColor, mPrimaryMetallicColor, mPrimaryMetalsColor, mPrimaryMatteColor, mPrimaryPearlescentColor, mPrimaryColor, mSecondaryColor, mSecondaryClassicColor, mSecondaryChromeColor,
-    mSecondaryMetallicColor, mSecondaryMetalsColor, mSecondaryMatteColor, mTireSmoke, mTornadoC, mSBikeWheels, mCBikeWheels, mSHighEnd, mCHighEnd, mSLowrider, mCLowrider, mSMuscle, mCMuscle, mSOffroad, mCOffroad,
-    mSSport, mCSport, mSSUV, mCSUV, mSTuner, mCTuner, mUpgradeAW, mNitro As UIMenu
-    Public iRepair, iHorn, iArmor, iBrakes, iFBumper, iExhaust, iFender, iRollcage, iRoof, iTransmission, iEngine, iPlate, iLights, iTint, iTurbo, iRespray, iWheels, iSuspension, iEngineBlock, iAerials, iAirFilter,
-        iArchCover, iDoor, iFrame, iGrille, iHood, iHydraulics, iLivery, iPlaques, iRFender, iSpeaker, iSpoilers, iTank, iTrunk, iWindows, iTrim, iUpgrade, iUpgradeMod, iUpgradeAW, iUpgradeAWV, iStruts, iTrimColor, iColumnShifterLevers, iDashboard, iDialDesign,
-        iOrnaments, iSeats, iSteeringWheels, iTrimDesign, iRBumper, iSideSkirt, iRimColor, iPlateHolder, iVanityPlates, iHeadlights, iDashboardColor, iNumberPlate, iBikeWheels, iHighEnd, iLowrider, iMuscle, iOffroad,
-        iSport, iSUV, iTuner, iBennys, iBespoke, iTires, iBPTires, iNeon, iTireSmoke, iNeonColor, iLightsColor, iPrimaryCol, iSecondaryCol, iPrimaryChromeColor, iPrimaryClassicColor, iPrimaryMetallicColor, iPrimaryMetalsColor,
-        iPrimaryMatteColor, iPrimaryPearlescentColor, iSecondaryChromeColor, iSecondaryClassicColor, iSecondaryMetallicColor, iSecondaryMetalsColor, iSecondaryMatteColor, iSecondaryPearlescentColor, iTornadoC, iNitro As UIMenuItem
-    Public giBodywork, giBodyworkArena, giEngine, giInterior, giPlate, giLights, giRespray, giWheels, giBumper, giWheelType, giTires, giNeonKits, giPrimaryCol, giSecondaryCol, giBikeWheels, giHighEndWheels, giDoor,
-        giLowriderWheels, giMuscleWheels, giOffroadWheels, giSportWheels, giSUVWheels, giTunerWheels, giBennysWheels, giBespokeWheels, giFBumper, giRBumper, giSSkirt, giNumberPlate, giVanityPlate, giPlateHolder,
-        giExhaust, giBrakes, giGrille, giHood, giHydraulics, giPlaques, giSpoilers, giTank, giTrunk, giStruts, iSBikeWheels, iCBikeWheels, iSHighEnd, iCHighEnd, iSLowrider, iCLowrider, iSMuscle, iCMuscle, iSOffroad, iCOffroad,
-    iSSport, iCSport, iSSUV, iCSUV, iSTuner, iCTuner, giTrailer, giWeapon, giArchCover, giRoof, giAirfilter, giOrnaments As UIMenuItem
+    Public mAerials, mSuspension, mArmor, mBrakes, mEngine, mTransmission, mFBumper, mRBumper, mSSkirt, mTrim, mEngineBlock, mAirFilter, mStruts, mColumnShifterLevers, mDashboard, mDialDesign,
+           mOrnaments, mSeats, mSteeringWheels, mTrimDesign, mPlateHolder, mVanityPlates, mNumberPlate, gmBikeWheels, gmHighEnd, gmLowrider, gmMuscle, gmOffroad, gmSport, gmSUV, gmTuner, mBennysOriginals,
+           mBespoke, mRacing, mStreet, mTires, mHeadlights, mNeon, mNeonColor, mArchCover, mExhaust, mFender, mRFender, mDoor, mFrame, mGrille, mHood, mHorn, mHydraulics, mLivery, mPlaques, mRoof,
+           mSpeakers, mSpoilers, mTank, mTrunk, mWindow, mTurbo, mTint, mLightsColor, mTrimColor, mRimColor, mPrimaryClassicColor, mPrimaryChromeColor, mPrimaryMetallicColor, mPrimaryMetalsColor,
+           mPrimaryMatteColor, mPrimaryPearlescentColor, mPrimaryColor, mSecondaryColor, mSecondaryClassicColor, mSecondaryChromeColor, mSecondaryMetallicColor, mSecondaryMetalsColor, mSecondaryMatteColor,
+           mTireSmoke, mTornadoC, mSBikeWheels, mCBikeWheels, mSHighEnd, mCHighEnd, mSLowrider, mCLowrider, mSMuscle, mCMuscle, mSOffroad, mCOffroad, mSSport, mCSport, mSSUV, mCSUV, mSTuner, mCTuner,
+           mUpgradeAW, mNitro As UIMenu
+    Public iRepair, iHorn, iArmor, iBrakes, iFBumper, iExhaust, iFender, iRollcage, iRoof, iTransmission, iEngine, iPlate, iLights, iTint, iTurbo, iRespray, iWheels, iSuspension, iEngineBlock, iAerials,
+           iAirFilter, iArchCover, iDoor, iFrame, iGrille, iHood, iHydraulics, iLivery, iPlaques, iRFender, iSpeaker, iSpoilers, iTank, iTrunk, iWindows, iTrim, iUpgrade, iUpgradeMod, iUpgradeAW,
+           iUpgradeAWV, iStruts, iTrimColor, iColumnShifterLevers, iDashboard, iDialDesign, iOrnaments, iSeats, iSteeringWheels, iTrimDesign, iRBumper, iSideSkirt, iRimColor, iPlateHolder, iVanityPlates,
+           iHeadlights, iDashboardColor, iNumberPlate, iBikeWheels, iHighEnd, iLowrider, iMuscle, iOffroad, iSport, iSUV, iTuner, iBennys, iBespoke, iRacing, iStreet, iTires, iBPTires, iNeon, iTireSmoke,
+           iNeonColor, iLightsColor, iPrimaryCol, iSecondaryCol, iPrimaryChromeColor, iPrimaryClassicColor, iPrimaryMetallicColor, iPrimaryMetalsColor, iPrimaryMatteColor, iPrimaryPearlescentColor,
+           iSecondaryChromeColor, iSecondaryClassicColor, iSecondaryMetallicColor, iSecondaryMetalsColor, iSecondaryMatteColor, iSecondaryPearlescentColor, iTornadoC, iNitro As UIMenuItem
+    Public giBodywork, giBodyworkArena, giEngine, giInterior, giPlate, giLights, giRespray, giWheels, giBumper, giWheelType, giTires, giNeonKits, giPrimaryCol, giSecondaryCol, giBikeWheels,
+           giHighEndWheels, giDoor, giLowriderWheels, giMuscleWheels, giOffroadWheels, giSportWheels, giSUVWheels, giTunerWheels, giBennysWheels, giBespokeWheels, giRacingWheels, giStreetWheels, giFBumper,
+           giRBumper, giSSkirt, giNumberPlate, giVanityPlate, giPlateHolder, giExhaust, giBrakes, giGrille, giHood, giHydraulics, giPlaques, giSpoilers, giTank, giTrunk, giStruts, iSBikeWheels,
+           iCBikeWheels, iSHighEnd, iCHighEnd, iSLowrider, iCLowrider, iSMuscle, iCMuscle, iSOffroad, iCOffroad, iSSport, iCSport, iSSUV, iCSUV, iSTuner, iCTuner, giTrailer, giWeapon, giArchCover, giRoof,
+           giAirfilter, giOrnaments As UIMenuItem
     Public iShifter, iFMudguard, iBSeat, iOilTank, iRMudguard, iFuelTank, iBeltDriveCovers, iBEngineBlock, iBAirFilter, iBTank As UIMenuItem
     Public giShifter, giFMudguard, giOilTank, giRMudguard, giFuelTank, giBeltDriveCovers, giBEngineBlock, giBAirFilter, giBTank As UIMenuItem
     Public mShifter, mFMudguard, mBSeat, mOilTank, mRMudguard, mFuelTank, mBeltDriveCovers, mBEngineBlock, mBAirFilter, mBTank, gmTrailer As UIMenu
@@ -93,6 +96,8 @@ Module MenuHelper
         RefreshChromeWheelsModMenuFor(mCTuner, iCTuner, VehicleMod.FrontWheels)
         RefreshLowriderDLCWheelsModMenuFor(mBennysOriginals, iBennys, VehicleMod.FrontWheels)
         RefreshLowriderDLCWheelsModMenuFor(mBespoke, iBespoke, VehicleMod.FrontWheels)
+        RefreshLowriderDLCWheelsModMenuFor(mRacing, iRacing, VehicleMod.FrontWheels)
+        RefreshLowriderDLCWheelsModMenuFor(mStreet, iStreet, VehicleMod.FrontWheels)
         RefreshEnumModMenuFor(mRimColor, iRimColor, EnumTypes.VehicleColorRim)
         RefreshTyresMenu()
         RefreshRGBColorMenuFor(mTireSmoke, iTireSmoke, "Smoke")
@@ -200,7 +205,8 @@ Module MenuHelper
                         MainMenu.AddItem(giWeapon)
                         MainMenu.BindMenuToItem(gmWeapon, giWeapon)
                     End If
-                    If (veh.GetModCount(VehicleMod.Plaques) <> 0 Or veh.GetModCount(VehicleMod.Frame) <> 0 Or veh.GetModCount(VehicleMod.Aerials) <> 0 Or veh.GetModCount(VehicleMod.Trim) <> 0 Or veh.GetModCount(VehicleMod.VanityPlates) <> 0 Or veh.GetModCount(VehicleMod.Ornaments) <> 0) Then
+                    If (veh.GetModCount(VehicleMod.Plaques) <> 0 Or veh.GetModCount(VehicleMod.Frame) <> 0 Or veh.GetModCount(VehicleMod.Aerials) <> 0 Or veh.GetModCount(VehicleMod.Trim) <> 0 Or
+                        veh.GetModCount(VehicleMod.VanityPlates) <> 0 Or veh.GetModCount(VehicleMod.Ornaments) <> 0) Then
                         giBodyworkArena = New UIMenuItem(LocalizedModGroupName(GroupName.Bodyworks), Game.GetGXTEntry("IE_BO_DT1")) 'bodywork arena
                         MainMenu.AddItem(giBodyworkArena)
                         MainMenu.BindMenuToItem(gmBodyworkArena, giBodyworkArena)
@@ -356,7 +362,8 @@ Module MenuHelper
                         MainMenu.AddItem(giWeapon)
                         MainMenu.BindMenuToItem(gmWeapon, giWeapon)
                     End If
-                    If (veh.GetModCount(VehicleMod.Plaques) <> 0 Or veh.GetModCount(VehicleMod.Frame) <> 0 Or veh.GetModCount(VehicleMod.Aerials) <> 0 Or veh.GetModCount(VehicleMod.Trim) <> 0 Or veh.GetModCount(VehicleMod.VanityPlates) <> 0 Or veh.GetModCount(VehicleMod.Ornaments) <> 0) Then
+                    If (veh.GetModCount(VehicleMod.Plaques) <> 0 Or veh.GetModCount(VehicleMod.Frame) <> 0 Or veh.GetModCount(VehicleMod.Aerials) <> 0 Or veh.GetModCount(VehicleMod.Trim) <> 0 Or
+                        veh.GetModCount(VehicleMod.VanityPlates) <> 0 Or veh.GetModCount(VehicleMod.Ornaments) <> 0) Then
                         giBodyworkArena = New UIMenuItem(LocalizedModGroupName(GroupName.Bodyworks), Game.GetGXTEntry("IE_BO_DT1")) 'bodywork arena
                         MainMenu.AddItem(giBodyworkArena)
                         MainMenu.BindMenuToItem(gmBodyworkArena, giBodyworkArena)
@@ -1286,19 +1293,43 @@ Module MenuHelper
             iNitro = New UIMenuItem(Game.GetGXTEntry("CMOD_ARM_0"))
             With iNitro
                 If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_ARM_0")
-                .Tag = New ModClass(False, 0)
-                If Not veh.GetBool(nitroMod) Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                .Tag = New ModClass(0, 0)
+                If veh.GetInt(nitroMod) = 0 Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
             End With
             mNitro.AddItem(iNitro)
-            iNitro = New UIMenuItem(Game.GetGXTEntry("collision_57fffph")) 'Upgrade 100%
+            iNitro = New UIMenuItem(Game.GetGXTEntry("CMOD_BOS_1")) 'Upgrade 20%
             With iNitro
-                If .Text = "NULL" Then .Text = Game.GetGXTEntry("collision_57fffph")
-                If veh.GetBool(nitroMod) Then
+                If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_BOS_1")
+                If veh.GetInt(nitroMod) = 1 Then
                     .SetRightBadge(UIMenuItem.BadgeStyle.Car)
-                    .Tag = New ModClass(True, 0)
+                    .Tag = New ModClass(1, 0)
+                Else
+                    .SetRightLabel($"${10000}")
+                    .Tag = New ModClass(1, 10000)
+                End If
+            End With
+            mNitro.AddItem(iNitro)
+            iNitro = New UIMenuItem(Game.GetGXTEntry("CMOD_BOS_2")) 'Upgrade 60%
+            With iNitro
+                If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_BOS_2")
+                If veh.GetInt(nitroMod) = 2 Then
+                    .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    .Tag = New ModClass(2, 0)
+                Else
+                    .SetRightLabel($"${20000}")
+                    .Tag = New ModClass(2, 20000)
+                End If
+            End With
+            mNitro.AddItem(iNitro)
+            iNitro = New UIMenuItem(Game.GetGXTEntry("CMOD_BOS_3")) 'Upgrade 100%
+            With iNitro
+                If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_BOS_3")
+                If veh.GetInt(nitroMod) = 3 Then
+                    .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    .Tag = New ModClass(3, 0)
                 Else
                     .SetRightLabel($"${30000}")
-                    .Tag = New ModClass(True, 30000)
+                    .Tag = New ModClass(3, 30000)
                 End If
             End With
             mNitro.AddItem(iNitro)
@@ -1598,6 +1629,13 @@ Module MenuHelper
                     giBespokeWheels = New UIMenuItem(GetLocalizedWheelTypeName(9)) 'Benny's Bespoke
                     gmWheelType.AddItem(giBespokeWheels)
                     gmWheelType.BindMenuToItem(mBespoke, giBespokeWheels)
+
+                    giRacingWheels = New UIMenuItem(GetLocalizedWheelTypeName(10))
+                    gmWheelType.AddItem(giRacingWheels)
+                    gmWheelType.BindMenuToItem(mRacing, giRacingWheels)
+                    giStreetWheels = New UIMenuItem(GetLocalizedWheelTypeName(11))
+                    gmWheelType.AddItem(giStreetWheels)
+                    gmWheelType.BindMenuToItem(mStreet, giStreetWheels)
             End Select
 
             gmWheelType.RefreshIndex()
@@ -1803,7 +1841,7 @@ Module MenuHelper
                 mTires.AddItem(iTires)
             Else
                 Select Case veh.WheelType
-                    Case 8, 9
+                    Case 8, 9, 10, 11
                         Dim whe As Integer = GetBennysOriginalRim(veh.GetMod(VehicleMod.FrontWheels))
                         Dim count As Integer = veh.GetModCount(VehicleMod.FrontWheels)
                         Dim oneOver6 As Integer = count / 7
@@ -2289,6 +2327,8 @@ Module MenuHelper
         mCTuner = mCTuner.NewUIMenu(GetLocalizedWheelTypeName(VehicleWheelType.Tuner).ToUpper, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
         mBennysOriginals = mBennysOriginals.NewUIMenu(GetLocalizedWheelTypeName(8).ToUpper, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
         mBespoke = mBespoke.NewUIMenu(GetLocalizedWheelTypeName(9).ToUpper, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mRacing = mRacing.NewUIMenu(GetLocalizedWheelTypeName(10).ToUpper, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mStreet = mStreet.NewUIMenu(GetLocalizedWheelTypeName(11).ToUpper, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
         mRimColor = mRimColor.NewUIMenu(LocalizedModGroupName(GroupName.WheelColor).ToUpper, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
         mTires = mTires.NewUIMenu("CMOD_TYR_T", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
         mTireSmoke = mTireSmoke.NewUIMenu("CMOD_MOD_TYR3", True, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
@@ -2519,12 +2559,12 @@ Module MenuHelper
             ElseIf sender Is mNitro Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Dim mc As ModClass = selectedItem.Tag
-                    veh.SetBool(nitroMod, mc.ModIDBool)
+                    veh.SetInt(nitroMod, mc.ModID)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
                     Game.Player.Money = (Game.Player.Money - mc.Price)
-                    selectedItem.Tag = New ModClass(mc.ModIDBool, 0)
-                    lastVehMemory.Nitro = mc.ModIDBool
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.Nitro = mc.ModID
                     PlaySpeech("SHOP_SELL_ENGINE_UPGRADE")
                 End If
             End If
@@ -3230,7 +3270,9 @@ Module MenuHelper
                     lastVehMemory.BackWheels = mc.ModID
                     PlaySpeech("LR_UPGRADE_WHEEL")
                 End If
-            ElseIf (sender Is mSHighEnd) Or (sender Is mSLowrider) Or (sender Is mSMuscle) Or (sender Is mSOffroad) Or (sender Is mSSport) Or (sender Is mSSUV) Or (sender Is mSTuner) Or (sender Is mCHighEnd) Or (sender Is mCLowrider) Or (sender Is mCMuscle) Or (sender Is mCOffroad) Or (sender Is mCSport) Or (sender Is mCSUV) Or (sender Is mCTuner) Or (sender Is mBennysOriginals) Or (sender Is mBespoke) Then
+            ElseIf (sender Is mSHighEnd) Or (sender Is mSLowrider) Or (sender Is mSMuscle) Or (sender Is mSOffroad) Or (sender Is mSSport) Or (sender Is mSSUV) Or (sender Is mSTuner) Or
+                   (sender Is mCHighEnd) Or (sender Is mCLowrider) Or (sender Is mCMuscle) Or (sender Is mCOffroad) Or (sender Is mCSport) Or (sender Is mCSUV) Or (sender Is mCTuner) Or
+                   (sender Is mBennysOriginals) Or (sender Is mBespoke) Or (sender Is mRacing) Or (sender Is mStreet) Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     Dim mc As ModClass = selectedItem.Tag
                     veh.SetMod(VehicleMod.FrontWheels, mc.ModID, False)
@@ -3245,7 +3287,7 @@ Module MenuHelper
             End If
             If sender Is mTires Then
                 Select Case veh.WheelType
-                    Case 8, 9
+                    Case 8, 9, 10, 11
                         If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                             Dim mc As ModClass = selectedItem.Tag
                             veh.SetMod(VehicleMod.FrontWheels, mc.ModID, False)
@@ -3320,6 +3362,12 @@ Module MenuHelper
                 ElseIf selectedItem Is giBespokeWheels Then
                     veh.WheelType = 9
                     RefreshLowriderDLCWheelsModMenuFor(mBespoke, iBespoke, VehicleMod.FrontWheels)
+                ElseIf selectedItem Is giRacingWheels Then
+                    veh.WheelType = 10
+                    RefreshLowriderDLCWheelsModMenuFor(mRacing, iRacing, VehicleMod.FrontWheels)
+                ElseIf selectedItem Is giStreetWheels Then
+                    veh.WheelType = 11
+                    RefreshLowriderDLCWheelsModMenuFor(mStreet, iStreet, VehicleMod.FrontWheels)
                 End If
             End If
             If sender Is gmBikeWheels Then
@@ -3342,6 +3390,10 @@ Module MenuHelper
                 veh.WheelType = 8
             ElseIf sender Is mBespoke Then
                 veh.WheelType = 9
+            ElseIf sender Is mRacing Then
+                veh.WheelType = 10
+            ElseIf sender Is mStreet Then
+                veh.WheelType = 11
             End If
 
             'Color
@@ -3453,7 +3505,7 @@ Module MenuHelper
             If sender Is gmBumper Then
                 If selectedItem Is giFBumper Then
                     Select Case veh.Model
-                        Case "monster3", "monster4", "monster5"
+                        Case "monster3", "monster4", "monster5", "openwheel1", "openwheel2", "formula", "formula2"
                             camera.MainCameraPosition = CameraPosition.Car
                         Case Else
                             If veh.HasBone("neon_f") Then
@@ -3624,7 +3676,7 @@ Module MenuHelper
                 ElseIf sender Is mEngine Then
                     veh.SetMod(VehicleMod.Engine, mc.ModID, False)
                 ElseIf sender Is mNitro Then
-                    veh.SetBool(nitroMod, mc.ModIDBool)
+                    veh.SetInt(nitroMod, mc.ModID)
                 End If
 
                 'Mod
@@ -3783,12 +3835,14 @@ Module MenuHelper
                 If (sender Is mSBikeWheels) Or (sender Is mCBikeWheels) Then 'gmBikeWheels
                     veh.SetMod(VehicleMod.FrontWheels, mc.ModID, False)
                     veh.SetMod(VehicleMod.BackWheels, mc.ModID, False)
-                ElseIf (sender Is mSHighEnd) Or (sender Is mSLowrider) Or (sender Is mSMuscle) Or (sender Is mSOffroad) Or (sender Is mSSport) Or (sender Is mSSUV) Or (sender Is mSTuner) Or (sender Is mCHighEnd) Or (sender Is mCLowrider) Or (sender Is mCMuscle) Or (sender Is mCOffroad) Or (sender Is mCSport) Or (sender Is mCSUV) Or (sender Is mCTuner) Or (sender Is mBennysOriginals) Or (sender Is mBespoke) Then
+                ElseIf (sender Is mSHighEnd) Or (sender Is mSLowrider) Or (sender Is mSMuscle) Or (sender Is mSOffroad) Or (sender Is mSSport) Or (sender Is mSSUV) Or (sender Is mSTuner) Or
+                       (sender Is mCHighEnd) Or (sender Is mCLowrider) Or (sender Is mCMuscle) Or (sender Is mCOffroad) Or (sender Is mCSport) Or (sender Is mCSUV) Or (sender Is mCTuner) Or
+                       (sender Is mBennysOriginals) Or (sender Is mBespoke) Or (sender Is mRacing) Or (sender Is mStreet) Then
                     veh.SetMod(VehicleMod.FrontWheels, mc.ModID, False)
                 End If
                 If sender Is mTires Then
                     Select Case veh.WheelType
-                        Case 8, 9
+                        Case 8, 9, 10, 11
                             veh.SetMod(VehicleMod.FrontWheels, mc.ModID, False)
                         Case Else
                             If mc.ModID = 1 Then
@@ -3910,7 +3964,7 @@ Module MenuHelper
                     newVeh.NumberPlateType = lastVehMemory.NumberPlate
                     newVeh.NumberPlate = lastVehMemory.PlateNumbers
                     newVeh.CanTiresBurst = lastVehMemory.BulletProofTires
-                    If IsNitroModInstalled() Then newVeh.SetBool(nitroMod, lastVehMemory.Nitro)
+                    If IsNitroModInstalled() Then newVeh.SetInt(nitroMod, lastVehMemory.Nitro)
                     veh.Delete()
                     ply.Task.WarpIntoVehicle(newVeh, VehicleSeat.Driver)
                     veh = newVeh
@@ -3991,7 +4045,7 @@ Module MenuHelper
                     newVeh.NumberPlateType = lastVehMemory.NumberPlate
                     newVeh.NumberPlate = lastVehMemory.PlateNumbers
                     newVeh.CanTiresBurst = lastVehMemory.BulletProofTires
-                    If IsNitroModInstalled() Then newVeh.SetBool(nitroMod, lastVehMemory.Nitro)
+                    If IsNitroModInstalled() Then newVeh.SetInt(nitroMod, lastVehMemory.Nitro)
                     veh.Delete()
                     ply.Task.WarpIntoVehicle(newVeh, VehicleSeat.Driver)
                     veh = newVeh
@@ -4014,6 +4068,8 @@ Module MenuHelper
                         Case "alpha"
                             veh.OpenDoor(VehicleDoor.Hood, False, False)
                             camera.MainCameraPosition = CameraPosition.Hood
+                        Case "openwheel1", "openwheel2", "formula", "formula2"
+                            camera.MainCameraPosition = CameraPosition.RearEngine
                         Case Else
                             If Not veh.ClassType = VehicleClass.Motorcycles Or veh.Model = "blazer4" Then
                                 HoodCamera(True)
@@ -4150,7 +4206,7 @@ Module MenuHelper
             veh.SetMod(VehicleMod.Brakes, lastVehMemory.Brakes, False)
             veh.SetMod(VehicleMod.Transmission, lastVehMemory.Transmission, False)
             veh.SetMod(VehicleMod.Engine, lastVehMemory.Engine, False)
-            If IsNitroModInstalled() Then veh.SetBool(nitroMod, lastVehMemory.Nitro)
+            If IsNitroModInstalled() Then veh.SetInt(nitroMod, lastVehMemory.Nitro)
 
             'Mods
             veh.SetMod(VehicleMod.FrontBumper, lastVehMemory.FrontBumper, False)

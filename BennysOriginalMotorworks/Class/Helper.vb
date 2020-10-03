@@ -13,10 +13,10 @@ Public Module Helper
     Public nitroMod As String = "inm_nitro_active"
 
     Public lowriders As New List(Of Model) From {"banshee", "Buccaneer", "chino", "diablous", "comet2", "faction", "faction2", "fcr", "italigtb", "minivan", "moonbeam", "nero", "primo", "sabregt",
-        "slamvan", "specter", "sultan", "tornado", "tornado2", "tornado3", "virgo3", "voodoo2", "elegy2", "technical", "insurgent"}
+        "slamvan", "specter", "sultan", "tornado", "tornado2", "tornado3", "virgo3", "voodoo2", "elegy2", "technical", "insurgent", "youga2", "yosemite", "peyote", "manana", "glendale", "gauntlet3"}
     Public arenawar As New List(Of Model) From {"glendale", "gargoyle", "dominator", "dominator2", "impaler", "issi3", "ratloader", "ratloader2", "slamvan", "slamvan2", "slamvan3"}
     Public bennysvehicle As New List(Of Model) From {"banshee2", "buccaneer2", "chino2", "diabolus2", "comet3", "faction2", "faction3", "fcr2", "italigtb2", "minivan2", "moonbeam2", "nero2", "primo2",
-        "sabregt2", "specter2", "sultanrs", "tornado5", "virgo2", "voodoo", "elegy", "technical3", "insurgent3"}
+        "sabregt2", "specter2", "sultanrs", "tornado5", "virgo2", "voodoo", "elegy", "technical3", "insurgent3", "youga3", "yosemite3", "peyote3", "manana2", "glendale2", "gauntlet5"}
     Public arenavehicle As New List(Of Model) From {"bruiser", "bruiser2", "bruiser3", "cerberus", "cerberus2", "cerberus3", "deathbike", "deathbike2", "deathbike3", "dominator4", "dominator5",
         "dominator6", "impaler2", "impaler3", "impaler4", "imperator", "imperator2", "imperator3", "issi4", "issi5", "issi6", "monster3", "monster4", "monster5", "slamvan4", "slamvan5", "slamvan6", "brutus", "brutus2", "brutus3", "scarab", "scarab2",
         "scarab3", "zr380", "zr3802", "zr3803"}
@@ -216,6 +216,18 @@ Public Module Helper
                 result = "technical3"
             Case "insurgent"
                 result = "insurgent3"
+            Case "youga2"
+                result = "youga3"
+            Case "yosemite"
+                result = "yosemite3"
+            Case "peyote"
+                result = "peyote3"
+            Case "manana"
+                result = "manana2"
+            Case "glendale"
+                result = "glendale2"
+            Case "gauntlet3"
+                result = "gauntlet5"
             Case Else
                 result = model
         End Select
@@ -1237,7 +1249,9 @@ Public Module Helper
     {VehicleWheelType.SUV, New Tuple(Of String, String)("CMOD_WHE1_6", "SUV")},
     {VehicleWheelType.Tuner, New Tuple(Of String, String)("CMOD_WHE1_7", "Tuner")},
     {8, New Tuple(Of String, String)("CMOD_WHE1_8", "Benny's Originals")},
-    {9, New Tuple(Of String, String)("CMOD_WHE1_9", "Benny's Bespoke")}
+    {9, New Tuple(Of String, String)("CMOD_WHE1_9", "Benny's Bespoke")},
+    {10, New Tuple(Of String, String)("CMOD_WHE1_10", "Racing")},
+    {11, New Tuple(Of String, String)("CMOD_WHE1_11", "Street")}
 })
 
     Public Function IsCustomWheels() As Boolean
@@ -1378,6 +1392,18 @@ Public Module Helper
                 result = 142500
             Case "insurgent"
                 result = 202500
+            Case "youga2"
+                result = 1288000
+            Case "yosemite"
+                result = 700000
+            Case "peyote"
+                result = 620000
+            Case "manana"
+                result = 925000
+            Case "glendale"
+                result = 520000
+            Case "gauntlet3"
+                result = 815000
             Case Else
                 result = 0
         End Select
@@ -1537,9 +1563,7 @@ Public Module Helper
 
     <Extension()>
     Public Function Brand(ByVal veh As Vehicle) As String
-        Dim result As String = Game.GetGXTEntry(GetVehicleMakeName(veh.Model.Hash))
-        If result = "NULL" Then result = ""
-        Return result
+        Return Game.GetGXTEntry(Native.Function.Call(Of String)(&HF7AF4F159FF99F97UL, veh.Model.Hash))
     End Function
 
     <Extension()>
@@ -1734,6 +1758,8 @@ Public Module Helper
         b1_0_1604_1 = 4266905
         b1_0_1737_0 = 4267883
         b1_0_1868_0 = 4268190
+        b1_0_2060_0 = 4268340
+        b1_0_2060_1 = 4268341
     End Enum
 
     Public Function GetGlobalValue() As GlobalValue
@@ -1760,10 +1786,14 @@ Public Module Helper
                 Return GlobalValue.b1_0_1604_1
             Case GameVersion.VER_1_0_1737_0_NOSTEAM, GameVersion.VER_1_0_1737_0_STEAM, GameVersion.VER_1_0_1737_6_NOSTEAM, GameVersion.VER_1_0_1737_6_STEAM
                 Return GlobalValue.b1_0_1737_0
-            Case GameVersion.VER_1_0_1868_0_NOSTEAM, GameVersion.VER_1_0_1868_0_STEAM, 57, 58
+            Case GameVersion.VER_1_0_1868_0_NOSTEAM, GameVersion.VER_1_0_1868_0_STEAM, 57, 58, 59 'GameVersion.VER_1_0_1868_1_STEAM, GameVersion.VER_1_0_1868_1_NOSTEAM, GameVersion.VER_1_0_1868_4_EGS
                 Return GlobalValue.b1_0_1868_0
+            Case 60, 61 'GameVersion.VER_1_0_2060_0_STEAM, GameVersion.VER_1_0_2060_0_NOSTEAM
+                Return GlobalValue.b1_0_2060_0
+            Case 62, 63 'GameVersion.VER_1_0_2060_1_STEAM, GameVersion.VER_1_0_2060_1_NOSTEAM
+                Return GlobalValue.b1_0_2060_1
             Case Else
-                Return GlobalValue.b1_0_1868_0
+                Return GlobalValue.b1_0_2060_1
         End Select
     End Function
 
@@ -1807,7 +1837,7 @@ Public Module Helper
     End Sub
 
     Public Function IsNitroModInstalled() As Boolean
-        Return Decor.Registered(nitroMod, Decor.eDecorType.Bool)
+        Return Decor.Registered(nitroMod, Decor.eDecorType.Int)
     End Function
 
     <Extension>
@@ -2125,7 +2155,7 @@ Public Module Helper
                 .PlateNumbers = veh.NumberPlate,
                 .HeadlightsColor = veh.GetXenonHeadlightsColor,
                 .Suspension = veh.GetMod(VehicleMod.Suspension),
-                .Nitro = veh.GetBool(nitroMod),
+                .Nitro = veh.GetInt(nitroMod),
                 .BulletProofTires = veh.CanTiresBurst}
             veh.Position = New Vector3(-211.798, -1324.292, 30.37535)
             veh.Heading = 150.2801 '358.6677

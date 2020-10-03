@@ -643,12 +643,12 @@
         End Set
     End Property
 
-    Private _nitro As Boolean
-    Public Property Nitro() As Boolean
+    Private _nitro As Integer
+    Public Property Nitro() As Integer
         Get
             Return _nitro
         End Get
-        Set(value As Boolean)
+        Set(value As Integer)
             _nitro = value
         End Set
     End Property

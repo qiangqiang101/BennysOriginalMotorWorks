@@ -66,15 +66,17 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="INMNativeUI, Version=1.6.2.0, Culture=neutral, processorArchitecture=AMD64">
+    <Reference Include="INMNativeUI, Version=1.8.608.2, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\Program Files (x86)\Steam\steamapps\common\Grand Theft Auto V\scripts\INMNativeUI.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Grand Theft Auto V\scripts\INMNativeUI.dll</HintPath>
     </Reference>
-    <Reference Include="Metadata">
-      <HintPath>D:\Program Files (x86)\Steam\steamapps\common\Grand Theft Auto V\scripts\Metadata.dll</HintPath>
+    <Reference Include="Metadata, Version=1.0.1222.2, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Grand Theft Auto V\scripts\Metadata.dll</HintPath>
     </Reference>
-    <Reference Include="ScriptHookVDotNet2">
-      <HintPath>D:\Program Files (x86)\Steam\steamapps\common\Grand Theft Auto V\ScriptHookVDotNet2.dll</HintPath>
+    <Reference Include="ScriptHookVDotNet2, Version=2.10.12.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Grand Theft Auto V\ScriptHookVDotNet2.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

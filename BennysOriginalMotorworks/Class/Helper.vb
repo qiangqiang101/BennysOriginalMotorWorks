@@ -1759,7 +1759,6 @@ Public Module Helper
         b1_0_1737_0 = 4267883
         b1_0_1868_0 = 4268190
         b1_0_2060_0 = 4268340
-        b1_0_2060_1 = 4268341
     End Enum
 
     Public Function GetGlobalValue() As GlobalValue
@@ -1788,12 +1787,10 @@ Public Module Helper
                 Return GlobalValue.b1_0_1737_0
             Case GameVersion.VER_1_0_1868_0_NOSTEAM, GameVersion.VER_1_0_1868_0_STEAM, 57, 58, 59 'GameVersion.VER_1_0_1868_1_STEAM, GameVersion.VER_1_0_1868_1_NOSTEAM, GameVersion.VER_1_0_1868_4_EGS
                 Return GlobalValue.b1_0_1868_0
-            Case 60, 61 'GameVersion.VER_1_0_2060_0_STEAM, GameVersion.VER_1_0_2060_0_NOSTEAM
+            Case 60, 61, 62, 63 'GameVersion.VER_1_0_2060_0_STEAM, GameVersion.VER_1_0_2060_0_NOSTEAM, GameVersion.VER_1_0_2060_1_STEAM, GameVersion.VER_1_0_2060_1_NOSTEAM
                 Return GlobalValue.b1_0_2060_0
-            Case 62, 63 'GameVersion.VER_1_0_2060_1_STEAM, GameVersion.VER_1_0_2060_1_NOSTEAM
-                Return GlobalValue.b1_0_2060_1
             Case Else
-                Return GlobalValue.b1_0_2060_1
+                Return GlobalValue.b1_0_2060_0
         End Select
     End Function
 
